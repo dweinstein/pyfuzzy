@@ -1,5 +1,5 @@
 
-__revision__ = "$Id: Singleton.py,v 1.2 2003-03-20 08:47:28 rliebscher Exp $"
+__revision__ = "$Id: Singleton.py,v 1.3 2003-06-11 13:29:12 rliebscher Exp $"
 
 
 from fuzzy.set.Polygon import Polygon

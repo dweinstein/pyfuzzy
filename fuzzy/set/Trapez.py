@@ -1,5 +1,5 @@
 
-__revision__ = "$Id: Trapez.py,v 1.2 2003-03-20 08:47:28 rliebscher Exp $"
+__revision__ = "$Id: Trapez.py,v 1.3 2003-06-11 13:29:12 rliebscher Exp $"
 
 
 from fuzzy.set.Polygon import Polygon
@@ -7,6 +7,27 @@ from fuzzy.set.Polygon import Polygon
 class Trapez(Polygon):
 
     def __init__(self,y_max=1.0,y_min=0.0,m1=-0.5,m2=0.5,alpha=0.5,beta=0.5):
+	"""Constructor.
+	y_max:	y-value at top of the trapez (1.0)
+	y_min:  y-value outside the trapez (0.0)
+	m1:	x-value of left top of trapez (-0.5)
+	m2:	x-value of right top of trapez (0.5)
+	alpha:	distance of left corner to m1 (0.5)
+	beta:	distance of right corner to m2 (0.5)
+
+              _____ _____  y_max
+             /     \ 
+            /|     |\ 
+           / |     | \      
+          /  |     |  \ 
+        _/   |     |   \_  y_min
+         |   m1    m2  |
+         |   |     |   |
+        alpha|     |beta  
+
+	http://rene-liebscher.info/PyFuzzy/pyfuzzy/test/set/Trapez.png
+
+	"""
         Polygon.__init__(self)
 	# don't trigger __setattr__
 	self.__dict__["y_max"] = y_max

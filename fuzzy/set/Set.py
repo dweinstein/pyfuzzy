@@ -1,6 +1,8 @@
 """
 Base class for all fuzzy sets.
-Helper function for calculation with fuzzy sets.
+Helper functions for calculation with fuzzy sets.
+
+examples can be found here http://rene-liebscher.info/PyFuzzy/pyfuzzy/test/merge
 
 ----
 Intersection of set1 and set2 can be done by
@@ -30,7 +32,7 @@ maybe where the points of the resulting polygon are
 set.)
 """
 
-__revision__ = "$Id: Set.py,v 1.6 2003-04-21 10:56:52 plafoucr Exp $"
+__revision__ = "$Id: Set.py,v 1.7 2003-06-11 13:29:12 rliebscher Exp $"
 
 
 # helper functions

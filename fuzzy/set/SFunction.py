@@ -1,5 +1,5 @@
 
-__revision__ = "$Id: SFunction.py,v 1.3 2003-03-20 08:47:28 rliebscher Exp $"
+__revision__ = "$Id: SFunction.py,v 1.4 2003-06-11 13:29:12 rliebscher Exp $"
 
 
 from fuzzy.set.Function import Function
@@ -8,6 +8,19 @@ class SFunction(Function):
     """S shaped fuzzy set."""
 
     def __init__(self,a=0.0,delta=1.0):
+	"""
+	         __
+                /| 
+	       / |
+	      /| |
+	    _/ | |
+             | a |
+	     |   |
+	     delta  
+
+	http://rene-liebscher.info/PyFuzzy/pyfuzzy/test/set/SFunction.png 
+
+	"""
         Function.__init__(self)
 	self.a = a
 	self.delta = delta

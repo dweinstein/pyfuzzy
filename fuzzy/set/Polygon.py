@@ -1,5 +1,5 @@
 
-__revision__ = "$Id: Polygon.py,v 1.5 2003-04-22 09:17:48 rliebscher Exp $"
+__revision__ = "$Id: Polygon.py,v 1.6 2003-06-11 13:29:12 rliebscher Exp $"
 
 
 from fuzzy.set.Set import Set
@@ -12,11 +12,13 @@ class Polygon(Set):
        If you need something similar to ZFunction or SFunction, 
        use this class directly by building it from two points.
 
-          ---*                     *---    
+          ---*                     *---
               \                   /
-	       \        OR       /    
-                \               / 
-                 *---       ---*         
+	       \        OR       /
+                \               /
+                 *---       ---* 
+
+	http://rene-liebscher.info/PyFuzzy/pyfuzzy/test/set/Polygon.png
 
        """
 

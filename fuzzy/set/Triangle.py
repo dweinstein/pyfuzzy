@@ -1,5 +1,5 @@
 
-__revision__ = "$Id: Triangle.py,v 1.3 2003-03-20 08:47:28 rliebscher Exp $"
+__revision__ = "$Id: Triangle.py,v 1.4 2003-06-11 13:29:12 rliebscher Exp $"
 
 
 from fuzzy.set.Polygon import Polygon
@@ -10,10 +10,23 @@ class Triangle(Polygon):
     def __init__(self,y_max=1.0,y_min=0.0,m=0.0,alpha=1.0,beta=1.0):
 	"""Constructor.
 	y_max:	y-value at top of the triangle (1.0)
-	y_min:  y-value outside the triangle (0.0)
+	y_min:  y-value outside the triangle (0.0)
 	m:	x-value of top of triangle (0.0)
 	alpha:	distance of left corner to m (1.0)
 	beta:	distance of right corner to m (1.0)
+
+             ______  y_max
+             ^     
+	    /|\ 
+           / | \      
+	  /  |  \ 
+	_/   |   \_  y_min
+         |   m   |
+	 |   |   |
+	alpha|beta  
+
+	http://rene-liebscher.info/PyFuzzy/pyfuzzy/test/set/Triangle.png
+
 	"""
         Polygon.__init__(self)
 	# don't trigger __setattr__

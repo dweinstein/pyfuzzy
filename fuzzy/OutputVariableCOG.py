@@ -1,5 +1,5 @@
 
-__revision__ = "$Id: OutputVariableCOG.py,v 1.5 2003-04-14 08:49:31 rliebscher Exp $"
+__revision__ = "$Id: OutputVariableCOG.py,v 1.6 2003-06-11 13:29:11 rliebscher Exp $"
 
 
 from fuzzy.OutputVariable import OutputVariable
@@ -17,6 +17,13 @@ class OutputVariableCOG(OutputVariable):
     _ACC = Max()
 
     def __init__(self, INF=None, ACC=None, failsafe=None,*args,**keywords):
+	"""
+	    INF - inference norm, used with set of adjective and given value for it
+	    ACC - norm for accumulation of set of adjectives
+	    failsafe - if is not possible to calculate a center of gravity,
+			return this value if not None
+			or forward the exception
+	""" 
         OutputVariable.__init__(*tuple([self]+list(args)),**keywords)
         self.ACC = ACC # accumulation
         self.INF = INF # inference

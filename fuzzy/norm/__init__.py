@@ -1,4 +1,9 @@
-"""This package contains all realized fuzzy norms.
+"""
+
+This package contains all realized fuzzy norms.
+
+examples can be found here http://rene-liebscher.info/PyFuzzy/pyfuzzy/test/norm
+
 """
 
 def __import_classes(dir):

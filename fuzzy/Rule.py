@@ -1,5 +1,5 @@
 
-__revision__ = "$Id: Rule.py,v 1.2 2003-03-20 08:47:27 rliebscher Exp $"
+__revision__ = "$Id: Rule.py,v 1.3 2003-06-11 13:29:11 rliebscher Exp $"
 
 
 from fuzzy.norm.Min import Min

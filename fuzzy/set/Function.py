@@ -1,5 +1,5 @@
 
-__revision__ = "$Id: Function.py,v 1.3 2003-03-20 08:47:27 rliebscher Exp $"
+__revision__ = "$Id: Function.py,v 1.4 2003-06-11 13:29:11 rliebscher Exp $"
 
 
 from fuzzy.set.Set import Set

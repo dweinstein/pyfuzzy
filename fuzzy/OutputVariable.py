@@ -1,5 +1,5 @@
 
-__revision__ = "$Id: OutputVariable.py,v 1.1 2003-04-14 08:54:57 rliebscher Exp $"
+__revision__ = "$Id: OutputVariable.py,v 1.2 2003-06-11 13:29:11 rliebscher Exp $"
 
 
 from fuzzy.Variable import Variable

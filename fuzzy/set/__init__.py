@@ -3,9 +3,13 @@ Different kind of fuzzy sets.
 For any of these you can call set(x) to get the membership value of x.
 
 See class Set for more. 
+
+examples can be found here http://rene-liebscher.info/PyFuzzy/pyfuzzy/test/set/
+
+
 """
 
-__revision__ = "$Id: __init__.py,v 1.3 2003-03-20 08:47:28 rliebscher Exp $"
+__revision__ = "$Id: __init__.py,v 1.4 2003-06-11 13:29:12 rliebscher Exp $"
 
 
 #def __import_classes(dir):
