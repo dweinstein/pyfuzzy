@@ -30,7 +30,7 @@ maybe where the points of the resulting polygon are
 set.)
 """
 
-__revision__ = "$Id: Set.py,v 1.5 2003-03-20 08:47:28 rliebscher Exp $"
+__revision__ = "$Id: Set.py,v 1.6 2003-04-21 10:56:52 plafoucr Exp $"
 
 
 # helper functions
