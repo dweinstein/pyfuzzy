@@ -1,16 +1,17 @@
-$Id: TODO,v 1.2 2003-03-10 22:16:04 plafoucr Exp $
+$Id: TODO,v 1.3 2003-04-20 14:52:05 plafoucr Exp $
 
 - Manage correctly min & max variables for fuzzy.Variable class
-	- do not use any more strings as default for min & max
-	- raise exceptions when out of range
 - Release files for SourceForge when pyfuzzy will be considered as 'stable enough'
-- Classes VariableDict and OutputVariableDict to handle "dictionnary" output
+- [DONE] Classes VariableDict and OutputVariableDict to handle "dictionnary" output (see OutputVariableDict InputVariableDict)
 - Other defuzzyfication methods
 - Gui to manage fuzzy systems (wxPython)
 	- First, a simple app with implements all pyfuzzy functions
 	- After that, a complete interactive GUI, maybe using OGL (http://tltsu.ru/wxpython-2.3.2/docs/ogl/index.htm) to manage drag & drop, and kind of wires.
 
 - manage projects
-	- Pickle
+	- [DONE] Pickle (see mischer.py)
 	- XML
-- Automatic generation of documentation 
+    
+- [50 % DONE] Automatic generation of documentation (see doc.py)
+- Manage precision in outputVariableDict ( 3 --> 0.00x)
+
