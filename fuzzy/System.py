@@ -4,6 +4,11 @@ class System:
        Provides methods to do calculation with it.""" 
     
     def __init__(self):
+	"""Constructor.
+	Creates two instance variables:
+	variables: dictionary to hold all variables.
+	rules:	   dictionary to hold all rules.
+	"""
         self.variables = {}
         self.rules = {}
 

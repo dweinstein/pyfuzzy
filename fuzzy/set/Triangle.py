@@ -1,8 +1,16 @@
 from fuzzy.set.Polygon import Polygon
 
 class Triangle(Polygon):
+    """Triangle shaped fuzzy set."""
 
     def __init__(self,y_max=1.0,y_min=0.0,m=0.0,alpha=1.0,beta=1.0):
+	"""Constructor.
+	y_max:	y-value at top of the triangle (1.0)
+	y_min:  y-value outside the triangle (0.0)
+	m:	x-value of top of triangle (0.0)
+	alpha:	distance of left corner to m (1.0)
+	beta:	distance of right corner to m (1.0)
+	"""
         Polygon.__init__(self)
 	# don't trigger __setattr__
 	self.__dict__["y_max"] = y_max

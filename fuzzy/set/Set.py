@@ -32,7 +32,7 @@ set.)
 
 # helper functions
 def _find_null_steffensen(x,f,epsilon=None):
-    """Find null point of function f by using the Steffensen method.
+    """Find zero of function f by using the Steffensen method.
        As fixpoint equation g(x) = x - f(x) is used.
        The algorithm stops if the error estimation is smaller than epsilon
        or the convergence quotient is larger than 1.0 (for at least two steps)
@@ -185,6 +185,8 @@ class Set:
 	    return next
 
    def getIntervalGenerator(self):
+	"""Internal helper function to help convert arbitrary fuzzy sets in 
+	fuzzy sets represented by a polygon."""
 	return self.IntervalGenerator()
 
    def getCOG(self):

@@ -1,3 +1,9 @@
+"""
+Different kind of fuzzy sets.
+For any of these you can call set(x) to get the membership value of x.
+
+See class Set for more. 
+"""
 
 def __import_classes(dir):
     """ Import any classes in the named directory.

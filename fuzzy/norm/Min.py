@@ -6,4 +6,5 @@ class Min(Norm):
         Norm.__init__(self,Norm.T_NORM)
 
     def __call__(self,*args):
+	"""Return minimum of given values."""
         return min(args)

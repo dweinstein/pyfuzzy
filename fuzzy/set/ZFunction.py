@@ -1,6 +1,7 @@
 from fuzzy.set.SFunction import SFunction
 
 class ZFunction(SFunction):
+    """Z shaped fuzzy set.""" 
 
     def __init__(self,a=0.0,delta=1.0):
         SFunction.__init__(self,a,delta)

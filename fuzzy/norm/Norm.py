@@ -15,8 +15,18 @@ class Norm:
         self.__type = type
         
     def __call__(self,*args):
+	"""
+	    Calculate result of norm(arg1,arg2,...)
+	"""
         raise NormException("abstract class %s can't be called" % self.__class__.__name__)
         
     def getType(self):
+	"""
+	    Return type of norm:
+	    0 = not defined or not classified
+	    1 = t-norm ( = Norm.T_NORM)
+	    2 = s-norm ( = Norm.S_NORM)
+	
+	"""
         return self.__type
     

@@ -14,4 +14,5 @@ class Operator:
         pass
  
     def __call__(self):
+	"""Return current value."""
         raise fuzzy.Exception.Exception("abtract class %s can't be called" % self.__class__.__name__)

@@ -5,10 +5,15 @@ class Compound(Operator):
     """ 
     
     def __init__(self, norm, *inputs):
+	"""Constructor.
+	norm:	how combine inputs. (eg. Min,Max,...)
+	inputs: list of inputs (subclassed from Operator).
+	"""
         Operator.__init__(self)
         self.norm = norm
         self.inputs = inputs
 
     def __call__(self):
+	"""Get current value of input and combine them with help of norm."""
         return apply(self.norm,map(lambda x:x(),self.inputs))
 

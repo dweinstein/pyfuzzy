@@ -6,4 +6,5 @@ class Max(Norm):
         Norm.__init__(self,Norm.S_NORM)
 
     def __call__(self,*args):
+	"""Return maximum of given values."""
         return max(args)
