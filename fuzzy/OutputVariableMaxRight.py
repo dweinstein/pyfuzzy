@@ -4,9 +4,9 @@ from fuzzy.set.Polygon import Polygon
 from fuzzy.norm.Max import Max
 from fuzzy.norm.Min import Min
 
-class OutputVariableCOG(Variable):
+class OutputVariableMaxRight(Variable):
     """Output variable which uses for defuzzyfication
-       the center of gravity method."""
+       the right maximum."""
 
     # default values if instance values are not set 
     _INF = Min()
@@ -16,10 +16,10 @@ class OutputVariableCOG(Variable):
         Variable.__init__(*tuple([self]+list(args)),**keywords)
         self.ACC = ACC # accumulation
         self.INF = INF # inference
-        self.failsafe = failsafe # which value if COG not calculable
+        self.failsafe = failsafe # which value if value not calculable
         
     def getValue(self):
-        """Defuzzyfication using center of gravity method."""
+        """Defuzzyfication."""
         temp = None
         for adjective in self.adjectives.values():
             # get precomputed adjective set
@@ -29,13 +29,29 @@ class OutputVariableCOG(Variable):
                 temp = temp2
             else:
                 temp = merge((self.ACC or self._ACC),temp,temp2)
-        try:
-    	    return temp.getCOG()
-        except Exception,e:
-            # was not to calculate
-            if self.failsafe is not None:
-                # user gave us a value to return 
-                return self.failsafe
-            else:
-                # forward exception
-                raise e
+        
+	# get polygon representation
+	ig = temp.getIntervalGenerator()
+	next = ig.nextInterval(None,None)
+	x = None
+	y = None
+	while next is not None:
+	    x_ = next
+	    y_ = temp(x_)
+	    if x is None:
+	 	y = y_
+		x = x_
+	    if y_ >= y:
+		y = y_
+		x = x_
+	    # get next point from polygon
+	    next = ig.nextInterval(next,None)
+	# right end of polygon is maximum then it goes to infinity
+	if y is not None and y_ >= y:
+	    x = float('inf')
+
+        # was not to calculate
+	if x is None and self.failsafe is not None:
+            # user gave us a value to return 
+            return self.failsafe
+	return x
