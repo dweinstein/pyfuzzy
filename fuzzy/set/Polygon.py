@@ -1,5 +1,5 @@
 
-__revision__ = "$Id: Polygon.py,v 1.4 2003-04-14 08:49:35 rliebscher Exp $"
+__revision__ = "$Id: Polygon.py,v 1.5 2003-04-22 09:17:48 rliebscher Exp $"
 
 
 from fuzzy.set.Set import Set
@@ -7,7 +7,18 @@ from fuzzy.set.Set import Set
 class Polygon(Set):
     """Represents a fuzzy set, which membership function
        is the shape of a polygon. For example: triangle,
-       trapezoid, rectangle, or something similar."""
+       trapezoid, rectangle, or something similar.
+       
+       If you need something similar to ZFunction or SFunction, 
+       use this class directly by building it from two points.
+
+          ---*                     *---    
+              \                   /
+	       \        OR       /    
+                \               / 
+                 *---       ---*         
+
+       """
 
     # indices for coordinate tuple
     X = 0
