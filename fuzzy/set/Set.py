@@ -32,7 +32,7 @@ maybe where the points of the resulting polygon are
 set.)
 """
 
-__revision__ = "$Id: Set.py,v 1.7 2003-06-11 13:29:12 rliebscher Exp $"
+__revision__ = "$Id: Set.py,v 1.8 2003-06-12 09:54:59 rliebscher Exp $"
 
 
 # helper functions
@@ -71,8 +71,8 @@ def _find_null_steffensen(x,f,epsilon=None):
 
 
 def merge(NORM, set1, set2):
-	"""Returns a new fuzzy set which the merger of set1 and set2,
-	   where the resulting membership is equal to NORM(set1(x),set2(x))."""
+	"""Returns a new fuzzy set which ist the merger of set1 and set2,
+	   where the membership of the result set is equal to NORM(set1(x),set2(x))."""
 	from fuzzy.set.Polygon import Polygon
 	ret = Polygon()
 	
@@ -133,7 +133,8 @@ def merge(NORM, set1, set2):
 	return ret
 
 def norm(NORM, set, value):
-        """Returns a new fuzzy set which this set normed with value."""
+        """Returns a new fuzzy set which ist this set normed with value.
+	   where the membership of the result set is equal to NORM(set(x),value)."""
 	from fuzzy.set.Polygon import Polygon
 	ret = Polygon()
 	
@@ -184,7 +185,7 @@ class Set:
 
    def __call__(self,x):
         """Return membership of x in this fuzzy set.
-	   This function makes the set work like a function."""
+	   This method makes the set work like a function."""
         return 0
         
    class IntervalGenerator:

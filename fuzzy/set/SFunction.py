@@ -1,5 +1,5 @@
 
-__revision__ = "$Id: SFunction.py,v 1.4 2003-06-11 13:29:12 rliebscher Exp $"
+__revision__ = "$Id: SFunction.py,v 1.5 2003-06-12 09:54:59 rliebscher Exp $"
 
 
 from fuzzy.set.Function import Function
@@ -27,7 +27,7 @@ class SFunction(Function):
 	
     def __call__(self,x):
         """Return membership of x in this fuzzy set.
-	   This function makes the set work like a function."""
+	   This method makes the set work like a function."""
         a = self.a
 	d = self.delta
 	if x<= a-d:
