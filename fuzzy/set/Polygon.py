@@ -118,10 +118,11 @@ class Polygon(Set):
 
     def getCOG(self):
 	"""Return center of gravity."""
-	if len(self.points) <= 1:
-            raise Exception("no COG calculable:1")
+	if len(self.points) <=1 :
+	    #return 0.0
+            raise Exception("no COG calculable: single point = constant value")
         if self.points[0][Polygon.Y] > 0 or self.points[-1][Polygon.Y] > 0:
-            raise Exception("no COG calculable:2")
+            raise Exception("no COG calculable: end points of polygon not y=0.0")
         _Flaeche = 0.
         _Schwerpunkt = 0.
         x0 = self.points[0][Polygon.X]
@@ -139,5 +140,7 @@ class Polygon(Set):
                                 y0/2.0*(x1_2-x0_2)+(y1-y0)/(x1-x0)*(x1_3/3.0-x0_3/3.0-x1_2*x0/2.0+x0_3/2.0))
                 x0,x0_2,x0_3 = x1,x1_2,x1_3
             y0 = y1
+	if _Flaeche == 0.0:
+	    raise Exception("no COG calculable: polygon area is zero!")
         _Schwerpunkt = _Schwerpunkt/_Flaeche
 	return _Schwerpunkt # XXX

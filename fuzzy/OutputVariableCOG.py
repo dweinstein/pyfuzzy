@@ -30,10 +30,10 @@ class OutputVariableCOG(Variable):
             else:
                 temp = merge((self.ACC or self._ACC),temp,temp2)
         try:
-            return temp.getCOG()
+    	    return temp.getCOG()
         except Exception,e:
             # was not to calculate
-            if self.failsafe:
+            if self.failsafe is not None:
                 # user gave us a value to return 
                 return self.failsafe
             else:

@@ -14,7 +14,10 @@ class Adjective:
         self.membership = self.set(value)
 
     def getMembership(self):
-        return self.membership
+	if self.membership is None:
+    	    return 0.0
+	else:
+	    return self.membership
 
     def setMembership(self,value):
         """Set membership of this adjective, if

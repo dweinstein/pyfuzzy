@@ -96,12 +96,19 @@ def merge(NORM, set1, set2):
 		# get new interval from sets
 		x = g1.nextInterval(prev_x,None)
 		x_ = g2.nextInterval(prev_x,x)
-		if x_ is not None and x_ < x:
-	            x = x_
-	        if x_ is None: # no need for more intervals
+	        if x is None and x_ is None: # no need for more intervals
 		    break
-		if x is None:
+		if x is None: 
+		    # first set is finished => take values from second 
 		    x = x_
+		else:
+		    if x_ is None:
+			# second set is finished first, x is already ok
+			pass
+		    else:
+			if x_ < x:
+			    # both need more calculations, get smaller value
+	        	    x = x_
 		y1 = set1(x)
 		y2 = set2(x)
 		# test if intersection => split interval
