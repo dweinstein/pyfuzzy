@@ -2,7 +2,7 @@ class Variable:
     """Base class for any kind of fuzzy variable.
        Returns as output the previous input value."""
 
-    def __init__(self,description='',min='',max='',unit=''):
+    def __init__(self,description='',min=0.,max=1.,unit=''):
         self.adjectives = {}
         self.__value     = None
         self.description = description
