@@ -1,15 +1,16 @@
 
-__revision__ = "$Id: Adjective.py,v 1.3 2003-03-20 08:47:27 rliebscher Exp $"
+__revision__ = "$Id: Adjective.py,v 1.4 2003-04-14 08:49:30 rliebscher Exp $"
 
 
 from fuzzy.norm.Max import Max
+from fuzzy.set.Set import Set
 
 class Adjective:
 
     # default if not set in instance
     _COM = Max()
 
-    def __init__(self,set,COM=None):
+    def __init__(self,set=Set(),COM=None):
         self.set = set
         self.membership = None
         self.COM = COM

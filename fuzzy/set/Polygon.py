@@ -1,5 +1,5 @@
 
-__revision__ = "$Id: Polygon.py,v 1.3 2003-03-20 08:47:28 rliebscher Exp $"
+__revision__ = "$Id: Polygon.py,v 1.4 2003-04-14 08:49:35 rliebscher Exp $"
 
 
 from fuzzy.set.Set import Set
@@ -33,15 +33,28 @@ class Polygon(Set):
         x0 = self.points[0][Polygon.X];
         for i in range(1,len(self.points)):
             x1 = self.points[i][Polygon.X]
-            # found right interval
+            # found right interval border
             if x1 < x:
                 x0 = x1
                 continue
+	    # if we want a x values which is a polygon point ...
+	    if x1 == x:
+		y = self.points[i][Polygon.Y]
+		# ... check following points for same x-value ...
+		for j in range(i+1,len(self.points)):
+		    if self.points[j][Polygon.X] > x:
+			break
+		    else:
+			# ... and use the maximum value
+			y_ = self.points[j][Polygon.Y]
+			if y_>y:
+			    y = y_
+		return y
             y0 = self.points[i-1][Polygon.Y]
             y1 = self.points[i][Polygon.Y]
             # interpolate value in interval
-            if x1==x0:
-                return y0
+            if x1==x0: # should never happen
+                return max(y0,y1)
             return y0+(y1-y0)/(x1-x0)*(x-x0)
         return 0.0 # should never be reached
     

@@ -1,11 +1,11 @@
 
-__revision__ = "$Id: OutputVariableDict.py,v 1.2 2003-03-20 08:47:27 rliebscher Exp $"
+__revision__ = "$Id: OutputVariableDict.py,v 1.3 2003-04-14 08:49:31 rliebscher Exp $"
 
 
-from fuzzy.Variable import Variable
+from fuzzy.OutputVariable import OutputVariable
 
 
-class OutputVariableDict(Variable):
+class OutputVariableDict(OutputVariable):
     """Output variable which stores it adjective memberships
        in a dictionary for output.
        You should use in the adjectives instances of Set itself.
@@ -42,7 +42,7 @@ class OutputVariableDict(Variable):
        """
 
     def __init__(self,*args,**keywords):
-        Variable.__init__(*tuple([self]+list(args)),**keywords)
+        OutputVariable.__init__(*tuple([self]+list(args)),**keywords)
         
     def getValue(self):
         """no defuzzyfication just return membership values"""

@@ -1,14 +1,14 @@
 
-__revision__ = "$Id: OutputVariableMaxRight.py,v 1.2 2003-03-20 08:47:27 rliebscher Exp $"
+__revision__ = "$Id: OutputVariableMaxRight.py,v 1.3 2003-04-14 08:49:33 rliebscher Exp $"
 
 
-from fuzzy.Variable import Variable
+from fuzzy.OutputVariable import OutputVariable
 from fuzzy.set.Set import Set,merge,norm
 from fuzzy.set.Polygon import Polygon
 from fuzzy.norm.Max import Max
 from fuzzy.norm.Min import Min
 
-class OutputVariableMaxRight(Variable):
+class OutputVariableMaxRight(OutputVariable):
     """Output variable which uses for defuzzyfication
        the right maximum."""
 
@@ -17,7 +17,7 @@ class OutputVariableMaxRight(Variable):
     _ACC = Max()
 
     def __init__(self, INF=None, ACC=None, failsafe=None,*args,**keywords):
-        Variable.__init__(*tuple([self]+list(args)),**keywords)
+        OutputVariable.__init__(*tuple([self]+list(args)),**keywords)
         self.ACC = ACC # accumulation
         self.INF = INF # inference
         self.failsafe = failsafe # which value if value not calculable
