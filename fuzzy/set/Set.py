@@ -30,6 +30,9 @@ maybe where the points of the resulting polygon are
 set.)
 """
 
+__revision__ = "$Id: Set.py,v 1.5 2003-03-20 08:47:28 rliebscher Exp $"
+
+
 # helper functions
 def _find_null_steffensen(x,f,epsilon=None):
     """Find zero of function f by using the Steffensen method.

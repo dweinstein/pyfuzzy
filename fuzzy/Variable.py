@@ -1,3 +1,7 @@
+
+__revision__ = "$Id: Variable.py,v 1.4 2003-03-20 08:47:27 rliebscher Exp $"
+
+
 class Variable:
     """Base class for any kind of fuzzy variable.
        Returns as output the previous input value."""

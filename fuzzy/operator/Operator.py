@@ -3,6 +3,10 @@
     
     Used to build fuzzy rules.
 """ 
+
+__revision__ = "$Id: Operator.py,v 1.3 2003-03-20 08:47:27 rliebscher Exp $"
+
+
 import fuzzy.Exception
 
 class Operator:

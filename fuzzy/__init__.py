@@ -1,3 +1,3 @@
 """Initialize the fuzzy module.
-   Import all sub modules so they can be accessed easier.
 """
+__revision__ = "$Id: __init__.py,v 1.2 2003-03-20 08:47:27 rliebscher Exp $"

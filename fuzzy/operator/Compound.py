@@ -1,4 +1,9 @@
+
+__revision__ = "$Id: Compound.py,v 1.3 2003-03-20 08:47:27 rliebscher Exp $"
+
+
 from fuzzy.operator.Operator import Operator
+
 class Compound(Operator):
     """Take values of input operators  and process them
        through the given norm.

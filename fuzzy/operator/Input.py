@@ -1,3 +1,7 @@
+
+__revision__ = "$Id: Input.py,v 1.3 2003-03-20 08:47:27 rliebscher Exp $"
+
+
 from fuzzy.operator.Operator import Operator
 
 class Input(Operator):

@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 
+__revision__ = "$Id: demo_defuzzyfication.py,v 1.2 2003-03-20 08:47:28 rliebscher Exp $"
+
 
 def get_classes():
     import os,sys,imp

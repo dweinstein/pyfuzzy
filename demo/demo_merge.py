@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 
+__revision__ = "$Id: demo_merge.py,v 1.2 2003-03-20 08:47:28 rliebscher Exp $"
+
 try:
     # If the package has been installed correctly, this should work:
     import Gnuplot, Gnuplot.funcutils, Gnuplot.PlotItems

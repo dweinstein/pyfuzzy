@@ -1,3 +1,7 @@
+
+__revision__ = "$Id: Rule.py,v 1.2 2003-03-20 08:47:27 rliebscher Exp $"
+
+
 from fuzzy.norm.Min import Min
 
 class Rule:

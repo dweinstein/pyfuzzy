@@ -1,4 +1,6 @@
 #!/bin/bash
+# $Id: makehtml.sh,v 1.3 2003-03-20 08:47:26 rliebscher Exp $
+
 export PYTHONPATH=../..
 mkdir html
 cd html

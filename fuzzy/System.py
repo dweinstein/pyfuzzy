@@ -1,4 +1,7 @@
 
+__revision__ = "$Id: System.py,v 1.3 2003-03-20 08:47:27 rliebscher Exp $"
+
+
 class System:
     """Holds all stuff together. (variables, rules, ...)
        Provides methods to do calculation with it.""" 

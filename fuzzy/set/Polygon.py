@@ -1,3 +1,7 @@
+
+__revision__ = "$Id: Polygon.py,v 1.3 2003-03-20 08:47:28 rliebscher Exp $"
+
+
 from fuzzy.set.Set import Set
 
 class Polygon(Set):

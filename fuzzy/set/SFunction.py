@@ -1,3 +1,7 @@
+
+__revision__ = "$Id: SFunction.py,v 1.3 2003-03-20 08:47:28 rliebscher Exp $"
+
+
 from fuzzy.set.Function import Function
 
 class SFunction(Function):
