@@ -1,6 +1,11 @@
+Release 0.0.2 (April 22th, 2003)
+------------------------------
+  * Added OutputVariable, OutputVariableDict, InputVariable, InputVariableDict
+  * Added min, max, description and unit to Variable
+
 Release 0.0.1 (February 14th, 2003)
 ------------------------------
   * initial public release
 
 
-$Id: CHANGES.txt,v 1.2 2003-02-14 15:02:10 rliebscher Exp $
+$Id: CHANGES.txt,v 1.3 2003-04-22 08:38:40 plafoucr Exp $

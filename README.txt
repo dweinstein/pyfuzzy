@@ -1,6 +1,6 @@
                              Python Fuzzy 
-                             release 0.0.1
-                            February 14th, 2003
+                             release 0.0.2
+                            April 22th, 2003
 
 
 INTRODUCTION
@@ -87,7 +87,7 @@ BUGS AND LIMITATIONS
 CONTRIBUTING
 ------------
 
-...
+contact : René Liebscher <R.Liebscher@gmx.de>
 
 ACKNOWLEDGMENTS
 ---------------
@@ -98,4 +98,4 @@ ACKNOWLEDGMENTS
   * Marc Vollmer: initial version, examples
 
 
-$Id: README.txt,v 1.1 2003-02-14 15:04:10 rliebscher Exp $
+$Id: README.txt,v 1.2 2003-04-22 08:38:40 plafoucr Exp $
