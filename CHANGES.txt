@@ -1,0 +1,6 @@
+Release 0.0.1 (?? ????, 2001)
+------------------------------
+  * initial public release
+
+
+$Id: CHANGES.txt,v 1.1 2002-08-02 11:06:11 rliebscher Exp $
