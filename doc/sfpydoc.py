@@ -1,6 +1,7 @@
 # replace link to file with link to sourceforge.net cvs webpage
+# -*- coding: iso-8859-1 -*-
 
-__revision__ = "$Id: sfpydoc.py,v 1.2 2003-03-20 08:47:26 rliebscher Exp $"
+__revision__ = "$Id: sfpydoc.py,v 1.3 2008-10-08 14:53:50 rliebscher Exp $"
 
 
 import sys, imp, os, stat, re, types, inspect

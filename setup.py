@@ -1,8 +1,9 @@
 #!/usr/bin/env python
+# -*- coding: iso-8859-1 -*-
 
 # created 2001/08 Rene Liebscher
 
-__revision__ = "$Id: setup.py,v 1.3 2003-04-25 07:37:54 rliebscher Exp $"
+__revision__ = "$Id: setup.py,v 1.4 2008-10-08 14:53:50 rliebscher Exp $"
 
 from distutils.core import setup
 
