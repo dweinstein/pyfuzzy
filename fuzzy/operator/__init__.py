@@ -1,3 +1,4 @@
+# -*- coding: iso-8859-1 -*-
 """These operators are used to build fuzzy rules.
 
 For example:
@@ -21,3 +22,5 @@ Compound(FuzzyOr(),
     )
 )
 """
+
+__revision__ = "$Id: __init__.py,v 1.2 2008-10-08 13:14:45 rliebscher Exp $"

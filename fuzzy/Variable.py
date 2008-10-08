@@ -1,5 +1,6 @@
+# -*- coding: iso-8859-1 -*-
 
-__revision__ = "$Id: Variable.py,v 1.4 2003-03-20 08:47:27 rliebscher Exp $"
+__revision__ = "$Id: Variable.py,v 1.5 2008-10-08 13:19:17 rliebscher Exp $"
 
 
 class Variable:
@@ -60,3 +61,7 @@ class Variable:
         """Reset meberships of adjectives for new calculation step."""
         for adjective in self.adjectives.values():
             adjective.reset()
+
+    def getName(self,system):
+	"""Lookup the name given this variable in the given system"""
+	return system.findVariableName(self)

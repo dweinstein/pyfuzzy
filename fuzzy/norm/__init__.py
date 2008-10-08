@@ -1,3 +1,4 @@
+# -*- coding: iso-8859-1 -*-
 """
 
 This package contains all realized fuzzy norms.
@@ -5,6 +6,9 @@ This package contains all realized fuzzy norms.
 examples can be found here http://rene-liebscher.info/PyFuzzy/pyfuzzy/test/norm
 
 """
+
+__revision__ = "$Id: __init__.py,v 1.3 2008-10-08 13:11:39 rliebscher Exp $"
+
 
 def __import_classes(dir):
     """ Import any classes in the named directory.

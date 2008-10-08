@@ -1,10 +1,11 @@
+# -*- coding: iso-8859-1 -*-
 """
     Calculate value for fuzzy rule.
     
     Used to build fuzzy rules.
 """ 
 
-__revision__ = "$Id: Operator.py,v 1.3 2003-03-20 08:47:27 rliebscher Exp $"
+__revision__ = "$Id: Operator.py,v 1.4 2008-10-08 13:14:45 rliebscher Exp $"
 
 
 import fuzzy.Exception
@@ -20,3 +21,4 @@ class Operator:
     def __call__(self):
 	"""Return current value."""
         raise fuzzy.Exception.Exception("abtract class %s can't be called" % self.__class__.__name__)
+

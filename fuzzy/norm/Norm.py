@@ -1,6 +1,10 @@
+# -*- coding: iso-8859-1 -*-
 """ 
     Abstract base class for any kind of fuzzy norm.
 """
+
+__revision__ = "$Id: Norm.py,v 1.3 2008-10-08 13:11:39 rliebscher Exp $"
+
 from fuzzy.Exception import Exception
 class NormException(Exception):
     pass
@@ -29,4 +33,12 @@ class Norm:
 	
 	"""
         return self.__type
-    
+
+    def printDot(self,system,parent_name):
+	node_name = parent_name+"_NORM_" + str(hash(self))
+	print """
+    %(node_name)s [label="%(norm_name)s"];
+    %(node_name)s -> %(parent_name)s;
+""" % {"node_name":node_name,"parent_name":parent_name,"norm_name":self.__class__.__name__}
+	return node_name
+	    

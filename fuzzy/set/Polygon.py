@@ -1,5 +1,6 @@
+# -*- coding: iso-8859-1 -*-
 
-__revision__ = "$Id: Polygon.py,v 1.6 2003-06-11 13:29:12 rliebscher Exp $"
+__revision__ = "$Id: Polygon.py,v 1.7 2008-10-08 13:15:22 rliebscher Exp $"
 
 
 from fuzzy.set.Set import Set

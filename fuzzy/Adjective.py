@@ -1,5 +1,6 @@
+# -*- coding: iso-8859-1 -*-
 
-__revision__ = "$Id: Adjective.py,v 1.4 2003-04-14 08:49:30 rliebscher Exp $"
+__revision__ = "$Id: Adjective.py,v 1.5 2008-10-08 13:19:17 rliebscher Exp $"
 
 
 from fuzzy.norm.Max import Max
@@ -39,3 +40,7 @@ class Adjective:
 
     def reset(self):
         self.membership = None
+	
+    def getName(self,system):
+	return system.findAdjectiveName(self)
+

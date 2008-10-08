@@ -1,5 +1,6 @@
+# -*- coding: iso-8859-1 -*-
 
-__revision__ = "$Id: Rule.py,v 1.3 2003-06-11 13:29:11 rliebscher Exp $"
+__revision__ = "$Id: Rule.py,v 1.4 2008-10-08 13:19:17 rliebscher Exp $"
 
 
 from fuzzy.norm.Min import Min
@@ -39,3 +40,4 @@ class Rule:
                                         self.operator() # value from input
                                     )
                                 )
+				

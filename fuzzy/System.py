@@ -1,5 +1,6 @@
+# -*- coding: iso-8859-1 -*-
 
-__revision__ = "$Id: System.py,v 1.3 2003-03-20 08:47:27 rliebscher Exp $"
+__revision__ = "$Id: System.py,v 1.4 2008-10-08 13:19:17 rliebscher Exp $"
 
 
 class System:
@@ -38,3 +39,17 @@ class System:
             output[name] = self.variables[name].getValue()
 
         return output
+
+    def findVariableName(self,var):
+        for name,variable in self.variables.iteritems():
+	    if var is variable:
+		return name
+	return None
+		
+    def findAdjectiveName(self,adj):
+        for name,variable in self.variables.iteritems():
+    	    for namea,adjective in variable.adjectives.iteritems():
+		if adj is adjective:
+		    return [namea,name]
+	return None
+	

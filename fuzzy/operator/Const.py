@@ -1,5 +1,6 @@
+# -*- coding: iso-8859-1 -*-
 
-__revision__ = "$Id: Const.py,v 1.3 2003-03-20 08:47:27 rliebscher Exp $"
+__revision__ = "$Id: Const.py,v 1.4 2008-10-08 13:14:45 rliebscher Exp $"
 
 
 from fuzzy.operator.Operator import Operator

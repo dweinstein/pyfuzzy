@@ -1,5 +1,6 @@
+# -*- coding: iso-8859-1 -*-
 
-__revision__ = "$Id: SFunction.py,v 1.5 2003-06-12 09:54:59 rliebscher Exp $"
+__revision__ = "$Id: SFunction.py,v 1.6 2008-10-08 13:15:22 rliebscher Exp $"
 
 
 from fuzzy.set.Function import Function

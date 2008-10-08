@@ -1,3 +1,7 @@
+# -*- coding: iso-8859-1 -*-
+
+__revision__ = "$Id: SchweizerUnion.py,v 1.2 2008-10-08 13:11:39 rliebscher Exp $"
+
 from fuzzy.norm.Norm import NormException
 from fuzzy.norm.ParametricNorm import ParametricNorm
 

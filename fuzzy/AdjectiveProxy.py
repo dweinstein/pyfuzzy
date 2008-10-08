@@ -1,5 +1,6 @@
+# -*- coding: iso-8859-1 -*-
 
-__revision__ = "$Id: AdjectiveProxy.py,v 1.2 2003-03-20 08:47:27 rliebscher Exp $"
+__revision__ = "$Id: AdjectiveProxy.py,v 1.3 2008-10-08 13:19:17 rliebscher Exp $"
 
 
 class AdjectiveProxy:
@@ -29,3 +30,8 @@ class AdjectiveProxy:
             adjective = self.__dict__["proxy_adjective"]
             system = self.__dict__["proxy_system"]
             setattr(system.variables[variable].adjectives[adjective],name,value)
+
+    def getName(self,system):
+	if system is self.proxy_system:
+	    return [self.proxy_adjective,self.proxy_variable]
+	raise fuzzy.Exception.Exception()

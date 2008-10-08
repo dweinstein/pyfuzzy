@@ -1,5 +1,6 @@
+# -*- coding: iso-8859-1 -*-
 
-__revision__ = "$Id: InputVariableDict.py,v 1.1 2003-04-21 10:59:32 plafoucr Exp $"
+__revision__ = "$Id: InputVariableDict.py,v 1.2 2008-10-08 13:19:17 rliebscher Exp $"
 
 
 from fuzzy.InputVariable import InputVariable

@@ -1,3 +1,4 @@
+# -*- coding: iso-8859-1 -*-
 """
 Base class for all fuzzy sets.
 Helper functions for calculation with fuzzy sets.
@@ -32,7 +33,7 @@ maybe where the points of the resulting polygon are
 set.)
 """
 
-__revision__ = "$Id: Set.py,v 1.8 2003-06-12 09:54:59 rliebscher Exp $"
+__revision__ = "$Id: Set.py,v 1.9 2008-10-08 13:15:22 rliebscher Exp $"
 
 
 # helper functions
