@@ -1,7 +1,6 @@
-# replace link to file with link to webpage
 # -*- coding: iso-8859-1 -*-
 
-__revision__ = "$Id: mypydoc.py,v 1.3 2008-10-08 14:53:50 rliebscher Exp $"
+__revision__ = "$Id: mypydoc.py,v 1.4 2008-10-24 20:42:13 rliebscher Exp $"
 
 
 import sys, imp, os, stat, re, types, inspect
@@ -14,9 +13,16 @@ import pydoc
 class MyHTMLDoc(HTMLDoc):
     """Formatter class for HTML documentation."""
 
-    def docmodule(self, object, name=None, mod=None):
+    def filelink(self,url,path):
+        return '<a href="file:%s">%s</a>' % (url, path)
+
+    def docmodule(self, object, name=None, mod=None, *ignored):
         """Produce HTML documentation for a module object."""
         name = object.__name__ # ignore the passed-in name
+        try:
+            all = object.__all__
+        except AttributeError:
+            all = None
         parts = split(name, '.')
         links = []
         for i in range(len(parts)-1):
@@ -31,12 +37,9 @@ class MyHTMLDoc(HTMLDoc):
             if sys.platform == 'win32':
                 import nturl2path
                 url = nturl2path.pathname2url(path)
-            filelink = '<a href="file:%s">%s</a>' % (url, path)
-	    ##### rene
-	    import string
-	    filelink=string.replace(filelink,"/home/liebschr/public_html","http://rene-liebscher.info")
-	    filelink=string.replace(filelink,"file:","")	    
-	    ##### rene	    
+            # modified
+            filelink = self.filelink(url, path)
+            # end modified
         except TypeError:
             filelink = '(built-in)'
         info = []
@@ -49,50 +52,55 @@ class MyHTMLDoc(HTMLDoc):
             info.append(self.escape(str(object.__date__)))
         if info:
             head = head + ' (%s)' % join(info, ', ')
+        docloc = self.getdocloc(object)
+        if docloc is not None:
+            docloc = '<br><a href="%(docloc)s">Module Docs</a>' % locals()
+        else:
+            docloc = ''
         result = self.heading(
-            head, '#ffffff', '#7799ee', '<a href=".">index</a><br>' + filelink)
+            head, '#ffffff', '#7799ee',
+            '<a href=".">index</a><br>' + filelink + docloc)
 
         modules = inspect.getmembers(object, inspect.ismodule)
 
         classes, cdict = [], {}
         for key, value in inspect.getmembers(object, inspect.isclass):
-            if (inspect.getmodule(value) or object) is object:
-                classes.append((key, value))
-                cdict[key] = cdict[value] = '#' + key
+            # if __all__ exists, believe it.  Otherwise use old heuristic.
+            if (all is not None or
+                (inspect.getmodule(value) or object) is object):
+                if visiblename(key, all):
+                    classes.append((key, value))
+                    cdict[key] = cdict[value] = '#' + key
         for key, value in classes:
             for base in value.__bases__:
                 key, modname = base.__name__, base.__module__
                 module = sys.modules.get(modname)
                 if modname != name and module and hasattr(module, key):
                     if getattr(module, key) is base:
-                        if not cdict.has_key(key):
+                        if not key in cdict:
                             cdict[key] = cdict[base] = modname + '.html#' + key
         funcs, fdict = [], {}
         for key, value in inspect.getmembers(object, inspect.isroutine):
-            if inspect.isbuiltin(value) or inspect.getmodule(value) is object:
-                funcs.append((key, value))
-                fdict[key] = '#-' + key
-                if inspect.isfunction(value): fdict[value] = fdict[key]
+            # if __all__ exists, believe it.  Otherwise use old heuristic.
+            if (all is not None or
+                inspect.isbuiltin(value) or inspect.getmodule(value) is object):
+                if visiblename(key, all):
+                    funcs.append((key, value))
+                    fdict[key] = '#-' + key
+                    if inspect.isfunction(value): fdict[value] = fdict[key]
         data = []
         for key, value in inspect.getmembers(object, isdata):
-            if key not in ['__builtins__', '__doc__']:
+            if visiblename(key, all):
                 data.append((key, value))
 
         doc = self.markup(getdoc(object), self.preformat, fdict, cdict)
         doc = doc and '<tt>%s</tt>' % doc
-        result = result + '<p>%s</p>\n' % self.small(doc)
+        result = result + '<p>%s</p>\n' % doc
 
         if hasattr(object, '__path__'):
             modpkgs = []
-            modnames = []
-            for file in os.listdir(object.__path__[0]):
-                path = os.path.join(object.__path__[0], file)
-                modname = inspect.getmodulename(file)
-                if modname and modname not in modnames:
-                    modpkgs.append((modname, name, 0, 0))
-                    modnames.append(modname)
-                elif ispackage(path):
-                    modpkgs.append((file, name, 1, 0))
+            for importer, modname, ispkg in pkgutil.iter_modules(object.__path__):
+                modpkgs.append((modname, name, ispkg, 0))
             modpkgs.sort()
             contents = self.multicolumn(modpkgs, self.modpkglink)
             result = result + self.bigsection(
@@ -133,8 +141,6 @@ class MyHTMLDoc(HTMLDoc):
                 'Credits', '#ffffff', '#7799ee', contents)
 
         return result
-
-
 
 # --------------------------------------- interactive interpreter interface
 
