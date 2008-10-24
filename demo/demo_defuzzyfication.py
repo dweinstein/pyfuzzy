@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: iso-8859-1 -*-
 
-__revision__ = "$Id: demo_defuzzyfication.py,v 1.3 2008-10-08 14:50:06 rliebscher Exp $"
+__revision__ = "$Id: demo_defuzzyfication.py,v 1.4 2008-10-24 21:25:21 rliebscher Exp $"
 
 
 def get_classes():
@@ -31,19 +31,21 @@ def test():
     objects = get_classes()
     keys = objects.keys()
     keys.sort()
-    print "%-25s | %s" % ("class","defuzzyfication value")
-    print "%25s-+-%s" % ("-------------------------","----------------------")
-    for o in keys:
-	try:
-	    import fuzzy.Adjective
-	    a = fuzzy.Adjective.Adjective(objects[o])
-	    a.setMembership(1.0)
-	    import fuzzy.OutputVariableMaxRight
-	    v = fuzzy.OutputVariableMaxRight.OutputVariableMaxRight()
-	    v.adjectives["test"] = a
-	    print "%-25s | %s" % (objects[o].__class__,str(v.getValue()))	    
-        except Exception,e:
-            print "%-25s |                %s" % (objects[o].__class__,e)
+    import fuzzy.OutputVariableCOG,fuzzy.OutputVariableMaxRight,fuzzy.OutputVariableMaxLeft
+    for v in [fuzzy.OutputVariableCOG.OutputVariableCOG(),fuzzy.OutputVariableMaxRight.OutputVariableMaxRight(),fuzzy.OutputVariableMaxLeft.OutputVariableMaxLeft()]:
+        print "Using %s:" % v.__class__
+        print "%-25s | %s" % ("class","defuzzyfication value")
+        print "%25s-+-%s" % ("-------------------------","----------------------")
+        for o in keys:
+            try:
+                import fuzzy.Adjective
+                a = fuzzy.Adjective.Adjective(objects[o])
+                a.setMembership(1.0)
+                v.adjectives["test"] = a
+                print "%-25s | %s" % (objects[o].__class__,str(v.getValue())) 
+            except Exception,e:
+                print "%-25s |                %s" % (objects[o].__class__,e)
+        print
 
 # when executed, just run test():
 if __name__ == '__main__':
