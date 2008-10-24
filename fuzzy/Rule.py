@@ -1,6 +1,6 @@
 # -*- coding: iso-8859-1 -*-
 
-__revision__ = "$Id: Rule.py,v 1.4 2008-10-08 13:19:17 rliebscher Exp $"
+__revision__ = "$Id: Rule.py,v 1.5 2008-10-24 20:47:09 rliebscher Exp $"
 
 
 from fuzzy.norm.Min import Min
@@ -14,7 +14,7 @@ class Rule:
        _CER[=Min()]: the default value for the norm used to
                      calculate the certainty of a rule.
     """
-    
+
     # default if not set in instance
     _CER = Min()
 
@@ -25,7 +25,7 @@ class Rule:
            certainty: how sure are we about this rule
            CER: fuzzy norm to use with certainty (normally a t-norm)
         """
-        
+
         self.adjective = adjective
         self.operator = operator
         self.certainty = certainty
@@ -33,11 +33,22 @@ class Rule:
 
     def compute(self):
         """Compute and set value for given fuzzy adjective."""
-        
+
         self.adjective.setMembership(
                                     (self.CER or self._CER)(
                                         self.certainty,       # how sure are we about this rule
                                         self.operator() # value from input
                                     )
                                 )
-				
+
+    def printDot(self,system,name):
+        node_name = "RULE_" + hex(hash(self)).replace('-','_')
+        print """
+subgraph "%(node_name)s" {
+    label="%(name)s";
+    """ % {"node_name":node_name,"name":name}
+        adj_node_name = self.adjective.printDot(system,node_name,0)
+        self.operator.printDot(system,adj_node_name)
+        print """
+}
+"""

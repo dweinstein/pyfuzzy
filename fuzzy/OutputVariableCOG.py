@@ -1,6 +1,6 @@
 # -*- coding: iso-8859-1 -*-
 
-__revision__ = "$Id: OutputVariableCOG.py,v 1.7 2008-10-08 13:19:17 rliebscher Exp $"
+__revision__ = "$Id: OutputVariableCOG.py,v 1.8 2008-10-24 20:47:09 rliebscher Exp $"
 
 
 from fuzzy.OutputVariable import OutputVariable
@@ -18,18 +18,18 @@ class OutputVariableCOG(OutputVariable):
     _ACC = Max()
 
     def __init__(self, INF=None, ACC=None, failsafe=None,*args,**keywords):
-	"""
-	    INF - inference norm, used with set of adjective and given value for it
-	    ACC - norm for accumulation of set of adjectives
-	    failsafe - if is not possible to calculate a center of gravity,
-			return this value if not None
-			or forward the exception
-	""" 
+        """
+            INF - inference norm, used with set of adjective and given value for it
+            ACC - norm for accumulation of set of adjectives
+            failsafe - if is not possible to calculate a center of gravity,
+                        return this value if not None
+                        or forward the exception
+        """ 
         OutputVariable.__init__(*tuple([self]+list(args)),**keywords)
         self.ACC = ACC # accumulation
         self.INF = INF # inference
         self.failsafe = failsafe # which value if COG not calculable
-        
+
     def getValue(self):
         """Defuzzyfication using center of gravity method."""
         temp = None
@@ -42,7 +42,7 @@ class OutputVariableCOG(OutputVariable):
             else:
                 temp = merge((self.ACC or self._ACC),temp,temp2)
         try:
-    	    return temp.getCOG()
+            return temp.getCOG()
         except Exception,e:
             # was not to calculate
             if self.failsafe is not None:

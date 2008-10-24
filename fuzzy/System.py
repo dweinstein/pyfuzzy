@@ -1,18 +1,18 @@
 # -*- coding: iso-8859-1 -*-
 
-__revision__ = "$Id: System.py,v 1.4 2008-10-08 13:19:17 rliebscher Exp $"
+__revision__ = "$Id: System.py,v 1.5 2008-10-24 20:47:09 rliebscher Exp $"
 
 
 class System:
     """Holds all stuff together. (variables, rules, ...)
        Provides methods to do calculation with it.""" 
-    
+
     def __init__(self):
-	"""Constructor.
-	Creates two instance variables:
-	variables: dictionary to hold all variables.
-	rules:	   dictionary to hold all rules.
-	"""
+        """Constructor.
+        Creates two instance variables:
+        variables: dictionary to hold all variables.
+        rules:     dictionary to hold all rules.
+        """
         self.variables = {}
         self.rules = {}
 
@@ -21,14 +21,17 @@ class System:
         The input dictionary contains the input values for the named variables.
         The output dictionary serves as container and provides the names of the
         variables to read."""
-        
+
         # reset everything what might be left from last run
         for variable in self.variables.values():
             variable.reset()
 
         # feed input values in variables and so in adjectives
         for (name,value) in input.items():
-            self.variables[name].setValue(value)
+            if self.variables.has_key(name):
+                self.variables[name].setValue(value)
+            #else:
+            #   print "ignored input ",name
 
         # compute fuzzy rules 
         for rule in self.rules.values():
@@ -42,14 +45,35 @@ class System:
 
     def findVariableName(self,var):
         for name,variable in self.variables.iteritems():
-	    if var is variable:
-		return name
-	return None
-		
+            if var is variable:
+                return name
+        return None
+
     def findAdjectiveName(self,adj):
         for name,variable in self.variables.iteritems():
-    	    for namea,adjective in variable.adjectives.iteritems():
-		if adj is adjective:
-		    return [namea,name]
-	return None
-	
+            for namea,adjective in variable.adjectives.iteritems():
+                if adj is adjective:
+                    return [namea,name]
+        return None
+
+    def printVariablesDot(self):
+        """   """
+        for name,variable in self.variables.iteritems():
+            variable.printDot(self,name)
+
+    def printRulesDot(self):
+        """   """
+        for name,rule in self.rules.iteritems():
+            rule.printDot(self,name)
+
+    def printDot(self):
+        """   """
+        print """
+digraph System {
+graph [rankdir = "LR"];
+"""
+        self.printVariablesDot()
+        self.printRulesDot()
+        print """
+}
+"""

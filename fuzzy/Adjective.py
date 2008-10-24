@@ -1,6 +1,6 @@
 # -*- coding: iso-8859-1 -*-
 
-__revision__ = "$Id: Adjective.py,v 1.5 2008-10-08 13:19:17 rliebscher Exp $"
+__revision__ = "$Id: Adjective.py,v 1.6 2008-10-24 20:47:09 rliebscher Exp $"
 
 
 from fuzzy.norm.Max import Max
@@ -20,16 +20,16 @@ class Adjective:
         self.membership = self.set(value)
 
     def getMembership(self):
-	if self.membership is None:
-    	    return 0.0
-	else:
-	    return self.membership
+        if self.membership is None:
+            return 0.0
+        else:
+            return self.membership
 
     def setMembership(self,value):
         """Set membership of this adjective, if
            already set use COM norm to merge
            old and new value."""
-        
+
         if self.membership is None:
             self.membership = value
         else:
@@ -40,7 +40,22 @@ class Adjective:
 
     def reset(self):
         self.membership = None
-	
-    def getName(self,system):
-	return system.findAdjectiveName(self)
 
+    def getName(self,system):
+        return system.findAdjectiveName(self)
+
+    def printDot(self,system,parent_name,connectToParent=1):
+        node_name = parent_name + "_ADJ_" + hex(hash(self)).replace('-','_')
+        adj = self.getName(system)
+        if not(adj is None):
+            adjname = adj[1] + "." + adj[0]
+        else:
+            adjname = "unknown"
+        print """
+    %(node_name)s [label="%(adjname)s",shape=box];
+""" % {"node_name":node_name,"adjname":adjname}
+        if connectToParent:
+            print """
+    %(node_name)s -> %(parent_name)s;
+""" % {"node_name":node_name,"parent_name":parent_name}
+        return node_name

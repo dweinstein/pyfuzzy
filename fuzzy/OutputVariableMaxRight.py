@@ -1,6 +1,6 @@
 # -*- coding: iso-8859-1 -*-
 
-__revision__ = "$Id: OutputVariableMaxRight.py,v 1.4 2008-10-08 13:19:17 rliebscher Exp $"
+__revision__ = "$Id: OutputVariableMaxRight.py,v 1.5 2008-10-24 20:47:09 rliebscher Exp $"
 
 
 from fuzzy.OutputVariable import OutputVariable
@@ -22,7 +22,7 @@ class OutputVariableMaxRight(OutputVariable):
         self.ACC = ACC # accumulation
         self.INF = INF # inference
         self.failsafe = failsafe # which value if value not calculable
-        
+
     def getValue(self):
         """Defuzzyfication."""
         temp = None
@@ -34,29 +34,29 @@ class OutputVariableMaxRight(OutputVariable):
                 temp = temp2
             else:
                 temp = merge((self.ACC or self._ACC),temp,temp2)
-        
-	# get polygon representation
-	ig = temp.getIntervalGenerator()
-	next = ig.nextInterval(None,None)
-	x = None
-	y = None
-	while next is not None:
-	    x_ = next
-	    y_ = temp(x_)
-	    if x is None:
-	 	y = y_
-		x = x_
-	    if y_ >= y:
-		y = y_
-		x = x_
-	    # get next point from polygon
-	    next = ig.nextInterval(next,None)
-	# right end of polygon is maximum then it goes to infinity
-	if y is not None and y_ >= y:
-	    x = float('inf')
+
+        # get polygon representation
+        ig = temp.getIntervalGenerator()
+        next = ig.nextInterval(None,None)
+        x = None
+        y = None
+        while next is not None:
+            x_ = next
+            y_ = temp(x_)
+            if x is None:
+                y = y_
+                x = x_
+            if y_ >= y:
+                y = y_
+                x = x_
+            # get next point from polygon
+            next = ig.nextInterval(next,None)
+        # right end of polygon is maximum then it goes to infinity
+        if y is not None and y_ >= y:
+            x = float('inf')
 
         # was not to calculate
-	if x is None and self.failsafe is not None:
+        if x is None and self.failsafe is not None:
             # user gave us a value to return 
             return self.failsafe
-	return x
+        return x

@@ -1,6 +1,6 @@
 # -*- coding: iso-8859-1 -*-
 
-__revision__ = "$Id: Variable.py,v 1.5 2008-10-08 13:19:17 rliebscher Exp $"
+__revision__ = "$Id: Variable.py,v 1.6 2008-10-24 20:47:09 rliebscher Exp $"
 
 
 class Variable:
@@ -14,7 +14,7 @@ class Variable:
         self.min         = min
         self.max         = max
         self.unit        = unit
-        
+
     def setValue(self,value):
         """Let adjectives calculate their membership values."""
         self.__value = value
@@ -40,7 +40,7 @@ class Variable:
     def getMin(self):
         """Return Variable minimum."""
         return self.min
-        
+
     def setMax(self,max):
         """Set Variable minimum value."""
         self.max = max
@@ -63,5 +63,18 @@ class Variable:
             adjective.reset()
 
     def getName(self,system):
-	"""Lookup the name given this variable in the given system"""
-	return system.findVariableName(self)
+        """Lookup the name given this variable in the given system"""
+        return system.findVariableName(self)
+
+    def printDot(self,system,name):
+        node_name = "VAR_" + hex(hash(self)).replace('-','_')
+        print """
+subgraph "%(node_name)s" {
+    label="%(name)s";
+    %(node_name)s [label="%(name)s"];
+    """ % {"node_name":node_name,"name":name}
+        for adj in self.adjectives.values():
+            adj.printDot(system,node_name,1)
+        print """
+}
+"""
