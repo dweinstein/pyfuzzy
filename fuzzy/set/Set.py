@@ -33,7 +33,7 @@ maybe where the points of the resulting polygon are
 set.)
 """
 
-__revision__ = "$Id: Set.py,v 1.9 2008-10-08 13:15:22 rliebscher Exp $"
+__revision__ = "$Id: Set.py,v 1.10 2008-10-24 20:30:20 rliebscher Exp $"
 
 
 # helper functions
@@ -88,7 +88,7 @@ def merge(NORM, set1, set2):
 	    return ret
 	y1 = set1(x)
 	y2 = set2(x)
-	ret.add(x=x,y=NORM(y1,y2))
+	#ret.add(x=x,y=NORM(y1,y2))
 	cached_x, cached_y1, cached_y2 = None, None, None
 	while 1:
 	    # add this point
@@ -145,7 +145,7 @@ def norm(NORM, set, value):
 	if x is None:
 	    return ret
 	y = set(x)
-	ret.add(x=x,y=NORM(y,value))
+	#ret.add(x=x,y=NORM(y,value))
 	cached_x, cached_y = None, None
 	while 1:
 	    # add this point
@@ -173,7 +173,7 @@ def norm(NORM, set, value):
                         # in this case we have only an approximation
                         x = _find_null_steffensen(x,lambda x,set=set,value=value:set(x)-value)
 		    y = set(x)
-	return ret
+        return ret
 
 
 
@@ -181,14 +181,14 @@ class Set:
 
    def __init__(self):
         """Dummy initialization, so it is safe to call it
-	   from any sub class."""  
+           from any sub class."""  
         pass
 
    def __call__(self,x):
         """Return membership of x in this fuzzy set.
-	   This method makes the set work like a function."""
+           This method makes the set work like a function."""
         return 0
-        
+
    class IntervalGenerator:
 	def nextInterval(self,prev,next):
 	    """For conversion of any set to a polygon representation.
@@ -201,13 +201,12 @@ class Set:
 	    return next
 
    def getIntervalGenerator(self):
-	"""Internal helper function to help convert arbitrary fuzzy sets in 
-	fuzzy sets represented by a polygon."""
-	return self.IntervalGenerator()
+        """Internal helper function to help convert arbitrary fuzzy sets in 
+        fuzzy sets represented by a polygon."""
+        return self.IntervalGenerator()
 
    def getCOG(self):
-	"""Return center of gravity."""
+        """Return center of gravity."""
         #raise Exception("abtract class %s has no center of gravity." % self.__class__.__name__)
-	return 0 # XXX
-	
-	
+        return 0 # XXX
+
