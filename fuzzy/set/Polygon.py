@@ -1,6 +1,6 @@
 # -*- coding: iso-8859-1 -*-
 
-__revision__ = "$Id: Polygon.py,v 1.7 2008-10-08 13:15:22 rliebscher Exp $"
+__revision__ = "$Id: Polygon.py,v 1.8 2008-10-24 20:29:59 rliebscher Exp $"
 
 
 from fuzzy.set.Set import Set
@@ -26,15 +26,16 @@ class Polygon(Set):
     # indices for coordinate tuple
     X = 0
     Y = 1
-    
-    def __init__(self):
+
+    def __init__(self,points=[]):
         Set.__init__(self)
-	self.points = []
+        import copy
+	self.points = copy.deepcopy(points)
 
     def __call__(self,x):
 	"""Get membership of value x."""
 
-        # first handle obvious cases	
+        # first handle obvious cases
         if self.points == []:
             return 0.0
         if len(self.points) == 1:
@@ -130,9 +131,9 @@ class Polygon(Set):
         def __init__(self,points):
             self.points = points
             self.index = 0
-        
+
         def nextInterval(self,prev,next):
-            l = len(self.points) 
+            l = len(self.points)
             if l==0 or self.index>=l:
                 return next
             if prev is None:
