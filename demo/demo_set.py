@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: iso-8859-1 -*-
 
-__revision__ = "$Id: demo_set.py,v 1.3 2008-10-08 14:50:06 rliebscher Exp $"
+__revision__ = "$Id: demo_set.py,v 1.4 2008-10-24 21:24:23 rliebscher Exp $"
 
 
 try:
@@ -45,7 +45,8 @@ def test():
     g = Gnuplot.Gnuplot(debug=0)
 
     x = arange(150)/50.0 - 1.5 
-    g('set data style lines')
+    g(' set style fill solid 0.5 border')
+    g('set style data filledcurves y1=0')
     g('set noautoscale xy')
     g('set xrange [-1.5:1.5]')
     g('set yrange [-0.2:1.2]')
@@ -58,18 +59,17 @@ def test():
     keys.sort()
     for o in keys:
         g.title(o)
-        
+
         try:
             print "Plot %s ... " % o
-#            g.plot(Gnuplot.funcutils.compute_Data(x,objects[o]))
-	    g("set terminal png small color")
-	    g("set output 'set/%s.png'" % o)
+            g("set terminal png small truecolor")
+            g("set output 'set/%s.png'" % o)
             g.plot(Gnuplot.funcutils.compute_Data(x,objects[o]))
-	    g("set terminal x11");
-	    g("set output")
+            g("set terminal x11");
+            g("set output")
         except Exception,e:
             print e
-        raw_input('Please press return to continue...\n')
+        #raw_input('Please press return to continue...\n')
 
 # when executed, just run test():
 if __name__ == '__main__':
