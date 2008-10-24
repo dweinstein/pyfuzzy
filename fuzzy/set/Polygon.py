@@ -1,6 +1,6 @@
 # -*- coding: iso-8859-1 -*-
 
-__revision__ = "$Id: Polygon.py,v 1.8 2008-10-24 20:29:59 rliebscher Exp $"
+__revision__ = "$Id: Polygon.py,v 1.9 2008-10-24 21:45:25 rliebscher Exp $"
 
 
 from fuzzy.set.Set import Set
@@ -9,17 +9,17 @@ class Polygon(Set):
     """Represents a fuzzy set, which membership function
        is the shape of a polygon. For example: triangle,
        trapezoid, rectangle, or something similar.
-       
+
        If you need something similar to ZFunction or SFunction, 
        use this class directly by building it from two points.
 
           ---*                     *---
               \                   /
-	       \        OR       /
+               \        OR       /
                 \               /
-                 *---       ---* 
+                 *---       ---*
 
-	http://rene-liebscher.info/PyFuzzy/pyfuzzy/test/set/Polygon.png
+        http://rene-liebscher.info/PyFuzzy/pyfuzzy/test/set/Polygon.png
 
        """
 
@@ -30,10 +30,10 @@ class Polygon(Set):
     def __init__(self,points=[]):
         Set.__init__(self)
         import copy
-	self.points = copy.deepcopy(points)
+        self.points = copy.deepcopy(points)
 
     def __call__(self,x):
-	"""Get membership of value x."""
+        """Get membership of value x."""
 
         # first handle obvious cases
         if self.points == []:
@@ -52,19 +52,19 @@ class Polygon(Set):
             if x1 < x:
                 x0 = x1
                 continue
-	    # if we want a x values which is a polygon point ...
-	    if x1 == x:
-		y = self.points[i][Polygon.Y]
-		# ... check following points for same x-value ...
-		for j in range(i+1,len(self.points)):
-		    if self.points[j][Polygon.X] > x:
-			break
-		    else:
-			# ... and use the maximum value
-			y_ = self.points[j][Polygon.Y]
-			if y_>y:
-			    y = y_
-		return y
+            # if we want a x values which is a polygon point ...
+            if x1 == x:
+                y = self.points[i][Polygon.Y]
+                # ... check following points for same x-value ...
+                for j in range(i+1,len(self.points)):
+                    if self.points[j][Polygon.X] > x:
+                        break
+                    else:
+                        # ... and use the maximum value
+                        y_ = self.points[j][Polygon.Y]
+                        if y_>y:
+                            y = y_
+                return y
             y0 = self.points[i-1][Polygon.Y]
             y1 = self.points[i][Polygon.Y]
             # interpolate value in interval
@@ -72,25 +72,25 @@ class Polygon(Set):
                 return max(y0,y1)
             return y0+(y1-y0)/(x1-x0)*(x-x0)
         return 0.0 # should never be reached
-    
+
     # at which end do we insert or remove a point
     BEGIN = 0
     END = 1
-        
+
     def add(self,x,y,where=END):
-	"""Add a new point to the polygon.
-	   The parameter where controls at which end
-	   it is inserted. (The points are always sorted, but
-	   if two have the same x value their order is important.
-	   For example: adding a second point(y=0) in the middle
-	   now           where=END        where=BEGIN 
-           *--*           *--*             *  *    
-               \             |              \ |\   
-                \            |               \| \    
-                 *           *--*             *  *    
+        """Add a new point to the polygon.
+           The parameter where controls at which end
+           it is inserted. (The points are always sorted, but
+           if two have the same x value their order is important.
+           For example: adding a second point(y=0) in the middle
+           now           where=END        where=BEGIN
+           *--*           *--*             *  *
+               \             |              \ |\
+                \            |               \| \
+                 *           *--*             *  *
         """
-	# quick and dirty implementation
-	if where == self.END:
+        # quick and dirty implementation
+        if where == self.END:
             self.points.append((x,y))
         else:
             self.points.insert(0,(x,y))
@@ -99,30 +99,30 @@ class Polygon(Set):
 
 
     def remove(self,x,where=END):
-	"""Remove a point from the polygon.
-	   The parameter where controls at which end
-	   it is removed. (The points are always sorted, but
-	   if two have the same x value their order is important.
-	   For example: removing the second point in the middle
-	   now           where=END        where=BEGIN  
-	   *--*           *--*             *      
-	      |               \             \     
-	      |                \             \     
-	      *--*              *             *--*    
+        """Remove a point from the polygon.
+           The parameter where controls at which end
+           it is removed. (The points are always sorted, but
+           if two have the same x value their order is important.
+           For example: removing the second point in the middle
+           now           where=END        where=BEGIN
+           *--*           *--*             *
+              |               \             \
+              |                \             \
+              *--*              *             *--*
         """
-	# quick and dirty implementation
+        # quick and dirty implementation
         range = range(len(self.points))
-	if where == self.END:
+        if where == self.END:
             range.reverse()
-	for i in range:
+        for i in range:
             if self.points[i][X] == x:
                 self.points.remove(i)
                 return
         #raise Exception("Not in points list")
 
     def clear(self):
-	"""Reset polygon to zero."""
-	del self.points[:]
+        """Reset polygon to zero."""
+        del self.points[:]
 
     def getIntervalGenerator(self):
         return self.__IntervalGenerator(self.points)
@@ -149,9 +149,9 @@ class Polygon(Set):
                 return min(next,self.points[self.index][Polygon.X])
 
     def getCOG(self):
-	"""Return center of gravity."""
-	if len(self.points) <=1 :
-	    #return 0.0
+        """Return center of gravity."""
+        if len(self.points) <=1 :
+            #return 0.0
             raise Exception("no COG calculable: single point = constant value")
         if self.points[0][Polygon.Y] > 0 or self.points[-1][Polygon.Y] > 0:
             raise Exception("no COG calculable: end points of polygon not y=0.0")
@@ -172,7 +172,7 @@ class Polygon(Set):
                                 y0/2.0*(x1_2-x0_2)+(y1-y0)/(x1-x0)*(x1_3/3.0-x0_3/3.0-x1_2*x0/2.0+x0_3/2.0))
                 x0,x0_2,x0_3 = x1,x1_2,x1_3
             y0 = y1
-	if _Flaeche == 0.0:
-	    raise Exception("no COG calculable: polygon area is zero!")
+        if _Flaeche == 0.0:
+            raise Exception("no COG calculable: polygon area is zero!")
         _Schwerpunkt = _Schwerpunkt/_Flaeche
-	return _Schwerpunkt # XXX
+        return _Schwerpunkt # XXX

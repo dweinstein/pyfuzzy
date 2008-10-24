@@ -1,6 +1,6 @@
 # -*- coding: iso-8859-1 -*-
 
-__revision__ = "$Id: PiFunction.py,v 1.6 2008-10-08 13:15:22 rliebscher Exp $"
+__revision__ = "$Id: PiFunction.py,v 1.7 2008-10-24 21:45:25 rliebscher Exp $"
 
 
 from fuzzy.set.Function import Function
@@ -11,39 +11,39 @@ class PiFunction(Function):
     """Pi shaped fuzzy set."""
 
     def __init__(self,a=0.0,delta=1.0):
-	"""
+        """
                ^
-              /|\ 
+              /|\
             _/ | \_
              | a |
              |   |
-            2*delta  
+            2*delta
 
-	http://rene-liebscher.info/PyFuzzy/pyfuzzy/test/set/PiFunction.png
+        http://rene-liebscher.info/PyFuzzy/pyfuzzy/test/set/PiFunction.png
 
-	"""
+        """
         Function.__init__(self)
-	self.a = a
-	self.delta = delta
+        self.a = a
+        self.delta = delta
 
     def __call__(self,x):
         """Return membership of x in this fuzzy set.
-	   This method makes the set work like a function."""
+           This method makes the set work like a function."""
         a = self.a
-	d = self.delta/2.0
-	if x < a:
-	    return SFunction(a-d,d)(x)
-	else:    
-	    return ZFunction(a+d,d)(x)
-        
+        d = self.delta/2.0
+        if x < a:
+            return SFunction(a-d,d)(x)
+        else:
+            return ZFunction(a+d,d)(x)
+
     def getCOG(self):
-	"""Return center of gravity."""
+        """Return center of gravity."""
         return self.a
-	
+
     class __IntervalGenerator(Function.IntervalGenerator):
         def __init__(self,set):
             self.set = set
-        
+
         def nextInterval(self,prev,next):
             a = self.set.a
             d = self.set.delta
