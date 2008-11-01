@@ -1,9 +1,9 @@
 # -*- coding: iso-8859-1 -*-
 
-__revision__ = "$Id: System.py,v 1.5 2008-10-24 20:47:09 rliebscher Exp $"
+__revision__ = "$Id: System.py,v 1.6 2008-11-01 13:29:31 rliebscher Exp $"
 
 
-class System:
+class System(object):
     """Holds all stuff together. (variables, rules, ...)
        Provides methods to do calculation with it.""" 
 
@@ -37,7 +37,7 @@ class System:
         for rule in self.rules.values():
             rule.compute()
 
-        # get all wanted output variables    
+        # get all wanted output variables
         for name in output.keys():
             output[name] = self.variables[name].getValue()
 
@@ -56,24 +56,24 @@ class System:
                     return [namea,name]
         return None
 
-    def printVariablesDot(self):
+    def printVariablesDot(self,out):
         """   """
         for name,variable in self.variables.iteritems():
-            variable.printDot(self,name)
+            variable.printDot(out,self,name)
 
-    def printRulesDot(self):
+    def printRulesDot(self,out):
         """   """
         for name,rule in self.rules.iteritems():
-            rule.printDot(self,name)
+            rule.printDot(out,self,name)
 
-    def printDot(self):
+    def printDot(self,out):
         """   """
-        print """
-digraph System {
+        out.write(
+"""digraph System {
 graph [rankdir = "LR"];
-"""
-        self.printVariablesDot()
-        self.printRulesDot()
-        print """
-}
-"""
+""")
+        #self.printVariablesDot(out)
+        self.printRulesDot(out)
+        out.write(
+"""}
+""")

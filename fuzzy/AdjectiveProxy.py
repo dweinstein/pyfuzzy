@@ -1,9 +1,9 @@
 # -*- coding: iso-8859-1 -*-
 
-__revision__ = "$Id: AdjectiveProxy.py,v 1.4 2008-10-24 20:47:09 rliebscher Exp $"
+__revision__ = "$Id: AdjectiveProxy.py,v 1.5 2008-11-01 13:29:31 rliebscher Exp $"
 
 
-class AdjectiveProxy:
+class AdjectiveProxy(object):
     """Serves as proxy for the named variable.adjective in system."""
 
     def __init__(self,system,variable,adjective):

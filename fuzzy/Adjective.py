@@ -1,12 +1,12 @@
 # -*- coding: iso-8859-1 -*-
 
-__revision__ = "$Id: Adjective.py,v 1.6 2008-10-24 20:47:09 rliebscher Exp $"
+__revision__ = "$Id: Adjective.py,v 1.7 2008-11-01 13:29:31 rliebscher Exp $"
 
 
 from fuzzy.norm.Max import Max
 from fuzzy.set.Set import Set
 
-class Adjective:
+class Adjective(object):
 
     # default if not set in instance
     _COM = Max()
@@ -44,18 +44,18 @@ class Adjective:
     def getName(self,system):
         return system.findAdjectiveName(self)
 
-    def printDot(self,system,parent_name,connectToParent=1):
-        node_name = parent_name + "_ADJ_" + hex(hash(self)).replace('-','_')
+    def printDot(self,out,system,parent_name,connectToParent=1):
+        node_name = parent_name + "_ADJ_" + hex(id(self)).replace('-','_')
         adj = self.getName(system)
         if not(adj is None):
             adjname = adj[1] + "." + adj[0]
         else:
             adjname = "unknown"
-        print """
-    %(node_name)s [label="%(adjname)s",shape=box];
-""" % {"node_name":node_name,"adjname":adjname}
+        out.write(
+"""    %(node_name)s [label="%(adjname)s",shape=box];
+""" % {"node_name":node_name,"adjname":adjname})
         if connectToParent:
-            print """
-    %(node_name)s -> %(parent_name)s;
-""" % {"node_name":node_name,"parent_name":parent_name}
+            out.write(
+"""    %(node_name)s -> %(parent_name)s;
+""" % {"node_name":node_name,"parent_name":parent_name})
         return node_name

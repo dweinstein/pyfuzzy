@@ -1,11 +1,11 @@
 # -*- coding: iso-8859-1 -*-
 
-__revision__ = "$Id: Rule.py,v 1.5 2008-10-24 20:47:09 rliebscher Exp $"
+__revision__ = "$Id: Rule.py,v 1.6 2008-11-01 13:29:31 rliebscher Exp $"
 
 
 from fuzzy.norm.Min import Min
 
-class Rule:
+class Rule(object):
     """This is realizes an important part of the inferenz engine.
        It represents and calculates the value of a fuzzy rule
        and sets the given adjective to the appropriate value.
@@ -41,14 +41,14 @@ class Rule:
                                     )
                                 )
 
-    def printDot(self,system,name):
-        node_name = "RULE_" + hex(hash(self)).replace('-','_')
-        print """
-subgraph "%(node_name)s" {
+    def printDot(self,out,system,name):
+        node_name = "RULE_" + hex(id(self)).replace('-','_')
+        out.write(
+"""  subgraph "%(node_name)s" {
     label="%(name)s";
-    """ % {"node_name":node_name,"name":name}
-        adj_node_name = self.adjective.printDot(system,node_name,0)
-        self.operator.printDot(system,adj_node_name)
-        print """
-}
-"""
+    """ % {"node_name":node_name,"name":name})
+        adj_node_name = self.adjective.printDot(out,system,node_name,0)
+        self.operator.printDot(out,system,adj_node_name)
+        out.write(
+"""}
+""")
