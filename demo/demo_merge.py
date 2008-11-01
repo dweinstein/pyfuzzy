@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: iso-8859-1 -*-
 
-__revision__ = "$Id: demo_merge.py,v 1.4 2008-10-24 21:24:23 rliebscher Exp $"
+__revision__ = "$Id: demo_merge.py,v 1.5 2008-11-01 13:24:49 rliebscher Exp $"
 
 try:
     # If the package has been installed correctly, this should work:
@@ -24,7 +24,6 @@ def makePlotItem(points,title):
 def plotPlotItems(items,title,filename):
     g = Gnuplot.Gnuplot()
     g.clear()
-    #g('set style data lines')
     g(' set style fill transparent solid 0.25 border')
     g('set style data filledcurves y1=0')
     g('set noautoscale xy')
@@ -34,9 +33,10 @@ def plotPlotItems(items,title,filename):
     g("set terminal png small transparent truecolor")
     g("set title '%s'" % title)
     g("set output 'merge/%s.png'" % filename)
-    apply(g.plot,items)
-    g("set terminal x11")
-    g("set output")
+    g.plot(*items)
+    #g("set terminal x11")
+    #g("set output")
+    g = None
 
 def main():
     import fuzzy

@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: iso-8859-1 -*-
 
-__revision__ = "$Id: demo_norm.py,v 1.3 2008-10-08 14:50:06 rliebscher Exp $"
+__revision__ = "$Id: demo_norm.py,v 1.4 2008-11-01 13:26:31 rliebscher Exp $"
 
 
 try:
@@ -39,83 +39,95 @@ def get_Gnuplot():
     # are also output on stderr.
     g = Gnuplot.Gnuplot(debug=0)
     g('set parametric')
-    g('set data style lines')
+    g('set style data lines')
     g('set hidden')
-    g('set contour base')
+    g('set contour surface')
+    g('set cntrparam levels 10')
+    g('set border 4095')
+    g('set xyplane at 0')
+    g('set colorbox user origin 0.9,0.05 size 0.05,0.5')
     g('set noautoscale xy')
     g('set xrange [0:1]')
     g('set yrange [0:1]')
     g('set zrange [0:1]')
+    g('set cbrange [0:1]')
     g.xlabel('x')
     g.ylabel('y')
+    g('set pm3d at s')
     return g
 
-def test(single=0,use_p=0):
-    """ single = 1 means use a single instance of Gnuplot for all.
-        use_p = 1 means show parametric norm with different values of p."""
+
+def plot(norm,title,filename,gnuplot=None,interactive=False):
+    # Demonstrate a 3-d plot:
+    # set up x and y values at which the function will be tabulated:
+    import Numeric
+    # use values  0.00 0.02 0.04 ... 0.96 0.98 1.00
+    x = Numeric.arange(51)/50.0
+    y = Numeric.arange(51)/50.0
+
+    g = gnuplot or get_Gnuplot()
+    g.title(title) 
+    print "Plot %s ... " % title
+    #g.splot(Gnuplot.funcutils.compute_GridData(x,y, norm, binary=1))
+    if interactive == False:
+        g("set terminal png small truecolor nocrop")
+        g("set output 'norm/%s.png'" % filename)
+    g.splot(Gnuplot.funcutils.compute_GridData(x,y, norm, binary=0))
+    if interactive == True:
+        raw_input('Please press return to continue...\n')
+    if gnuplot is None:
+        g("reset")
+    g = None
+
+
+def plotNorm(norm,name,params=[0.05,0.25,0.50,0.75,0.95],gnuplot=None,interactive=False):
     import fuzzy.norm.ParametricNorm
+    if isinstance(norm,fuzzy.norm.ParametricNorm.ParametricNorm):
+        for p in params:
+            norm.p = p
+            title = "%s (p=%4.2f)" % (name,p)
+            filename = "%s_%.2f" % (name,p)
+            plot(norm,title,filename,gnuplot,interactive)
+    else:
+        title = "%s" % (name)
+        filename = title
+        plot(norm,title,filename,gnuplot,interactive)
 
-    from Numeric import *
 
-    # use values  0.01 0.03 0.05 ... 0.95 0.97 0.99
-    x = arange(49)/50.0 + 0.01 
-    y = arange(49)/50.0 + 0.01
-
+def test():
+    """ """
     objects = get_classes()
     keys = objects.keys()
     keys.sort()
 
-    if single != 0:
-        g = get_Gnuplot()
-    else:
-        gnuplots = [] # hold references
-    for o in keys:
-        # Demonstrate a 3-d plot:
-        # set up x and y values at which the function will be tabulated:    
+    for name in keys:
         try:
-            norm = objects[o]
-            if isinstance(norm,fuzzy.norm.ParametricNorm.ParametricNorm):
-                for p in [0.01,0.25,0.50,0.75,0.99]:
-                    norm.p = p
-                    title = "%s (p=%4.2f)" % (o,p)
-                    if single == 0: g = get_Gnuplot()
-                    g.title(title) 
-                    print "Plot %s ... " % title
-                    #g.splot(Gnuplot.funcutils.compute_GridData(x,y, norm, binary=1))
-		    g("set terminal png small color")
-		    g("set output 'norm/%s.png'" % ("%s_%.2f" % (o,p)))
-                    g.splot(Gnuplot.funcutils.compute_GridData(x,y, norm, binary=1))
-		    g("set terminal x11");
-		    g("set output")
-                    if single == 0: gnuplots.append(g)
-                    else:             raw_input('Please press return to continue...\n')
-            else:
-                    title = "%s" % (o)
-                    if single == 0: g = get_Gnuplot()
-                    g.title(title) 
-                    print "Plot %s ... " % title
-                    #g.splot(Gnuplot.funcutils.compute_GridData(x,y, norm, binary=1))
-		    g("set terminal png small color")
-		    g("set output 'norm/%s.png'" % title)
-                    g.splot(Gnuplot.funcutils.compute_GridData(x,y, norm, binary=1))
-		    g("set terminal x11");
-		    g("set output")
-                    if single == 0: gnuplots.append(g)
-                    else:             raw_input('Please press return to continue...\n')
+            norm = objects[name]
+            plotNorm(norm,name)
         except Exception,e:
             print "Exception: " , e
-            if single != 0: raw_input('Please press return to continue...\n')
-    if single == 0:
-        raw_input('Please press return to continue...\n')
-        
+
+def interactive(name,params):
+    objects = get_classes()
+    try:
+        norm = objects[name]
+    except KeyError:
+        print "%s is unknown." % name 
+        return
+
+    g = get_Gnuplot()
+
+    if len(params) > 0:
+        plotNorm(norm,name,params,gnuplot=g,interactive=True)
+    else:
+        plotNorm(norm,name,gnuplot=g,interactive=True)
+
+
 # when executed, just run test():
 if __name__ == '__main__':
     import sys
-    single = 1
-    use_p = 0
-    if "all" in sys.argv[1:]:
-        single = 0
-    if "p" in sys.argv[1:]:
-        use_p = 1  
-    test(single,use_p)
+    if len(sys.argv) > 1:
+        interactive(sys.argv[1],[float(x) for x in sys.argv[2:]])
+    else:
+        test()
 
