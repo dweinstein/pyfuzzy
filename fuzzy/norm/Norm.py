@@ -3,14 +3,14 @@
     Abstract base class for any kind of fuzzy norm.
 """
 
-__revision__ = "$Id: Norm.py,v 1.4 2008-10-24 20:47:09 rliebscher Exp $"
+__revision__ = "$Id: Norm.py,v 1.5 2008-11-01 13:11:13 rliebscher Exp $"
 
 from fuzzy.Exception import Exception
 class NormException(Exception):
     pass
 
 
-class Norm:
+class Norm(object):
 
     T_NORM = 1
     S_NORM = 2
@@ -34,10 +34,10 @@ class Norm:
         """
         return self.__type
 
-    def printDot(self,system,parent_name):
-        node_name = parent_name+"_NORM_" + hex(hash(self)).replace('-','_')
-        print """
-    %(node_name)s [label="%(norm_name)s"];
+    def printDot(self,out,system,parent_name):
+        node_name = parent_name+"_NORM_" + hex(id(self)).replace('-','_')
+        out.write(
+"""    %(node_name)s [label="%(norm_name)s"];
     %(node_name)s -> %(parent_name)s;
-""" % {"node_name":node_name,"parent_name":parent_name,"norm_name":self.__class__.__name__}
+""" % {"node_name":node_name,"parent_name":parent_name,"norm_name":self.__class__.__name__})
         return node_name
