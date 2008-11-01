@@ -1,6 +1,6 @@
 # -*- coding: iso-8859-1 -*-
 
-__revision__ = "$Id: Triangle.py,v 1.6 2008-10-24 21:45:25 rliebscher Exp $"
+__revision__ = "$Id: Triangle.py,v 1.7 2008-11-01 13:19:23 rliebscher Exp $"
 
 
 from fuzzy.set.Polygon import Polygon
@@ -26,7 +26,7 @@ class Triangle(Polygon):
          |   |   |
         alpha|beta
 
-        http://rene-liebscher.info/PyFuzzy/pyfuzzy/test/set/Triangle.png
+        http://pyfuzzy.sourceforge.net/test/set/Triangle.png
 
         """
         Polygon.__init__(self)

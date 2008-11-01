@@ -1,6 +1,6 @@
 # -*- coding: iso-8859-1 -*-
 
-__revision__ = "$Id: SFunction.py,v 1.7 2008-10-24 21:45:25 rliebscher Exp $"
+__revision__ = "$Id: SFunction.py,v 1.8 2008-11-01 13:19:23 rliebscher Exp $"
 
 
 from fuzzy.set.Function import Function
@@ -19,7 +19,7 @@ class SFunction(Function):
              |   |
              delta
 
-        http://rene-liebscher.info/PyFuzzy/pyfuzzy/test/set/SFunction.png
+        http://pyfuzzy.sourceforge.net/test/set/SFunction.png
 
         """
         Function.__init__(self)

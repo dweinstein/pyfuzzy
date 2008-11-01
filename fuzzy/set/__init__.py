@@ -5,12 +5,12 @@ For any of these you can call set(x) to get the membership value of x.
 
 See class Set for more. 
 
-examples can be found here http://rene-liebscher.info/PyFuzzy/pyfuzzy/test/set/
+examples can be found here http://pyfuzzy.sourceforge.net/test/set/
 
 
 """
 
-__revision__ = "$Id: __init__.py,v 1.5 2008-10-08 13:15:22 rliebscher Exp $"
+__revision__ = "$Id: __init__.py,v 1.6 2008-11-01 13:19:23 rliebscher Exp $"
 
 
 #def __import_classes(dir):

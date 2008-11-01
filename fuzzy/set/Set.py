@@ -3,7 +3,7 @@
 Base class for all fuzzy sets.
 Helper functions for calculation with fuzzy sets.
 
-examples can be found here http://rene-liebscher.info/PyFuzzy/pyfuzzy/test/merge
+examples can be found here http://pyfuzzy.sourceforge.net/test/merge/
 
 ----
 Intersection of set1 and set2 can be done by
@@ -33,7 +33,7 @@ maybe where the points of the resulting polygon are
 set.)
 """
 
-__revision__ = "$Id: Set.py,v 1.11 2008-10-24 21:45:25 rliebscher Exp $"
+__revision__ = "$Id: Set.py,v 1.12 2008-11-01 13:19:23 rliebscher Exp $"
 
 
 # helper functions
@@ -131,7 +131,7 @@ def merge(NORM, set1, set2):
                         x = _find_null_steffensen(x,lambda x,set1=set1,set2=set2:set1(x)-set2(x))
                     y1 = set1(x)
                 y2 = set2(x)
-            return ret
+        return ret
 
 def norm(NORM, set, value):
         """Returns a new fuzzy set which ist this set normed with value.
@@ -177,7 +177,7 @@ def norm(NORM, set, value):
 
 
 
-class Set:
+class Set(object):
 
    def __init__(self):
         """Dummy initialization, so it is safe to call it
@@ -189,7 +189,7 @@ class Set:
            This method makes the set work like a function."""
         return 0
 
-   class IntervalGenerator:
+   class IntervalGenerator(object):
         def nextInterval(self,prev,next):
             """For conversion of any set to a polygon representation.
                Return which end value should have the interval started

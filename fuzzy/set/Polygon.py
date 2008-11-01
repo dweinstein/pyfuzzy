@@ -1,6 +1,6 @@
 # -*- coding: iso-8859-1 -*-
 
-__revision__ = "$Id: Polygon.py,v 1.9 2008-10-24 21:45:25 rliebscher Exp $"
+__revision__ = "$Id: Polygon.py,v 1.10 2008-11-01 13:19:23 rliebscher Exp $"
 
 
 from fuzzy.set.Set import Set
@@ -19,7 +19,7 @@ class Polygon(Set):
                 \               /
                  *---       ---*
 
-        http://rene-liebscher.info/PyFuzzy/pyfuzzy/test/set/Polygon.png
+        http://pyfuzzy.sourceforge.net/test/set/Polygon.png
 
        """
 
@@ -95,7 +95,7 @@ class Polygon(Set):
         else:
             self.points.insert(0,(x,y))
         # use only x value for sorting
-        self.points.sort(lambda x,y:cmp(x[0],y[0]))
+        self.points.sort(key = lambda p:p[Polygon.X])
 
 
     def remove(self,x,where=END):
@@ -111,10 +111,10 @@ class Polygon(Set):
               *--*              *             *--*
         """
         # quick and dirty implementation
-        range = range(len(self.points))
+        range_p = range(len(self.points))
         if where == self.END:
-            range.reverse()
-        for i in range:
+            range_p.reverse()
+        for i in range_p:
             if self.points[i][X] == x:
                 self.points.remove(i)
                 return
@@ -157,19 +157,17 @@ class Polygon(Set):
             raise Exception("no COG calculable: end points of polygon not y=0.0")
         _Flaeche = 0.
         _Schwerpunkt = 0.
-        x0 = self.points[0][Polygon.X]
-        y0 = 0.
+        iterator = iter(self.points)
+        x0,y0 = iterator.next()
         x0_2 = x0*x0  # =x²
-        x0_3 = x0_2*x0  # =x³ 
-        for i in range(1,len(self.points)):
-            x1 = self.points[i][Polygon.X]
-            y1 = self.points[i][Polygon.Y]
-            if x1<>x0: # senkrechte Anstiege haben keine Flaechen
+        x0_3 = x0_2*x0  # =x³
+        for x1,y1 in iterator:
+            if x1 != x0: # senkrechte Anstiege haben keine Flaechen
                 x1_2 = x1*x1
                 x1_3 = x1_2*x1
-                _Flaeche = _Flaeche+(y0+y1)/2.0*(x1-x0) # Trapezfläche
-                _Schwerpunkt = ( _Schwerpunkt +   # Integral( x*f(x) ) 
-                                y0/2.0*(x1_2-x0_2)+(y1-y0)/(x1-x0)*(x1_3/3.0-x0_3/3.0-x1_2*x0/2.0+x0_3/2.0))
+                _Flaeche += (y0+y1)/2.0*(x1-x0) # Trapezfläche
+                # Integral( x*f(x) ) 
+                _Schwerpunkt += y0/2.0*(x1_2-x0_2)+(y1-y0)/(x1-x0)*(x1_3/3.0-x0_3/3.0-x1_2*x0/2.0+x0_3/2.0)
                 x0,x0_2,x0_3 = x1,x1_2,x1_3
             y0 = y1
         if _Flaeche == 0.0:
