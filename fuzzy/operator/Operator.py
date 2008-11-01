@@ -5,12 +5,12 @@
     Used to build fuzzy rules.
 """ 
 
-__revision__ = "$Id: Operator.py,v 1.5 2008-10-24 20:47:09 rliebscher Exp $"
+__revision__ = "$Id: Operator.py,v 1.6 2008-11-01 13:15:04 rliebscher Exp $"
 
 
 import fuzzy.Exception
 
-class Operator:
+class Operator(object):
     """Abstract base class for any kind of operator."""
 
     def __init__(self):
@@ -22,5 +22,5 @@ class Operator:
         """Return current value."""
         raise fuzzy.Exception.Exception("abtract class %s can't be called" % self.__class__.__name__)
 
-    def printDot(self,system,parent_name):
+    def printDot(self,out,system,parent_name):
         raise fuzzy.Exception.Exception("abtract class %s can't be called" % self.__class__.__name__)
