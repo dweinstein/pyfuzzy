@@ -3,11 +3,11 @@
 
 This package contains all realized fuzzy norms.
 
-examples can be found here http://rene-liebscher.info/PyFuzzy/pyfuzzy/test/norm
+examples can be found here http://pyfuzzy.sourceforge.net/test/norm/
 
 """
 
-__revision__ = "$Id: __init__.py,v 1.3 2008-10-08 13:11:39 rliebscher Exp $"
+__revision__ = "$Id: __init__.py,v 1.4 2008-11-01 13:09:53 rliebscher Exp $"
 
 
 def __import_classes(dir):
