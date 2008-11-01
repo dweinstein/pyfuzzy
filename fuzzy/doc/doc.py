@@ -62,7 +62,7 @@ def getPoints(variable):
     return points
 
 
-class Doc:
+class Doc(object):
 
     def __init__(self,directory="doc"):
         self.directory=directory
@@ -129,11 +129,11 @@ class Doc:
             g('set autoscale z')
         g("set terminal png small transparent truecolor nocrop")
         g("set output '%s/%s.png'" % (self.directory,filename))
-        #g('set style data lines')
-        g('set style data pm3d')
-        #g('set hidden3d')
-        g('set pm3d flush begin ftriangles scansforward interpolate 10,10')
-        g('set contour')
+        g('set style data lines')
+        g('set hidden')
+        g('set pm3d at s')
+        g('set pm3d ftriangles interpolate 50,50')
+        g('set contour surface')
         return g
 
     def getValues(self,v):
@@ -150,11 +150,14 @@ class Doc:
     def createDoc(self,system):
         """create plots of all variables defined in the given system."""
 
-        for v_name in system.variables.keys():
-            #try:
-                v = system.variables[v_name]
+        from fuzzy.OutputVariableDict import OutputVariableDict
 
-                self.createDocVariable(v,v_name)
+        for name,var in system.variables.items():
+            #try:
+                if isinstance(var,OutputVariableDict):
+                    print "ignore variable %s because it is of type OutputVariableDict" % name
+                else:
+                    self.createDocVariable(var,name)
             #except:
             #    print "no doc for " + v_name
 
@@ -192,7 +195,7 @@ class Doc:
         g = self.initGnuplot2D(filename=name,xlabel="",ylabel="membership",title=name,xrange_=(min,max),yrange=(-0.2,1.2))
         g('set style fill transparent solid 0.5 border')
         g('set style data filledcurves y1=0')
-        apply(g.plot,plot_items)
+        g.plot(*plot_items)
         g("reset")
 
     def create2DPlot(self,system,x_name,y_name,input_dict={},output_dict={},x_logscale=0,y_logscale=0):
@@ -281,6 +284,8 @@ class Doc:
                 pass
             return output_dict[z_name][adjective]
 
-        g = self.initGnuplot3D(filename=x_name+"_"+y_name+"_"+z_name,xlabel=x_name,ylabel=y_name,zlabel=z_name,title="%s.%s=f(%s,%s)" % (z_name,adjective,x_name,y_name),xrange_=(x_min,x_max),yrange=(y_min,y_max),x_logscale=x_logscale,y_logscale=y_logscale,z_logscale=z_logscale)
+        g = self.initGnuplot3D(filename=x_name+"_"+y_name+"_"+z_name+"_"+adjective,xlabel=x_name,ylabel=y_name,zlabel=z_name,title="%s.%s=f(%s,%s)" % (z_name,adjective,x_name,y_name),xrange_=(x_min,x_max),yrange=(y_min,y_max),zrange=(0,1),x_logscale=x_logscale,y_logscale=y_logscale,z_logscale=z_logscale)
+        g("set xyplane at 0")
+        g("set cntrparam levels incremental 0.1,0.2,1.0")
         g.splot(Gnuplot.funcutils.compute_GridData(x,y, f,binary=0,inline=1))
         g("reset")
