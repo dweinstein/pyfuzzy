@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: iso-8859-1 -*-
 
-__revision__ = "$Id: demo_set.py,v 1.4 2008-10-24 21:24:23 rliebscher Exp $"
+__revision__ = "$Id: demo_set.py,v 1.5 2008-11-01 13:27:19 rliebscher Exp $"
 
 
 try:
@@ -37,14 +37,14 @@ def get_classes():
 def test():
     """"""
 
-    from Numeric import *
+    import Numeric
 
     # A straightforward use of gnuplot.  The `debug=1' switch is used
     # in these examples so that the commands that are sent to gnuplot
     # are also output on stderr.
     g = Gnuplot.Gnuplot(debug=0)
 
-    x = arange(150)/50.0 - 1.5 
+    x = Numeric.arange(150)/50.0 - 1.5 
     g(' set style fill solid 0.5 border')
     g('set style data filledcurves y1=0')
     g('set noautoscale xy')
