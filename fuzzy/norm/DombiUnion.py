@@ -1,6 +1,6 @@
 # -*- coding: iso-8859-1 -*-
 
-__revision__ = "$Id: DombiUnion.py,v 1.2 2008-10-08 13:11:39 rliebscher Exp $"
+__revision__ = "$Id: DombiUnion.py,v 1.3 2008-11-01 13:13:52 rliebscher Exp $"
 
 from fuzzy.norm.Norm import NormException
 from fuzzy.norm.ParametricNorm import ParametricNorm
@@ -16,4 +16,8 @@ class DombiUnion(ParametricNorm):
         p = self.p
         x = float(args[0])
         y = float(args[1])
-        return 1.0-1.0/(1.0+pow(pow(x/(1.0-x),p)+pow(y/(1.0-y),p),1.0/p))
+        if x == 1. or y == 1.:
+            return 1.
+        def f(x,p):
+            return pow(x/(1.0-x),p)
+        return 1.0-1.0/(1.0+pow(f(x,p)+f(y,p),1.0/p))
