@@ -1,6 +1,6 @@
 # -*- coding: iso-8859-1 -*-
 
-__revision__ = "$Id: Input.py,v 1.5 2008-10-24 20:47:09 rliebscher Exp $"
+__revision__ = "$Id: Input.py,v 1.6 2008-11-01 13:15:28 rliebscher Exp $"
 
 
 from fuzzy.operator.Operator import Operator
@@ -18,5 +18,5 @@ class Input(Operator):
         """return membership of given adjective."""
         return self.adjective.getMembership()
 
-    def printDot(self,system,parent_name):
-        return self.adjective.printDot(system,parent_name)
+    def printDot(self,out,system,parent_name):
+        return self.adjective.printDot(out,system,parent_name)

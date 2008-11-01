@@ -1,6 +1,6 @@
 # -*- coding: iso-8859-1 -*-
 
-__revision__ = "$Id: Not.py,v 1.5 2008-10-24 20:47:09 rliebscher Exp $"
+__revision__ = "$Id: Not.py,v 1.6 2008-11-01 13:15:28 rliebscher Exp $"
 
 
 from fuzzy.operator.Operator import Operator
@@ -18,11 +18,11 @@ class Not(Operator):
         """Get input value and return 1.0-value."""
         return 1.0 - self.input()
 
-    def printDot(self,system,parent_name):
-        node_name = parent_name+"_NOT_" + hex(hash(self)).replace('-','_')
-        print """
-    %(node_name)s [label="NOT"];
+    def printDot(self,out,system,parent_name):
+        node_name = parent_name+"_NOT_" + hex(id(self)).replace('-','_')
+        out.write(
+"""    %(node_name)s [label="NOT"];
     %(node_name)s -> %(parent_name)s;
-""" % {"node_name":node_name,"parent_name":parent_name}
-        self.input.printDot(system,node_name)
+""" % {"node_name":node_name,"parent_name":parent_name})
+        self.input.printDot(out,system,node_name)
         return node_name

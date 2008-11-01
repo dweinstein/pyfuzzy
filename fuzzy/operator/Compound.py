@@ -1,6 +1,6 @@
 # -*- coding: iso-8859-1 -*-
 
-__revision__ = "$Id: Compound.py,v 1.5 2008-10-24 20:47:09 rliebscher Exp $"
+__revision__ = "$Id: Compound.py,v 1.6 2008-11-01 13:15:28 rliebscher Exp $"
 
 
 from fuzzy.operator.Operator import Operator
@@ -21,11 +21,11 @@ class Compound(Operator):
 
     def __call__(self):
         """Get current value of input and combine them with help of norm."""
-        return apply(self.norm,map(lambda x:x(),self.inputs))
+        return self.norm(*[x() for x in self.inputs])
 
-    def printDot(self,system,parent_name):
-        norm_name = self.norm.printDot(system,parent_name)
+    def printDot(self,out,system,parent_name):
+        norm_name = self.norm.printDot(out,system,parent_name)
         for i in self.inputs:
-            i.printDot(system,norm_name)
+            i.printDot(out,system,norm_name)
         return norm_name
 
