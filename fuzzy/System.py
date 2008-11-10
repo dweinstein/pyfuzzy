@@ -1,6 +1,6 @@
 # -*- coding: iso-8859-1 -*-
 
-__revision__ = "$Id: System.py,v 1.6 2008-11-01 13:29:31 rliebscher Exp $"
+__revision__ = "$Id: System.py,v 1.7 2008-11-10 12:31:15 rliebscher Exp $"
 
 
 class System(object):
@@ -16,11 +16,10 @@ class System(object):
         self.variables = {}
         self.rules = {}
 
-    def calculate(self,input,output):
-        """Do a complete fuzzy calculation step.
-        The input dictionary contains the input values for the named variables.
-        The output dictionary serves as container and provides the names of the
-        variables to read."""
+
+    def fuzzify(self,input):
+        """Fuzzify the inputs.
+        The input dictionary contains the input values for the named variables."""
 
         # reset everything what might be left from last run
         for variable in self.variables.values():
@@ -33,15 +32,41 @@ class System(object):
             #else:
             #   print "ignored input ",name
 
+
+    def inference(self):
+        """Calculate the fuzzy inference given by the rules."""
+
         # compute fuzzy rules 
         for rule in self.rules.values():
             rule.compute()
+
+
+    def defuzzify(self,output):
+        """Defuzzyfy the variables.
+        The output dictionary serves as container and provides the names of the
+        variables to read."""
 
         # get all wanted output variables
         for name in output.keys():
             output[name] = self.variables[name].getValue()
 
         return output
+
+
+    def calculate(self,input,output):
+        """Do a complete fuzzy calculation step.
+        The input dictionary contains the input values for the named variables.
+        The output dictionary serves as container and provides the names of the
+        variables to read."""
+
+        self.fuzzify(input)
+
+        self.inference()
+        
+        self.defuzzify(output)
+
+        return output
+
 
     def findVariableName(self,var):
         for name,variable in self.variables.iteritems():
@@ -55,6 +80,8 @@ class System(object):
                 if adj is adjective:
                     return [namea,name]
         return None
+
+####################################
 
     def printVariablesDot(self,out):
         """   """
