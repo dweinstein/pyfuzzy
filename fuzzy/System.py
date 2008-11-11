@@ -1,6 +1,6 @@
 # -*- coding: iso-8859-1 -*-
 
-__revision__ = "$Id: System.py,v 1.7 2008-11-10 12:31:15 rliebscher Exp $"
+__revision__ = "$Id: System.py,v 1.8 2008-11-11 12:44:58 rliebscher Exp $"
 
 
 class System(object):
@@ -16,14 +16,14 @@ class System(object):
         self.variables = {}
         self.rules = {}
 
+    def reset(self):
+        # reset everything what might be left from last run
+        for variable in self.variables.values():
+            variable.reset()
 
     def fuzzify(self,input):
         """Fuzzify the inputs.
         The input dictionary contains the input values for the named variables."""
-
-        # reset everything what might be left from last run
-        for variable in self.variables.values():
-            variable.reset()
 
         # feed input values in variables and so in adjectives
         for (name,value) in input.items():
@@ -58,6 +58,8 @@ class System(object):
         The input dictionary contains the input values for the named variables.
         The output dictionary serves as container and provides the names of the
         variables to read."""
+
+        self.reset()
 
         self.fuzzify(input)
 
