@@ -1,6 +1,6 @@
 # -*- coding: iso-8859-1 -*-
 
-__revision__ = "$Id: Compound.py,v 1.6 2008-11-01 13:15:28 rliebscher Exp $"
+__revision__ = "$Id: Compound.py,v 1.7 2008-11-11 12:19:10 rliebscher Exp $"
 
 
 from fuzzy.operator.Operator import Operator
@@ -15,7 +15,7 @@ class Compound(Operator):
         norm:   how combine inputs. (eg. Min,Max,...)
         inputs: list of inputs (subclassed from Operator).
         """
-        Operator.__init__(self)
+        super(Compund, self).__init__()
         self.norm = norm
         self.inputs = inputs
 

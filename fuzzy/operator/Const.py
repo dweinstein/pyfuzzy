@@ -1,6 +1,6 @@
 # -*- coding: iso-8859-1 -*-
 
-__revision__ = "$Id: Const.py,v 1.6 2008-11-01 13:15:28 rliebscher Exp $"
+__revision__ = "$Id: Const.py,v 1.7 2008-11-11 12:19:10 rliebscher Exp $"
 
 
 from fuzzy.operator.Operator import Operator
@@ -11,7 +11,7 @@ class Const(Operator):
     def __init__(self,value):
         """Constructor.
         value: value returned at call of __call__()."""
-        Operator.__init__(self)
+        super(Const, self).__init__()
         self.value = value
 
     def __call__(self):
