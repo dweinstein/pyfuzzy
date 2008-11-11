@@ -1,6 +1,6 @@
 # -*- coding: iso-8859-1 -*-
 
-__revision__ = "$Id: Trapez.py,v 1.6 2008-11-01 13:19:23 rliebscher Exp $"
+__revision__ = "$Id: Trapez.py,v 1.7 2008-11-11 12:17:20 rliebscher Exp $"
 
 
 from fuzzy.set.Polygon import Polygon
@@ -29,29 +29,83 @@ class Trapez(Polygon):
         http://pyfuzzy.sourceforge.net/test/set/Trapez.png
 
         """
-        Polygon.__init__(self)
-        # don't trigger __setattr__
-        self.__dict__["y_max"] = y_max
-        self.__dict__["y_min"] = y_min
-        self.__dict__["m1"] = m1
-        self.__dict__["m2"] = m2
-        self.__dict__["alpha"] = alpha
-        self.beta = beta # update polygon
+        super(Trapez, self).__init__()
+        self._y_max = y_max
+        self._y_min = y_min
+        self._m1 = m1
+        self._m2 = m2
+        self._alpha = alpha
+        self._beta = beta
+        self._update() # update polygon
 
-    def __setattr__(self,name,value):
-        self.__dict__[name] = value
-        if name in ["y_max",
-                    "y_min",
-                    "m1",
-                    "m2",
-                    "alpha",
-                    "beta"]:
-            # update polygon
-            Polygon.clear(self)
-            Polygon.add(self,self.m1-self.alpha,self.y_min)
-            Polygon.add(self,self.m1,self.y_max)
-            Polygon.add(self,self.m2,self.y_max)
-            Polygon.add(self,self.m2+self.beta,self.y_min)
+    @apply
+    def y_max():
+        doc = """y_max"""
+        def fget(self):
+            return self._y_max
+        def fset(self,value):
+            self._y_max = value
+            self._update()
+        return property(**locals())
+
+    @apply
+    def y_min():
+        doc = """y_min"""
+        def fget(self):
+            return self._y_min
+        def fset(self,value):
+            self._y_min = value
+            self._update()
+        return property(**locals())
+
+    @apply
+    def m1():
+        doc = """m1"""
+        def fget(self):
+            return self._m1
+        def fset(self,value):
+            self._m1 = value
+            self._update()
+        return property(**locals())
+
+    @apply
+    def m2():
+        doc = """m2"""
+        def fget(self):
+            return self._m2
+        def fset(self,value):
+            self._m2 = value
+            self._update()
+        return property(**locals())
+
+    @apply
+    def alpha():
+        doc = """alpha"""
+        def fget(self):
+            return self._alpha
+        def fset(self,value):
+            self._alpha = value
+            self._update()
+        return property(**locals())
+
+    @apply
+    def beta():
+        doc = """beta"""
+        def fget(self):
+            return self._beta
+        def fset(self,value):
+            self._beta = value
+            self._update()
+        return property(**locals())
+
+    def _update(self):
+        # update polygon
+        p = super(Trapez, self)
+        p.clear()
+        p.add(self._m1-self._alpha,self._y_min)
+        p.add(self._m1,self._y_max)
+        p.add(self._m2,self._y_max)
+        p.add(self._m2+self._beta,self._y_min)
 
     def add(self,x,y,where=Polygon.END):
         """Don't let anyone destroy our trapez."""

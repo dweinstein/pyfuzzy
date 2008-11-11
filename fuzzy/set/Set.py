@@ -33,7 +33,7 @@ maybe where the points of the resulting polygon are
 set.)
 """
 
-__revision__ = "$Id: Set.py,v 1.12 2008-11-01 13:19:23 rliebscher Exp $"
+__revision__ = "$Id: Set.py,v 1.13 2008-11-11 12:17:20 rliebscher Exp $"
 
 
 # helper functions
@@ -179,17 +179,17 @@ def norm(NORM, set, value):
 
 class Set(object):
 
-   def __init__(self):
+    def __init__(self):
         """Dummy initialization, so it is safe to call it
            from any sub class."""
         pass
 
-   def __call__(self,x):
+    def __call__(self,x):
         """Return membership of x in this fuzzy set.
            This method makes the set work like a function."""
         return 0
 
-   class IntervalGenerator(object):
+    class IntervalGenerator(object):
         def nextInterval(self,prev,next):
             """For conversion of any set to a polygon representation.
                Return which end value should have the interval started
@@ -200,13 +200,12 @@ class Set(object):
                If no further splitting at right necessary return None."""
             return next
 
-   def getIntervalGenerator(self):
+    def getIntervalGenerator(self):
         """Internal helper function to help convert arbitrary fuzzy sets in 
         fuzzy sets represented by a polygon."""
         return self.IntervalGenerator()
 
-   def getCOG(self):
+    def getCOG(self):
         """Return center of gravity."""
         #raise Exception("abtract class %s has no center of gravity." % self.__class__.__name__)
         return 0 # XXX
-

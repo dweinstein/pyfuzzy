@@ -1,6 +1,6 @@
 # -*- coding: iso-8859-1 -*-
 
-__revision__ = "$Id: ZFunction.py,v 1.8 2008-11-01 13:19:23 rliebscher Exp $"
+__revision__ = "$Id: ZFunction.py,v 1.9 2008-11-11 12:17:20 rliebscher Exp $"
 
 
 from fuzzy.set.SFunction import SFunction
@@ -23,7 +23,7 @@ class ZFunction(SFunction):
         http://pyfuzzy.sourceforge.net/test/set/ZFunction.png
 
         """
-        SFunction.__init__(self,a,delta)
+        super(ZFunction, self).__init__(a,delta)
 
 
     def __call__(self,x):

@@ -1,6 +1,6 @@
 # -*- coding: iso-8859-1 -*-
 
-__revision__ = "$Id: Singleton.py,v 1.5 2008-10-24 21:45:25 rliebscher Exp $"
+__revision__ = "$Id: Singleton.py,v 1.6 2008-11-11 12:17:20 rliebscher Exp $"
 
 
 from fuzzy.set.Polygon import Polygon
@@ -11,28 +11,37 @@ class Singleton(Polygon):
     """This set represents a non-fuzzy number."""
 
     def __init__(self,x=0.0):
-        Polygon.__init__(self)
+        super(Singleton,self).__init__()
         self.x = x # update polygon
 
-    def __setattr__(self,name,value):
-        self.__dict__[name] = value
-        if name in ["x"]:
-            # update polygon
-            Polygon.clear(self)
-            Polygon.add(self,self.x,0.0)
-            Polygon.add(self,self.x,1.0)
-            Polygon.add(self,self.x,0.0)
+    @apply
+    def x():
+        doc = """x"""
+        def fget(self):
+            return self._x
+        def fset(self,value):
+            self._x = value
+            self._update()
+        return property(**locals())
+
+    def _update(self):
+        # update polygon
+        p = super(Singleton, self)
+        p.clear()
+        p.add(self._x,0.0)
+        p.add(self._x,1.0)
+        p.add(self._x,0.0)
 
     def __call__(self,x):
         """Get membership of value x."""
-        if x == self.x:
+        if x == self._x:
             return 1.0
         else:
             return 0.0
 
     def getCOG(self):
         """Return center of gravity."""
-        return self.x
+        return self._x
 
     def add(self,x,y,where=Polygon.END):
         """Don't let anyone destroy our singleton."""

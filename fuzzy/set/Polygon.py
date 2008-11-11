@@ -1,6 +1,6 @@
 # -*- coding: iso-8859-1 -*-
 
-__revision__ = "$Id: Polygon.py,v 1.10 2008-11-01 13:19:23 rliebscher Exp $"
+__revision__ = "$Id: Polygon.py,v 1.11 2008-11-11 12:17:20 rliebscher Exp $"
 
 
 from fuzzy.set.Set import Set
@@ -28,7 +28,7 @@ class Polygon(Set):
     Y = 1
 
     def __init__(self,points=[]):
-        Set.__init__(self)
+        super(Polygon, self).__init__()
         import copy
         self.points = copy.deepcopy(points)
 

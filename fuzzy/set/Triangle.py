@@ -1,6 +1,6 @@
 # -*- coding: iso-8859-1 -*-
 
-__revision__ = "$Id: Triangle.py,v 1.7 2008-11-01 13:19:23 rliebscher Exp $"
+__revision__ = "$Id: Triangle.py,v 1.8 2008-11-11 12:17:20 rliebscher Exp $"
 
 
 from fuzzy.set.Polygon import Polygon
@@ -29,26 +29,71 @@ class Triangle(Polygon):
         http://pyfuzzy.sourceforge.net/test/set/Triangle.png
 
         """
-        Polygon.__init__(self)
-        # don't trigger __setattr__
-        self.__dict__["y_max"] = y_max
-        self.__dict__["y_min"] = y_min
-        self.__dict__["m"] = m
-        self.__dict__["alpha"] = alpha
-        self.beta = beta # update polygon
+        super(Triangle, self).__init__()
+        self._y_max = y_max
+        self._y_min = y_min
+        self._m = m
+        self._alpha = alpha
+        self._beta = beta
+        self._update() # update polygon
 
-    def __setattr__(self,name,value):
-        self.__dict__[name] = value
-        if name in ["y_max",
-                    "y_min",
-                    "m",
-                    "alpha",
-                    "beta"]:
-            # update polygon
-            Polygon.clear(self)
-            Polygon.add(self,self.m-self.alpha,self.y_min)
-            Polygon.add(self,self.m,self.y_max)
-            Polygon.add(self,self.m+self.beta,self.y_min)
+    @apply
+    def y_max():
+        doc = """y_max"""
+        def fget(self):
+            return self._y_max
+        def fset(self,value):
+            self._y_max = value
+            self._update()
+        return property(**locals())
+
+    @apply
+    def y_min():
+        doc = """y_min"""
+        def fget(self):
+            return self._y_min
+        def fset(self,value):
+            self._y_min = value
+            self._update()
+        return property(**locals())
+
+    @apply
+    def m():
+        doc = """m"""
+        def fget(self):
+            return self._m
+        def fset(self,value):
+            self._m = value
+            self._update()
+        return property(**locals())
+
+    @apply
+    def alpha():
+        doc = """alpha"""
+        def fget(self):
+            return self._alpha
+        def fset(self,value):
+            self._alpha = value
+            self._update()
+        return property(**locals())
+
+    @apply
+    def beta():
+        doc = """beta"""
+        def fget(self):
+            return self._beta
+        def fset(self,value):
+            self._beta = value
+            self._update()
+        return property(**locals())
+
+    def _update(self):
+        # update polygon
+        p = super(Triangle, self)
+        p.clear()
+        p.add(self._m-self._alpha,self._y_min)
+        p.add(self._m,self._y_max)
+        p.add(self._m+self._beta,self._y_min)
 
     def add(self,x,y,where=Polygon.END):
         """Don't let anyone destroy our triangle."""
