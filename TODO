@@ -1,14 +1,33 @@
-$Id: TODO,v 1.5 2003-04-21 14:23:29 plafoucr Exp $
+$Id: TODO,v 1.6 2008-11-11 12:51:22 rliebscher Exp $
 
-- Manage correctly min & max for Variables
-    - if input_value > max : input_value = max (idem with < min)
-
+Releases:
 - Release files for SourceForge when pyfuzzy will be considered as 'stable enough'
 
+
+Variables:
+? Manage correctly min & max for Variables
+    - if input_value > max : input_value = max (idem with < min)
+    (Is this really necessary, as fuzzy sets can easily go to -/+inf)
+
+? Manage Variable precision
+
+Fuzzy sets:
+    - Trapez, Triangle make parameters to properties.
+
+Defuzzyfication:
 - [DONE] Classes VariableDict and OutputVariableDict to handle "dictionnary" output (see OutputVariableDict InputVariableDict)
 
 - Other defuzzyfication methods
 
+- defuzzyfication as 'property' of Outputvariable (deprecating special classes) 
+  (should be fuzzyfication do the same?)
+
+
+
+GUI:
+- GUI using Tkinter and Tix so it works on all platforms supported by python without extra libraries
+
+(no longer developed, throw it out)
 - Gui to manage fuzzy systems (wxPython)
 	- [DONE] Manage pickle systems
     - [75%] (add/del/edit) Variable
@@ -18,11 +37,16 @@ $Id: TODO,v 1.5 2003-04-21 14:23:29 plafoucr Exp $
     - import / export XML format
 	- complete interactive GUI, maybe using OGL (http://tltsu.ru/wxpython-2.3.2/docs/ogl/index.htm) to manage drag & drop, and kind of wires.
 
+Import/Export:
+- xml export/import
+- pickle is easy (also support users extensions?)
+
 - manage projects
 	- [DONE] Pickle (see mischer.py)
 	- XML
-    
-- [50 % DONE] Automatic generation of documentation (see doc.py)
 
-- Manage Variable precision
+Documentation of fuzzy system:    
+- [50 % DONE] Automatic generation of documentation for variables (see doc.py)
+- documentation of rules
+
 
