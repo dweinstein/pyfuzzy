@@ -1,9 +1,10 @@
 # -*- coding: iso-8859-1 -*-
 
-__revision__ = "$Id: OutputVariableDict.py,v 1.6 2008-10-24 20:47:09 rliebscher Exp $"
+__revision__ = "$Id: OutputVariableDict.py,v 1.7 2008-11-11 12:46:30 rliebscher Exp $"
 
 
 from fuzzy.OutputVariable import OutputVariable
+from fuzzy.defuzzify.Dict import Dict
 
 
 class OutputVariableDict(OutputVariable):
@@ -43,12 +44,4 @@ class OutputVariableDict(OutputVariable):
        """
 
     def __init__(self,*args,**keywords):
-        OutputVariable.__init__(*tuple([self]+list(args)),**keywords)
-
-    def getValue(self):
-        """no defuzzyfication just return membership values"""
-        temp = {}
-        for adjective in self.adjectives.keys():
-            # get precomputed adjective set membership
-            temp[adjective] = self.adjectives[adjective].getMembership()    
-        return temp
+        super(OutputVariableDict, self).__init__(Dict(),*args,**keywords)
