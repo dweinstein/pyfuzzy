@@ -1,3 +1,8 @@
+# -*- coding: iso-8859-1 -*-
+"""Plotting of variables, adjectives, ... using gnuplot"""
+
+__revision__ = "$Id: doc.py,v 1.1 2008-11-12 21:51:19 rliebscher Exp $"
+
 
 def getMinMax(set):
     """get tuple with minimum and maximum x-values used by the set."""
@@ -63,6 +68,7 @@ def getPoints(variable):
 
 
 class Doc(object):
+    """Main object. Get an instance of this to do your work."""
 
     def __init__(self,directory="doc"):
         self.directory=directory
@@ -192,7 +198,10 @@ class Doc(object):
             a = v.adjectives[a_name]
             plot_items.append(Gnuplot.funcutils.compute_Data(x, a.set, title=a_name, inline=1))
 
-        g = self.initGnuplot2D(filename=name,xlabel="",ylabel="membership",title=name,xrange_=(min,max),yrange=(-0.2,1.2))
+        xlabel = v.description or ""
+        if v.unit is not None:
+            xlabel += " [%s]" % v.unit
+        g = self.initGnuplot2D(filename=name,xlabel=xlabel,ylabel="membership",title=name,xrange_=(min,max),yrange=(-0.2,1.2))
         g('set style fill transparent solid 0.5 border')
         g('set style data filledcurves y1=0')
         g.plot(*plot_items)
