@@ -1,6 +1,6 @@
 # -*- coding: iso-8859-1 -*-
 
-__revision__ = "$Id: Variable.py,v 1.7 2008-11-01 13:29:31 rliebscher Exp $"
+__revision__ = "$Id: Variable.py,v 1.8 2008-11-12 21:53:40 rliebscher Exp $"
 
 
 class Variable(object):
@@ -48,7 +48,7 @@ class Variable(object):
     def getMax(self):
         """Return Variable minimum."""
         return self.max
-    
+
     def setUnit(self,unit):
         """Set Variable unit."""
         self.unit = unit
@@ -65,16 +65,3 @@ class Variable(object):
     def getName(self,system):
         """Lookup the name given this variable in the given system"""
         return system.findVariableName(self)
-
-    def printDot(self,out,system,name):
-        node_name = "VAR_" + hex(id(self)).replace('-','_')
-        out.write(
-"""    subgraph "%(node_name)s" {
-    label="%(name)s";
-    %(node_name)s [label="%(name)s"];
-""" % {"node_name":node_name,"name":name})
-        for adj in self.adjectives.values():
-            adj.printDot(out,system,node_name,1)
-        out.write(
-"""}
-""")

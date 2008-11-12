@@ -1,6 +1,6 @@
 # -*- coding: iso-8859-1 -*-
 
-__revision__ = "$Id: Const.py,v 1.7 2008-11-11 12:19:10 rliebscher Exp $"
+__revision__ = "$Id: Const.py,v 1.8 2008-11-12 21:53:40 rliebscher Exp $"
 
 
 from fuzzy.operator.Operator import Operator
@@ -16,12 +16,4 @@ class Const(Operator):
 
     def __call__(self):
         """Return stored constant value."""
-        return self.value        
-
-    def printDot(self,out,system,parent_name):
-        node_name = parent_name+"_CONST_" + hex(id(self)).replace('-','_')
-        out.write(
-"""    %(node_name)s [label="%(value)g"];
-    %(node_name)s -> %(parent_name)s;
-""" % {"node_name":node_name,"value":self.value,"parent_name":parent_name})
-        return node_name
+        return self.value

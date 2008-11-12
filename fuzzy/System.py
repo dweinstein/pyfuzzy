@@ -1,13 +1,13 @@
 # -*- coding: iso-8859-1 -*-
 
-__revision__ = "$Id: System.py,v 1.8 2008-11-11 12:44:58 rliebscher Exp $"
+__revision__ = "$Id: System.py,v 1.9 2008-11-12 21:53:40 rliebscher Exp $"
 
 
 class System(object):
     """Holds all stuff together. (variables, rules, ...)
        Provides methods to do calculation with it.""" 
 
-    def __init__(self):
+    def __init__(self,description=""):
         """Constructor.
         Creates two instance variables:
         variables: dictionary to hold all variables.
@@ -15,6 +15,7 @@ class System(object):
         """
         self.variables = {}
         self.rules = {}
+        self.description = description
 
     def reset(self):
         # reset everything what might be left from last run
@@ -27,7 +28,7 @@ class System(object):
 
         # feed input values in variables and so in adjectives
         for (name,value) in input.items():
-            if self.variables.has_key(name):
+            if name in self.variables:
                 self.variables[name].setValue(value)
             #else:
             #   print "ignored input ",name
@@ -64,7 +65,7 @@ class System(object):
         self.fuzzify(input)
 
         self.inference()
-        
+
         self.defuzzify(output)
 
         return output
@@ -83,26 +84,9 @@ class System(object):
                     return [namea,name]
         return None
 
-####################################
-
-    def printVariablesDot(self,out):
-        """   """
-        for name,variable in self.variables.iteritems():
-            variable.printDot(out,self,name)
-
-    def printRulesDot(self,out):
-        """   """
+    def findRuleName(self,_rule):
         for name,rule in self.rules.iteritems():
-            rule.printDot(out,self,name)
+            if _rule is rule:
+                return name
+        return None
 
-    def printDot(self,out):
-        """   """
-        out.write(
-"""digraph System {
-graph [rankdir = "LR"];
-""")
-        #self.printVariablesDot(out)
-        self.printRulesDot(out)
-        out.write(
-"""}
-""")

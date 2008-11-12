@@ -1,6 +1,6 @@
 # -*- coding: iso-8859-1 -*-
 
-__revision__ = "$Id: Rule.py,v 1.6 2008-11-01 13:29:31 rliebscher Exp $"
+__revision__ = "$Id: Rule.py,v 1.7 2008-11-12 21:53:40 rliebscher Exp $"
 
 
 from fuzzy.norm.Min import Min
@@ -41,14 +41,6 @@ class Rule(object):
                                     )
                                 )
 
-    def printDot(self,out,system,name):
-        node_name = "RULE_" + hex(id(self)).replace('-','_')
-        out.write(
-"""  subgraph "%(node_name)s" {
-    label="%(name)s";
-    """ % {"node_name":node_name,"name":name})
-        adj_node_name = self.adjective.printDot(out,system,node_name,0)
-        self.operator.printDot(out,system,adj_node_name)
-        out.write(
-"""}
-""")
+    def getName(self,system):
+        """Lookup the name given this rule in the given system"""
+        return system.findRuleName(self)
