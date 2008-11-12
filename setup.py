@@ -3,7 +3,7 @@
 
 # created 2001/08 Rene Liebscher
 
-__revision__ = "$Id: setup.py,v 1.6 2008-11-11 12:51:22 rliebscher Exp $"
+__revision__ = "$Id: setup.py,v 1.7 2008-11-12 21:54:30 rliebscher Exp $"
 
 from distutils.core import setup
 
@@ -18,5 +18,16 @@ setup (name = "pyfuzzy",
        license = "GPL",
        long_description = """...""",
 
-       packages = ['fuzzy', 'fuzzy.set', 'fuzzy.operator', 'fuzzy.norm', 'fuzzy.doc', 'fuzzy.defuzzify'],
+       packages = [
+        'fuzzy',
+        'fuzzy.set',
+        'fuzzy.operator',
+        'fuzzy.norm',
+        'fuzzy.defuzzify',
+        'fuzzy.doc',
+        'fuzzy.doc.plot',
+        'fuzzy.doc.plot.gnuplot',
+        'fuzzy.doc.structure',
+        'fuzzy.doc.structure.dot',
+        ],
       )
