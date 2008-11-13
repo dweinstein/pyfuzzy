@@ -1,5 +1,5 @@
 #!/bin/bash
-# $Id: makehtml.sh,v 1.4 2008-10-24 20:42:13 rliebscher Exp $
+# $Id: makehtml.sh,v 1.5 2008-11-13 14:25:06 rliebscher Exp $
 
 export PYTHONPATH=../..
 mkdir html
@@ -9,13 +9,9 @@ cd html
 # with the path to the pydoc in your python lib directory
 #PYDOC=/usr/lib/python/pydoc.py
 PYDOC=../SFpydoc.py
-
-
-python -O $PYDOC -w fuzzy
-python -O $PYDOC -w fuzzy.norm
-python -O $PYDOC -w fuzzy.operator
-python -O $PYDOC -w fuzzy.set
-python -O $PYDOC -w fuzzy.doc
-python -O $PYDOC -w fuzzui
-python -O $PYDOC -w ./../..
+#MODULES="fuzzy fuzzy.norm fuzzy.operator fuzzy.set fuzzy.defuzzify fuzzy.doc fuzzui ./../.."
+MODULES="./../.."
+for i in $MODULES ; do
+    python -O $PYDOC -w $i
+done
 #cd ..
