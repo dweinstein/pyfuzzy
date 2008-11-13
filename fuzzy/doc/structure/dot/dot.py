@@ -1,7 +1,7 @@
 # -*- coding: iso-8859-1 -*-
 """Generates description of structure in dot format"""
 
-__revision__ = "$Id: dot.py,v 1.1 2008-11-12 21:51:19 rliebscher Exp $"
+__revision__ = "$Id: dot.py,v 1.2 2008-11-13 14:26:22 rliebscher Exp $"
 
 # stores handler of different object types
 _registered_handler = {}
@@ -37,7 +37,7 @@ def printDot(system,out):
 
 def print_header(out,name="System"):
     """Print graph header"""
-    out.write("digraph %s {graph [rankdir = "LR"];\n" % name)
+    out.write("digraph %s {graph [rankdir = \"LR\"];\n" % name)
 
 def print_footer(out):
     """Print graph footer"""

@@ -1,7 +1,7 @@
 # -*- coding: iso-8859-1 -*-
 """Handlers for different object types which print the object in dot format"""
 
-__revision__ = "$Id: handlers.py,v 1.1 2008-11-12 21:51:19 rliebscher Exp $"
+__revision__ = "$Id: handlers.py,v 1.2 2008-11-13 14:26:22 rliebscher Exp $"
 
 
 from fuzzy.doc.structure.dot.dot import register_handler,print_dot
@@ -117,6 +117,18 @@ class Doc_Norm(DocBase):
 
 import fuzzy.norm.Norm
 register_handler(fuzzy.norm.Norm.Norm,Doc_Norm())
+
+#########################
+class Doc_ParametricNorm(Doc_Norm):
+    def __call__(self,obj,out,system,parent_name):
+        prefix = (parent_name+"_") if _XXX else ""
+        node_name = prefix + "NORM_" + ID(obj)
+        norm_name = obj.__class__.__name__
+        self.make_node(out,node_name,{"label":"%s(%g)" % (norm_name,obj.p)})
+        return node_name
+
+import fuzzy.norm.ParametricNorm
+register_handler(fuzzy.norm.ParametricNorm.ParametricNorm,Doc_ParametricNorm())
 
 #########################
 class Doc_Adjective(DocBase):
