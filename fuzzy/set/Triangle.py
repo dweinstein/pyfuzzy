@@ -1,6 +1,6 @@
 # -*- coding: iso-8859-1 -*-
 
-__revision__ = "$Id: Triangle.py,v 1.8 2008-11-11 12:17:20 rliebscher Exp $"
+__revision__ = "$Id: Triangle.py,v 1.9 2008-11-13 20:45:17 rliebscher Exp $"
 
 
 from fuzzy.set.Polygon import Polygon
@@ -88,7 +88,7 @@ class Triangle(Polygon):
         return property(**locals())
 
     def _update(self):
-        # update polygon
+        """update polygon"""
         p = super(Triangle, self)
         p.clear()
         p.add(self._m-self._alpha,self._y_min)

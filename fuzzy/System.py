@@ -1,6 +1,6 @@
 # -*- coding: iso-8859-1 -*-
 
-__revision__ = "$Id: System.py,v 1.9 2008-11-12 21:53:40 rliebscher Exp $"
+__revision__ = "$Id: System.py,v 1.10 2008-11-13 20:45:17 rliebscher Exp $"
 
 
 class System(object):
@@ -18,7 +18,7 @@ class System(object):
         self.description = description
 
     def reset(self):
-        # reset everything what might be left from last run
+        """Reset all memberships for the next run of calculate"""
         for variable in self.variables.values():
             variable.reset()
 
@@ -72,12 +72,14 @@ class System(object):
 
 
     def findVariableName(self,var):
+        """Find name of variable in this system"""
         for name,variable in self.variables.iteritems():
             if var is variable:
                 return name
         return None
 
     def findAdjectiveName(self,adj):
+        """Find name of adjective (and variable) in this system"""
         for name,variable in self.variables.iteritems():
             for namea,adjective in variable.adjectives.iteritems():
                 if adj is adjective:
@@ -85,6 +87,7 @@ class System(object):
         return None
 
     def findRuleName(self,_rule):
+        """Find name of rule in this system"""
         for name,rule in self.rules.iteritems():
             if _rule is rule:
                 return name

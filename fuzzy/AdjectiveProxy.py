@@ -1,6 +1,6 @@
 # -*- coding: iso-8859-1 -*-
 
-__revision__ = "$Id: AdjectiveProxy.py,v 1.5 2008-11-01 13:29:31 rliebscher Exp $"
+__revision__ = "$Id: AdjectiveProxy.py,v 1.6 2008-11-13 20:45:17 rliebscher Exp $"
 
 
 class AdjectiveProxy(object):
@@ -15,7 +15,7 @@ class AdjectiveProxy(object):
         """Return attribute value from real adjective."""
         if name in ["proxy_variable","proxy_adjective","proxy_system"]:
             return self.__dict__[name]
-        else:    
+        else:
             variable = self.__dict__["proxy_variable"]
             adjective = self.__dict__["proxy_adjective"]
             system = self.__dict__["proxy_system"]
@@ -32,6 +32,8 @@ class AdjectiveProxy(object):
             setattr(system.variables[variable].adjectives[adjective],name,value)
 
     def getName(self,system):
+        """Find own name in given system.
+        Returns a tuple (var_name,adj_name) of None."""
         if system is self.proxy_system:
             return [self.proxy_adjective,self.proxy_variable]
         raise fuzzy.Exception.Exception()

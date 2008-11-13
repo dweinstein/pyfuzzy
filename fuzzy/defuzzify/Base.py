@@ -1,11 +1,15 @@
 # -*- coding: iso-8859-1 -*-
 
-__revision__ = "$Id: Base.py,v 1.1 2008-11-11 12:50:02 rliebscher Exp $"
+__revision__ = "$Id: Base.py,v 1.2 2008-11-13 20:45:17 rliebscher Exp $"
 
 
 from fuzzy.norm.Max import Max
 from fuzzy.norm.Min import Min
 from fuzzy.set.Set import norm,merge
+import fuzzy.Exception
+
+class DefuzzificationException(fuzzy.Exception.Exception):
+    pass
 
 class Base(object):
     """Abstract base class for defuzzyfication
@@ -19,9 +23,16 @@ class Base(object):
         """
             INF - inference norm, used with set of adjective and given value for it
             ACC - norm for accumulation of set of adjectives
-        """ 
+        """
         self.ACC = ACC # accumulation
         self.INF = INF # inference
+
+    def getValue(self,variable):
+        """Defuzzyfication."""
+        raise DefuzzificationException("don't use the abstract base class")
+
+##################################
+# helper methods for sub classes
 
     def accumulate(self,variable):
         """combining adjective values into one set"""

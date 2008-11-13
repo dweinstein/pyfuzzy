@@ -1,6 +1,6 @@
 # -*- coding: iso-8859-1 -*-
 
-__revision__ = "$Id: Trapez.py,v 1.7 2008-11-11 12:17:20 rliebscher Exp $"
+__revision__ = "$Id: Trapez.py,v 1.8 2008-11-13 20:45:17 rliebscher Exp $"
 
 
 from fuzzy.set.Polygon import Polygon
@@ -99,7 +99,7 @@ class Trapez(Polygon):
         return property(**locals())
 
     def _update(self):
-        # update polygon
+        """update polygon"""
         p = super(Trapez, self)
         p.clear()
         p.add(self._m1-self._alpha,self._y_min)

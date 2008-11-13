@@ -1,13 +1,15 @@
 # -*- coding: iso-8859-1 -*-
 
-__revision__ = "$Id: MaxRight.py,v 1.1 2008-11-11 12:50:02 rliebscher Exp $"
+__revision__ = "$Id: MaxRight.py,v 1.2 2008-11-13 20:45:17 rliebscher Exp $"
 
-from fuzzy.defuzzify.Base import Base
+from fuzzy.defuzzify.Base import Base,DefuzzificationException
 
 class MaxRight(Base):
     """Defuzzyfication which uses the right maximum."""
 
     def __init__(self, INF=None, ACC=None, failsafe=None,*args,**keywords):
+        """Initialize the defuzzification method with INF,ACC 
+        and an optional value in case defuzzification is not possible"""
         super(MaxRight, self).__init__(INF,ACC,*args,**keywords)
         self.failsafe = failsafe # which value if value not calculable
 
@@ -18,8 +20,11 @@ class MaxRight(Base):
 
             # get polygon representation
             table = list(self.value_table(temp))
+
+            if len(table) == 0:
+                raise DefuzzificationException("no value calculable: complete undefined set")
+
             table.reverse()
-            #print table
 
             y = table[0][1]
             x = float('+inf') # right end of polygon is always infinity

@@ -1,6 +1,6 @@
 # -*- coding: iso-8859-1 -*-
 
-__revision__ = "$Id: Polygon.py,v 1.11 2008-11-11 12:17:20 rliebscher Exp $"
+__revision__ = "$Id: Polygon.py,v 1.12 2008-11-13 20:45:17 rliebscher Exp $"
 
 
 from fuzzy.set.Set import Set
@@ -28,6 +28,7 @@ class Polygon(Set):
     Y = 1
 
     def __init__(self,points=[]):
+        """Initialize with given sorted list of (x,y) values"""
         super(Polygon, self).__init__()
         import copy
         self.points = copy.deepcopy(points)
@@ -155,22 +156,22 @@ class Polygon(Set):
             raise Exception("no COG calculable: single point = constant value")
         if self.points[0][Polygon.Y] > 0 or self.points[-1][Polygon.Y] > 0:
             raise Exception("no COG calculable: end points of polygon not y=0.0")
-        _Flaeche = 0.
-        _Schwerpunkt = 0.
+        area = 0.
+        COG = 0.
         iterator = iter(self.points)
         x0,y0 = iterator.next()
         x0_2 = x0*x0  # =x²
         x0_3 = x0_2*x0  # =x³
         for x1,y1 in iterator:
-            if x1 != x0: # senkrechte Anstiege haben keine Flaechen
+            if x1 != x0: # vertical slopes don't have an area to x.axis
                 x1_2 = x1*x1
                 x1_3 = x1_2*x1
-                _Flaeche += (y0+y1)/2.0*(x1-x0) # Trapezfläche
+                area += (y0+y1)/2.0*(x1-x0) # area of trapez
                 # Integral( x*f(x) ) 
-                _Schwerpunkt += y0/2.0*(x1_2-x0_2)+(y1-y0)/(x1-x0)*(x1_3/3.0-x0_3/3.0-x1_2*x0/2.0+x0_3/2.0)
+                COG += y0/2.0*(x1_2-x0_2)+(y1-y0)/(x1-x0)*(x1_3/3.0-x0_3/3.0-x1_2*x0/2.0+x0_3/2.0)
                 x0,x0_2,x0_3 = x1,x1_2,x1_3
             y0 = y1
-        if _Flaeche == 0.0:
+        if area == 0.0:
             raise Exception("no COG calculable: polygon area is zero!")
-        _Schwerpunkt = _Schwerpunkt/_Flaeche
-        return _Schwerpunkt # XXX
+        COG /= area
+        return COG # XXX

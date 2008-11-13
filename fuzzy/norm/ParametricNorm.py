@@ -3,12 +3,14 @@
     Base class for any kind of parametric fuzzy norm.
 """
 
-__revision__ = "$Id: ParametricNorm.py,v 1.3 2008-10-24 20:47:09 rliebscher Exp $"
+__revision__ = "$Id: ParametricNorm.py,v 1.4 2008-11-13 20:45:17 rliebscher Exp $"
 
 from fuzzy.norm.Norm import Norm
 
 class ParametricNorm(Norm):
+    """Abstract base class for any parametric fuzzy norm"""
 
     def __init__(self,type=0,p=0.5):
-        Norm.__init__(self,type)
+        """Initialize type and parameter"""
+        super(ParametricNorm,self).__init__(type)
         self.p = p

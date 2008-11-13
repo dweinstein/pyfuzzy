@@ -1,7 +1,7 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 # -*- coding: iso-8859-1 -*-
 
-__revision__ = "$Id: SFpydoc.py,v 1.2 2008-11-13 14:25:06 rliebscher Exp $"
+__revision__ = "$Id: SFpydoc.py,v 1.3 2008-11-13 20:45:17 rliebscher Exp $"
 
 
 import sys, imp, os, stat, re, types, inspect

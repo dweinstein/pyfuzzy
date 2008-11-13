@@ -1,6 +1,6 @@
 # -*- coding: iso-8859-1 -*-
 
-__revision__ = "$Id: Dict.py,v 1.1 2008-11-11 12:50:02 rliebscher Exp $"
+__revision__ = "$Id: Dict.py,v 1.2 2008-11-13 20:45:17 rliebscher Exp $"
 
 class Dict(object):
     """Not a real defuuzyfication.
@@ -38,13 +38,10 @@ class Dict(object):
        }
        """
 
-    def __init__(self):
-        pass
-
     def getValue(self,variable):
         """no defuzzyfication just return membership values"""
         temp = {}
         for name,adjective in variable.adjectives.items():
             # get precomputed adjective set membership
-            temp[name] = adjective.getMembership()    
+            temp[name] = adjective.getMembership()
         return temp

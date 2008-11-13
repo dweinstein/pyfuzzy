@@ -1,6 +1,6 @@
 # -*- coding: iso-8859-1 -*-
 
-__revision__ = "$Id: Singleton.py,v 1.6 2008-11-11 12:17:20 rliebscher Exp $"
+__revision__ = "$Id: Singleton.py,v 1.7 2008-11-13 20:45:17 rliebscher Exp $"
 
 
 from fuzzy.set.Polygon import Polygon
@@ -25,7 +25,7 @@ class Singleton(Polygon):
         return property(**locals())
 
     def _update(self):
-        # update polygon
+        """update polygon"""
         p = super(Singleton, self)
         p.clear()
         p.add(self._x,0.0)
