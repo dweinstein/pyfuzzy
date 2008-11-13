@@ -1,13 +1,11 @@
 #!/usr/bin/env python
 # -*- coding: iso-8859-1 -*-
 
-__revision__ = "$Id: demo_defuzzyfication.py,v 1.5 2008-11-11 12:51:22 rliebscher Exp $"
+__revision__ = "$Id: demo_defuzzyfication.py,v 1.6 2008-11-13 20:42:30 rliebscher Exp $"
 
 
-def get_classes():
+def get_classes(classes_dir):
     import os,sys,imp
-    import fuzzy.set.Set
-    classes_dir = os.path.dirname(fuzzy.set.__file__)
     suffixes = []
     for suffix in imp.get_suffixes():
         suffixes.append(suffix[0])
@@ -28,28 +26,50 @@ def get_classes():
 def test():
     """test all found set classes with defuzzyfication method in specific kind
        of output variable class"""
-    objects = get_classes()
-    keys = objects.keys()
-    keys.sort()
-    import fuzzy.OutputVariableCOG,fuzzy.OutputVariableMaxRight,fuzzy.OutputVariableMaxLeft,fuzzy.OutputVariableDict
-    for v in [
-        fuzzy.OutputVariableCOG.OutputVariableCOG(),
-        fuzzy.OutputVariableMaxRight.OutputVariableMaxRight(),
-        fuzzy.OutputVariableMaxLeft.OutputVariableMaxLeft(),
-        fuzzy.OutputVariableDict.OutputVariableDict()
-        ]:
-        print "Using %s:" % v.__class__.__name__
-        print "%-25s | %s" % ("class","defuzzyfication value")
-        print "%25s-+-%s" % ("-------------------------","----------------------")
-        for o in keys:
+    import os,types
+    import fuzzy.set
+    import fuzzy.defuzzify
+    import fuzzy.OutputVariable
+    import fuzzy.Adjective
+
+    row1 = 10
+    row2 = 25
+
+    sets = get_classes(os.path.dirname(fuzzy.set.__file__))
+    sets_keys = sets.keys()
+    sets_keys.sort()
+    defuzzy = get_classes(os.path.dirname(fuzzy.defuzzify.__file__))
+    defuzzy_keys = defuzzy.keys()
+    defuzzy_keys.sort()
+
+    for d in defuzzy_keys:
+        defuzzy_ = defuzzy[d]
+        # filter out abstract base classes
+        if defuzzy_.__class__.__name__ in ["Base"]:
+            continue
+
+        v = fuzzy.OutputVariable.OutputVariable(defuzzy=defuzzy_)
+        print "Using %s:" % defuzzy_.__class__.__name__
+        print "%-*s | %s" % (row1,"class","defuzzyfication value")
+        print "%s-+-%s" % ("-"*row1,"-"*row2)
+
+        for o in sets_keys:
+            set = sets[o]
+            # filter out classes without default values
+            if set.__class__.__name__ in ["Set","Function","Polygon"]:
+                continue
             try:
-                import fuzzy.Adjective
-                a = fuzzy.Adjective.Adjective(objects[o])
+                a = fuzzy.Adjective.Adjective(set)
                 a.setMembership(1.0)
                 v.adjectives["test"] = a
-                print "%-25s | %s" % (objects[o].__class__.__name__,str(v.getValue())) 
+                result = v.getValue()
+                if isinstance(result,types.FloatType):
+                    result = "%.3g" % result
+                else:
+                    result = str(result)
+                print "%-*s | %s" % (row1,set.__class__.__name__,result) 
             except Exception,e:
-                print "%-25s |                %s" % (objects[o].__class__.__name__,e)
+                print "%-*s |         >>> %s <<<" % (row1,set.__class__.__name__,e)
         print
 
 # when executed, just run test():
