@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: iso-8859-1 -*-
 
-__revision__ = "$Id: demo_norm.py,v 1.4 2008-11-01 13:26:31 rliebscher Exp $"
+__revision__ = "$Id: demo_norm.py,v 1.5 2008-11-13 20:43:09 rliebscher Exp $"
 
 
 try:
@@ -95,7 +95,7 @@ def plotNorm(norm,name,params=[0.05,0.25,0.50,0.75,0.95],gnuplot=None,interactiv
 
 
 def test():
-    """ """
+    """Show examples for all norm in package fuzzy.norm"""
     objects = get_classes()
     keys = objects.keys()
     keys.sort()

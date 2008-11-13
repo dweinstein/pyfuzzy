@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: iso-8859-1 -*-
 
-__revision__ = "$Id: demo_merge.py,v 1.5 2008-11-01 13:24:49 rliebscher Exp $"
+__revision__ = "$Id: demo_merge.py,v 1.6 2008-11-13 20:43:09 rliebscher Exp $"
 
 try:
     # If the package has been installed correctly, this should work:
@@ -39,6 +39,7 @@ def plotPlotItems(items,title,filename):
     g = None
 
 def main():
+    """Show examples merge and norm function using some example sets and norms"""
     import fuzzy
     import fuzzy.System
     import fuzzy.Variable
