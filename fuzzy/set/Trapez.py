@@ -1,6 +1,6 @@
 # -*- coding: iso-8859-1 -*-
 
-__revision__ = "$Id: Trapez.py,v 1.8 2008-11-13 20:45:17 rliebscher Exp $"
+__revision__ = "$Id: Trapez.py,v 1.9 2008-11-17 09:31:53 rliebscher Exp $"
 
 
 from fuzzy.set.Polygon import Polygon
@@ -8,7 +8,7 @@ from fuzzy.set.Polygon import Polygon
 class Trapez(Polygon):
 
     def __init__(self,y_max=1.0,y_min=0.0,m1=-0.5,m2=0.5,alpha=0.5,beta=0.5):
-        """Constructor.
+        r"""Constructor.
         y_max:  y-value at top of the trapez (1.0)
         y_min:  y-value outside the trapez (0.0)
         m1:     x-value of left top of trapez (-0.5)

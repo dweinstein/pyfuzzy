@@ -1,12 +1,12 @@
 # -*- coding: iso-8859-1 -*-
 
-__revision__ = "$Id: Polygon.py,v 1.12 2008-11-13 20:45:17 rliebscher Exp $"
+__revision__ = "$Id: Polygon.py,v 1.13 2008-11-17 09:31:53 rliebscher Exp $"
 
 
 from fuzzy.set.Set import Set
 
 class Polygon(Set):
-    """Represents a fuzzy set, which membership function
+    r"""Represents a fuzzy set, which membership function
        is the shape of a polygon. For example: triangle,
        trapezoid, rectangle, or something similar.
 
@@ -79,7 +79,7 @@ class Polygon(Set):
     END = 1
 
     def add(self,x,y,where=END):
-        """Add a new point to the polygon.
+        r"""Add a new point to the polygon.
            The parameter where controls at which end
            it is inserted. (The points are always sorted, but
            if two have the same x value their order is important.
@@ -100,7 +100,7 @@ class Polygon(Set):
 
 
     def remove(self,x,where=END):
-        """Remove a point from the polygon.
+        r"""Remove a point from the polygon.
            The parameter where controls at which end
            it is removed. (The points are always sorted, but
            if two have the same x value their order is important.

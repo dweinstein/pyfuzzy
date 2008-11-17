@@ -1,6 +1,6 @@
 # -*- coding: iso-8859-1 -*-
 
-__revision__ = "$Id: Triangle.py,v 1.9 2008-11-13 20:45:17 rliebscher Exp $"
+__revision__ = "$Id: Triangle.py,v 1.10 2008-11-17 09:31:53 rliebscher Exp $"
 
 
 from fuzzy.set.Polygon import Polygon
@@ -9,7 +9,7 @@ class Triangle(Polygon):
     """Triangle shaped fuzzy set."""
 
     def __init__(self,y_max=1.0,y_min=0.0,m=0.0,alpha=1.0,beta=1.0):
-        """Constructor.
+        r"""Constructor.
         y_max:  y-value at top of the triangle (1.0)
         y_min:  y-value outside the triangle (0.0)
         m:      x-value of top of triangle (0.0)
