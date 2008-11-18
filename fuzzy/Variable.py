@@ -1,11 +1,21 @@
 # -*- coding: iso-8859-1 -*-
 
-__revision__ = "$Id: Variable.py,v 1.9 2008-11-18 18:55:06 rliebscher Exp $"
+__revision__ = "$Id: Variable.py,v 1.10 2008-11-18 21:46:48 rliebscher Exp $"
 
 
 class Variable(object):
     """Base class for any kind of fuzzy variable.
-       Returns as output the previous input value."""
+       Returns as output the previous input value.
+       
+       @ivar description: Description of the fuzzy variable
+       @type description: string
+       @ivar min: minimum value (not strictly enforced, but useful for some external tools)
+       @type min: float
+       @ivar max: maximum value (not strictly enforced, but useful for some external tools)
+       @type max: float
+       @ivar unit: Unit of the values
+       @type unit: string
+       """
 
     def __init__(self,description='',min=0.,max=1.,unit=''):
         """

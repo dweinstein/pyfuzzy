@@ -1,6 +1,6 @@
 # -*- coding: iso-8859-1 -*-
 
-__revision__ = "$Id: Base.py,v 1.2 2008-11-13 20:45:17 rliebscher Exp $"
+__revision__ = "$Id: Base.py,v 1.3 2008-11-18 21:46:48 rliebscher Exp $"
 
 
 from fuzzy.norm.Max import Max
@@ -13,7 +13,17 @@ class DefuzzificationException(fuzzy.Exception.Exception):
 
 class Base(object):
     """Abstract base class for defuzzyfication
-       which results in a numeric value."""
+       which results in a numeric value.
+       
+        @ivar INF: inference norm, used with set of adjective and given value for it
+        @type INF: instance of L{fuzzy.norm.Norm.Norm}
+        @ivar ACC: norm for accumulation of set of adjectives
+        @type ACC: instance of L{fuzzy.norm.Norm.Norm}
+        @cvar _INF: default value when INF is None
+        @type _INF: instance of L{fuzzy.norm.Norm.Norm}
+        @cvar _ACC: default value when ACC is None
+        @type _ACC: instance of L{fuzzy.norm.Norm.Norm}
+       """
 
     # default values if instance values are not set 
     _INF = Min()
@@ -21,8 +31,10 @@ class Base(object):
 
     def __init__(self, INF=None, ACC=None):
         """
-            INF - inference norm, used with set of adjective and given value for it
-            ACC - norm for accumulation of set of adjectives
+        @param INF: inference norm, used with set of adjective and given value for it
+        @type INF: instance of L{fuzzy.norm.Norm.Norm}
+        @param ACC: norm for accumulation of set of adjectives
+        @type ACC: instance of L{fuzzy.norm.Norm.Norm}
         """
         self.ACC = ACC # accumulation
         self.INF = INF # inference

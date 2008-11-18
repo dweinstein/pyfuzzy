@@ -1,6 +1,6 @@
 # -*- coding: iso-8859-1 -*-
 
-__revision__ = "$Id: Polygon.py,v 1.14 2008-11-18 18:55:06 rliebscher Exp $"
+__revision__ = "$Id: Polygon.py,v 1.15 2008-11-18 21:46:48 rliebscher Exp $"
 
 
 from fuzzy.set.Set import Set
@@ -24,50 +24,55 @@ class Polygon(Set):
        """
 
     # indices for coordinate tuple
-    X = 0
-    Y = 1
+    X = 0 #: index of x value in tuple
+    Y = 1 #: index of y value in tuple
 
     def __init__(self,points=[]):
-        """Initialize with given sorted list of (x,y) values"""
+        """Initialize with given sorted list of (x,y) values
+        
+        @param points: sorted list of 2-tuples of (x,y) values
+        @type points: list of 2-tuples (float,float)
+        """
         super(Polygon, self).__init__()
         import copy
-        self.points = copy.deepcopy(points)
+        self.__points = copy.deepcopy(points)
 
     def __call__(self,x):
         """Get membership of value x."""
+        p = self.__points
 
         # first handle obvious cases
-        if self.points == []:
+        if p == []:
             return 0.0
-        if len(self.points) == 1:
-            return self.points[0][Polygon.Y]
-        if x < self.points[0][Polygon.X]:
-            return self.points[0][Polygon.Y]
-        if x > self.points[-1][Polygon.X]:
-            return self.points[-1][Polygon.Y]
+        if len(p) == 1:
+            return p[0][Polygon.Y]
+        if x < p[0][Polygon.X]:
+            return p[0][Polygon.Y]
+        if x > p[-1][Polygon.X]:
+            return p[-1][Polygon.Y]
 
-        x0 = self.points[0][Polygon.X];
-        for i in range(1,len(self.points)):
-            x1 = self.points[i][Polygon.X]
+        x0 = p[0][Polygon.X];
+        for i in range(1,len(p)):
+            x1 = p[i][Polygon.X]
             # found right interval border
             if x1 < x:
                 x0 = x1
                 continue
             # if we want a x values which is a polygon point ...
             if x1 == x:
-                y = self.points[i][Polygon.Y]
+                y = p[i][Polygon.Y]
                 # ... check following points for same x-value ...
-                for j in range(i+1,len(self.points)):
-                    if self.points[j][Polygon.X] > x:
+                for j in range(i+1,len(p)):
+                    if p[j][Polygon.X] > x:
                         break
                     else:
                         # ... and use the maximum value
-                        y_ = self.points[j][Polygon.Y]
+                        y_ = p[j][Polygon.Y]
                         if y_>y:
                             y = y_
                 return y
-            y0 = self.points[i-1][Polygon.Y]
-            y1 = self.points[i][Polygon.Y]
+            y0 = p[i-1][Polygon.Y]
+            y1 = p[i][Polygon.Y]
             # interpolate value in interval
             if x1==x0: # should never happen
                 return max(y0,y1)
@@ -92,11 +97,11 @@ class Polygon(Set):
         """
         # quick and dirty implementation
         if where == self.END:
-            self.points.append((x,y))
+            self.__points.append((x,y))
         else:
-            self.points.insert(0,(x,y))
+            self.__points.insert(0,(x,y))
         # use only x value for sorting
-        self.points.sort(key = lambda p:p[Polygon.X])
+        self.__points.sort(key = lambda p:p[Polygon.X])
 
 
     def remove(self,x,where=END):
@@ -112,53 +117,53 @@ class Polygon(Set):
                *--*              *             *--*
         """
         # quick and dirty implementation
-        range_p = range(len(self.points))
+        range_p = range(len(self.__points))
         if where == self.END:
             range_p.reverse()
         for i in range_p:
-            if self.points[i][X] == x:
-                self.points.remove(i)
+            if self.__points[i][X] == x:
+                self.__points.remove(i)
                 return
         #raise Exception("Not in points list")
 
     def clear(self):
         """Reset polygon to zero."""
-        del self.points[:]
+        del self.__points[:]
 
     def getIntervalGenerator(self):
-        return self.__IntervalGenerator(self.points)
+        return self.__IntervalGenerator(self.__points)
 
     class __IntervalGenerator(Set.IntervalGenerator):
         def __init__(self,points):
-            self.points = points
+            self.__points = points
             self.index = 0
 
         def nextInterval(self,prev,next):
-            l = len(self.points)
+            l = len(self.__points)
             if l==0 or self.index>=l:
                 return next
             if prev is None:
                 self.index = 0
             else:
-                if prev == self.points[self.index][Polygon.X]:
+                if prev == self.__points[self.index][Polygon.X]:
                     self.index = self.index + 1
                 if self.index >= l:
                     return next
             if next is None:
-                return self.points[self.index][Polygon.X]
+                return self.__points[self.index][Polygon.X]
             else:
-                return min(next,self.points[self.index][Polygon.X])
+                return min(next,self.__points[self.index][Polygon.X])
 
     def getCOG(self):
         """Return center of gravity."""
-        if len(self.points) <=1 :
+        if len(self.__points) <=1 :
             #return 0.0
             raise Exception("no COG calculable: single point = constant value")
-        if self.points[0][Polygon.Y] > 0 or self.points[-1][Polygon.Y] > 0:
+        if self.__points[0][Polygon.Y] > 0 or self.__points[-1][Polygon.Y] > 0:
             raise Exception("no COG calculable: end points of polygon not y=0.0")
         area = 0.
         COG = 0.
-        iterator = iter(self.points)
+        iterator = iter(self.__points)
         x0,y0 = iterator.next()
         x0_2 = x0*x0  # =x²
         x0_3 = x0_2*x0  # =x³

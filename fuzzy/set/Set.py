@@ -3,12 +3,12 @@
 Base class for all fuzzy sets.
 Helper functions for calculation with fuzzy sets.
 
-examples can be found here http://pyfuzzy.sourceforge.net/test/merge/
+examples can be found here U{http://pyfuzzy.sourceforge.net/test/merge/}
 
 ----
 Intersection of set1 and set2 can be done by
 
-set = merge(T_NORM,set1,set2)
+C{set = merge(T_NORM,set1,set2)}
 
 where T_NORM is a t-norm eg. Min.
 (or a function which accepts two parameters as min().)
@@ -16,7 +16,7 @@ where T_NORM is a t-norm eg. Min.
 ----
 Union of set1 and set2 can be done by
 
-set = merge(S_NORM,set1,set2)
+C{set = merge(S_NORM,set1,set2)}
 
 where S_NORM is a s-norm eg. Max.
 (or a function which accepts two parameters as max().)
@@ -24,7 +24,7 @@ where S_NORM is a s-norm eg. Max.
 ----
 Negation of set1 can be done by
 
-set = norm(lambda a,b:1.0-a ,set1,0.0)
+C{set = norm(lambda a,b:1.0-a ,set1,0.0)}
 
 using a user defined function for it.
 (The second parameter is ignored or better said
@@ -33,7 +33,7 @@ maybe where the points of the resulting polygon are
 set.)
 """
 
-__revision__ = "$Id: Set.py,v 1.13 2008-11-11 12:17:20 rliebscher Exp $"
+__revision__ = "$Id: Set.py,v 1.14 2008-11-18 21:46:48 rliebscher Exp $"
 
 
 # helper functions
@@ -48,6 +48,16 @@ def _find_null_steffensen(x,f,epsilon=None):
        Normally the number of correct digits doubles each step, which
        means for 64 bits it needs not more than 6-7 steps for an
        arbitrary function.
+       
+       
+       @param x: first estimation of result
+       @type x: float
+       @param f: function for which to find f(x)=0
+       @type f: f(x)
+       @param epsilon: break condition for algorithm (value < epsilon)
+       @type epsilon: float/None
+       @return: x where f(x)=0
+       @rtype: float
     """
     g = lambda x,f=f: x-f(x)
     x_2,x_1,x_0 = None,None,x
@@ -73,7 +83,18 @@ def _find_null_steffensen(x,f,epsilon=None):
 
 def merge(NORM, set1, set2):
         """Returns a new fuzzy set which ist the merger of set1 and set2,
-           where the membership of the result set is equal to NORM(set1(x),set2(x))."""
+        where the membership of the result set is equal to NORM(set1(x),set2(x)).
+           
+        @param NORM: fuzzy norm to calculate both sets values. For example Min(), Max(), ...
+            Also possible as two params function, eg. C{lambda a,b: (a+b)/2.}.
+        @type NORM: instance of fuzzy.norm.Norm.Norm
+        @param set1: fuzzy set 
+        @type set1: instance of fuzzy.set.Set
+        @param set2: fuzzy set 
+        @type set2: instance of fuzzy.set.Set
+        @return: resulting fuzzy set 
+        @rtype: fuzzy.set.Polygon.Polygon
+           """
         from fuzzy.set.Polygon import Polygon
         ret = Polygon()
 
@@ -135,7 +156,18 @@ def merge(NORM, set1, set2):
 
 def norm(NORM, set, value):
         """Returns a new fuzzy set which ist this set normed with value.
-           where the membership of the result set is equal to NORM(set(x),value)."""
+       where the membership of the result set is equal to NORM(set(x),value).
+        
+        @param NORM: fuzzy norm to calculate set's values with value. For example Min(), Max(), ...
+            Also possible as two params function, eg. C{lambda a,b: (a+b)/2.}.
+        @type NORM: instance of fuzzy.norm.Norm.Norm
+        @param set: fuzzy set 
+        @type set: instance of fuzzy.set.Set
+        @param value: value
+        @type value: float
+        @return: resulting fuzzy set 
+        @rtype: fuzzy.set.Polygon.Polygon
+        """
         from fuzzy.set.Polygon import Polygon
         ret = Polygon()
 
@@ -178,16 +210,18 @@ def norm(NORM, set, value):
 
 
 class Set(object):
-
-    def __init__(self):
-        """Dummy initialization, so it is safe to call it
-           from any sub class."""
-        pass
+    """Base class for all types of fuzzy sets."""
 
     def __call__(self,x):
         """Return membership of x in this fuzzy set.
-           This method makes the set work like a function."""
-        return 0
+           This method makes the set work like a function.
+           
+           @param x: value x
+           @type x: float
+           @return: membership for value x
+           @rtype: float
+           """
+        return 0.
 
     class IntervalGenerator(object):
         def nextInterval(self,prev,next):
@@ -206,6 +240,10 @@ class Set(object):
         return self.IntervalGenerator()
 
     def getCOG(self):
-        """Return center of gravity."""
+        """Returns center of gravity.
+           
+           @return: x-value of center of gravity
+           @rtype: float
+           """
         #raise Exception("abtract class %s has no center of gravity." % self.__class__.__name__)
-        return 0 # XXX
+        return 0. # XXX

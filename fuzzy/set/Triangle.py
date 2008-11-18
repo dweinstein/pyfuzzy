@@ -1,19 +1,15 @@
 # -*- coding: iso-8859-1 -*-
 
-__revision__ = "$Id: Triangle.py,v 1.11 2008-11-18 18:55:06 rliebscher Exp $"
+__revision__ = "$Id: Triangle.py,v 1.12 2008-11-18 21:46:48 rliebscher Exp $"
 
 
 from fuzzy.set.Polygon import Polygon
 from fuzzy.utils import prop
 
 class Triangle(Polygon):
-    """Triangle shaped fuzzy set."""
-
-    def __init__(self,y_max=1.0,y_min=0.0,m=0.0,alpha=1.0,beta=1.0):
-        r"""
-        Realize a triangle-shaped fuzzy set::
+    r"""Realize a triangle-shaped fuzzy set::
               ______  y_max
-              ^
+              A
              /|\
             / | \
            /  |  \
@@ -22,7 +18,12 @@ class Triangle(Polygon):
           |   |   |
          alpha|beta
 
-        See also U{http://pyfuzzy.sourceforge.net/test/set/Triangle.png}
+    See also U{http://pyfuzzy.sourceforge.net/test/set/Triangle.png}
+    """
+
+    def __init__(self,m=0.0,alpha=1.0,beta=1.0,y_max=1.0,y_min=0.0):
+        """
+        Initialize a triangle-shaped fuzzy set.
 
         @param y_max:  y-value at top of the triangle (1.0)
         @param y_min:  y-value outside the triangle (0.0)
@@ -40,7 +41,8 @@ class Triangle(Polygon):
 
     @prop
     def y_max():
-        """y_max"""
+        """y-value at top of the triangle
+        @type: float"""
         def fget(self):
             return self._y_max
         def fset(self,value):
@@ -50,7 +52,8 @@ class Triangle(Polygon):
 
     @prop
     def y_min():
-        """y_min"""
+        """y-value outside the triangle
+        @type: float"""
         def fget(self):
             return self._y_min
         def fset(self,value):
@@ -60,7 +63,8 @@ class Triangle(Polygon):
 
     @prop
     def m():
-        """m"""
+        """x-value of top of triangle
+        @type: float"""
         def fget(self):
             return self._m
         def fset(self,value):
@@ -70,7 +74,8 @@ class Triangle(Polygon):
 
     @prop
     def alpha():
-        """alpha"""
+        """distance of left corner to m
+        @type: float"""
         def fget(self):
             return self._alpha
         def fset(self,value):
@@ -80,7 +85,8 @@ class Triangle(Polygon):
 
     @prop
     def beta():
-        """beta"""
+        """distance of right corner to m
+        @type: float"""
         def fget(self):
             return self._beta
         def fset(self,value):

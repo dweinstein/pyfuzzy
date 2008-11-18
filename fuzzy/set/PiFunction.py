@@ -1,6 +1,6 @@
 # -*- coding: iso-8859-1 -*-
 
-__revision__ = "$Id: PiFunction.py,v 1.11 2008-11-18 18:55:06 rliebscher Exp $"
+__revision__ = "$Id: PiFunction.py,v 1.12 2008-11-18 21:46:48 rliebscher Exp $"
 
 
 from fuzzy.set.Function import Function
@@ -8,20 +8,28 @@ from fuzzy.set.SFunction import SFunction
 from fuzzy.set.ZFunction import ZFunction
 
 class PiFunction(Function):
-    """Pi shaped fuzzy set."""
+    r"""
+    Realize a Pi-shaped fuzzy set::
+        
+                _
+               /|\
+              / | \
+            _/  |  \_
+             |  a  |
+             |     |
+             2*delta
+
+    See also U{http://pyfuzzy.sourceforge.net/test/set/PiFunction.png}
+
+    
+    @ivar a: center of set.
+    @type a: float
+    @ivar delta: absolute distance between x-values for minimum and maximum.
+    @type delta: float
+    """
 
     def __init__(self,a=0.0,delta=1.0):
-        r"""
-        Realize a Pi-shaped fuzzy set::
-        
-               ^
-              /|\
-            _/ | \_
-             | a |
-             |   |
-            2*delta
-
-        See also U{http://pyfuzzy.sourceforge.net/test/set/PiFunction.png}
+        """Initialize a Pi-shaped fuzzy set.
 
         @param a: center of set
         @type a: float

@@ -1,16 +1,14 @@
 # -*- coding: iso-8859-1 -*-
 
-__revision__ = "$Id: Trapez.py,v 1.10 2008-11-18 18:55:06 rliebscher Exp $"
+__revision__ = "$Id: Trapez.py,v 1.11 2008-11-18 21:46:48 rliebscher Exp $"
 
 
 from fuzzy.set.Polygon import Polygon
 from fuzzy.utils import prop
 
 class Trapez(Polygon):
-
-    def __init__(self,y_max=1.0,y_min=0.0,m1=-0.5,m2=0.5,alpha=0.5,beta=0.5):
-        r"""
-        Realize a Trapez-shaped fuzzy set::
+    r"""
+    Realize a trapez-shaped fuzzy set::
                _____ _____  y_max
               /     \
              /|     |\
@@ -21,7 +19,12 @@ class Trapez(Polygon):
           |   |     |   |
          alpha|     |beta
 
-        See also U{http://pyfuzzy.sourceforge.net/test/set/Trapez.png}
+    See also U{http://pyfuzzy.sourceforge.net/test/set/Trapez.png}
+    """
+
+    def __init__(self,m1=-0.5,m2=0.5,alpha=0.5,beta=0.5,y_max=1.0,y_min=0.0):
+        """
+        Initialize a trapez-shaped fuzzy set.
 
         @param y_max:  y-value at top of the trapez (1.0)
         @param y_min:  y-value outside the trapez (0.0)
@@ -41,7 +44,8 @@ class Trapez(Polygon):
 
     @prop
     def y_max():
-        """y_max"""
+        """y-value at top of the trapez
+        @type: float"""
         def fget(self):
             return self._y_max
         def fset(self,value):
@@ -51,7 +55,8 @@ class Trapez(Polygon):
 
     @prop
     def y_min():
-        """y_min"""
+        """y-value outside the trapez
+        @type: float"""
         def fget(self):
             return self._y_min
         def fset(self,value):
@@ -61,7 +66,8 @@ class Trapez(Polygon):
 
     @prop
     def m1():
-        """m1"""
+        """x-value of left top of trapez
+        @type: float"""
         def fget(self):
             return self._m1
         def fset(self,value):
@@ -71,7 +77,8 @@ class Trapez(Polygon):
 
     @prop
     def m2():
-        """m2"""
+        """x-value of right top of trapez
+        @type: float"""
         def fget(self):
             return self._m2
         def fset(self,value):
@@ -81,7 +88,8 @@ class Trapez(Polygon):
 
     @prop
     def alpha():
-        """alpha"""
+        """distance of left corner to m1
+        @type: float"""
         def fget(self):
             return self._alpha
         def fset(self,value):
@@ -91,7 +99,8 @@ class Trapez(Polygon):
 
     @prop
     def beta():
-        """beta"""
+        """distance of right corner to m2
+        @type: float"""
         def fget(self):
             return self._beta
         def fset(self,value):

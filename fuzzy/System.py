@@ -1,17 +1,25 @@
 # -*- coding: iso-8859-1 -*-
 
-__revision__ = "$Id: System.py,v 1.10 2008-11-13 20:45:17 rliebscher Exp $"
+__revision__ = "$Id: System.py,v 1.11 2008-11-18 21:46:48 rliebscher Exp $"
 
 
 class System(object):
     """Holds all stuff together. (variables, rules, ...)
-       Provides methods to do calculation with it.""" 
+        Provides methods to do calculation with it.
+        
+        @ivar variables: dictionary to hold all variables.
+        @type variables: E{lb}string,L{fuzzy.Variable.Variable}E{rb}
+        @ivar rules: dictionary to hold all rules.
+        @type rules: E{lb}string,L{fuzzy.Rule.Rule}E{rb}
+        @ivar description: description
+        @type description: string
+    """ 
 
     def __init__(self,description=""):
         """Constructor.
-        Creates two instance variables:
-        variables: dictionary to hold all variables.
-        rules:     dictionary to hold all rules.
+
+        @param description: description
+        @type description: string
         """
         self.variables = {}
         self.rules = {}

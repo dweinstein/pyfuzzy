@@ -3,7 +3,7 @@
     Abstract base class for any kind of fuzzy norm.
 """
 
-__revision__ = "$Id: Norm.py,v 1.7 2008-11-13 20:45:17 rliebscher Exp $"
+__revision__ = "$Id: Norm.py,v 1.8 2008-11-18 21:46:48 rliebscher Exp $"
 
 from fuzzy.Exception import Exception
 class NormException(Exception):
@@ -14,9 +14,9 @@ class Norm(object):
     """Abstract Base class of any fuzzy norm"""
 
     # types of norm
-    UNKNOWN = 0
-    T_NORM = 1
-    S_NORM = 2
+    UNKNOWN = 0 #: type of norm unknown
+    T_NORM = 1 #: norm is t-norm
+    S_NORM = 2 #: norm is s-norm
 
     def __init__(self,type=0):
         """Initialize type of norm"""
@@ -25,6 +25,12 @@ class Norm(object):
     def __call__(self,*args):
         """
             Calculate result of norm(arg1,arg2,...)
+        
+            @param args: list of floats as arguments for norm.
+            @type args: list of float
+            @return: result of norm calulation
+            @rtype: float
+            @raise NormException: any problem in calculation (wrong number of arguments, numerical problems)
         """
         raise NormException("abstract class %s can't be called" % self.__class__.__name__)
 

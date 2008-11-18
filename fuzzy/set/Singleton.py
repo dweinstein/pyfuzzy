@@ -1,6 +1,6 @@
 # -*- coding: iso-8859-1 -*-
 
-__revision__ = "$Id: Singleton.py,v 1.8 2008-11-18 18:55:06 rliebscher Exp $"
+__revision__ = "$Id: Singleton.py,v 1.9 2008-11-18 21:46:48 rliebscher Exp $"
 
 
 from fuzzy.set.Polygon import Polygon
@@ -9,7 +9,17 @@ from fuzzy.utils import prop
 # use Polygon as base class so we dont need write all
 # methods again
 class Singleton(Polygon):
-    """This set represents a non-fuzzy number."""
+    """This set represents a non-fuzzy number.
+    
+    Its membership is only for x equal 1.::
+    
+              *
+              |
+              |
+              |
+         -----+-----
+              x
+    """
 
     def __init__(self,x=0.0):
         super(Singleton,self).__init__()
@@ -17,7 +27,8 @@ class Singleton(Polygon):
 
     @prop
     def x():
-        """x"""
+        """x
+        @type: float"""
         def fget(self):
             return self._x
         def fset(self,value):

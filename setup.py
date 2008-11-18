@@ -3,11 +3,12 @@
 
 # created 2001/08 Rene Liebscher
 
-__revision__ = "$Id: setup.py,v 1.7 2008-11-12 21:54:30 rliebscher Exp $"
+__revision__ = "$Id: setup.py,v 1.8 2008-11-18 21:46:48 rliebscher Exp $"
 
 from distutils.core import setup
 
-setup (name = "pyfuzzy",
+if __name__ == "__main__":
+    setup (name = "pyfuzzy",
        version = "0.0.3",
        description = "Python Fuzzy Utilities",
        author = "Rene Liebscher",
@@ -15,8 +16,12 @@ setup (name = "pyfuzzy",
        maintainer = "Rene Liebscher",
        maintainer_email = 'R.Liebscher@gmx.de',
        url = "http://sf.net/projects/pyfuzzy/",
-       license = "GPL",
-       long_description = """...""",
+       license = "LGPL",
+       long_description = """pyfuzzy is a python module for working
+with fuzzy sets (for example for controllers or other
+similar stuff, it can be also used for decision making
+in business.)
+""",
 
        packages = [
         'fuzzy',

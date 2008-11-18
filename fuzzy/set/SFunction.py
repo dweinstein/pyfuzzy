@@ -1,16 +1,13 @@
 # -*- coding: iso-8859-1 -*-
 
-__revision__ = "$Id: SFunction.py,v 1.11 2008-11-18 18:55:06 rliebscher Exp $"
+__revision__ = "$Id: SFunction.py,v 1.12 2008-11-18 21:46:48 rliebscher Exp $"
 
 
 from fuzzy.set.Function import Function
 
 class SFunction(Function):
-    """S shaped fuzzy set."""
-
-    def __init__(self,a=0.0,delta=1.0):
-        r"""
-        Realize a S-shaped fuzzy set::
+    r"""
+    Realize a S-shaped fuzzy set::
                  __
                 /|
                / |
@@ -20,7 +17,16 @@ class SFunction(Function):
              |   |
              delta
 
-        See also U{http://pyfuzzy.sourceforge.net/test/set/SFunction.png}
+    See also U{http://pyfuzzy.sourceforge.net/test/set/SFunction.png}
+    
+    @ivar a: center of set.
+    @type a: float
+    @ivar delta: absolute distance between x-values for minimum and maximum.
+    @type delta: float
+    """
+
+    def __init__(self,a=0.0,delta=1.0):
+        """Initialize a S-shaped fuzzy set.
 
         @param a: center of set
         @type a: float

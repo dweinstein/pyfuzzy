@@ -5,7 +5,7 @@
     Used to build fuzzy rules.
 """
 
-__revision__ = "$Id: Operator.py,v 1.7 2008-11-12 21:53:40 rliebscher Exp $"
+__revision__ = "$Id: Operator.py,v 1.8 2008-11-18 21:46:48 rliebscher Exp $"
 
 
 import fuzzy.Exception
@@ -15,9 +15,14 @@ class Operator(object):
 
     def __init__(self):
         """Dummy initialization, so it is safe to call it
-           from any sub class."""  
+           from any sub class."""
         pass
- 
+
     def __call__(self):
-        """Return current value."""
+        """Return current value.
+        
+        @return: result of operator calculation
+        @rtype: float
+        @raise fuzzy.Exception.Exception: any problem in calculation
+        """
         raise fuzzy.Exception.Exception("abtract class %s can't be called" % self.__class__.__name__)
