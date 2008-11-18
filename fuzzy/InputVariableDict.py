@@ -1,6 +1,6 @@
 # -*- coding: iso-8859-1 -*-
 
-__revision__ = "$Id: InputVariableDict.py,v 1.3 2008-10-24 20:47:09 rliebscher Exp $"
+__revision__ = "$Id: InputVariableDict.py,v 1.4 2008-11-18 18:55:06 rliebscher Exp $"
 
 
 from fuzzy.InputVariable import InputVariable
@@ -14,21 +14,21 @@ class InputVariableDict(InputVariable):
        Q : What can be done with this?
 
        A : Break complexity, by divide big and heavy fuzzy
-           systems into small ones :
+       systems into small ones ::
 
-       input1 ----> *******
-       input2 ----> * FIS *
-       input3 ----> *     * ------> output
-       input4 ----> *******
+        input1 ----> *******
+        input2 ----> * FIS *
+        input3 ----> *     * ------> output
+        input4 ----> *******
 
-       should be
+       should be::
 
-       input1 ----> *******
-       input2 ----> *FIS 1* ----+
-                    *******     |
-                                +--> *******
-       input3 ----> ******* -------> *FIS 3* ----> output
-       input4 ----> *FIS 2*          *******
+        input1 ----> *******
+        input2 ----> *FIS 1* ----+
+                     *******     |
+                                 +--> *******
+        input3 ----> ******* -------> *FIS 3* ----> output
+        input4 ----> *FIS 2*          *******
                     *******
  
        Q : Why don't deffuzzyfy outputs of FIS1 and FIS2 ?

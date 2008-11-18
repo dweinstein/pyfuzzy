@@ -1,10 +1,13 @@
 # -*- coding: iso-8859-1 -*-
 
-__revision__ = "$Id: AdjectiveProxy.py,v 1.6 2008-11-13 20:45:17 rliebscher Exp $"
+__revision__ = "$Id: AdjectiveProxy.py,v 1.7 2008-11-18 18:55:06 rliebscher Exp $"
 
 
 class AdjectiveProxy(object):
-    """Serves as proxy for the named variable.adjective in system."""
+    """Serves as proxy for the named variable.adjective in system.
+    
+    @deprecated: such objects have problems using pickle
+    """
 
     def __init__(self,system,variable,adjective):
         self.proxy_system = system

@@ -1,6 +1,6 @@
 # -*- coding: iso-8859-1 -*-
 
-__revision__ = "$Id: Polygon.py,v 1.13 2008-11-17 09:31:53 rliebscher Exp $"
+__revision__ = "$Id: Polygon.py,v 1.14 2008-11-18 18:55:06 rliebscher Exp $"
 
 
 from fuzzy.set.Set import Set
@@ -11,7 +11,7 @@ class Polygon(Set):
        trapezoid, rectangle, or something similar.
 
        If you need something similar to ZFunction or SFunction, 
-       use this class directly by building it from two points.
+       use this class directly by building it from two points.::
 
           ---*                     *---
               \                   /
@@ -19,7 +19,7 @@ class Polygon(Set):
                 \               /
                  *---       ---*
 
-        http://pyfuzzy.sourceforge.net/test/set/Polygon.png
+       See also U{http://pyfuzzy.sourceforge.net/test/set/Polygon.png}
 
        """
 
@@ -83,12 +83,12 @@ class Polygon(Set):
            The parameter where controls at which end
            it is inserted. (The points are always sorted, but
            if two have the same x value their order is important.
-           For example: adding a second point(y=0) in the middle
-           now           where=END        where=BEGIN
-           *--*           *--*             *  *
-               \             |              \ |\
-                \            |               \| \
-                 *           *--*             *  *
+           For example: adding a second point(y=0) in the middle::
+            now           where=END        where=BEGIN
+            *--*           *--*             *  *
+                \             |              \ |\
+                 \            |               \| \
+                  *           *--*             *  *
         """
         # quick and dirty implementation
         if where == self.END:
@@ -104,12 +104,12 @@ class Polygon(Set):
            The parameter where controls at which end
            it is removed. (The points are always sorted, but
            if two have the same x value their order is important.
-           For example: removing the second point in the middle
-           now           where=END        where=BEGIN
-           *--*           *--*             *
-              |               \             \
-              |                \             \
-              *--*              *             *--*
+           For example: removing the second point in the middle::
+            now           where=END        where=BEGIN
+            *--*           *--*             *
+               |               \             \
+               |                \             \
+               *--*              *             *--*
         """
         # quick and dirty implementation
         range_p = range(len(self.points))

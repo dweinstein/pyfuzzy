@@ -1,6 +1,6 @@
 # -*- coding: iso-8859-1 -*-
 
-__revision__ = "$Id: COG.py,v 1.1 2008-11-11 12:50:02 rliebscher Exp $"
+__revision__ = "$Id: COG.py,v 1.2 2008-11-18 18:55:06 rliebscher Exp $"
 
 from fuzzy.defuzzify.Base import Base
 
@@ -10,9 +10,8 @@ class COG(Base):
 
     def __init__(self, INF=None, ACC=None, failsafe=None,*args,**keywords):
         """
-            failsafe - if is not possible to calculate a center of gravity,
-                        return this value if not None
-                        or forward the exception
+            @param failsafe: if is not possible to calculate a center of gravity,
+            return this value if not None or forward the exception
         """ 
         super(COG, self).__init__(INF,ACC,*args,**keywords)
         self.failsafe = failsafe # which value if COG not calculable

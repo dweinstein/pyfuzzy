@@ -3,24 +3,24 @@
 
 For example:
 
-(A and B) or not C
+c{(A and B) or not C}
 
 where
 
-- A,B,C is an adjective of a fuzzy variable and
-- 'and'/'or' are fuzzy norms
+ - A,B,C is an adjective of a fuzzy variable and
+ - 'and'/'or' are fuzzy norms
 
-can be modelled as
+can be modelled as::
 
-Compound(FuzzyOr(),
-    Compound(FuzzyAnd(),
-        Input(A),
-        Input(B)
-    ),
-    Not(
-        Input(C)
-    )
-)
+ Compound(FuzzyOr(),
+     Compound(FuzzyAnd(),
+         Input(A),
+         Input(B)
+     ),
+     Not(
+         Input(C)
+     )
+ )
 """
 
-__revision__ = "$Id: __init__.py,v 1.2 2008-10-08 13:14:45 rliebscher Exp $"
+__revision__ = "$Id: __init__.py,v 1.3 2008-11-18 18:55:06 rliebscher Exp $"

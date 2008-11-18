@@ -1,16 +1,16 @@
 # -*- coding: iso-8859-1 -*-
 """
 Different kind of fuzzy sets.
-For any of these you can call set(x) to get the membership value of x.
+For any of these you can call C{set(x)} to get the membership value of x.
 
-See class Set for more. 
+See L{Set<fuzzy.set.Set>} for more.
 
-examples can be found here http://pyfuzzy.sourceforge.net/test/set/
+examples can be found here U{http://pyfuzzy.sourceforge.net/test/set/}
 
 
 """
 
-__revision__ = "$Id: __init__.py,v 1.6 2008-11-01 13:19:23 rliebscher Exp $"
+__revision__ = "$Id: __init__.py,v 1.7 2008-11-18 18:55:06 rliebscher Exp $"
 
 
 #def __import_classes(dir):

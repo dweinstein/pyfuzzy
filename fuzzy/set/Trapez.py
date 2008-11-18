@@ -1,33 +1,34 @@
 # -*- coding: iso-8859-1 -*-
 
-__revision__ = "$Id: Trapez.py,v 1.9 2008-11-17 09:31:53 rliebscher Exp $"
+__revision__ = "$Id: Trapez.py,v 1.10 2008-11-18 18:55:06 rliebscher Exp $"
 
 
 from fuzzy.set.Polygon import Polygon
+from fuzzy.utils import prop
 
 class Trapez(Polygon):
 
     def __init__(self,y_max=1.0,y_min=0.0,m1=-0.5,m2=0.5,alpha=0.5,beta=0.5):
-        r"""Constructor.
-        y_max:  y-value at top of the trapez (1.0)
-        y_min:  y-value outside the trapez (0.0)
-        m1:     x-value of left top of trapez (-0.5)
-        m2:     x-value of right top of trapez (0.5)
-        alpha:  distance of left corner to m1 (0.5)
-        beta:   distance of right corner to m2 (0.5)
+        r"""
+        Realize a Trapez-shaped fuzzy set::
+               _____ _____  y_max
+              /     \
+             /|     |\
+            / |     | \
+           /  |     |  \
+         _/   |     |   \_  y_min
+          |   m1    m2  |
+          |   |     |   |
+         alpha|     |beta
 
-              _____ _____  y_max
-             /     \
-            /|     |\
-           / |     | \
-          /  |     |  \
-        _/   |     |   \_  y_min
-         |   m1    m2  |
-         |   |     |   |
-        alpha|     |beta
+        See also U{http://pyfuzzy.sourceforge.net/test/set/Trapez.png}
 
-        http://pyfuzzy.sourceforge.net/test/set/Trapez.png
-
+        @param y_max:  y-value at top of the trapez (1.0)
+        @param y_min:  y-value outside the trapez (0.0)
+        @param m1:     x-value of left top of trapez (-0.5)
+        @param m2:     x-value of right top of trapez (0.5)
+        @param alpha:  distance of left corner to m1 (0.5)
+        @param beta:   distance of right corner to m2 (0.5)
         """
         super(Trapez, self).__init__()
         self._y_max = y_max
@@ -38,65 +39,65 @@ class Trapez(Polygon):
         self._beta = beta
         self._update() # update polygon
 
-    @apply
+    @prop
     def y_max():
-        doc = """y_max"""
+        """y_max"""
         def fget(self):
             return self._y_max
         def fset(self,value):
             self._y_max = value
             self._update()
-        return property(**locals())
+        return locals()
 
-    @apply
+    @prop
     def y_min():
-        doc = """y_min"""
+        """y_min"""
         def fget(self):
             return self._y_min
         def fset(self,value):
             self._y_min = value
             self._update()
-        return property(**locals())
+        return locals()
 
-    @apply
+    @prop
     def m1():
-        doc = """m1"""
+        """m1"""
         def fget(self):
             return self._m1
         def fset(self,value):
             self._m1 = value
             self._update()
-        return property(**locals())
+        return locals()
 
-    @apply
+    @prop
     def m2():
-        doc = """m2"""
+        """m2"""
         def fget(self):
             return self._m2
         def fset(self,value):
             self._m2 = value
             self._update()
-        return property(**locals())
+        return locals()
 
-    @apply
+    @prop
     def alpha():
-        doc = """alpha"""
+        """alpha"""
         def fget(self):
             return self._alpha
         def fset(self,value):
             self._alpha = value
             self._update()
-        return property(**locals())
+        return locals()
 
-    @apply
+    @prop
     def beta():
-        doc = """beta"""
+        """beta"""
         def fget(self):
             return self._beta
         def fset(self,value):
             self._beta = value
             self._update()
-        return property(**locals())
+        return locals()
 
     def _update(self):
         """update polygon"""

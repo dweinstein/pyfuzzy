@@ -1,6 +1,6 @@
 # -*- coding: iso-8859-1 -*-
 
-__revision__ = "$Id: SFunction.py,v 1.10 2008-11-17 09:31:53 rliebscher Exp $"
+__revision__ = "$Id: SFunction.py,v 1.11 2008-11-18 18:55:06 rliebscher Exp $"
 
 
 from fuzzy.set.Function import Function
@@ -10,6 +10,7 @@ class SFunction(Function):
 
     def __init__(self,a=0.0,delta=1.0):
         r"""
+        Realize a S-shaped fuzzy set::
                  __
                 /|
                / |
@@ -19,8 +20,12 @@ class SFunction(Function):
              |   |
              delta
 
-        http://pyfuzzy.sourceforge.net/test/set/SFunction.png
+        See also U{http://pyfuzzy.sourceforge.net/test/set/SFunction.png}
 
+        @param a: center of set
+        @type a: float
+        @param delta: absolute distance between x-values for minimum and maximum
+        @type delta: float
         """
         super(SFunction, self).__init__()
         self.a = a
@@ -28,7 +33,13 @@ class SFunction(Function):
 
     def __call__(self,x):
         """Return membership of x in this fuzzy set.
-           This method makes the set work like a function."""
+           This method makes the set work like a function.
+           
+           @param x: value for which the membership is to calculate
+           @type x: float
+           @return: membership
+           @rtype: float
+           """
         a = self.a
         d = self.delta
         if x<= a-d:

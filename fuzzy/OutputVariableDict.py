@@ -1,6 +1,6 @@
 # -*- coding: iso-8859-1 -*-
 
-__revision__ = "$Id: OutputVariableDict.py,v 1.7 2008-11-11 12:46:30 rliebscher Exp $"
+__revision__ = "$Id: OutputVariableDict.py,v 1.8 2008-11-18 18:55:06 rliebscher Exp $"
 
 
 from fuzzy.OutputVariable import OutputVariable
@@ -15,6 +15,7 @@ class OutputVariableDict(OutputVariable):
        What can be done with this?
        
        For example:
+       
        You want help with buying a car.
        
        Input are your preferences:
@@ -24,23 +25,24 @@ class OutputVariableDict(OutputVariable):
        Output are choices:
        cars with adjectives: ferrari, truck, ...
        
-       rules are as follows:
-       if speed->very_important && payload->never then car->ferrari
-       if payload->very_important then car->truck
+       rules are as follows::
+        if speed->very_important && payload->never then car->ferrari
+        if payload->very_important then car->truck
        ... and so on
        
-       Then you use this as follows 
-       input variables 
-       { speed:3, payload:1, ...} 
-       ==> 
-       output_variables
-       { car: {
-                ferrari:0.1,
-                truck: 1.0,
-                ...
-              }
-       }
+       Then you use this as follows::
+        input variables 
+        { speed:3, payload:1, ...} 
+        ==> 
+        output_variables
+        { car: {
+                 ferrari:0.1,
+                 truck: 1.0,
+                 ...
+               }
+        }
 
+       @deprecated: set defuzzy of OutputVariable
        """
 
     def __init__(self,*args,**keywords):

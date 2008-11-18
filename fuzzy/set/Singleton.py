@@ -1,9 +1,10 @@
 # -*- coding: iso-8859-1 -*-
 
-__revision__ = "$Id: Singleton.py,v 1.7 2008-11-13 20:45:17 rliebscher Exp $"
+__revision__ = "$Id: Singleton.py,v 1.8 2008-11-18 18:55:06 rliebscher Exp $"
 
 
 from fuzzy.set.Polygon import Polygon
+from fuzzy.utils import prop
 
 # use Polygon as base class so we dont need write all
 # methods again
@@ -14,15 +15,15 @@ class Singleton(Polygon):
         super(Singleton,self).__init__()
         self.x = x # update polygon
 
-    @apply
+    @prop
     def x():
-        doc = """x"""
+        """x"""
         def fget(self):
             return self._x
         def fset(self,value):
             self._x = value
             self._update()
-        return property(**locals())
+        return locals()
 
     def _update(self):
         """update polygon"""

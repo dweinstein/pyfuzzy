@@ -1,6 +1,6 @@
 # -*- coding: iso-8859-1 -*-
 
-__revision__ = "$Id: PiFunction.py,v 1.10 2008-11-17 09:31:53 rliebscher Exp $"
+__revision__ = "$Id: PiFunction.py,v 1.11 2008-11-18 18:55:06 rliebscher Exp $"
 
 
 from fuzzy.set.Function import Function
@@ -12,6 +12,8 @@ class PiFunction(Function):
 
     def __init__(self,a=0.0,delta=1.0):
         r"""
+        Realize a Pi-shaped fuzzy set::
+        
                ^
               /|\
             _/ | \_
@@ -19,8 +21,12 @@ class PiFunction(Function):
              |   |
             2*delta
 
-        http://pyfuzzy.sourceforge.net/test/set/PiFunction.png
+        See also U{http://pyfuzzy.sourceforge.net/test/set/PiFunction.png}
 
+        @param a: center of set
+        @type a: float
+        @param delta: absolute distance between x-values for minimum and maximum
+        @type delta: float
         """
         super(PiFunction,self).__init__()
         self.a = a
@@ -28,7 +34,13 @@ class PiFunction(Function):
 
     def __call__(self,x):
         """Return membership of x in this fuzzy set.
-           This method makes the set work like a function."""
+           This method makes the set work like a function.
+           
+           @param x: value for which the membership is to calculate
+           @type x: float
+           @return: membership
+           @rtype: float
+           """
         a = self.a
         d = self.delta/2.0
         if x < a:

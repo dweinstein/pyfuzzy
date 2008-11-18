@@ -1,6 +1,6 @@
 # -*- coding: iso-8859-1 -*-
 
-__revision__ = "$Id: Rule.py,v 1.7 2008-11-12 21:53:40 rliebscher Exp $"
+__revision__ = "$Id: Rule.py,v 1.8 2008-11-18 18:55:06 rliebscher Exp $"
 
 
 from fuzzy.norm.Min import Min
@@ -11,8 +11,7 @@ class Rule(object):
        and sets the given adjective to the appropriate value.
 
        class variables:
-       _CER[=Min()]: the default value for the norm used to
-                     calculate the certainty of a rule.
+       _CER[=Min()]: the default value for the norm used to calculate the certainty of a rule.
     """
 
     # default if not set in instance
@@ -20,10 +19,10 @@ class Rule(object):
 
     def __init__(self,adjective,operator,certainty=1.0,CER=None):
         """Initialize instance.
-           adjective: fuzzy adjective to set
-           operator: Operator which provides the value to set
-           certainty: how sure are we about this rule
-           CER: fuzzy norm to use with certainty (normally a t-norm)
+           @param adjective: fuzzy adjective to set
+           @param operator: Operator which provides the value to set
+           @param certainty: how sure are we about this rule
+           @param CER: fuzzy norm to use with certainty (normally a t-norm)
         """
 
         self.adjective = adjective

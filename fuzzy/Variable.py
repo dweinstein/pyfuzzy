@@ -1,6 +1,6 @@
 # -*- coding: iso-8859-1 -*-
 
-__revision__ = "$Id: Variable.py,v 1.8 2008-11-12 21:53:40 rliebscher Exp $"
+__revision__ = "$Id: Variable.py,v 1.9 2008-11-18 18:55:06 rliebscher Exp $"
 
 
 class Variable(object):
@@ -8,6 +8,16 @@ class Variable(object):
        Returns as output the previous input value."""
 
     def __init__(self,description='',min=0.,max=1.,unit=''):
+        """
+            @param description: Description of the fuzzy variable
+            @type description: string
+            @param min: minimum value (not strictly enforced, but useful for some external tools)
+            @type min: float
+            @param max: maximum value (not strictly enforced, but useful for some external tools)
+            @type max: float
+            @param unit: Unit of the values
+            @type unit: string
+        """
         self.adjectives = {}
         self.__value     = None
         self.description = description
@@ -24,38 +34,6 @@ class Variable(object):
     def getValue(self):
         """Return previous input value."""
         return self.__value
-
-    def setDescription(self,description):
-        """Set Variable description."""
-        self.description = description
-
-    def getDescription(self):
-        """Return Variable description."""
-        return self.description
-
-    def setMin(self,min):
-        """Set Variable minimum value."""
-        self.min = min
-
-    def getMin(self):
-        """Return Variable minimum."""
-        return self.min
-
-    def setMax(self,max):
-        """Set Variable minimum value."""
-        self.max = max
-
-    def getMax(self):
-        """Return Variable minimum."""
-        return self.max
-
-    def setUnit(self,unit):
-        """Set Variable unit."""
-        self.unit = unit
-
-    def getUnit(self):
-        """Return Variable unit."""
-        return self.unit
 
     def reset(self):
         """Reset meberships of adjectives for new calculation step."""
