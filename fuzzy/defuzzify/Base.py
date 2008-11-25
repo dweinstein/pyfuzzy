@@ -1,6 +1,6 @@
 # -*- coding: iso-8859-1 -*-
 
-__revision__ = "$Id: Base.py,v 1.3 2008-11-18 21:46:48 rliebscher Exp $"
+__revision__ = "$Id: Base.py,v 1.4 2008-11-25 13:56:37 rliebscher Exp $"
 
 
 from fuzzy.norm.Max import Max
@@ -16,13 +16,13 @@ class Base(object):
        which results in a numeric value.
        
         @ivar INF: inference norm, used with set of adjective and given value for it
-        @type INF: instance of L{fuzzy.norm.Norm.Norm}
+        @type INF: L{fuzzy.norm.Norm.Norm}
         @ivar ACC: norm for accumulation of set of adjectives
-        @type ACC: instance of L{fuzzy.norm.Norm.Norm}
+        @type ACC: L{fuzzy.norm.Norm.Norm}
         @cvar _INF: default value when INF is None
-        @type _INF: instance of L{fuzzy.norm.Norm.Norm}
+        @type _INF: L{fuzzy.norm.Norm.Norm}
         @cvar _ACC: default value when ACC is None
-        @type _ACC: instance of L{fuzzy.norm.Norm.Norm}
+        @type _ACC: L{fuzzy.norm.Norm.Norm}
        """
 
     # default values if instance values are not set 
@@ -32,9 +32,9 @@ class Base(object):
     def __init__(self, INF=None, ACC=None):
         """
         @param INF: inference norm, used with set of adjective and given value for it
-        @type INF: instance of L{fuzzy.norm.Norm.Norm}
+        @type INF: L{fuzzy.norm.Norm.Norm}
         @param ACC: norm for accumulation of set of adjectives
-        @type ACC: instance of L{fuzzy.norm.Norm.Norm}
+        @type ACC: L{fuzzy.norm.Norm.Norm}
         """
         self.ACC = ACC # accumulation
         self.INF = INF # inference
