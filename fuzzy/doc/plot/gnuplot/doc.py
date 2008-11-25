@@ -1,7 +1,7 @@
 # -*- coding: iso-8859-1 -*-
 """Plotting of variables, adjectives, ... using gnuplot"""
 
-__revision__ = "$Id: doc.py,v 1.1 2008-11-12 21:51:19 rliebscher Exp $"
+__revision__ = "$Id: doc.py,v 1.2 2008-11-25 14:01:51 rliebscher Exp $"
 
 
 def getMinMax(set):
@@ -224,10 +224,9 @@ class Doc(object):
                 output_dict=output_dict):
             input_dict[x_name]=x
             output_dict[y_name]=0.0
-            try:
-                system.calculate(input_dict,output_dict)
-            except:
-                pass
+
+            system.calculate(input_dict,output_dict)
+
             return output_dict[y_name]
 
         g = self.initGnuplot2D(filename=x_name+"_"+y_name,xlabel=x_name,ylabel=y_name,title=y_name+"=f("+x_name+")",xrange_=(x_min,x_max))
@@ -255,10 +254,9 @@ class Doc(object):
             input_dict[x_name]=x
             input_dict[y_name]=y
             output_dict[z_name]=0.0
-            try:
-                system.calculate(input_dict,output_dict)
-            except:
-                pass
+
+            system.calculate(input_dict,output_dict)
+
             return output_dict[z_name]
 
         g = self.initGnuplot3D(filename=x_name+"_"+y_name+"_"+z_name,xlabel=x_name,ylabel=y_name,zlabel=z_name,title="%s=f(%s,%s)" % (z_name,x_name,y_name),xrange_=(x_min,x_max),yrange=(y_min,y_max),x_logscale=x_logscale,y_logscale=y_logscale,z_logscale=z_logscale)
@@ -287,10 +285,9 @@ class Doc(object):
             input_dict[x_name]=x
             input_dict[y_name]=y
             output_dict[z_name]=0.0
-            try:
-                system.calculate(input_dict,output_dict)
-            except:
-                pass
+
+            system.calculate(input_dict,output_dict)
+
             return output_dict[z_name][adjective]
 
         g = self.initGnuplot3D(filename=x_name+"_"+y_name+"_"+z_name+"_"+adjective,xlabel=x_name,ylabel=y_name,zlabel=z_name,title="%s.%s=f(%s,%s)" % (z_name,adjective,x_name,y_name),xrange_=(x_min,x_max),yrange=(y_min,y_max),zrange=(0,1),x_logscale=x_logscale,y_logscale=y_logscale,z_logscale=z_logscale)

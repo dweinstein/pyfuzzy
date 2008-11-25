@@ -1,9 +1,10 @@
 # -*- coding: iso-8859-1 -*-
 
-__revision__ = "$Id: Polygon.py,v 1.15 2008-11-18 21:46:48 rliebscher Exp $"
+__revision__ = "$Id: Polygon.py,v 1.16 2008-11-25 14:01:51 rliebscher Exp $"
 
 
 from fuzzy.set.Set import Set
+from fuzzy.utils import prop
 
 class Polygon(Set):
     r"""Represents a fuzzy set, which membership function
@@ -129,6 +130,16 @@ class Polygon(Set):
     def clear(self):
         """Reset polygon to zero."""
         del self.__points[:]
+
+    @prop
+    def points():
+        """points of the polygon.
+        @type: list of 2-tuple (x,y)"""
+        def fget(self):
+            import copy
+            return copy.deepcopy(self.__points)
+        return locals()
+
 
     def getIntervalGenerator(self):
         return self.__IntervalGenerator(self.__points)

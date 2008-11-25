@@ -1,6 +1,6 @@
 # -*- coding: iso-8859-1 -*-
 
-__revision__ = "$Id: Rule.py,v 1.9 2008-11-18 21:46:48 rliebscher Exp $"
+__revision__ = "$Id: Rule.py,v 1.10 2008-11-25 14:01:51 rliebscher Exp $"
 
 
 from fuzzy.norm.Min import Min
@@ -11,15 +11,15 @@ class Rule(object):
        and sets the given adjective to the appropriate value.
 
        @cvar _CER: the default value (=Min()) for the norm used to calculate the certainty of a rule.
-       @type _CER: instance of L{fuzzy.norm.Norm.Norm}
+       @type _CER: L{fuzzy.norm.Norm.Norm}
        @ivar adjective: fuzzy adjective to set
-       @type adjective: instance of L{fuzzy.Adjective.Adjective}
+       @type adjective: L{fuzzy.Adjective.Adjective}
        @ivar operator: Operator which provides the value to set
-       @type operator: instance of L{fuzzy.operator.Operator.Operator}
+       @type operator: L{fuzzy.operator.Operator.Operator}
        @ivar certainty: how sure are we about this rule
        @type certainty: float
        @ivar CER: fuzzy norm to use with certainty (normally a t-norm)
-       @type CER: instance of L{fuzzy.norm.Norm.Norm}
+       @type CER: L{fuzzy.norm.Norm.Norm}
     """
 
     # default if not set in instance
@@ -28,13 +28,13 @@ class Rule(object):
     def __init__(self,adjective,operator,certainty=1.0,CER=None):
         """Initialize instance.
            @param adjective: fuzzy adjective to set
-           @type adjective: instance of L{fuzzy.Adjective.Adjective}
+           @type adjective: L{fuzzy.Adjective.Adjective}
            @param operator: Operator which provides the value to set
-           @type operator: instance of L{fuzzy.operator.Operator.Operator}
+           @type operator: L{fuzzy.operator.Operator.Operator}
            @param certainty: how sure are we about this rule
            @type certainty: float
            @param CER: fuzzy norm to use with certainty (normally a t-norm)
-           @type CER: instance of L{fuzzy.norm.Norm.Norm}
+           @type CER: L{fuzzy.norm.Norm.Norm}
         """
 
         self.adjective = adjective

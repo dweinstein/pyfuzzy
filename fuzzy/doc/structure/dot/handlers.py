@@ -1,7 +1,7 @@
 # -*- coding: iso-8859-1 -*-
 """Handlers for different object types which print the object in dot format"""
 
-__revision__ = "$Id: handlers.py,v 1.2 2008-11-13 14:26:22 rliebscher Exp $"
+__revision__ = "$Id: handlers.py,v 1.3 2008-11-25 14:01:51 rliebscher Exp $"
 
 
 from fuzzy.doc.structure.dot.dot import register_handler,print_dot
@@ -177,7 +177,7 @@ class Doc_Rule(DocBase):
         adj_node_name = print_dot(obj.adjective,out,system,node_name)
         #out.write("}\n")
         operator_node_name = print_dot(obj.operator,out,system,node_name)
-        self.make_connection(out,operator_node_name,adj_node_name,{"label":name})
+        self.make_connection(out,operator_node_name,adj_node_name,{"label": name + ("" if obj.certainty == 1.0 else ": %g" % obj.certainty) })
         return ""
 
 import fuzzy.Rule

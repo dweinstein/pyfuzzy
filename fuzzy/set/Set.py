@@ -33,7 +33,7 @@ maybe where the points of the resulting polygon are
 set.)
 """
 
-__revision__ = "$Id: Set.py,v 1.14 2008-11-18 21:46:48 rliebscher Exp $"
+__revision__ = "$Id: Set.py,v 1.15 2008-11-25 14:01:51 rliebscher Exp $"
 
 
 # helper functions
@@ -87,13 +87,13 @@ def merge(NORM, set1, set2):
            
         @param NORM: fuzzy norm to calculate both sets values. For example Min(), Max(), ...
             Also possible as two params function, eg. C{lambda a,b: (a+b)/2.}.
-        @type NORM: instance of fuzzy.norm.Norm.Norm
-        @param set1: fuzzy set 
-        @type set1: instance of fuzzy.set.Set
-        @param set2: fuzzy set 
-        @type set2: instance of fuzzy.set.Set
-        @return: resulting fuzzy set 
-        @rtype: fuzzy.set.Polygon.Polygon
+        @type NORM: L{fuzzy.norm.Norm.Norm}
+        @param set1: fuzzy set
+        @type set1: L{fuzzy.set.Set}
+        @param set2: fuzzy set
+        @type set2: L{fuzzy.set.Set}
+        @return: resulting fuzzy set
+        @rtype: L{fuzzy.set.Polygon.Polygon}
            """
         from fuzzy.set.Polygon import Polygon
         ret = Polygon()
@@ -160,13 +160,13 @@ def norm(NORM, set, value):
         
         @param NORM: fuzzy norm to calculate set's values with value. For example Min(), Max(), ...
             Also possible as two params function, eg. C{lambda a,b: (a+b)/2.}.
-        @type NORM: instance of fuzzy.norm.Norm.Norm
-        @param set: fuzzy set 
-        @type set: instance of fuzzy.set.Set
+        @type NORM: L{fuzzy.norm.Norm.Norm}
+        @param set: fuzzy set
+        @type set: L{fuzzy.set.Set}
         @param value: value
         @type value: float
-        @return: resulting fuzzy set 
-        @rtype: fuzzy.set.Polygon.Polygon
+        @return: resulting fuzzy set
+        @rtype: L{fuzzy.set.Polygon.Polygon}
         """
         from fuzzy.set.Polygon import Polygon
         ret = Polygon()

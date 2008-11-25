@@ -1,6 +1,6 @@
 # -*- coding: iso-8859-1 -*-
 
-__revision__ = "$Id: Adjective.py,v 1.10 2008-11-18 21:46:48 rliebscher Exp $"
+__revision__ = "$Id: Adjective.py,v 1.11 2008-11-25 14:01:51 rliebscher Exp $"
 
 
 from fuzzy.norm.Max import Max
@@ -10,13 +10,13 @@ class Adjective(object):
     """Describes a ... of a variable.
     
     @ivar set: fuzzy set
-    @type set: instance of L{fuzzy.set.Set.Set}
+    @type set: L{fuzzy.set.Set.Set}
     @ivar COM: norm (if None the class default _COM is used.)
-    @type COM: instance of L{fuzzy.norm.Norm.Norm}
+    @type COM: L{fuzzy.norm.Norm.Norm}
     @ivar membership: set or calculated membership
     @type membership: float
     @cvar _COM: class default is instance variable is None
-    @type _COM: instance of L{fuzzy.norm.Norm.Norm}
+    @type _COM: L{fuzzy.norm.Norm.Norm}
     """
 
     # default if not set in instance
@@ -26,9 +26,9 @@ class Adjective(object):
         """Initialize adjective.
         
         @param set: fuzzy set
-        @type set: instance of fuzzy.set.Set.Set
+        @type set: L{fuzzy.set.Set.Set}
         @param COM: norm (if None the class default _COM is used.)
-        @type COM: instance of L{fuzzy.norm.Norm.Norm}
+        @type COM: L{fuzzy.norm.Norm.Norm}
         """
         self.set = set
         self.membership = None

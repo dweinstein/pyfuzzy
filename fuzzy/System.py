@@ -1,6 +1,7 @@
 # -*- coding: iso-8859-1 -*-
+""" """
 
-__revision__ = "$Id: System.py,v 1.11 2008-11-18 21:46:48 rliebscher Exp $"
+__revision__ = "$Id: System.py,v 1.12 2008-11-25 14:01:51 rliebscher Exp $"
 
 
 class System(object):

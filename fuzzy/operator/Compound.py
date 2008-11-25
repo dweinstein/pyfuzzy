@@ -1,6 +1,6 @@
 # -*- coding: iso-8859-1 -*-
 
-__revision__ = "$Id: Compound.py,v 1.9 2008-11-18 21:46:48 rliebscher Exp $"
+__revision__ = "$Id: Compound.py,v 1.10 2008-11-25 14:01:51 rliebscher Exp $"
 
 
 from fuzzy.operator.Operator import Operator
@@ -10,7 +10,7 @@ class Compound(Operator):
        through the given norm.
 
        @ivar norm: how to combine inputs. (eg. Min,Max,...)
-       @type norm: instance of L{fuzzy.norm.Norm.Norm}
+       @type norm: L{fuzzy.norm.Norm.Norm}
        @ivar inputs: list of inputs (subclassed from L{fuzzy.operator.Operator.Operator}).
     """ 
 
@@ -18,7 +18,7 @@ class Compound(Operator):
         """Constructor.
         
         @param norm: how to combine inputs. (eg. Min,Max,...)
-        @type norm: instance of L{fuzzy.norm.Norm.Norm}
+        @type norm: L{fuzzy.norm.Norm.Norm}
         @param inputs: list of inputs (subclassed from L{fuzzy.operator.Operator.Operator}).
         """
         super(Compound, self).__init__()
