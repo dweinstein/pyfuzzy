@@ -1,7 +1,7 @@
 # -*- coding: iso-8859-1 -*-
-""" """
+"""Main coordinator class of a whole fuzzy system"""
 
-__revision__ = "$Id: System.py,v 1.12 2008-11-25 14:01:51 rliebscher Exp $"
+__revision__ = "$Id: System.py,v 1.13 2008-11-30 20:56:11 rliebscher Exp $"
 
 
 class System(object):
@@ -9,9 +9,9 @@ class System(object):
         Provides methods to do calculation with it.
         
         @ivar variables: dictionary to hold all variables.
-        @type variables: E{lb}string,L{fuzzy.Variable.Variable}E{rb}
+        @type variables: {string:L{fuzzy.Variable.Variable}}
         @ivar rules: dictionary to hold all rules.
-        @type rules: E{lb}string,L{fuzzy.Rule.Rule}E{rb}
+        @type rules: {string:L{fuzzy.Rule.Rule}}
         @ivar description: description
         @type description: string
     """ 
