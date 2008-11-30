@@ -1,6 +1,6 @@
 # -*- coding: iso-8859-1 -*-
 
-__revision__ = "$Id: Base.py,v 1.4 2008-11-25 13:56:37 rliebscher Exp $"
+__revision__ = "$Id: Base.py,v 1.5 2008-11-30 20:54:40 rliebscher Exp $"
 
 
 from fuzzy.norm.Max import Max
@@ -23,6 +23,10 @@ class Base(object):
         @type _INF: L{fuzzy.norm.Norm.Norm}
         @cvar _ACC: default value when ACC is None
         @type _ACC: L{fuzzy.norm.Norm.Norm}
+        @ivar activated_sets: results of activation of adjectives of variable.
+        @type activated_sets: {string:L{fuzzy.set.Polygon.Polygon}}
+        @ivar aggregated_set: result of aggregation of activated sets
+        @type aggregated_set: L{fuzzy.set.Polygon.Polygon}
        """
 
     # default values if instance values are not set 
@@ -38,25 +42,29 @@ class Base(object):
         """
         self.ACC = ACC # accumulation
         self.INF = INF # inference
+        self.activated_sets = {}
+        self.aggregated_set = None
 
     def getValue(self,variable):
         """Defuzzyfication."""
         raise DefuzzificationException("don't use the abstract base class")
 
-##################################
 # helper methods for sub classes
 
-    def accumulate(self,variable):
+    def accumulate(self,variable,segment_size=None):
         """combining adjective values into one set"""
+        self.activated_sets = {}
         temp = None
-        for adjective in variable.adjectives.values():
+        for name,adjective in variable.adjectives.items():
             # get precomputed adjective set
-            temp2 = norm((self.INF or self._INF),adjective.set,adjective.getMembership())
+            temp2 = norm((self.INF or self._INF),adjective.set,adjective.getMembership(),segment_size)
+            self.activated_sets[name] = temp2
             # accumulate all adjectives
             if temp is None:
                 temp = temp2
             else:
-                temp = merge((self.ACC or self._ACC),temp,temp2)
+                temp = merge((self.ACC or self._ACC),temp,temp2,segment_size)
+        self.aggregated_set = temp
         return temp
 
     def value_table(self,set):
