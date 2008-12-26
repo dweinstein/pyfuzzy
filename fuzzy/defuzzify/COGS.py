@@ -1,8 +1,8 @@
 # -*- coding: iso-8859-1 -*-
 
-__revision__ = "$Id: COGS.py,v 1.2 2008-11-30 20:54:40 rliebscher Exp $"
+__revision__ = "$Id: COGS.py,v 1.3 2008-12-26 17:51:33 rliebscher Exp $"
 
-from fuzzy.defuzzify.Base import Base
+from fuzzy.defuzzify.Base import Base,DefuzzificationException
 import fuzzy.set.Singleton
 
 class COGS(Base):

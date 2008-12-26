@@ -1,7 +1,7 @@
 # -*- coding: iso-8859-1 -*-
 """Plotting of variables, adjectives, ... using gnuplot"""
 
-__revision__ = "$Id: doc.py,v 1.3 2008-11-30 20:20:54 rliebscher Exp $"
+__revision__ = "$Id: doc.py,v 1.4 2008-12-26 17:51:33 rliebscher Exp $"
 
 
 def getMinMax(set):
@@ -66,9 +66,14 @@ class Doc(object):
         self.directory=directory
         self.overscan=0.1
 
+    def setTerminal(self,g,filename):
+        g("set terminal png small transparent truecolor nocrop")
+        g("set output '%s/%s.png'" % (self.directory,filename))
+
     def initGnuplot2D(self,filename="plot",xlabel=None,ylabel=None,title=None,xrange_=None,yrange=None,x_logscale=0,y_logscale=0):
         import Gnuplot
         g = Gnuplot.Gnuplot(debug=0)
+        self.setTerminal(g,filename)
         if xlabel is not None: g.xlabel(xlabel)
         if ylabel is not None: g.ylabel(ylabel)
         if title is not None: g.title(title)
@@ -78,13 +83,12 @@ class Doc(object):
         else: g('set autoscale y')
         if x_logscale: g('set logscale x'); g('set autoscale x')
         if y_logscale: g('set logscale y'); g('set autoscale y')
-        g("set terminal png small transparent truecolor nocrop")
-        g("set output '%s/%s.png'" % (self.directory,filename))
         return g
 
     def initGnuplot3D(self,filename="plot3D",xlabel=None,ylabel=None,zlabel=None,title=None,xrange_=None,yrange=None,zrange=None,x_logscale=0,y_logscale=0,z_logscale=0):
         import Gnuplot
         g = Gnuplot.Gnuplot(debug=0)
+        self.setTerminal(g,filename)
         if xlabel is not None: g.xlabel(xlabel)
         if ylabel is not None: g.ylabel(ylabel)
         if zlabel is not None: g("set zlabel '%s'" % zlabel)
@@ -98,8 +102,6 @@ class Doc(object):
         if x_logscale: g('set logscale x');g('set autoscale x')
         if y_logscale: g('set logscale y');g('set autoscale y')
         if z_logscale: g('set logscale z');g('set autoscale z')
-        g("set terminal png small transparent truecolor nocrop")
-        g("set output '%s/%s.png'" % (self.directory,filename))
         g('set style data lines')
         g('set hidden')
         g('set pm3d at s')
@@ -109,7 +111,7 @@ class Doc(object):
 
 
     def getValues(self,v):
-        return getValuesSets(getSets(v))
+        return self.getValuesSets(getSets(v))
 
 
     def getValuesSets(self,sets):
@@ -150,28 +152,17 @@ class Doc(object):
         import Gnuplot.funcutils
         import fuzzy.set.Polygon
 
-        # sort sets by lowest x values
-        set_keys = sets.keys()
-        def cmp(a1,a2):
-            s1 = sets[a1]
-            s2 = sets[a2]
-            x1 = s1.getIntervalGenerator().nextInterval(None,None)
-            x2 = s2.getIntervalGenerator().nextInterval(None,None)
-            # get lower x values
-            if x1 > x2:
-                return +1
-            if x1 < x2:
-                return -1
-            # get higher membership value
-            return int(s2(x2)-s1(x1))
-
-        set_keys.sort(cmp)
+        # sort sets by lowest x values and higher membership values next
+        def sort_key(a):
+            s = sets[a]
+            x = s.getIntervalGenerator().nextInterval(None,None)
+            return (x,-s(x))
 
         (min,max,x) = self.getValuesSets(sets)
 
         # calculate values
         plot_items = []
-        for s_name in set_keys:
+        for s_name in sorted(sets,key=sort_key):
             s = sets[s_name]
             if isinstance(s,fuzzy.set.Polygon.Polygon):
                 p = [(min,s(min))] + s.points + [(max,s(max))]
@@ -187,7 +178,7 @@ class Doc(object):
         g('set style fill transparent solid 0.5 border')
         g('set style data filledcurves y1=0')
         g.plot(*plot_items)
-        g("reset")
+        g.close()
 
     def create2DPlot(self,system,x_name,y_name,input_dict={},output_dict={},x_logscale=0,y_logscale=0):
         """Creates a 2D plot of an input variable and an output variable.
@@ -214,7 +205,7 @@ class Doc(object):
         g = self.initGnuplot2D(filename=x_name+"_"+y_name,xlabel=x_name,ylabel=y_name,title=y_name+"=f("+x_name+")",xrange_=(x_min,x_max))
         g('set style data lines')
         g.plot(Gnuplot.funcutils.compute_Data(x, f))
-        g("reset")
+        g.close()
 
     def create3DPlot(self,system,x_name,y_name,z_name,input_dict={},output_dict={},x_logscale=0,y_logscale=0,z_logscale=0):
         """Creates a 3D plot of 2 input variables and a output variable.
@@ -243,7 +234,7 @@ class Doc(object):
 
         g = self.initGnuplot3D(filename=x_name+"_"+y_name+"_"+z_name,xlabel=x_name,ylabel=y_name,zlabel=z_name,title="%s=f(%s,%s)" % (z_name,x_name,y_name),xrange_=(x_min,x_max),yrange=(y_min,y_max),x_logscale=x_logscale,y_logscale=y_logscale,z_logscale=z_logscale)
         g.splot(Gnuplot.funcutils.compute_GridData(x,y, f,binary=0))
-        g("reset")
+        g.close()
 
 
     def create3DPlot_adjective(self,system,x_name,y_name,z_name,adjective,input_dict={},output_dict={},x_logscale=0,y_logscale=0,z_logscale=0):
@@ -276,4 +267,4 @@ class Doc(object):
         g("set xyplane at 0")
         g("set cntrparam levels incremental 0.1,0.2,1.0")
         g.splot(Gnuplot.funcutils.compute_GridData(x,y, f,binary=0))
-        g("reset")
+        g.close()

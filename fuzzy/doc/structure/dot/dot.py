@@ -1,7 +1,7 @@
 # -*- coding: iso-8859-1 -*-
 """Generates description of structure in dot format"""
 
-__revision__ = "$Id: dot.py,v 1.2 2008-11-13 14:26:22 rliebscher Exp $"
+__revision__ = "$Id: dot.py,v 1.3 2008-12-26 17:51:33 rliebscher Exp $"
 
 # stores handler of different object types
 _registered_handler = {}
@@ -20,12 +20,12 @@ def print_dot(obj,out,system,parentname):
 
 def printVariablesDot(system,out):
     """Print all variables"""
-    for name,variable in system.variables.iteritems():
+    for name,variable in system.variables.items():
         print_dot(variable,out,system,name)
 
 def printRulesDot(system,out):
     """Print all rules"""
-    for name,rule in system.rules.iteritems():
+    for name,rule in system.rules.items():
         print_dot(rule,out,system,name)
 
 def printDot(system,out):

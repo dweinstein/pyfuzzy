@@ -1,8 +1,8 @@
 # -*- coding: iso-8859-1 -*-
 
-__revision__ = "$Id: ArithmeticMean.py,v 1.2 2008-10-08 13:11:39 rliebscher Exp $"
+__revision__ = "$Id: ArithmeticMean.py,v 1.3 2008-12-26 17:51:33 rliebscher Exp $"
 
-from fuzzy.norm.Norm import Norm
+from fuzzy.norm.Norm import Norm,sum
 
 class ArithmeticMean(Norm):
 
@@ -10,4 +10,4 @@ class ArithmeticMean(Norm):
         Norm.__init__(self,0)
 
     def __call__(self,*args):
-        return reduce(lambda x,y:x+y,args)/float(len(args)) 
+        return sum(*args)/float(len(args))

@@ -1,7 +1,7 @@
 # -*- coding: iso-8859-1 -*-
 """Main coordinator class of a whole fuzzy system"""
 
-__revision__ = "$Id: System.py,v 1.13 2008-11-30 20:56:11 rliebscher Exp $"
+__revision__ = "$Id: System.py,v 1.14 2008-12-26 17:51:33 rliebscher Exp $"
 
 
 class System(object):
@@ -82,22 +82,22 @@ class System(object):
 
     def findVariableName(self,var):
         """Find name of variable in this system"""
-        for name,variable in self.variables.iteritems():
+        for name,variable in self.variables.items():
             if var is variable:
                 return name
         return None
 
     def findAdjectiveName(self,adj):
         """Find name of adjective (and variable) in this system"""
-        for name,variable in self.variables.iteritems():
-            for namea,adjective in variable.adjectives.iteritems():
+        for name,variable in self.variables.items():
+            for namea,adjective in variable.adjectives.items():
                 if adj is adjective:
                     return [namea,name]
         return None
 
     def findRuleName(self,_rule):
         """Find name of rule in this system"""
-        for name,rule in self.rules.iteritems():
+        for name,rule in self.rules.items():
             if _rule is rule:
                 return name
         return None

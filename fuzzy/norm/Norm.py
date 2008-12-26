@@ -3,7 +3,7 @@
     Abstract base class for any kind of fuzzy norm.
 """
 
-__revision__ = "$Id: Norm.py,v 1.9 2008-11-30 20:22:23 rliebscher Exp $"
+__revision__ = "$Id: Norm.py,v 1.10 2008-12-26 17:51:33 rliebscher Exp $"
 
 from fuzzy.Exception import Exception
 class NormException(Exception):
@@ -44,3 +44,33 @@ class Norm(object):
 
         """
         return self._type
+
+
+def product(*args):
+    """Calculate product of args.
+
+    @param args: list of floats to multiply
+    @type args: list of float
+    @return: product of args
+    @rtype: float
+    """
+    r = args[0]
+    for x in args[1:]:
+        r *= x
+    return r
+
+
+def sum(*args):
+    """Calculate sum of args.
+    
+    If using numpy the builtin sum doesn't work always!
+
+    @param args: list of floats to sum
+    @type args: list of float
+    @return: sum of args
+    @rtype: float
+    """
+    r = args[0]
+    for x in args[1:]:
+        r += x
+    return r

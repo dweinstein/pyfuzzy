@@ -5,23 +5,23 @@ Helper functions for calculation with fuzzy sets.
 Examples can be found here U{http://pyfuzzy.sourceforge.net/test/merge/}
 
 * Intersection of set1 and set2 can be done by
-
+  
   C{set = merge(T_NORM,set1,set2)}
-
+  
   where T_NORM is a t-norm eg. Min.
   (or a function which accepts two parameters as min().)
 
 * Union of set1 and set2 can be done by
-
+  
   C{set = merge(S_NORM,set1,set2)}
-
+  
   where S_NORM is a s-norm eg. Max.
   (or a function which accepts two parameters as max().)
 
 * Negation of set1 can be done by
-
+  
   C{set = norm(lambda a,b:1.0-a ,set1,0.0)}
-
+  
   using a user defined function for it.
   (The second parameter is ignored or better said
   it doesn't influence the value, it only influences
@@ -29,14 +29,14 @@ Examples can be found here U{http://pyfuzzy.sourceforge.net/test/merge/}
   set.)
 
 * Activation function can be done by
-
+  
   C{set = norm(act_norm,set,act_value)}
-
+  
   where act_norm is any L{fuzzy.norm} or two params function (eg. min)
   and act_value is the result of a rule calculation.
 """
 
-__revision__ = "$Id: operations.py,v 1.1 2008-11-30 20:34:14 rliebscher Exp $"
+__revision__ = "$Id: operations.py,v 1.2 2008-12-26 17:51:33 rliebscher Exp $"
 
 # helper functions
 def _find_null_steffensen(x,f,epsilon=None):
