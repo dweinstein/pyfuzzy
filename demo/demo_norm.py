@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: iso-8859-1 -*-
 
-__revision__ = "$Id: demo_norm.py,v 1.5 2008-11-13 20:43:09 rliebscher Exp $"
+__revision__ = "$Id: demo_norm.py,v 1.6 2008-12-26 18:14:24 rliebscher Exp $"
 
 
 try:
@@ -12,26 +12,8 @@ except ImportError:
     import sys
     sys.exit(1)
 
-
-def get_classes():
-    import os,sys,imp
-    import fuzzy.norm.Norm
-    classes_dir = os.path.dirname(fuzzy.norm.__file__)
-    suffixes = []
-    for suffix in imp.get_suffixes():
-        suffixes.append(suffix[0])
-    sys.path = [classes_dir] + sys.path
-    objects = {}
-    for class_file in os.listdir(classes_dir):
-        for suffix in suffixes:
-            class_name = class_file[:-len(suffix)]
-            if class_name == "__init__":
-                break
-            if  class_file[-len(suffix):] == suffix:
-                module = __import__(class_name) 
-                objects.update({class_name: module.__dict__[class_name]()})
-                break
-    return objects
+from utils import get_classes
+import fuzzy.norm
 
 def get_Gnuplot():
     # A straightforward use of gnuplot.  The `debug=1' switch is used
@@ -58,7 +40,7 @@ def get_Gnuplot():
 
 
 def plot(norm,title,filename,gnuplot=None,interactive=False):
-    # Demonstrate a 3-d plot:
+    """Demonstrate a 3-d plot"""
     # set up x and y values at which the function will be tabulated:
     import Numeric
     # use values  0.00 0.02 0.04 ... 0.96 0.98 1.00
@@ -76,7 +58,7 @@ def plot(norm,title,filename,gnuplot=None,interactive=False):
     if interactive == True:
         raw_input('Please press return to continue...\n')
     if gnuplot is None:
-        g("reset")
+        g.close()
     g = None
 
 
@@ -96,19 +78,21 @@ def plotNorm(norm,name,params=[0.05,0.25,0.50,0.75,0.95],gnuplot=None,interactiv
 
 def test():
     """Show examples for all norm in package fuzzy.norm"""
-    objects = get_classes()
-    keys = objects.keys()
-    keys.sort()
+    objects = get_classes(fuzzy.norm)
 
-    for name in keys:
+    for name in sorted(objects):
+        if name in ["Norm","ParametricNorm"]:
+            continue
         try:
             norm = objects[name]
             plotNorm(norm,name)
-        except Exception,e:
-            print "Exception: " , e
+        except:
+            import traceback
+            traceback.print_exc()
 
 def interactive(name,params):
-    objects = get_classes()
+    """interactive use: plot norm using given params"""
+    objects = get_classes(fuzzy.norm)
     try:
         norm = objects[name]
     except KeyError:
@@ -121,6 +105,8 @@ def interactive(name,params):
         plotNorm(norm,name,params,gnuplot=g,interactive=True)
     else:
         plotNorm(norm,name,gnuplot=g,interactive=True)
+    
+    g.close()
 
 
 # when executed, just run test():
