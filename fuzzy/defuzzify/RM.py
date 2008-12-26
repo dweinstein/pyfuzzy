@@ -1,16 +1,16 @@
 # -*- coding: iso-8859-1 -*-
 
-__revision__ = "$Id: MaxLeft.py,v 1.3 2008-12-26 17:56:13 rliebscher Exp $"
+__revision__ = "$Id: RM.py,v 1.1 2008-12-26 17:56:13 rliebscher Exp $"
 
 from fuzzy.defuzzify.Base import Base,DefuzzificationException
 
-class MaxLeft(Base):
-    """Defuzzyfication which uses the left global maximum."""
+class RM(Base):
+    """Defuzzyfication which uses the right most (local) maximum."""
 
     def __init__(self, INF=None, ACC=None, failsafe=None,*args,**keywords):
         """Initialize the defuzzification method with INF,ACC 
         and an optional value in case defuzzification is not possible"""
-        super(MaxLeft, self).__init__(INF,ACC,*args,**keywords)
+        super(RM, self).__init__(INF,ACC,*args,**keywords)
         self.failsafe = failsafe # which value if value not calculable
 
     def getValue(self,variable):
@@ -24,13 +24,17 @@ class MaxLeft(Base):
             if len(table) == 0:
                 raise DefuzzificationException("no value calculable: complete undefined set")
 
+            table.reverse()
+
             y = table[0][1]
-            x = float('-inf') # left end of polygon is always -infinity
+            x = float('+inf') # right end of polygon is always infinity
 
             for (x_,y_) in table[1:]:
                 if y_ > y:
                     y = y_
                     x = x_
+                else:
+                    break
 
             return x
         except:

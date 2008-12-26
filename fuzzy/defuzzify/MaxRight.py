@@ -1,11 +1,11 @@
 # -*- coding: iso-8859-1 -*-
 
-__revision__ = "$Id: MaxRight.py,v 1.3 2008-12-26 17:51:33 rliebscher Exp $"
+__revision__ = "$Id: MaxRight.py,v 1.4 2008-12-26 17:56:13 rliebscher Exp $"
 
 from fuzzy.defuzzify.Base import Base,DefuzzificationException
 
 class MaxRight(Base):
-    """Defuzzyfication which uses the right maximum."""
+    """Defuzzyfication which uses the right global maximum."""
 
     def __init__(self, INF=None, ACC=None, failsafe=None,*args,**keywords):
         """Initialize the defuzzification method with INF,ACC 

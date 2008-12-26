@@ -1,16 +1,16 @@
 # -*- coding: iso-8859-1 -*-
 
-__revision__ = "$Id: MaxLeft.py,v 1.3 2008-12-26 17:56:13 rliebscher Exp $"
+__revision__ = "$Id: LM.py,v 1.1 2008-12-26 17:56:13 rliebscher Exp $"
 
 from fuzzy.defuzzify.Base import Base,DefuzzificationException
 
-class MaxLeft(Base):
-    """Defuzzyfication which uses the left global maximum."""
+class LM(Base):
+    """Defuzzyfication which uses the left most (local) maximum."""
 
     def __init__(self, INF=None, ACC=None, failsafe=None,*args,**keywords):
         """Initialize the defuzzification method with INF,ACC 
         and an optional value in case defuzzification is not possible"""
-        super(MaxLeft, self).__init__(INF,ACC,*args,**keywords)
+        super(LM, self).__init__(INF,ACC,*args,**keywords)
         self.failsafe = failsafe # which value if value not calculable
 
     def getValue(self,variable):
@@ -31,6 +31,8 @@ class MaxLeft(Base):
                 if y_ > y:
                     y = y_
                     x = x_
+                else:
+                    break
 
             return x
         except:
