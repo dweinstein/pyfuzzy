@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: iso-8859-1 -*-
 
-__revision__ = "$Id: demo_merge.py,v 1.7 2008-12-26 18:14:24 rliebscher Exp $"
+__revision__ = "$Id: demo_merge.py,v 1.8 2009-01-09 22:04:42 rliebscher Exp $"
 
 try:
     # If the package has been installed correctly, this should work:
@@ -31,7 +31,11 @@ def plotPlotItems(items,title,filename):
     g('set xrange [0:60]')
     g('set yrange [-0.2:1.2]')
     g("set title '%s'" % title)
-    g.plot(*items)
+    unique_items = []
+    for item in items:
+        if item not in unique_items:
+            unique_items.append(item)
+    g.plot(*unique_items)
     g.close()
     g = None
 

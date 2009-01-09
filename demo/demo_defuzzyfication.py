@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: iso-8859-1 -*-
 
-__revision__ = "$Id: demo_defuzzyfication.py,v 1.7 2008-12-26 18:14:24 rliebscher Exp $"
+__revision__ = "$Id: demo_defuzzyfication.py,v 1.8 2009-01-09 22:04:42 rliebscher Exp $"
 
 from utils import get_classes
 
@@ -54,7 +54,7 @@ __
             if d in ["Base"]:
                 continue
 
-            v = fuzzy.OutputVariable.OutputVariable(defuzzy=defuzzy_)
+            v = fuzzy.OutputVariable.OutputVariable(defuzzify=defuzzy_)
 
             try:
                 a = fuzzy.Adjective.Adjective(set)
