@@ -1,8 +1,12 @@
-Release 0.0.3 (???????, 2008)
+Release 0.1.0 (???????, 2009)
 ------------------------------
-  * Added encoding lines
-  * Added fuzzy.doc for documentation
-  * ????
+  * added encoding lines
+  * added fuzzy.doc for documentation
+  * defuzzification methods are now separate in fuzzy.defuzzify
+  * fuzzification methods are now separate in fuzzy.fuzzify
+  * added more documentation in epydoc format
+  * made several attributes to real properties (no longer __getattr__/__setattr__)
+  * added package fuzzy.storage.fcl to read FCL files (using ANTLR)
 
 Release 0.0.2 (April 22th, 2003)
 ------------------------------
@@ -14,4 +18,4 @@ Release 0.0.1 (February 14th, 2003)
   * initial public release
 
 
-$Id: CHANGES.txt,v 1.4 2008-11-13 20:45:17 rliebscher Exp $
+$Id: CHANGES.txt,v 1.5 2009-01-09 22:11:18 rliebscher Exp $
