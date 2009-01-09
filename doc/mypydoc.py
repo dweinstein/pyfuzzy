@@ -1,15 +1,14 @@
 #!/usr/bin/env python
 # -*- coding: iso-8859-1 -*-
 
-__revision__ = "$Id: mypydoc.py,v 1.6 2008-11-13 20:45:17 rliebscher Exp $"
-
+__revision__ = "$Id: mypydoc.py,v 1.7 2009-01-09 22:07:06 rliebscher Exp $"
 
 import sys, imp, os, stat, re, types, inspect
 from repr import Repr
 from string import expandtabs, find, join, lower, split, strip, rfind, rstrip
 
-from pydoc import *
 import pydoc
+from pydoc import *
 
 class MyHTMLDoc(HTMLDoc):
     """Formatter class for HTML documentation."""
@@ -147,4 +146,4 @@ class MyHTMLDoc(HTMLDoc):
 
 pydoc.html = MyHTMLDoc()
 
-if __name__ == '__main__': cli()
+if __name__ == '__main__': pydoc.cli()

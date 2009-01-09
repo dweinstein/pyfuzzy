@@ -1,35 +1,36 @@
 #!/bin/bash
-# $Id: makehtml.sh,v 1.6 2008-11-18 21:46:48 rliebscher Exp $
+# $Id: makehtml.sh,v 1.7 2009-01-09 22:07:06 rliebscher Exp $
 
+function run_pydoc {
+    # this create docs with links to sourceforge cvs browser
+    python ../SFpydoc.py -w $1
+    # if you want create local docs uncomment the next line
+    #pydoc -w $1
+}
 
 function create_pydoc {
     mkdir pydoc
     cd pydoc
     export PYTHONPATH=../..
 
-    # if you want create local docs replace ../mypydoc.py 
-    # with the path to the pydoc in your python lib directory
-    #PYDOC=/usr/lib/python/pydoc.py
-    PYDOC=../SFpydoc.py
-    #MODULES="fuzzy fuzzy.norm fuzzy.operator fuzzy.set fuzzy.defuzzify fuzzy.doc fuzzui ./../.."
     MODULES="./../.."
     for i in $MODULES ; do
-        python $PYDOC -w $i
+        run_pydoc $i
     done
     cd ..
 }
 
 function create_epydoc {
     export PYTHONPATH=..
-    epydoc --html -v --graph=all -u http://pyfuzzy.sourceforge.net -n pyfuzzy -o epydoc fuzzy
+    epydoc --html -v --graph=all --redundant-details -u http://pyfuzzy.sourceforge.net -n pyfuzzy -o epydoc fuzzy
 }
 function create_epydoc_pdf {
     export PYTHONPATH=..
-    epydoc --pdf -v --graph=classtree -u http://pyfuzzy.sourceforge.net -n pyfuzzy -o epydoc_pdf fuzzy
+    epydoc --pdf -v --graph=all --redundant-details -u http://pyfuzzy.sourceforge.net -n pyfuzzy -o epydoc_pdf fuzzy
 }
 
-#create_pydoc
+create_pydoc
 
-#create_epydoc_pdf
+create_epydoc_pdf
 
 create_epydoc
