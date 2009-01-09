@@ -1,6 +1,6 @@
 # -*- coding: iso-8859-1 -*-
 
-__revision__ = "$Id: Variable.py,v 1.10 2008-11-18 21:46:48 rliebscher Exp $"
+__revision__ = "$Id: Variable.py,v 1.11 2009-01-09 22:01:35 rliebscher Exp $"
 
 
 class Variable(object):
@@ -36,10 +36,8 @@ class Variable(object):
         self.unit        = unit
 
     def setValue(self,value):
-        """Let adjectives calculate their membership values."""
+        """Just store the value."""
         self.__value = value
-        for adjective in self.adjectives.values():
-            adjective.setMembershipForValue(value)
 
     def getValue(self):
         """Return previous input value."""

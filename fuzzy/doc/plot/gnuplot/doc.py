@@ -1,7 +1,7 @@
 # -*- coding: iso-8859-1 -*-
 """Plotting of variables, adjectives, ... using gnuplot"""
 
-__revision__ = "$Id: doc.py,v 1.4 2008-12-26 17:51:33 rliebscher Exp $"
+__revision__ = "$Id: doc.py,v 1.5 2009-01-09 22:01:35 rliebscher Exp $"
 
 
 def getMinMax(set):
@@ -129,12 +129,17 @@ class Doc(object):
     def createDoc(self,system):
         """create plots of all variables defined in the given system."""
 
-        from fuzzy.OutputVariableDict import OutputVariableDict
+        from fuzzy.OutputVariable import OutputVariable
+        from fuzzy.InputVariable import InputVariable
+        import fuzzy.defuzzify.Dict
+        import fuzzy.fuzzify.Dict
 
         for name,var in system.variables.items():
             #try:
-                if isinstance(var,OutputVariableDict):
-                    print "ignore variable %s because it is of type OutputVariableDict" % name
+                if isinstance(var,OutputVariable) and isinstance(var.defuzzify,fuzzy.defuzzify.Dict.Dict):
+                    print "ignore variable %s because it is of type OutputVariable => Dict" % name
+                elif isinstance(var,InputVariable) and isinstance(var.fuzzify,fuzzy.fuzzify.Dict.Dict):
+                    print "ignore variable %s because it is of type InputVariable => Dict" % name
                 else:
                     self.createDocVariable(var,name)
             #except:

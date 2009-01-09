@@ -1,14 +1,14 @@
 # -*- coding: iso-8859-1 -*-
 
-__revision__ = "$Id: InputVariableDict.py,v 1.4 2008-11-18 18:55:06 rliebscher Exp $"
+__revision__ = "$Id: Dict.py,v 1.1 2009-01-09 22:01:35 rliebscher Exp $"
 
 
-from fuzzy.InputVariable import InputVariable
+from fuzzy.fuzzify.Base import Base
 
 
-class InputVariableDict(InputVariable):
-    """Input variable which provides adjective memberships
-       in a dictionary instead of values to fuzzyfy.
+class Dict(Base):
+    """Fuzzification method which gets adjective memberships
+       in a dictionary instead of values to fuzzify.
        You should use in the adjectives instances of Set itself.
 
        Q : What can be done with this?
@@ -29,19 +29,19 @@ class InputVariableDict(InputVariable):
                                  +--> *******
         input3 ----> ******* -------> *FIS 3* ----> output
         input4 ----> *FIS 2*          *******
-                    *******
+                     *******
  
-       Q : Why don't deffuzzyfy outputs of FIS1 and FIS2 ?
+       Q : Why don't defuzzify outputs of FIS1 and FIS2 ?
 
-       A : Defuzzyfication mean data loss.
+       A : Defuzzification mean data loss.
 
       """
 
     def __init__(self,*args,**keywords):
-        InputVariable.__init__(*tuple([self]+list(args)),**keywords)
+        super(Base,self).__init__(*args,**keywords)
 
-    def setValue(self, value):
+    def setValue(self,variable,value):
         """Do not let adjectives calculate their membership values."""
-        self.__value = None
         for adjective_key in value:
-            self.adjectives[adjective_key].membership = value[adjective_key]
+            variable.adjectives[adjective_key].membership = value[adjective_key]
+        return None

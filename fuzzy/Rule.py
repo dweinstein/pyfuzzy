@@ -1,6 +1,6 @@
 # -*- coding: iso-8859-1 -*-
 
-__revision__ = "$Id: Rule.py,v 1.10 2008-11-25 14:01:51 rliebscher Exp $"
+__revision__ = "$Id: Rule.py,v 1.11 2009-01-09 22:01:35 rliebscher Exp $"
 
 
 from fuzzy.norm.Min import Min
@@ -45,12 +45,24 @@ class Rule(object):
     def compute(self):
         """Compute and set value for given fuzzy adjective."""
 
-        self.adjective.setMembership(
+        import fuzzy.Adjective
+        if isinstance(self.adjective,fuzzy.Adjective.Adjective):
+            self.adjective.setMembership(
                                     (self.CER or self._CER)(
                                         self.certainty,       # how sure are we about this rule
                                         self.operator() # value from input
                                     )
                                 )
+        elif isinstance(self.adjective,list):
+            for adj in self.adjective:
+                adj.setMembership(
+                                    (self.CER or self._CER)(
+                                        self.certainty,       # how sure are we about this rule
+                                        self.operator() # value from input
+                                    )
+                                )
+        else:
+            raise Exception("rule target not set.")
 
     def getName(self,system):
         """Lookup the name given this rule in the given system"""

@@ -1,7 +1,7 @@
 # -*- coding: iso-8859-1 -*-
 """Handlers for different object types which print the object in dot format"""
 
-__revision__ = "$Id: handlers.py,v 1.3 2008-11-25 14:01:51 rliebscher Exp $"
+__revision__ = "$Id: handlers.py,v 1.4 2009-01-09 22:01:35 rliebscher Exp $"
 
 
 from fuzzy.doc.structure.dot.dot import register_handler,print_dot
@@ -173,11 +173,21 @@ class Doc_Rule(DocBase):
 """#  subgraph "%(node_name)s" {
 #    label="%(name)s";
     """ % locals())
-        #out.write("{rank=max;\n")
-        adj_node_name = print_dot(obj.adjective,out,system,node_name)
-        #out.write("}\n")
         operator_node_name = print_dot(obj.operator,out,system,node_name)
-        self.make_connection(out,operator_node_name,adj_node_name,{"label": name + ("" if obj.certainty == 1.0 else ": %g" % obj.certainty) })
+
+        if isinstance(obj.adjective,fuzzy.Adjective.Adjective):
+            #out.write("{rank=max;\n")
+            adj_node_name = print_dot(obj.adjective,out,system,node_name)
+            #out.write("}\n")
+            self.make_connection(out,operator_node_name,adj_node_name,{"label": name + ("" if obj.certainty == 1.0 else ": %g" % obj.certainty) })
+        elif isinstance(obj.adjective,list):
+            for adj in obj.adjective:
+                #out.write("{rank=max;\n")
+                adj_node_name = print_dot(adj,out,system,node_name)
+                #out.write("}\n")
+                self.make_connection(out,operator_node_name,adj_node_name,{"label": name + ("" if obj.certainty == 1.0 else ": %g" % obj.certainty) })
+        else:
+            raise Exception("rule target not set.")
         return ""
 
 import fuzzy.Rule

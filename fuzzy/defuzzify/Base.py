@@ -1,6 +1,6 @@
 # -*- coding: iso-8859-1 -*-
 
-__revision__ = "$Id: Base.py,v 1.5 2008-11-30 20:54:40 rliebscher Exp $"
+__revision__ = "$Id: Base.py,v 1.6 2009-01-09 22:01:35 rliebscher Exp $"
 
 
 from fuzzy.norm.Max import Max
@@ -12,7 +12,7 @@ class DefuzzificationException(fuzzy.Exception.Exception):
     pass
 
 class Base(object):
-    """Abstract base class for defuzzyfication
+    """Abstract base class for defuzzification
        which results in a numeric value.
        
         @ivar INF: inference norm, used with set of adjective and given value for it
@@ -25,8 +25,8 @@ class Base(object):
         @type _ACC: L{fuzzy.norm.Norm.Norm}
         @ivar activated_sets: results of activation of adjectives of variable.
         @type activated_sets: {string:L{fuzzy.set.Polygon.Polygon}}
-        @ivar aggregated_set: result of aggregation of activated sets
-        @type aggregated_set: L{fuzzy.set.Polygon.Polygon}
+        @ivar accumulated_set: result of accumulation of activated sets
+        @type accumulated_set: L{fuzzy.set.Polygon.Polygon}
        """
 
     # default values if instance values are not set 
@@ -43,7 +43,7 @@ class Base(object):
         self.ACC = ACC # accumulation
         self.INF = INF # inference
         self.activated_sets = {}
-        self.aggregated_set = None
+        self.accumulated_set = None
 
     def getValue(self,variable):
         """Defuzzyfication."""
@@ -64,7 +64,7 @@ class Base(object):
                 temp = temp2
             else:
                 temp = merge((self.ACC or self._ACC),temp,temp2,segment_size)
-        self.aggregated_set = temp
+        self.accumulated_set = temp
         return temp
 
     def value_table(self,set):
