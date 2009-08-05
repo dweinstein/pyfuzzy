@@ -1,6 +1,6 @@
                              Python Fuzzy 
-                             release 0.0.2
-                            April 22th, 2003
+                             release 0.1.0
+                            December xxth, 2008
 
 
 INTRODUCTION
@@ -12,7 +12,7 @@ This package is intended ...
 REQUIREMENTS
 ------------
 
-This release of the pyfuzzy requires Python 1.5.2 or later.
+This release of the pyfuzzy requires Python 2.3 or later.
 
 ...
 
@@ -25,7 +25,7 @@ This is quite easy:
     python setup.py install
 
 Note that this installs to the "site" library directory of your local
-Python installation: /usr/local/lib/python1.5/site-packages by default
+Python installation: /usr/local/lib/python2.x/site-packages by default
 on Unix, "C:\Program Files\Python" by default on Windows.  Since 
 pyfuzzy is "package-ized", the installation process will create a
 subdirectory "fuzzy" under the site library directory.
@@ -51,6 +51,15 @@ EXAMPLES
 See at the project website.
 In the examples directory you can find three subdirectories:
 
+inverted pendulum:
+    This is a example of controller for an inverted 
+    pendulum. (Also called sometimes pole balancer.)
+    
+    In the GUI use the menu item Process/View to get the visualization.
+    Currently it is controlled by an (imperfect) neural network, which was 
+    trained with data from a fuzzy controller (used in the Delphi fuzzy 
+    system which was the base of this python fuzzy project)
+
 mixer:
     This is an example of a mixer where you can control the temperature of 
     incoming substances (eg. water) and tries t control to hold the temperature 
@@ -62,22 +71,6 @@ mixer:
     controller. It also realizes storing/loading the controller object to/from 
     a pickled file.
     
-pendel:
-    This is a (currently) unfinished example of controller for an inverted 
-    pendulum. (Also called sometimes pole balancer.)
-    The simulation of the pendulum is finished (But the visualisation is not 
-    perfect for now.) Uses the menu item Process/View to get it.
-    Currently it is controlled by an (imperfect) neural network, which was 
-    trained with data from a fuzzy controller (used in the Delphi fuzzy 
-    system which was the base of this python fuzzy project)
-
-pendel2:
-    This is an (also) unfinished example of controller for the inverted 
-    pendulum.
-    It uses a simpler pendulum simulation and has already parts of the 
-    fuzzy rules in it. (You will see this if you start this example it 
-    can only hold it for a moment when it goes to the left side.) 
-
 
 BUGS AND LIMITATIONS
 --------------------
@@ -87,15 +80,17 @@ BUGS AND LIMITATIONS
 CONTRIBUTING
 ------------
 
-contact : René Liebscher <R.Liebscher@gmx.de>
+contact : Rene Liebscher <R.Liebscher@gmx.de>
 
 ACKNOWLEDGMENTS
 ---------------
 
 [tangible, in roughly chronological order]
-  * Rene Liebscher: initial version (basically a heavily imporved 
-                                     port of a previous work in Delphi)
-  * Marc Vollmer: initial version, examples
+  * Rene Liebscher: initial version and example "inverted pendulum"
+           (basically a heavily improved port of a previous work in Delphi)
+                    and current maintainer
+
+  * Marc Vollmer: initial version, example "mixer"
 
 
-$Id: README.txt,v 1.2 2003-04-22 08:38:40 plafoucr Exp $
+$Id: README.txt,v 1.3 2009-08-05 19:54:30 rliebscher Exp $

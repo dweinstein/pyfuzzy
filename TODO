@@ -1,4 +1,4 @@
-$Id: TODO,v 1.6 2008-11-11 12:51:22 rliebscher Exp $
+$Id: TODO,v 1.7 2009-08-05 19:54:31 rliebscher Exp $
 
 Releases:
 - Release files for SourceForge when pyfuzzy will be considered as 'stable enough'
@@ -11,23 +11,11 @@ Variables:
 
 ? Manage Variable precision
 
-Fuzzy sets:
-    - Trapez, Triangle make parameters to properties.
-
-Defuzzyfication:
-- [DONE] Classes VariableDict and OutputVariableDict to handle "dictionnary" output (see OutputVariableDict InputVariableDict)
-
-- Other defuzzyfication methods
-
-- defuzzyfication as 'property' of Outputvariable (deprecating special classes) 
-  (should be fuzzyfication do the same?)
-
-
 
 GUI:
 - GUI using Tkinter and Tix so it works on all platforms supported by python without extra libraries
 
-(no longer developed, throw it out)
+(fuzzui no longer developed, throw it out?)
 - Gui to manage fuzzy systems (wxPython)
 	- [DONE] Manage pickle systems
     - [75%] (add/del/edit) Variable
@@ -48,5 +36,4 @@ Import/Export:
 Documentation of fuzzy system:    
 - [50 % DONE] Automatic generation of documentation for variables (see doc.py)
 - documentation of rules
-
 

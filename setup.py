@@ -6,7 +6,7 @@ pyfuzzy is a python module for working with fuzzy sets
 (for example for controllers or other similar stuff, 
 it can be also used for decision making in business.)
 """
-__revision__ = "$Id: setup.py,v 1.9 2009-01-09 22:11:18 rliebscher Exp $"
+__revision__ = "$Id: setup.py,v 1.10 2009-08-05 19:54:31 rliebscher Exp $"
 
 from distutils.core import setup
 
@@ -18,7 +18,7 @@ Intended Audience :: Science/Research
 Intended Audience :: Developers
 License :: OSI Approved :: GNU Library or Lesser General Public License (LGPL)
 Programming Language :: Python
-Topic :: Software Development
+Topic :: Software Development :: Libraries :: Python Modules
 Topic :: Scientific/Engineering
 Operating System :: OS Independent
 """
@@ -31,14 +31,24 @@ PACKAGES = [
         'fuzzy.fuzzify',
         'fuzzy.defuzzify',
         'fuzzy.storage',
-        'fuzzy.storage.fcl',
         'fuzzy.doc',
         'fuzzy.doc.plot',
         'fuzzy.doc.plot.gnuplot',
         'fuzzy.doc.structure',
         'fuzzy.doc.structure.dot',
         ]
-	
+
+try:
+    import antlr3
+    PACKAGES.extend([
+            'fuzzy.storage.fcl',
+            ])
+except:
+    print """
+Sorry, without the python runtime of ANTLR3, there will be
+no reading of FCL files.
+"""
+
 if __name__ == "__main__":
     setup (name = "pyfuzzy",
        version = "0.1.0",
