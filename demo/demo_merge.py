@@ -1,7 +1,27 @@
 #!/usr/bin/env python
 # -*- coding: iso-8859-1 -*-
+#
+# Do some tests of the merge functionality.
+# The result are some images, which you have to check by yourself.
+# (They are also useful to put on the website.)
+#
+# Copyright (C) 2009  Rene Liebscher
+#
+# This program is free software; you can redistribute it and/or modify it under
+# the terms of the GNU Lesser General Public License as published by the Free 
+# Software Foundation; either version 3 of the License, or (at your option) any
+# later version.
+#
+# This program is distributed in the hope that it will be useful, but WITHOUT 
+# ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+# FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details.
+# 
+# You should have received a copy of the GNU Lesser General Public License along with 
+# this program; if not, see <http://www.gnu.org/licenses/>. 
+#
 
-__revision__ = "$Id: demo_merge.py,v 1.9 2009-08-05 20:01:16 rliebscher Exp $"
+
+__revision__ = "$Id: demo_merge.py,v 1.10 2009-08-07 07:17:17 rliebscher Exp $"
 
 try:
     # If the package has been installed correctly, this should work:

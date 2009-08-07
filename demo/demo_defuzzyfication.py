@@ -1,7 +1,29 @@
 #!/usr/bin/env python
 # -*- coding: iso-8859-1 -*-
+#
+# Runs all defuzzification methods over (default) instances of all 
+# fuzzy set classes and some additional examples to check the results
+# you get.
+# This is not an automatic test. You have to check the results by yourself.
+#
+#
+# Copyright (C) 2009  Rene Liebscher
+#
+# This program is free software; you can redistribute it and/or modify it under
+# the terms of the GNU Lesser General Public License as published by the Free 
+# Software Foundation; either version 3 of the License, or (at your option) any
+# later version.
+#
+# This program is distributed in the hope that it will be useful, but WITHOUT 
+# ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+# FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details.
+# 
+# You should have received a copy of the GNU Lesser General Public License along with 
+# this program; if not, see <http://www.gnu.org/licenses/>. 
+#
 
-__revision__ = "$Id: demo_defuzzyfication.py,v 1.8 2009-01-09 22:04:42 rliebscher Exp $"
+
+__revision__ = "$Id: demo_defuzzyfication.py,v 1.9 2009-08-07 07:17:17 rliebscher Exp $"
 
 from utils import get_classes
 
