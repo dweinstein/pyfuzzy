@@ -1,4 +1,4 @@
-# $ANTLR 3.1.1 FCL.g 2009-01-08 21:56:17
+# $ANTLR 3.1.1 FCL.g 2009-01-22 19:38:38
 
 import sys
 from antlr3 import *
@@ -1340,11 +1340,11 @@ class FCLLexer(Lexer):
             _type = Identifier
             _channel = DEFAULT_CHANNEL
 
-            # FCL.g:426:12: ( LETTER ( LETTER | DIGIT )* )
-            # FCL.g:426:14: LETTER ( LETTER | DIGIT )*
+            # FCL.g:427:12: ( LETTER ( LETTER | DIGIT )* )
+            # FCL.g:427:14: LETTER ( LETTER | DIGIT )*
             pass 
             self.mLETTER()
-            # FCL.g:426:21: ( LETTER | DIGIT )*
+            # FCL.g:427:21: ( LETTER | DIGIT )*
             while True: #loop3
                 alt3 = 2
                 LA3_0 = self.input.LA(1)
@@ -1387,10 +1387,10 @@ class FCLLexer(Lexer):
     def mInteger_literal_wo_sign(self, ):
 
         try:
-            # FCL.g:429:2: ( ( DIGIT )+ )
-            # FCL.g:429:4: ( DIGIT )+
+            # FCL.g:430:2: ( ( DIGIT )+ )
+            # FCL.g:430:4: ( DIGIT )+
             pass 
-            # FCL.g:429:4: ( DIGIT )+
+            # FCL.g:430:4: ( DIGIT )+
             cnt4 = 0
             while True: #loop4
                 alt4 = 2
@@ -1401,7 +1401,7 @@ class FCLLexer(Lexer):
 
 
                 if alt4 == 1:
-                    # FCL.g:429:4: DIGIT
+                    # FCL.g:430:4: DIGIT
                     pass 
                     self.mDIGIT()
 
@@ -1435,10 +1435,10 @@ class FCLLexer(Lexer):
             _type = Integer_literal
             _channel = DEFAULT_CHANNEL
 
-            # FCL.g:431:2: ( ( '+' | '-' )? Integer_literal_wo_sign )
-            # FCL.g:432:3: ( '+' | '-' )? Integer_literal_wo_sign
+            # FCL.g:432:2: ( ( '+' | '-' )? Integer_literal_wo_sign )
+            # FCL.g:433:3: ( '+' | '-' )? Integer_literal_wo_sign
             pass 
-            # FCL.g:432:3: ( '+' | '-' )?
+            # FCL.g:433:3: ( '+' | '-' )?
             alt5 = 2
             LA5_0 = self.input.LA(1)
 
@@ -1476,7 +1476,7 @@ class FCLLexer(Lexer):
     def mLETTER(self, ):
 
         try:
-            # FCL.g:434:17: ( 'A' .. 'Z' | 'a' .. 'z' | '_' )
+            # FCL.g:435:17: ( 'A' .. 'Z' | 'a' .. 'z' | '_' )
             # FCL.g:
             pass 
             if (65 <= self.input.LA(1) <= 90) or self.input.LA(1) == 95 or (97 <= self.input.LA(1) <= 122):
@@ -1502,8 +1502,8 @@ class FCLLexer(Lexer):
     def mDIGIT(self, ):
 
         try:
-            # FCL.g:435:16: ( '0' .. '9' )
-            # FCL.g:435:18: '0' .. '9'
+            # FCL.g:436:16: ( '0' .. '9' )
+            # FCL.g:436:18: '0' .. '9'
             pass 
             self.matchRange(48, 57)
 
@@ -1525,20 +1525,20 @@ class FCLLexer(Lexer):
             _type = Real_literal
             _channel = DEFAULT_CHANNEL
 
-            # FCL.g:438:2: ( Integer_literal '.' Integer_literal_wo_sign ( ( 'e' | 'E' ) Integer_literal )? )
-            # FCL.g:438:4: Integer_literal '.' Integer_literal_wo_sign ( ( 'e' | 'E' ) Integer_literal )?
+            # FCL.g:439:2: ( Integer_literal '.' Integer_literal_wo_sign ( ( 'e' | 'E' ) Integer_literal )? )
+            # FCL.g:439:4: Integer_literal '.' Integer_literal_wo_sign ( ( 'e' | 'E' ) Integer_literal )?
             pass 
             self.mInteger_literal()
             self.match(46)
             self.mInteger_literal_wo_sign()
-            # FCL.g:438:48: ( ( 'e' | 'E' ) Integer_literal )?
+            # FCL.g:439:48: ( ( 'e' | 'E' ) Integer_literal )?
             alt6 = 2
             LA6_0 = self.input.LA(1)
 
             if (LA6_0 == 69 or LA6_0 == 101) :
                 alt6 = 1
             if alt6 == 1:
-                # FCL.g:438:49: ( 'e' | 'E' ) Integer_literal
+                # FCL.g:439:49: ( 'e' | 'E' ) Integer_literal
                 pass 
                 if self.input.LA(1) == 69 or self.input.LA(1) == 101:
                     self.input.consume()
@@ -1572,8 +1572,8 @@ class FCLLexer(Lexer):
             _type = WS
             _channel = DEFAULT_CHANNEL
 
-            # FCL.g:440:5: ( ( ' ' | '\\r' | '\\t' | '\\u000C' | '\\n' ) )
-            # FCL.g:440:8: ( ' ' | '\\r' | '\\t' | '\\u000C' | '\\n' )
+            # FCL.g:441:5: ( ( ' ' | '\\r' | '\\t' | '\\u000C' | '\\n' ) )
+            # FCL.g:441:8: ( ' ' | '\\r' | '\\t' | '\\u000C' | '\\n' )
             pass 
             if (9 <= self.input.LA(1) <= 10) or (12 <= self.input.LA(1) <= 13) or self.input.LA(1) == 32:
                 self.input.consume()
@@ -1606,11 +1606,11 @@ class FCLLexer(Lexer):
             _type = COMMENT
             _channel = DEFAULT_CHANNEL
 
-            # FCL.g:444:5: ( '(*' ( options {greedy=false; } : . )* '*)' )
-            # FCL.g:444:9: '(*' ( options {greedy=false; } : . )* '*)'
+            # FCL.g:445:5: ( '(*' ( options {greedy=false; } : . )* '*)' )
+            # FCL.g:445:9: '(*' ( options {greedy=false; } : . )* '*)'
             pass 
             self.match("(*")
-            # FCL.g:444:14: ( options {greedy=false; } : . )*
+            # FCL.g:445:14: ( options {greedy=false; } : . )*
             while True: #loop7
                 alt7 = 2
                 LA7_0 = self.input.LA(1)
@@ -1629,7 +1629,7 @@ class FCLLexer(Lexer):
 
 
                 if alt7 == 1:
-                    # FCL.g:444:42: .
+                    # FCL.g:445:42: .
                     pass 
                     self.matchAny()
 

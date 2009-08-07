@@ -1,4 +1,19 @@
 # -*- coding: iso-8859-1 -*-
+#
+# Copyright (C) 2009  Rene Liebscher
+#
+# This program is free software; you can redistribute it and/or modify it under
+# the terms of the GNU Lesser General Public License as published by the Free 
+# Software Foundation; either version 3 of the License, or (at your option) any
+# later version.
+#
+# This program is distributed in the hope that it will be useful, but WITHOUT 
+# ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+# FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details.
+# 
+# You should have received a copy of the GNU Lesser General Public License along with 
+# this program; if not, see <http://www.gnu.org/licenses/>. 
+#
 """
 Helper functions for calculation with fuzzy sets.
 
@@ -36,12 +51,12 @@ Examples can be found here U{http://pyfuzzy.sourceforge.net/test/merge/}
   and act_value is the result of a rule calculation.
 """
 
-__revision__ = "$Id: operations.py,v 1.2 2008-12-26 17:51:33 rliebscher Exp $"
+__revision__ = "$Id: operations.py,v 1.3 2009-08-07 07:19:19 rliebscher Exp $"
 
 # helper functions
 def _find_null_steffensen(x,f,epsilon=None):
     """Find zero of function f by using the Steffensen method.
-       As fixpoint equation g(x) = x - f(x) is used.
+       As fixpoint equation M{g(x) = x - f(x)} is used.
        The algorithm stops if the error estimation is smaller than epsilon
        or the convergence quotient is larger than 1.0 (for at least two steps)
        or there is an ZeroDivisionError, which means in the last steps
@@ -54,11 +69,11 @@ def _find_null_steffensen(x,f,epsilon=None):
        
        @param x: first estimation of result
        @type x: float
-       @param f: function for which to find f(x)=0
-       @type f: f(x)
+       @param f: function for which to find M{f(x)=0}
+       @type f: M{f(x)}
        @param epsilon: break condition for algorithm (value < epsilon)
        @type epsilon: float/None
-       @return: x where f(x)=0
+       @return: M{x} where M{f(x)=0}
        @rtype: float
     """
     g = lambda x,f=f: x-f(x)
@@ -85,7 +100,7 @@ def _find_null_steffensen(x,f,epsilon=None):
 
 def _merge_generator(NORM, set1, set2):
         """Returns a new fuzzy set which ist the merger of set1 and set2,
-        where the membership of the result set is equal to NORM(set1(x),set2(x)).
+        where the membership of the result set is equal to C{NORM(set1(x),set2(x))}.
            
         @param NORM: fuzzy norm to calculate both sets values. For example Min(), Max(), ...
             Also possible as two params function, eg. C{lambda a,b: (a+b)/2.}.
@@ -156,7 +171,13 @@ def _merge_generator(NORM, set1, set2):
 
 def merge(NORM, set1, set2, segment_size=None):
         """Returns a new fuzzy set which ist the merger of set1 and set2,
-        where the membership of the result set is equal to NORM(set1(x),set2(x)).
+        where the membership of the result set is equal to C{NORM(set1(x),set2(x))}.
+        
+        For nonlinear operations you might want set the segment size to a value 
+        which controls how large a linear segment of the result can be. 
+        See also the following examples:
+          - U{http://pyfuzzy.sourceforge.net/test/merge/AlgebraicProduct_d_d.png} - The algebraic product is M{x*y}, so using it on the same set, it calculates the square of it.
+          - U{http://pyfuzzy.sourceforge.net/test/merge/AlgebraicSum_d_d.png} - The algebraic sum is M{x+y-x*y}.
            
         @param NORM: fuzzy norm to calculate both sets values. For example Min(), Max(), ...
             Also possible as two params function, eg. C{lambda a,b: (a+b)/2.}.
@@ -191,7 +212,7 @@ def merge(NORM, set1, set2, segment_size=None):
 
 def _norm_generator(NORM, set, value):
         """Returns a new fuzzy set which ist this set normed with value.
-       where the membership of the result set is equal to NORM(set(x),value).
+       where the membership of the result set is equal to C{NORM(set(x),value)}.
         
         @param NORM: fuzzy norm to calculate set's values with value. For example Min(), Max(), ...
             Also possible as two params function, eg. C{lambda a,b: (a+b)/2.}.
@@ -241,7 +262,9 @@ def _norm_generator(NORM, set, value):
 
 def norm(NORM, set, value,segment_size=None):
         """Returns a new fuzzy set which ist this set normed with value.
-       where the membership of the result set is equal to NORM(set(x),value).
+       where the membership of the result set is equal to C{NORM(set(x),value)}.
+
+       For meaning of segment_size see also L{fuzzy.set.operations.merge}.
         
         @param NORM: fuzzy norm to calculate set's values with value. For example Min(), Max(), ...
             Also possible as two params function, eg. C{lambda a,b: (a+b)/2.}.

@@ -1,6 +1,21 @@
 # -*- coding: iso-8859-1 -*-
+#
+# Copyright (C) 2009  Rene Liebscher
+#
+# This program is free software; you can redistribute it and/or modify it under
+# the terms of the GNU Lesser General Public License as published by the Free 
+# Software Foundation; either version 3 of the License, or (at your option) any
+# later version.
+#
+# This program is distributed in the hope that it will be useful, but WITHOUT 
+# ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+# FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details.
+# 
+# You should have received a copy of the GNU Lesser General Public License along with 
+# this program; if not, see <http://www.gnu.org/licenses/>. 
+#
 
-__revision__ = "$Id: Polygon.py,v 1.16 2008-11-25 14:01:51 rliebscher Exp $"
+__revision__ = "$Id: Polygon.py,v 1.17 2009-08-07 07:19:19 rliebscher Exp $"
 
 
 from fuzzy.set.Set import Set
@@ -20,7 +35,7 @@ class Polygon(Set):
                 \               /
                  *---       ---*
 
-       See also U{http://pyfuzzy.sourceforge.net/test/set/Polygon.png}
+       See also U{http://pyfuzzy.sourceforge.net/test/set/Polygon%20(Demo).png}
 
        """
 
