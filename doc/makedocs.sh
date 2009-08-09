@@ -16,7 +16,7 @@
 # You should have received a copy of the GNU Lesser General Public License along with 
 # this program; if not, see <http://www.gnu.org/licenses/>. 
 #
-# $Id: makehtml.sh,v 1.8 2009-08-07 07:18:09 rliebscher Exp $
+# $Id: makedocs.sh,v 1.1 2009-08-09 08:44:45 rliebscher Exp $
 
 function run_pydoc {
     # this create docs with links to sourceforge cvs browser
