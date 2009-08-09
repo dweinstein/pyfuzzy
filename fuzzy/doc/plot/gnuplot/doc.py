@@ -16,7 +16,7 @@
 #
 """Plotting of variables, adjectives, ... using gnuplot"""
 
-__revision__ = "$Id: doc.py,v 1.6 2009-08-07 07:19:18 rliebscher Exp $"
+__revision__ = "$Id: doc.py,v 1.7 2009-08-09 09:21:19 rliebscher Exp $"
 
 
 def getMinMax(set):
@@ -79,7 +79,7 @@ class Doc(object):
 
     def __init__(self,directory="doc"):
         self.directory=directory
-        self.overscan=0.1
+        self.overscan=0.1 #: the plotted range is M{[min-o,max+o]} with M{o=(max-min)*overscan}
 
     def setTerminal(self,g,filename):
         g("set terminal png small transparent truecolor nocrop")
@@ -202,7 +202,23 @@ class Doc(object):
 
     def create2DPlot(self,system,x_name,y_name,input_dict={},output_dict={},x_logscale=0,y_logscale=0):
         """Creates a 2D plot of an input variable and an output variable.
-        Other (const) variables have to be set beforehand in the dictionary input_dict."""
+        Other (const) variables have to be set beforehand in the dictionary input_dict.
+        
+        @param system: the fuzzy system to use
+        @type system: L{fuzzy.System.System}
+        @param x_name: name of input variable used for x coordinate values
+        @type x_name: string
+        @param y_name: name of output variable used for y coordinate values
+        @type y_name: string
+        @param input_dict: dictionary used for input values, can be used to predefine other input values
+        @type input_dict: dict
+        @param output_dict: dictionary used for output values
+        @type output_dict: dict
+        @param x_logscale: use logarithmic scale for x values
+        @type x_logscale: bool
+        @param y_logscale: use logarithmic scale for y values
+        @type y_logscale: bool
+        """
 
         import Gnuplot
         import Gnuplot.funcutils
@@ -222,14 +238,34 @@ class Doc(object):
 
             return output_dict[y_name]
 
-        g = self.initGnuplot2D(filename=x_name+"_"+y_name,xlabel=x_name,ylabel=y_name,title=y_name+"=f("+x_name+")",xrange_=(x_min,x_max))
+        g = self.initGnuplot2D(filename=x_name+"_"+y_name,xlabel=x_name,ylabel=y_name,title=y_name+"=f("+x_name+")",xrange_=(x_min,x_max),x_logscale=x_logscale,y_logscale=y_logscale)
         g('set style data lines')
         g.plot(Gnuplot.funcutils.compute_Data(x, f))
         g.close()
 
     def create3DPlot(self,system,x_name,y_name,z_name,input_dict={},output_dict={},x_logscale=0,y_logscale=0,z_logscale=0):
-        """Creates a 3D plot of 2 input variables and a output variable.
-        Other (const) variables have to be set beforehand in the dictionary input_dict."""
+        """Creates a 3D plot of 2 input variables and an output variable.
+        Other (const) variables have to be set beforehand in the dictionary input_dict.
+        
+        @param system: the fuzzy system to use
+        @type system: L{fuzzy.System.System}
+        @param x_name: name of input variable used for x coordinate values
+        @type x_name: string
+        @param y_name: name of input variable used for y coordinate values
+        @type y_name: string
+        @param z_name: name of output variable used for z coordinate values
+        @type z_name: string
+        @param input_dict: dictionary used for input values, can be used to predefine other input values
+        @type input_dict: dict
+        @param output_dict: dictionary used for output values
+        @type output_dict: dict
+        @param x_logscale: use logarithmic scale for x values
+        @type x_logscale: bool
+        @param y_logscale: use logarithmic scale for y values
+        @type y_logscale: bool
+        @param z_logscale: use logarithmic scale for z values
+        @type z_logscale: bool
+        """
 
         import Gnuplot
         import Gnuplot.funcutils
@@ -258,8 +294,30 @@ class Doc(object):
 
 
     def create3DPlot_adjective(self,system,x_name,y_name,z_name,adjective,input_dict={},output_dict={},x_logscale=0,y_logscale=0,z_logscale=0):
-        """Creates a 3D plot of 2 input variables and a output variable.
-        Other (const) variables have to be set beforehand in the dictionary input_dict."""
+        """Creates a 3D plot of 2 input variables and an adjective of the output variable.
+        Other (const) variables have to be set beforehand in the dictionary input_dict.
+        
+        @param system: the fuzzy system to use
+        @type system: L{fuzzy.System.System}
+        @param x_name: name of input variable used for x coordinate values
+        @type x_name: string
+        @param y_name: name of input variable used for y coordinate values
+        @type y_name: string
+        @param z_name: name of output variable used for z coordinate values
+        @type z_name: string
+        @param adjective: name of adjective of output variable used for z coordinate values
+        @type adjective: string
+        @param input_dict: dictionary used for input values, can be used to predefine other input values
+        @type input_dict: dict
+        @param output_dict: dictionary used for output values
+        @type output_dict: dict
+        @param x_logscale: use logarithmic scale for x values
+        @type x_logscale: bool
+        @param y_logscale: use logarithmic scale for y values
+        @type y_logscale: bool
+        @param z_logscale: use logarithmic scale for z values
+        @type z_logscale: bool
+        """
 
         import Gnuplot
         import Gnuplot.funcutils
