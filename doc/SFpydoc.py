@@ -20,7 +20,7 @@
 #
 
 
-__revision__ = "$Id: SFpydoc.py,v 1.5 2009-08-07 07:18:09 rliebscher Exp $"
+__revision__ = "$Id: SFpydoc.py,v 1.6 2009-08-31 21:03:01 rliebscher Exp $"
 
 from mypydoc import MyHTMLDoc
 import pydoc
@@ -29,13 +29,14 @@ class SFHTMLDoc(MyHTMLDoc):
     """Formatter class for HTML documentation."""
 
     SF_URL="http://pyfuzzy.cvs.sourceforge.net/viewvc/pyfuzzy/pyfuzzy%s?view=markup"
+    SF_LOGO=' <b>@</b> <a class="navbar" target="_top" href="http://sourceforge.net/projects/pyfuzzy"><img style="border: 0px;vertical-align:bottom;padding: 2px 4px;" src="http://sflogo.sourceforge.net/sflogo.php?group_id=59160&amp;type=9" width="80" height="15" alt="Get pyfuzzy at SourceForge.net. Fast, secure and Free Open Source software downloads" /></a>'
     def filelink(self,url,path):
         import os
         cwd=os.getcwd()
         cwd=cwd.replace("/doc/pydoc","")
         url=url.replace(cwd,"")
         path=path.replace(cwd,"")
-        return '<a href="%s">%s</a>' % (self.SF_URL % url, path)
+        return '<a href="%s">%s</a>%s' % (self.SF_URL % url, path, self.SF_LOGO)
 
 # --------------------------------------- interactive interpreter interface
 
