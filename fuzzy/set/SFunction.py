@@ -15,7 +15,7 @@
 # this program; if not, see <http://www.gnu.org/licenses/>. 
 #
 
-__revision__ = "$Id: SFunction.py,v 1.13 2009-08-07 07:19:19 rliebscher Exp $"
+__revision__ = "$Id: SFunction.py,v 1.14 2009-08-31 21:02:06 rliebscher Exp $"
 
 
 from fuzzy.set.Function import Function
@@ -63,12 +63,12 @@ class SFunction(Function):
            """
         a = self.a
         d = self.delta
-        if x<= a-d:
+        if x <= a-d:
             return 0.0
-        if x<=a:
+        if x <= a:
             t = (x-a+d)/(2.0*d)
             return 2.0*t*t
-        if x<=a+d:
+        if x <= a+d:
             t = (a-x+d)/(2.0*d)
             return 1.0-2.0*t*t
         return 1.0

@@ -15,22 +15,22 @@
 # this program; if not, see <http://www.gnu.org/licenses/>. 
 #
 
-__revision__ = "$Id: Not.py,v 1.11 2009-08-07 07:19:19 rliebscher Exp $"
+__revision__ = "$Id: Not.py,v 1.12 2009-08-31 21:02:06 rliebscher Exp $"
 
 
 from fuzzy.operator.Operator import Operator
 
 class Not(Operator):
-    """Take value of input operator and negate it.
+    """Take value of input operator and calculate complement of it.
        
-       @ivar input: input which result is to negate.
+       @ivar input: input which result is to complement.
        @type input: L{fuzzy.operator.Operator.Operator}
     """ 
 
     def __init__(self, input):
         """Constructor.
         
-        @param input: input which result is to negate.
+        @param input: input which result is to complement.
         @type input: L{fuzzy.operator.Operator.Operator}
         """
         super(Not, self).__init__()

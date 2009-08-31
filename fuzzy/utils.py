@@ -17,18 +17,51 @@
 
 """Helper functions for  pyfuzzy."""
 
-__revision__ = "$Id: utils.py,v 1.3 2009-08-07 07:19:18 rliebscher Exp $"
+__revision__ = "$Id: utils.py,v 1.4 2009-08-31 21:02:06 rliebscher Exp $"
 
 def prop(func):
-  """Function decorator for defining property attributes
+    """Function decorator for defining property attributes
+  
+    The decorated function is expected to return a dictionary
+    containing one or more of the following pairs:
+      - fget - function for getting attribute value
+      - fset - function for setting attribute value
+      - fdel - function for deleting attribute
+    This can be conveniently constructed by the locals() builtin
+    function; see:
+    U{http://aspn.activestate.com/ASPN/Cookbook/Python/Recipe/205183}
+    """
+    return property(doc=func.__doc__, **func())
 
-  The decorated function is expected to return a dictionary
-  containing one or more of the following pairs:
-    - fget - function for getting attribute value
-    - fset - function for setting attribute value
-    - fdel - function for deleting attribute
-  This can be conveniently constructed by the locals() builtin
-  function; see:
-  U{http://aspn.activestate.com/ASPN/Cookbook/Python/Recipe/205183}
-  """
-  return property(doc=func.__doc__, **func())
+def checkRange(value,ranges):
+    """Checks if the value is in the defined range.
+    
+    The range definition is a list/iterator from:
+        - float values belonging to the defined range M{x \in {a}}
+        - 2-tuples of two floats which define a range not including the tuple values itself M{x \in ]a,b[}
+        - 2-list of two floats which define a range including the list values M{x \in [a,b]}
+    The order of elements is not important. So could define the set of integer numbers by a
+    generator returning the following sequence: M{0,1,-1,2,-2,3-,3,...} .
+    
+    It returns True if the value is in one of the defined ranges.
+    Otherwise it returns false.
+    """
+    import types
+    for part in ranges:
+        if isinstance(part,types.FloatType):
+            if part == value:
+                return True
+        elif isinstance(part,types.ListType) and len(part) == 2:
+            if part[0] <= value and value <= part[1]:
+                return True
+        elif isinstance(part,types.TupleType) and len(part) == 2:
+            if part[0] < value and value < part[1]:
+                return True
+        else:
+            raise Exception("Range definition is wrong")
+    return False
+
+
+inf = float("inf")
+inf_p = float("+inf")
+inf_n = float("-inf")

@@ -16,35 +16,35 @@
 #
 """Plotting of variables, adjectives, ... using gnuplot"""
 
-__revision__ = "$Id: doc.py,v 1.7 2009-08-09 09:21:19 rliebscher Exp $"
+__revision__ = "$Id: doc.py,v 1.8 2009-08-31 21:02:06 rliebscher Exp $"
 
 
 def getMinMax(set):
     """get tuple with minimum and maximum x-values used by the set."""
-    min = None
-    max = None
+    x_min = None
+    x_max = None
 
     ig = set.getIntervalGenerator()
 
     next = ig.nextInterval(None,None)
-    min = next
+    x_min = next
     while next is not None:
-        max = next
+        x_max = next
         next = ig.nextInterval(next,None)
 
-    return (min,max)
+    return (x_min,x_max)
 
 def getGlobalMinMax(sets):
     """get tuple with minimum and maximum x-values used by the sets of this dicts of sets."""
-    min = None
-    max = None
+    x_min = None
+    x_max = None
     for s in sets.values():
-        (min2,max2) = getMinMax(s)
-        if min is None or min2 < min:
-            min = min2
-        if max is None or max2 > max:
-            max = max2
-    return (min,max)
+        (x_min2,x_max2) = getMinMax(s)
+        if x_min is None or x_min2 < x_min:
+            x_min = x_min2
+        if x_max is None or x_max2 > x_max:
+            x_max = x_max2
+    return (x_min,x_max)
 
 
 def getPoints(sets):
@@ -55,7 +55,7 @@ def getPoints(sets):
     temp = None
     for s in sets.values():
         if temp is None:
-            temp = s;
+            temp = s
         else:
             temp = merge(max,temp,s)
 
@@ -78,8 +78,8 @@ class Doc(object):
     """Main object. Get an instance of this to do your work."""
 
     def __init__(self,directory="doc"):
-        self.directory=directory
-        self.overscan=0.1 #: the plotted range is M{[min-o,max+o]} with M{o=(max-min)*overscan}
+        self.directory = directory
+        self.overscan = 0.1 #: the plotted range is M{[min-o,max+o]} with M{o=(max-min)*overscan}
 
     def setTerminal(self,g,filename):
         g("set terminal png small transparent truecolor nocrop")
@@ -130,15 +130,15 @@ class Doc(object):
 
 
     def getValuesSets(self,sets):
-        (min,max) = getGlobalMinMax(sets)
-        width = max - min
-        min = min - self.overscan * width
-        max = max + self.overscan * width
-        width = max - min
+        (x_min,x_max) = getGlobalMinMax(sets)
+        width = x_max - x_min
+        x_min = x_min - self.overscan * width
+        x_max = x_max + self.overscan * width
+        width = x_max - x_min
 
-        values = [min]+getPoints(sets)+[max]
+        values = [x_min]+getPoints(sets)+[x_max]
 
-        return (min,max,values)
+        return (x_min,x_max,values)
 
 
     def createDoc(self,system):
@@ -150,15 +150,12 @@ class Doc(object):
         import fuzzy.fuzzify.Dict
 
         for name,var in system.variables.items():
-            #try:
-                if isinstance(var,OutputVariable) and isinstance(var.defuzzify,fuzzy.defuzzify.Dict.Dict):
-                    print "ignore variable %s because it is of type OutputVariable => Dict" % name
-                elif isinstance(var,InputVariable) and isinstance(var.fuzzify,fuzzy.fuzzify.Dict.Dict):
-                    print "ignore variable %s because it is of type InputVariable => Dict" % name
-                else:
-                    self.createDocVariable(var,name)
-            #except:
-            #    print "no doc for " + v_name
+            if isinstance(var,OutputVariable) and isinstance(var.defuzzify,fuzzy.defuzzify.Dict.Dict):
+                print "ignore variable %s because it is of type OutputVariable => Dict" % name
+            elif isinstance(var,InputVariable) and isinstance(var.fuzzify,fuzzy.fuzzify.Dict.Dict):
+                print "ignore variable %s because it is of type InputVariable => Dict" % name
+            else:
+                self.createDocVariable(var,name)
 
     def createDocVariable(self,v,name,x_logscale=0,y_logscale=0):
         """Creates a 2D plot of a variable"""
@@ -178,23 +175,23 @@ class Doc(object):
             x = s.getIntervalGenerator().nextInterval(None,None)
             return (x,-s(x))
 
-        (min,max,x) = self.getValuesSets(sets)
+        (x_min,x_max,x) = self.getValuesSets(sets)
 
         # calculate values
         plot_items = []
         for s_name in sorted(sets,key=sort_key):
             s = sets[s_name]
             if isinstance(s,fuzzy.set.Polygon.Polygon):
-                p = [(min,s(min))] + s.points + [(max,s(max))]
-                plot_item=Gnuplot.PlotItems.Data(p,title=s_name)
+                p = [(x_min,s(x_min))] + s.points + [(x_max,s(x_max))]
+                plot_item = Gnuplot.PlotItems.Data(p,title=s_name)
             else:
-                plot_item=Gnuplot.funcutils.compute_Data(x, s, title=s_name)
+                plot_item = Gnuplot.funcutils.compute_Data(x,s,title=s_name)
             plot_items.append(plot_item)
 
         xlabel = description or ""
         if units is not None:
             xlabel += " [%s]" % units
-        g = self.initGnuplot2D(filename=name,xlabel=xlabel,ylabel="membership",title=name,xrange_=(min,max),yrange=(-0.2,1.2))
+        g = self.initGnuplot2D(filename=name,xlabel=xlabel,ylabel="membership",title=name,xrange_=(x_min,x_max),yrange=(-0.2,1.2),x_logscale=x_logscale,y_logscale=y_logscale)
         g('set style fill transparent solid 0.5 border')
         g('set style data filledcurves y1=0')
         g.plot(*plot_items)
@@ -231,8 +228,8 @@ class Doc(object):
                 y_name=y_name,
                 input_dict=input_dict,
                 output_dict=output_dict):
-            input_dict[x_name]=x
-            output_dict[y_name]=0.0
+            input_dict[x_name] = x
+            output_dict[y_name] = 0.0
 
             system.calculate(input_dict,output_dict)
 
@@ -280,9 +277,9 @@ class Doc(object):
                 z_name=z_name,
                 input_dict=input_dict,
                 output_dict=output_dict):
-            input_dict[x_name]=x
-            input_dict[y_name]=y
-            output_dict[z_name]=0.0
+            input_dict[x_name] = x
+            input_dict[y_name] = y
+            output_dict[z_name] = 0.0
 
             system.calculate(input_dict,output_dict)
 
@@ -333,9 +330,9 @@ class Doc(object):
                 adjective=adjective,
                 input_dict=input_dict,
                 output_dict=output_dict):
-            input_dict[x_name]=x
-            input_dict[y_name]=y
-            output_dict[z_name]=0.0
+            input_dict[x_name] = x
+            input_dict[y_name] = y
+            output_dict[z_name] = 0.0
 
             system.calculate(input_dict,output_dict)
 

@@ -33,7 +33,7 @@ Examples can be found here U{http://pyfuzzy.sourceforge.net/test/merge/}
   where S_NORM is a s-norm eg. Max.
   (or a function which accepts two parameters as max().)
 
-* Negation of set1 can be done by
+* Complement of set1 can be done by
   
   C{set = norm(lambda a,b:1.0-a ,set1,0.0)}
   
@@ -51,7 +51,7 @@ Examples can be found here U{http://pyfuzzy.sourceforge.net/test/merge/}
   and act_value is the result of a rule calculation.
 """
 
-__revision__ = "$Id: operations.py,v 1.3 2009-08-07 07:19:19 rliebscher Exp $"
+__revision__ = "$Id: operations.py,v 1.4 2009-08-31 21:02:06 rliebscher Exp $"
 
 # helper functions
 def _find_null_steffensen(x,f,epsilon=None):
@@ -79,7 +79,6 @@ def _find_null_steffensen(x,f,epsilon=None):
     g = lambda x,f=f: x-f(x)
     x_2,x_1,x_0 = None,None,x
     q_0,q_1 = 0.0,0.0
-    e = None
     while abs(q_0)<1.0 or abs(q_1)<1.0:
         y0 = x_0
         y1 = g(y0)
@@ -99,199 +98,265 @@ def _find_null_steffensen(x,f,epsilon=None):
 
 
 def _merge_generator(NORM, set1, set2):
-        """Returns a new fuzzy set which ist the merger of set1 and set2,
-        where the membership of the result set is equal to C{NORM(set1(x),set2(x))}.
-           
-        @param NORM: fuzzy norm to calculate both sets values. For example Min(), Max(), ...
-            Also possible as two params function, eg. C{lambda a,b: (a+b)/2.}.
-        @type NORM: L{fuzzy.norm.Norm.Norm}
-        @param set1: fuzzy set
-        @type set1: L{fuzzy.set.Set}
-        @param set2: fuzzy set
-        @type set2: L{fuzzy.set.Set}
-        @return: resulting fuzzy set
-        @rtype: L{fuzzy.set.Polygon.Polygon}
-           """
-        from fuzzy.set.Polygon import Polygon
-        g1 = set1.getIntervalGenerator()
-        g2 = set2.getIntervalGenerator()
+    """Returns a new fuzzy set which ist the merger of set1 and set2,
+    where the membership of the result set is equal to C{NORM(set1(x),set2(x))}.
+    
+    @param NORM: fuzzy norm to calculate both sets values. For example Min(), Max(), ...
+        Also possible as two params function, eg. C{lambda a,b: (a+b)/2.}.
+    @type NORM: L{fuzzy.norm.Norm.Norm}
+    @param set1: fuzzy set
+    @type set1: L{fuzzy.set.Set}
+    @param set2: fuzzy set
+    @type set2: L{fuzzy.set.Set}
+    @return: resulting fuzzy set
+    @rtype: L{fuzzy.set.Polygon.Polygon}
+       """
+    from fuzzy.set.Polygon import Polygon
+    g1 = set1.getIntervalGenerator()
+    g2 = set2.getIntervalGenerator()
 
-        x = g1.nextInterval(None,None)
-        x_ = g2.nextInterval(None,x)
-        if x_ is not None and x_ < x:
+    x = g1.nextInterval(None,None)
+    x_ = g2.nextInterval(None,x)
+    if x_ is not None and x_ < x:
+        x = x_
+    if x is None:
+        return
+    y1 = set1(x)
+    y2 = set2(x)
+    yield (x,NORM(y1,y2))
+    while 1:
+        prev_x, prev_y1, prev_y2 = x, y1, y2
+        # get new interval from sets
+        x = g1.nextInterval(prev_x,None)
+        x_ = g2.nextInterval(prev_x,x)
+        if x is None and x_ is None: # no need for more intervals
+            break
+        if x is None: 
+            # first set is finished => take values from second 
             x = x_
-        if x is None:
-            return
+        else:
+            if x_ is None:
+                # second set is finished first, x is already ok
+                pass
+            else:
+                if x_ < x:
+                    # both need more calculations, get smaller value
+                    x = x_
         y1 = set1(x)
         y2 = set2(x)
-        yield (x,NORM(y1,y2))
-        while 1:
-            prev_x, prev_y1, prev_y2 = x, y1, y2
-            # get new interval from sets
-            x = g1.nextInterval(prev_x,None)
-            x_ = g2.nextInterval(prev_x,x)
-            if x is None and x_ is None: # no need for more intervals
-                break
-            if x is None: 
-                # first set is finished => take values from second 
-                x = x_
-            else:
-                if x_ is None:
-                    # second set is finished first, x is already ok
-                    pass
-                else:
-                    if x_ < x:
-                        # both need more calculations, get smaller value
-                        x = x_
+        # test if intersection => split interval
+        if (x != prev_x) and ((y1>y2 and prev_y1<prev_y2) or (y1<y2 and prev_y1>prev_y2)):
+            saved_x, saved_y1, saved_y2 = x, y1, y2
+            # calculate intersection
+            y_diff = y1-y2
+            prev_y_diff = prev_y2-prev_y1
+            p = prev_y_diff/(prev_y_diff + y_diff)
+            x = prev_x + p * (x-prev_x)
+            if not (isinstance(set1,Polygon)
+               and isinstance(set2,Polygon)):
+                # in this case we have only an approximation
+                x = _find_null_steffensen(x,lambda x,set1=set1,set2=set2:set1(x)-set2(x))
             y1 = set1(x)
             y2 = set2(x)
-            # test if intersection => split interval
-            if (x != prev_x) and ((y1>y2 and prev_y1<prev_y2) or (y1<y2 and prev_y1>prev_y2)):
-                saved_x, saved_y1, saved_y2 = x, y1, y2
-                # calculate intersection
-                y_diff = y1-y2
-                prev_y_diff = prev_y2-prev_y1
-                p = prev_y_diff/(prev_y_diff + y_diff)
-                x = prev_x + p * (x-prev_x)
-                if not (isinstance(set1,Polygon)
-                   and isinstance(set2,Polygon)):
-                    # in this case we have only an approximation
-                    x = _find_null_steffensen(x,lambda x,set1=set1,set2=set2:set1(x)-set2(x))
-                y1 = set1(x)
-                y2 = set2(x)
-                # add this point
-                yield (x,NORM(y1,y2))
-                # restore saved point
-                prev_x, prev_y1, prev_y2 = x, y1, y2
-                x,y1,y2 = saved_x,saved_y1,saved_y2
             # add this point
             yield (x,NORM(y1,y2))
-        return
+            # restore saved point
+            prev_x, prev_y1, prev_y2 = x, y1, y2
+            x,y1,y2 = saved_x,saved_y1,saved_y2
+        # add this point
+        yield (x,NORM(y1,y2))
+    return
 
 
 def merge(NORM, set1, set2, segment_size=None):
-        """Returns a new fuzzy set which ist the merger of set1 and set2,
-        where the membership of the result set is equal to C{NORM(set1(x),set2(x))}.
-        
-        For nonlinear operations you might want set the segment size to a value 
-        which controls how large a linear segment of the result can be. 
-        See also the following examples:
-          - U{http://pyfuzzy.sourceforge.net/test/merge/AlgebraicProduct_d_d.png} - The algebraic product is M{x*y}, so using it on the same set, it calculates the square of it.
-          - U{http://pyfuzzy.sourceforge.net/test/merge/AlgebraicSum_d_d.png} - The algebraic sum is M{x+y-x*y}.
-           
-        @param NORM: fuzzy norm to calculate both sets values. For example Min(), Max(), ...
-            Also possible as two params function, eg. C{lambda a,b: (a+b)/2.}.
-        @type NORM: L{fuzzy.norm.Norm.Norm}
-        @param set1: fuzzy set
-        @type set1: L{fuzzy.set.Set}
-        @param set2: fuzzy set
-        @type set2: L{fuzzy.set.Set}
-        @param segment_size: maximum size of a segment
-        @type segment_size: float/None
-        @return: resulting fuzzy set
-        @rtype: L{fuzzy.set.Polygon.Polygon}
-           """
-        from fuzzy.set.Polygon import Polygon
-        ret = Polygon()
+    """Returns a new fuzzy set which ist the merger of set1 and set2,
+    where the membership of the result set is equal to C{NORM(set1(x),set2(x))}.
+    
+    For nonlinear operations you might want set the segment size to a value 
+    which controls how large a linear segment of the result can be. 
+    See also the following examples:
+      - U{http://pyfuzzy.sourceforge.net/test/merge/AlgebraicProduct_d_d.png} - The algebraic product is M{x*y}, so using it on the same set, it calculates the square of it.
+      - U{http://pyfuzzy.sourceforge.net/test/merge/AlgebraicSum_d_d.png} - The algebraic sum is M{x+y-x*y}.
+       
+    @param NORM: fuzzy norm to calculate both sets values. For example Min(), Max(), ...
+        Also possible as two params function, eg. C{lambda a,b: (a+b)/2.}.
+    @type NORM: L{fuzzy.norm.Norm.Norm}
+    @param set1: fuzzy set
+    @type set1: L{fuzzy.set.Set}
+    @param set2: fuzzy set
+    @type set2: L{fuzzy.set.Set}
+    @param segment_size: maximum size of a segment
+    @type segment_size: float/None
+    @return: resulting fuzzy set
+    @rtype: L{fuzzy.set.Polygon.Polygon}
+       """
+    from fuzzy.set.Polygon import Polygon
+    ret = Polygon()
 
-        prev_x,prev_y = None,None
-        for x,y in _merge_generator(NORM,set1,set2):
-            if (segment_size is not None) and (prev_x is not None) and (abs(y-prev_y)>0.01):
-                diff = x-prev_x
-                if  diff > 2.*segment_size:
-                    n = int(diff/segment_size)
-                    dx = diff/n
-                    for i in range(1,n):
-                        x_ = prev_x+i*dx
-                        ret.add(x_,NORM(set1(x_),set2(x_)))
-            ret.add(x,y)
-            prev_x,prev_y = x,y
+    prev_x,prev_y = None,None
+    for x,y in _merge_generator(NORM,set1,set2):
+        if (segment_size is not None) and (prev_x is not None) and (abs(y-prev_y)>0.01):
+            diff = x-prev_x
+            if  diff > 2.*segment_size:
+                n = int(diff/segment_size)
+                dx = diff/n
+                for i in range(1,n):
+                    x_ = prev_x+i*dx
+                    ret.add(x_,NORM(set1(x_),set2(x_)))
+        ret.add(x,y)
+        prev_x,prev_y = x,y
 
-        return ret
+    return ret
 
 
 def _norm_generator(NORM, set, value):
-        """Returns a new fuzzy set which ist this set normed with value.
-       where the membership of the result set is equal to C{NORM(set(x),value)}.
-        
-        @param NORM: fuzzy norm to calculate set's values with value. For example Min(), Max(), ...
-            Also possible as two params function, eg. C{lambda a,b: (a+b)/2.}.
-        @type NORM: L{fuzzy.norm.Norm.Norm}
-        @param set: fuzzy set
-        @type set: L{fuzzy.set.Set}
-        @param value: value
-        @type value: float
-        @return: resulting fuzzy set
-        @rtype: L{fuzzy.set.Polygon.Polygon}
-        """
-        from fuzzy.set.Polygon import Polygon
-        g = set.getIntervalGenerator()
+    """Returns a new fuzzy set which ist this set normed with value.
+    where the membership of the result set is equal to C{NORM(set(x),value)}.
+    
+    @param NORM: fuzzy norm to calculate set's values with value. For example Min(), Max(), ...
+        Also possible as two params function, eg. C{lambda a,b: (a+b)/2.}.
+    @type NORM: L{fuzzy.norm.Norm.Norm}
+    @param set: fuzzy set
+    @type set: L{fuzzy.set.Set}
+    @param value: value
+    @type value: float
+    @return: resulting fuzzy set
+    @rtype: L{fuzzy.set.Polygon.Polygon}
+    """
+    from fuzzy.set.Polygon import Polygon
+    g = set.getIntervalGenerator()
 
-        x = g.nextInterval(None,None)
-        if x is None:
-            return
+    x = g.nextInterval(None,None)
+    if x is None:
+        return
+    y = set(x)
+    yield (x,NORM(y,value))
+    while 1:
+        prev_x, prev_y = x, y
+        # get new interval from sets
+        x = g.nextInterval(prev_x,None)
+        if x is None: # no need for more intervals
+            break
         y = set(x)
-        yield (x,NORM(y,value))
-        while 1:
-            prev_x, prev_y = x, y
-            # get new interval from sets
-            x = g.nextInterval(prev_x,None)
-            if x is None: # no need for more intervals
-                break
+        # test if intersection => split interval
+        if (x != prev_x) and ((y>value and prev_y<value) or (y<value and prev_y>value)):
+            saved_x, saved_y = x, y
+            # calculate intersection
+            y_diff = y-value
+            prev_y_diff = value-prev_y
+            p = prev_y_diff/(prev_y_diff + y_diff)
+            x = prev_x + p * (x-prev_x)
+            if not isinstance(set,Polygon):
+                # in this case we have only an approximation
+                x = _find_null_steffensen(x,lambda x,set=set,value=value:set(x)-value)
             y = set(x)
-            # test if intersection => split interval
-            if (x != prev_x) and ((y>value and prev_y<value) or (y<value and prev_y>value)):
-                saved_x, saved_y = x, y
-                # calculate intersection
-                y_diff = y-value
-                prev_y_diff = value-prev_y
-                p = prev_y_diff/(prev_y_diff + y_diff)
-                x = prev_x + p * (x-prev_x)
-                if not isinstance(set,Polygon):
-                    # in this case we have only an approximation
-                    x = _find_null_steffensen(x,lambda x,set=set,value=value:set(x)-value)
-                y = set(x)
-                # add this point
-                yield (x,NORM(y,value))
-                # restore saved point
-                prev_x, prev_y = x, y
-                x,y = saved_x,saved_y
             # add this point
             yield (x,NORM(y,value))
-        return
+            # restore saved point
+            prev_x, prev_y = x, y
+            x,y = saved_x,saved_y
+        # add this point
+        yield (x,NORM(y,value))
+    return
 
 def norm(NORM, set, value,segment_size=None):
-        """Returns a new fuzzy set which ist this set normed with value.
-       where the membership of the result set is equal to C{NORM(set(x),value)}.
+    """Returns a new fuzzy set which ist this set normed with value.
+    where the membership of the result set is equal to C{NORM(set(x),value)}.
 
-       For meaning of segment_size see also L{fuzzy.set.operations.merge}.
-        
-        @param NORM: fuzzy norm to calculate set's values with value. For example Min(), Max(), ...
-            Also possible as two params function, eg. C{lambda a,b: (a+b)/2.}.
-        @type NORM: L{fuzzy.norm.Norm.Norm}
-        @param set: fuzzy set
-        @type set: L{fuzzy.set.Set}
-        @param value: value
-        @type value: float
-        @param segment_size: maximum size of a segment
-        @type segment_size: float/None
-        @return: resulting fuzzy set
-        @rtype: L{fuzzy.set.Polygon.Polygon}
-        """
-        from fuzzy.set.Polygon import Polygon
-        ret = Polygon()
+    For meaning of segment_size see also L{fuzzy.set.operations.merge}.
+    
+    @param NORM: fuzzy norm to calculate set's values with value. For example Min(), Max(), ...
+        Also possible as two params function, eg. C{lambda a,b: (a+b)/2.}.
+    @type NORM: L{fuzzy.norm.Norm.Norm}
+    @param set: fuzzy set
+    @type set: L{fuzzy.set.Set}
+    @param value: value
+    @type value: float
+    @param segment_size: maximum size of a segment
+    @type segment_size: float/None
+    @return: resulting fuzzy set
+    @rtype: L{fuzzy.set.Polygon.Polygon}
+    """
+    from fuzzy.set.Polygon import Polygon
+    ret = Polygon()
 
-        prev_x,prev_y = None,None
-        for x,y in _norm_generator(NORM,set,value):
-            if (segment_size is not None) and (prev_x is not None) and (abs(y-prev_y)>0.01):
-                diff = x-prev_x
-                if  diff > 2.*segment_size:
-                    n = int(diff/segment_size)
-                    dx = diff/n
-                    for i in range(1,n):
-                        x_ = prev_x+i*dx
-                        ret.add(x_,NORM(set(x_),value))
-            ret.add(x,y)
-            prev_x,prev_y = x,y
+    prev_x,prev_y = None,None
+    for x,y in _norm_generator(NORM,set,value):
+        if (segment_size is not None) and (prev_x is not None) and (abs(y-prev_y)>0.01):
+            diff = x-prev_x
+            if  diff > 2.*segment_size:
+                n = int(diff/segment_size)
+                dx = diff/n
+                for i in range(1,n):
+                    x_ = prev_x+i*dx
+                    ret.add(x_,NORM(set(x_),value))
+        ret.add(x,y)
+        prev_x,prev_y = x,y
 
-        return ret
+    return ret
+
+def _complement_generator(COMPLEMENT, set):
+    """Returns a new fuzzy set which ist this complement of the given set.
+    (Where the membership of the result set is equal to C{COMPLEMENT(set(x))}.
+    
+    @param COMPLEMENT: fuzzy complement to use. For example Zadeh(), ...
+        Also possible as one param function, eg. C{lambda x: 1.-x}.
+    @type COMPLEMENT: L{fuzzy.complement.Base.Base}
+    @param set: fuzzy set
+    @type set: L{fuzzy.set.Set}
+    @return: resulting fuzzy set
+    @rtype: L{fuzzy.set.Polygon.Polygon}
+    """
+    from fuzzy.set.Polygon import Polygon
+    g = set.getIntervalGenerator()
+
+    x = g.nextInterval(None,None)
+    if x is None:
+        return
+    y = set(x)
+    yield (x,COMPLEMENT(y))
+    while 1:
+        prev_x, prev_y = x, y
+        # get new interval from sets
+        x = g.nextInterval(prev_x,None)
+        if x is None: # no need for more intervals
+            break
+        y = set(x)
+        # add this point
+        yield (x,COMPLEMENT(y))
+    return
+
+
+def complement(COMPLEMENT, set,segment_size=None):
+    """Returns a new fuzzy set which ist this complement of the given set.
+    (Where the membership of the result set is equal to C{COMPLEMENT(set(x))}.
+
+    For meaning of segment_size see also L{fuzzy.set.operations.merge}.
+    
+    @param COMPLEMENT: fuzzy complement to use. For example Zadeh(), ...
+        Also possible as one param function, eg. C{lambda x: 1.-x}.
+    @type COMPLEMENT: L{fuzzy.complement.Base.Base}
+    @param set: fuzzy set
+    @type set: L{fuzzy.set.Set}
+    @param segment_size: maximum size of a segment
+    @type segment_size: float/None
+    @return: resulting fuzzy set
+    @rtype: L{fuzzy.set.Polygon.Polygon}
+    """
+    from fuzzy.set.Polygon import Polygon
+    ret = Polygon()
+
+    prev_x,prev_y = None,None
+    for x,y in _complement_generator(COMPLEMENT,set):
+        if (segment_size is not None) and (prev_x is not None) and (abs(y-prev_y)>0.01):
+            diff = x-prev_x
+            if  diff > 2.*segment_size:
+                n = int(diff/segment_size)
+                dx = diff/n
+                for i in range(1,n):
+                    x_ = prev_x+i*dx
+                    ret.add(x_,COMPLEMENT(set(x_)))
+        ret.add(x,y)
+        prev_x,prev_y = x,y
+
+    return ret

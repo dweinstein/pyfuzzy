@@ -15,7 +15,7 @@
 # this program; if not, see <http://www.gnu.org/licenses/>. 
 #
 
-__revision__ = "$Id: DrasticProduct.py,v 1.3 2009-08-07 07:19:19 rliebscher Exp $"
+__revision__ = "$Id: DrasticProduct.py,v 1.4 2009-08-31 21:02:06 rliebscher Exp $"
 
 from fuzzy.norm.Norm import Norm,NormException
 
@@ -29,6 +29,8 @@ class DrasticProduct(Norm):
             raise NormException("%s is supported only for 2 parameters" % self.__class__.__name__ )
         x = float(args[0])
         y = float(args[1])
-        if y == 1.0: return x
-        if x == 1.0: return y
+        if y == 1.0:
+            return x
+        if x == 1.0:
+            return y
         return 0.0

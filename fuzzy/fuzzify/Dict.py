@@ -15,7 +15,7 @@
 # this program; if not, see <http://www.gnu.org/licenses/>. 
 #
 
-__revision__ = "$Id: Dict.py,v 1.2 2009-08-07 07:19:18 rliebscher Exp $"
+__revision__ = "$Id: Dict.py,v 1.3 2009-08-31 21:02:06 rliebscher Exp $"
 
 
 from fuzzy.fuzzify.Base import Base
@@ -53,7 +53,7 @@ class Dict(Base):
       """
 
     def __init__(self,*args,**keywords):
-        super(Base,self).__init__(*args,**keywords)
+        super(Dict,self).__init__(*args,**keywords)
 
     def setValue(self,variable,value):
         """Do not let adjectives calculate their membership values."""

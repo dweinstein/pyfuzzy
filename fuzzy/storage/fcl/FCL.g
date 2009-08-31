@@ -1,4 +1,4 @@
-/** 
+/**
 
  Grammar definition for FCL used fuzzy.fcl.Reader of pyfuzzy 
 
@@ -6,15 +6,15 @@
  Copyright (C) 2009  Rene Liebscher
 
  This program is free software; you can redistribute it and/or modify it under
- the terms of the GNU Lesser General Public License as published by the Free 
+ the terms of the GNU Lesser General Public License as published by the Free
  Software Foundation; either version 3 of the License, or (at your option) any
  later version.
 
- This program is distributed in the hope that it will be useful, but WITHOUT 
+ This program is distributed in the hope that it will be useful, but WITHOUT
  ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
  FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details.
- 
- You should have received a copy of the GNU Lesser General Public License along with 
+
+ You should have received a copy of the GNU Lesser General Public License along with
  this program; if not, see <http://www.gnu.org/licenses/>. 
 
 */
@@ -47,8 +47,8 @@ def getNorm(name,p=None):
 	"""Get an instance of a fuzzy norm with given name.
 	Normally looks into the fuzzy.norm package for a suitable class.
 	"""
-	m=__import__("fuzzy.norm."+name,fromlist=[name])
-	c=m.__dict__[name]
+	m = __import__("fuzzy.norm."+name,fromlist=[name])
+	c = m.__dict__[name]
 	if p is None:
 		return c()
 	else:
@@ -58,8 +58,8 @@ def getDefuzzificationMethod(name):
 	"""Get an instance of a defuzzification method with given name.
 	Normally looks into the fuzzy.defuzzify package for a suitable class.
 	"""
-	m=__import__("fuzzy.defuzzify."+name,fromlist=[name])
-	c=m.__dict__[name]
+	m = __import__("fuzzy.defuzzify."+name,fromlist=[name])
+	c = m.__dict__[name]
 	return c()
 
 # container for definitions of operator/norm pairs
@@ -103,19 +103,19 @@ self.System = None
 // main rule of parser
 main returns [system]	:	{self.System = None;} function_block_declaration {$system = self.System;};
 
-function_block_declaration 
-	: 
-		'FUNCTION_BLOCK' 
+function_block_declaration
+	:
+		'FUNCTION_BLOCK'
 		function_block_name { self.System = fuzzy.System.System(description=$function_block_name.text); }
 		type_definition*
 		fb_io_var_declarations*
 //		other_var_declarations*
 		function_block_body
-		'END_FUNCTION_BLOCK' 
+		'END_FUNCTION_BLOCK'
 		EOF
 	;
 
-type_definition 
+type_definition
 	:	'STRUCT' Identifier { defineStructType($Identifier.text); } struct_element[$Identifier.text]+ 'END_STRUCT'
 	;
 
@@ -123,8 +123,8 @@ struct_element[struct_name]
 	:	Identifier ':' 'REAL' ';' { defineStructTypeElement($struct_name,$Identifier.text);}
 	;
 
-fb_io_var_declarations 
-	: input_declarations 
+fb_io_var_declarations
+	: input_declarations
 	| output_declarations
 	;
 
@@ -133,11 +133,11 @@ output_declarations : 'VAR_OUTPUT' var_decl[1]+ 'END_VAR';//see IEC 1131-3 Annex
 
 // define a fuzzy variable (param output_var is a flag if an input or output variable)
 var_decl[output_var]
-	:	 
-		Identifier 
-		':' 
-		type 
-		';' 
+	:
+		Identifier
+		':'
+		type
+		';'
 {
 if $output_var == 0:
 	var=fuzzy.InputVariable.InputVariable()
@@ -146,51 +146,51 @@ if $output_var == 0:
 		var.fuzzify = fuzzy.fuzzify.Dict.Dict();
 		# create adjectives for all struct members
 		for i in $type.struct_type:
-			var.adjectives[i]=fuzzy.Adjective.Adjective(fuzzy.set.Set.Set())
+			var.adjectives[i] = fuzzy.Adjective.Adjective(fuzzy.set.Set.Set())
 	else:
 		# default is the plain fuzzification
 		var.fuzzify = fuzzy.fuzzify.Plain.Plain();
 else:
-	var=fuzzy.OutputVariable.OutputVariable()
+	var = fuzzy.OutputVariable.OutputVariable()
 	if $type.struct_type is not None:
 		# set defuzzification method to dictionary output
 		var.defuzzify = fuzzy.defuzzify.Dict.Dict();
 		# create adjectives for all struct members
 		for i in $type.struct_type:
-			var.adjectives[i]=fuzzy.Adjective.Adjective(fuzzy.set.Set.Set())
+			var.adjectives[i] = fuzzy.Adjective.Adjective(fuzzy.set.Set.Set())
 self.System.variables[$Identifier.text]=var;
 };
 
 // variable definition type (returns None for REAL typed variables or a list of element name for struct typed ones.)
-type returns [struct_type]	
-	:	
+type returns [struct_type]
+	:
 	 'REAL' {$struct_type = None; }
 	|
 	Identifier { $struct_type = getStructType($Identifier.text); }
 	 ;
-	
+
 //other_var_declarations : var_declarations;
 //var_declarations : ;//see IEC 1131-3 Annex B
 
-function_block_body 
-	: 
+function_block_body
+	:
 	  fuzzify_block*
 	  defuzzify_block*
    	  rule_block*
 	  option_block*
 	;
 
-fuzzify_block 
-	: 
-	  'FUZZIFY' 
+fuzzify_block
+	:
+	  'FUZZIFY'
 	  variable_name
 	  linguistic_term[$variable_name.text]*
 	  'END_FUZZIFY'
 	;
 
-defuzzify_block 
-	: 
-	  'DEFUZZIFY' 
+defuzzify_block
+	:
+	  'DEFUZZIFY'
 	  f_variable_name
 	  linguistic_term[$f_variable_name.text]*
 	  accumulation_method
@@ -199,10 +199,10 @@ defuzzify_block
 	  range?
 	  'END_DEFUZZIFY'
 	;
-	
-rule_block 
-	: 
-	  'RULEBLOCK' 
+
+rule_block
+	:
+	  'RULEBLOCK'
 	  	rule_block_name
 	  	operator_definition*
 	  	activation_method?
@@ -216,60 +216,60 @@ option_block : 'OPTION'
 
 // define an adjective of a variable
 linguistic_term [var_name]
-	: 
-	'TERM' term_name ':=' membership_function ';' 
+	:
+	'TERM' term_name ':=' membership_function ';'
 {
-self.System.variables[$var_name].adjectives[$term_name.text]=fuzzy.Adjective.Adjective($membership_function.set);
+self.System.variables[$var_name].adjectives[$term_name.text] = fuzzy.Adjective.Adjective($membership_function.set);
 }
 ;
 
 // parse the membership of adjective definition (currently only singletons or polygons)
 membership_function returns [set]
-	: 
-		singleton {$set = $singleton.set;} 
-	| 
+	:
+		singleton {$set = $singleton.set;}
+	|
 		points {$set = $points.set;}
 	;
 
-singleton returns [set] 
-	: 
-		numeric_literal {$set = fuzzy.set.Singleton.Singleton(float($numeric_literal.text));} 
-	| 
+singleton returns [set]
+	:
+		numeric_literal {$set = fuzzy.set.Singleton.Singleton(float($numeric_literal.text));}
+	|
 		variable_name
 	;
 
 points returns [set]
 @init {
-p=[]
+p = []
 }
 	:
  	(
- 		'(' 
- 		(x=numeric_literal | variable_name) 
- 		',' 
- 		y=numeric_literal 
- 		')' 
- 		{p.append((float($x.text),float($y.text)));} 
- 	)* 
- 	{$set = fuzzy.set.Polygon.Polygon(p);} 
+ 		'('
+ 		(x=numeric_literal | variable_name)
+ 		','
+ 		y=numeric_literal
+ 		')'
+ 		{p.append((float($x.text),float($y.text)));}
+ 	)*
+ 	{$set = fuzzy.set.Polygon.Polygon(p);}
  	;
 
 // parse the defuzzification method, any existent class in fuzzy.defuzzify is accepted.
 // COA from the standard is currently not available in fuzzy.defuzzify
-defuzzification_method [var_name] : 
-	'METHOD' ':' 
+defuzzification_method [var_name] :
+	'METHOD' ':'
 	Identifier {self.System.variables[$var_name].defuzzify = getDefuzzificationMethod($Identifier.text);}
 	';'
 	;
 
 
-default_value [var_name] : 
-	'DEFAULT' ':=' 
+default_value [var_name] :
+	'DEFAULT' ':='
 	(
 		numeric_literal {self.System.variables[$var_name].defuzzify.failsafe = float($numeric_literal.text);}
-	| 
+	|
 		'NC' {self.System.variables[$var_name].defuzzify.failsafe = None;}
-	) 
+	)
 	';'
 	;
 
@@ -289,17 +289,17 @@ operator_name_any returns [op]
 
 // take any predefined name for AND or any other norm
 operator_name_AND returns [op]
-	: ('MIN' {$op=getNorm("Min");})
-	 | ('PROD' {$op=getNorm("AlgebraicProduct");}) 
-	 | ('BDIF' {$op=getNorm("BoundedDifference");})
-	| (norm= operator_name_any {$op=$norm.op;})
+	: ('MIN' {$op = getNorm("Min");})
+	 | ('PROD' {$op = getNorm("AlgebraicProduct");})
+	 | ('BDIF' {$op = getNorm("BoundedDifference");})
+	| (norm= operator_name_any {$op = $norm.op;})
 	;
 // take any predefined name for OR or any other norm
 operator_name_OR returns [op]
-	: ('MAX' {$op=getNorm("Max");})
-	 | ('ASUM' {$op=getNorm("AlgebraicSum");}) 
-	 | ('BSUM' {$op=getNorm("BoundedSum");})
-	| (norm= operator_name_any {$op=$norm.op;})
+	: ('MAX' {$op = getNorm("Max");})
+	 | ('ASUM' {$op = getNorm("AlgebraicSum");})
+	 | ('BSUM' {$op = getNorm("BoundedSum");})
+	| (norm= operator_name_any {$op = $norm.op;})
 	;
 
 OR_	: 'OR' DIGIT* ;
@@ -328,9 +328,9 @@ op_name = None;
 	: 
 	(
 		s1=subcondition {$input = $s1.input}
-//		| 
+//		|
 //		variable_name
-	) 
+	)
 	(
 		(
 			op=(AND_|OR_) 
@@ -345,7 +345,7 @@ op_name = None;
 				$input = fuzzy.operator.Compound.Compound(getOperator($op.text),$input,$s2.input);
 			}
 		)
-//		| 
+//		|
 //		variable_name
 	)*
 	;
@@ -359,15 +359,15 @@ subcondition returns [input]
 // other variants
 // - any paranthesed expression
 // - any 'var IS xy' or 'var.xy' expression
-// - any function call like usage of norms as 'BoundedSum(...,...)' 
+// - any function call like usage of norms as 'BoundedSum(...,...)'
 subcondition2 returns [input]
-	: 
-	('(' c1=condition ')' 
+	:
+	('(' c1=condition ')'
 		{
 			$input = $c1.input;
 		}
-	) 
-	| 
+	)
+	|
 	( variable_name ('IS' x='NOT'? | '.' ) term_name 
 		{
 			$input = fuzzy.operator.Input.Input(self.System.variables[$variable_name.text].adjectives[$term_name.text])
@@ -375,7 +375,7 @@ subcondition2 returns [input]
 				$input = fuzzy.operator.Not.Not($input)
 		}
 	)
-	| 
+	|
 	(norm=operator_name_any '(' c4=condition ',' c5=condition ')' 
 		{
 			$input = fuzzy.operator.Compound.Compound($norm.op,$c4.input,$c5.input);
@@ -387,7 +387,7 @@ subcondition2 returns [input]
 
 conclusion returns  [adjs]
 @init{
-_adjs=[]
+_adjs = []
 }
 	: (
 		(     c1=conclusion2  {_adjs.append($c1.adj);} )
@@ -396,18 +396,18 @@ _adjs=[]
 	;
 
 conclusion2 returns  [adj]
-	: 
+	:
 	( '(' c2=conclusion3  ')' {$adj=$c2.adj;} )
-	| 
+	|
 	(     c1=conclusion3     {$adj=$c1.adj;} )
 	;
 
 conclusion3 returns  [adj]
-	: 
+	:
 	(
 //	variable_name
-//	| 
-	(v2=variable_name 'IS' t2=term_name {$adj=self.System.variables[$v2.text].adjectives[$t2.text];})
+//	|
+	(v2=variable_name 'IS' t2=term_name {$adj = self.System.variables[$v2.text].adjectives[$t2.text];})
 	)
 	;
 
@@ -423,9 +423,9 @@ self.System.rules[$block_name+'.'+$Integer_literal.text] = fuzzy.Rule.Rule(adjec
 }
 ;
 
-weighting_factor : 
-//	variable 
-//	| 
+weighting_factor :
+//	variable
+//	|
 	numeric_literal
 	;
 
@@ -446,18 +446,18 @@ Identifier : LETTER (LETTER|DIGIT)*;//see IEC 1131-3 Annex B
 fragment Integer_literal_wo_sign
 	: DIGIT+;
 Integer_literal
-	:	
+	:
 		('+'|'-')? Integer_literal_wo_sign ;// ???? see IEC 1131-3 Annex B
 		
-fragment LETTER	: 'A'..'Z'|'a'..'z'|'_';	
-fragment DIGIT	: '0'..'9';	
+fragment LETTER	: 'A'..'Z'|'a'..'z'|'_';
+fragment DIGIT	: '0'..'9';
 
 Real_literal
 	:	Integer_literal '.' Integer_literal_wo_sign (('e'|'E') Integer_literal)?;//see IEC 1131-3 Annex B
 
-WS  :  (' '|'\r'|'\t'|'\u000C'|'\n') {$channel=HIDDEN;}
+WS  :  (' '|'\r'|'\t'|'\u000C'|'\n') {$channel = HIDDEN;}
     ;
 
 COMMENT
-    :   '(*' ( options {greedy=false;} : . )* '*)' {$channel=HIDDEN;}
+    :   '(*' ( options {greedy=false;} : . )* '*)' {$channel = HIDDEN;}
     ;

@@ -15,22 +15,21 @@
 # this program; if not, see <http://www.gnu.org/licenses/>. 
 #
 
-__revision__ = "$Id: DrasticSum.py,v 1.4 2009-08-31 21:02:06 rliebscher Exp $"
+__revision__ = "$Id: Base.py,v 1.1 2009-08-31 21:02:06 rliebscher Exp $"
 
-from fuzzy.norm.Norm import Norm,NormException
+import fuzzy.Exception
 
-class DrasticSum(Norm):
+class ComplementException(fuzzy.Exception.Exception):
+    pass
 
-    def __init__(self):
-        Norm.__init__(self,Norm.S_NORM)
 
-    def __call__(self,*args):
-        if len(args) != 2:
-            raise NormException("%s is supported only for 2 parameters" % self.__class__.__name__ )
-        x = float(args[0])
-        y = float(args[1])
-        if y == 0.0:
-            return x
-        if x == 0.0:
-            return y
-        return 1.0
+class Base(object):
+    """base class for all complement methods"""
+
+    def __init__(self,*args,**keywords):
+        super(Base, self).__init__(*args,**keywords)
+
+    def __call__(self,value):
+        """Calculate the complement of the value."""
+        raise ComplementException("don't use the abstract base class")
+

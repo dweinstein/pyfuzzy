@@ -15,7 +15,7 @@
 # this program; if not, see <http://www.gnu.org/licenses/>. 
 #
 
-__revision__ = "$Id: Singleton.py,v 1.10 2009-08-07 07:19:19 rliebscher Exp $"
+__revision__ = "$Id: Singleton.py,v 1.11 2009-08-31 21:02:06 rliebscher Exp $"
 
 
 from fuzzy.set.Polygon import Polygon
@@ -40,7 +40,8 @@ class Singleton(Polygon):
 
     def __init__(self,x=0.0):
         super(Singleton,self).__init__()
-        self.x = x # update polygon
+        self._x = x # so it is defined and makes pychecker & Co. happy
+        self.x = x # update polygon (_x would be defined here in any case)
 
     @prop
     def x():

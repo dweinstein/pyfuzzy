@@ -15,14 +15,18 @@
 # this program; if not, see <http://www.gnu.org/licenses/>. 
 #
 
-__revision__ = "$Id: SchweizerIntersection2.py,v 1.4 2009-08-07 07:19:19 rliebscher Exp $"
+__revision__ = "$Id: SchweizerIntersection2.py,v 1.5 2009-08-31 21:02:06 rliebscher Exp $"
 
 from fuzzy.norm.Norm import NormException
 from fuzzy.norm.ParametricNorm import ParametricNorm
+from fuzzy.utils import inf_p,inf_n
 
 class SchweizerIntersection2(ParametricNorm):
+    """Schweizer,Sklar 1960"""
 
-    def __init__(self,p=0.5):
+    _range = [ (inf_n,0.),(0.,inf_p) ]
+
+    def __init__(self,p=1.):
         ParametricNorm.__init__(self,ParametricNorm.T_NORM,p)
 
     def __call__(self,*args):
@@ -31,7 +35,7 @@ class SchweizerIntersection2(ParametricNorm):
         p = self.p
         x = float(args[0])
         y = float(args[1])
-        if x == 0. or y == 0.:
+        if p > 0. and (x == 0. or y == 0.):
             return 0.
         def f(x,p):
             return 1./pow(x,p)

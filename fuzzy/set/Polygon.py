@@ -15,7 +15,7 @@
 # this program; if not, see <http://www.gnu.org/licenses/>. 
 #
 
-__revision__ = "$Id: Polygon.py,v 1.17 2009-08-07 07:19:19 rliebscher Exp $"
+__revision__ = "$Id: Polygon.py,v 1.18 2009-08-31 21:02:06 rliebscher Exp $"
 
 
 from fuzzy.set.Set import Set
@@ -67,7 +67,7 @@ class Polygon(Set):
         if x > p[-1][Polygon.X]:
             return p[-1][Polygon.Y]
 
-        x0 = p[0][Polygon.X];
+        x0 = p[0][Polygon.X]
         for i in range(1,len(p)):
             x1 = p[i][Polygon.X]
             # found right interval border
@@ -84,13 +84,13 @@ class Polygon(Set):
                     else:
                         # ... and use the maximum value
                         y_ = p[j][Polygon.Y]
-                        if y_>y:
+                        if y_ > y:
                             y = y_
                 return y
             y0 = p[i-1][Polygon.Y]
             y1 = p[i][Polygon.Y]
             # interpolate value in interval
-            if x1==x0: # should never happen
+            if x1 == x0: # should never happen
                 return max(y0,y1)
             return y0+(y1-y0)/(x1-x0)*(x-x0)
         return 0.0 # should never be reached
@@ -137,7 +137,7 @@ class Polygon(Set):
         if where == self.END:
             range_p.reverse()
         for i in range_p:
-            if self.__points[i][X] == x:
+            if self.__points[i][Polygon.X] == x:
                 self.__points.remove(i)
                 return
         #raise Exception("Not in points list")
@@ -166,7 +166,7 @@ class Polygon(Set):
 
         def nextInterval(self,prev,next):
             l = len(self.__points)
-            if l==0 or self.index>=l:
+            if l == 0 or self.index >= l:
                 return next
             if prev is None:
                 self.index = 0
