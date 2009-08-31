@@ -21,7 +21,7 @@ pyfuzzy is a python module for working with fuzzy sets
 (for example for controllers or other similar stuff, 
 it can be also used for decision making in business.)
 """
-__revision__ = "$Id: setup.py,v 1.11 2009-08-07 07:22:09 rliebscher Exp $"
+__revision__ = "$Id: setup.py,v 1.12 2009-08-31 21:07:35 rliebscher Exp $"
 
 from distutils.core import setup
 
@@ -43,6 +43,7 @@ PACKAGES = [
         'fuzzy.set',
         'fuzzy.operator',
         'fuzzy.norm',
+        'fuzzy.complement',
         'fuzzy.fuzzify',
         'fuzzy.defuzzify',
         'fuzzy.storage',
