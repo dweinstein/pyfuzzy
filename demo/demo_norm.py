@@ -21,7 +21,7 @@
 # this program; if not, see <http://www.gnu.org/licenses/>. 
 #
 
-__revision__ = "$Id: demo_norm.py,v 1.7 2009-08-07 07:17:17 rliebscher Exp $"
+__revision__ = "$Id: demo_norm.py,v 1.8 2009-08-31 20:57:49 rliebscher Exp $"
 
 
 try:
@@ -62,10 +62,10 @@ def get_Gnuplot():
 def plot(norm,title,filename,gnuplot=None,interactive=False):
     """Demonstrate a 3-d plot"""
     # set up x and y values at which the function will be tabulated:
-    import Numeric
     # use values  0.00 0.02 0.04 ... 0.96 0.98 1.00
-    x = Numeric.arange(51)/50.0
-    y = Numeric.arange(51)/50.0
+    steps = 50
+    x = [ i*1./steps for i in range(steps+1) ]
+    y = [ i*1./steps for i in range(steps+1) ]
 
     g = gnuplot or get_Gnuplot()
     g.title(title) 

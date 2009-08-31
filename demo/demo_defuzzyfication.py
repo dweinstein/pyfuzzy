@@ -23,14 +23,14 @@
 #
 
 
-__revision__ = "$Id: demo_defuzzyfication.py,v 1.9 2009-08-07 07:17:17 rliebscher Exp $"
+__revision__ = "$Id: demo_defuzzyfication.py,v 1.10 2009-08-31 20:57:49 rliebscher Exp $"
 
 from utils import get_classes
 
 def test():
     """test all found set classes with defuzzyfication method in specific kind
        of output variable class"""
-    import os,types,sys
+    import types,sys
     import fuzzy.set
     import fuzzy.defuzzify
     import fuzzy.OutputVariable

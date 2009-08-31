@@ -21,12 +21,12 @@
 #
 
 
-__revision__ = "$Id: utils.py,v 1.2 2009-08-07 07:17:17 rliebscher Exp $"
+__revision__ = "$Id: utils.py,v 1.3 2009-08-31 20:57:49 rliebscher Exp $"
 
 def get_classes(package):
     """Find all classes defined in given directory
     and return them as dictionary {name,instance}"""
-    import os,sys,imp
+    import os,imp
     package_name = package.__name__
     classes_dir = os.path.dirname(package.__file__)
     suffixes = []
