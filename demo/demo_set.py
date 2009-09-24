@@ -20,14 +20,16 @@
 # this program; if not, see <http://www.gnu.org/licenses/>. 
 #
 
-__revision__ = "$Id: demo_set.py,v 1.9 2009-08-31 20:57:49 rliebscher Exp $"
+__revision__ = "$Id: demo_set.py,v 1.10 2009-09-24 20:30:14 rliebscher Exp $"
+
+import sys, os
+sys.path.insert(0, os.path.join(os.path.abspath('$0'),os.path.pardir))
 
 try:
     # If the package has been installed correctly, this should work:
     import Gnuplot, Gnuplot.funcutils
 except ImportError:
     print "Sorry, you need Gnuplot to use this."
-    import sys
     sys.exit(1)
 
 from utils import get_classes

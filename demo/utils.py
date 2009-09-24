@@ -21,7 +21,7 @@
 #
 
 
-__revision__ = "$Id: utils.py,v 1.3 2009-08-31 20:57:49 rliebscher Exp $"
+__revision__ = "$Id: utils.py,v 1.4 2009-09-24 20:30:14 rliebscher Exp $"
 
 def get_classes(package):
     """Find all classes defined in given directory
@@ -50,3 +50,21 @@ def get_classes(package):
                     pass
                 break
     return objects
+
+from fuzzy.utils import inf_p,inf_n
+
+__params = (
+    ( [[0.,1.]]     , [0.0,0.25,0.50,0.75,1.] ),
+    ( [(0.,1.)]     , [0.05,0.25,0.50,0.75,0.95] ),
+    ( [(0.,inf_p)]  , [0.01,0.10,1.0,10.,100.] ),
+    ( [(-1.,inf_p)] , [-0.99,-0.1,0.0,0.10,1.0,10.,100.] ),
+    ( [(inf_n,-1.),(-1.,inf_p)] , [-100.,-10,-0.99,0.0,1.0,10.,100.] ),
+    ( [(0.,1.),(1.,inf_p)] , [0.1,0.9,1.1,10.,100.] ),
+    ( [(inf_n,0.),(0.,inf_p)] , [-100.,-10,-1.,-0.1,0.1,1.,10.,100.] )
+)
+
+def get_test_params(range_):
+    for p in __params:
+        if p[0] == range_:
+            return p[1]
+    raise Exception("No params for range %s defined." % repr(range_))

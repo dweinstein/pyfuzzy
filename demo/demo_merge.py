@@ -20,15 +20,16 @@
 # this program; if not, see <http://www.gnu.org/licenses/>. 
 #
 
+__revision__ = "$Id: demo_merge.py,v 1.11 2009-09-24 20:30:14 rliebscher Exp $"
 
-__revision__ = "$Id: demo_merge.py,v 1.10 2009-08-07 07:17:17 rliebscher Exp $"
+import sys, os
+sys.path.insert(0, os.path.join(os.path.abspath('$0'),os.path.pardir))
 
 try:
     # If the package has been installed correctly, this should work:
-    import Gnuplot, Gnuplot.funcutils, Gnuplot.PlotItems
+    import Gnuplot, Gnuplot.PlotItems
 except ImportError:
     print "Sorry, you need Gnuplot to use this."
-    import sys
     sys.exit(1)
 
 def makePlotItem(points,title):
@@ -62,26 +63,19 @@ def plotPlotItems(items,title,filename):
 def main():
     """Show examples merge and norm function using some example sets and norms"""
     import fuzzy
-    import fuzzy.Adjective
-    import fuzzy.Rule
-    import fuzzy.operator
-    import fuzzy.operator.Input
     import fuzzy.norm
     import fuzzy.norm.Min
     import fuzzy.norm.Max
     import fuzzy.norm.AlgebraicProduct
     import fuzzy.norm.AlgebraicSum
-    import fuzzy.set
     import fuzzy.set.Polygon
-    import fuzzy.set.Trapez
     import fuzzy.set.Triangle
     import fuzzy.set.Singleton
-    import fuzzy.set.Function
     import fuzzy.set.SFunction
     import fuzzy.set.ZFunction
     import fuzzy.set.PiFunction
 
-    from fuzzy.set.Set import Set,norm,merge
+    from fuzzy.set.operations import norm,merge
 
     class helper(object):
         def __init__(self,set,plotItems):

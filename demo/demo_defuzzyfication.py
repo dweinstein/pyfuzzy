@@ -22,15 +22,17 @@
 # this program; if not, see <http://www.gnu.org/licenses/>. 
 #
 
+__revision__ = "$Id: demo_defuzzyfication.py,v 1.11 2009-09-24 20:30:14 rliebscher Exp $"
 
-__revision__ = "$Id: demo_defuzzyfication.py,v 1.10 2009-08-31 20:57:49 rliebscher Exp $"
+import sys, os
+sys.path.insert(0, os.path.join(os.path.abspath('$0'),os.path.pardir))
 
 from utils import get_classes
 
 def test():
     """test all found set classes with defuzzyfication method in specific kind
        of output variable class"""
-    import types,sys
+    import types
     import fuzzy.set
     import fuzzy.defuzzify
     import fuzzy.OutputVariable

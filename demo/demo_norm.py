@@ -21,21 +21,23 @@
 # this program; if not, see <http://www.gnu.org/licenses/>. 
 #
 
-__revision__ = "$Id: demo_norm.py,v 1.8 2009-08-31 20:57:49 rliebscher Exp $"
+__revision__ = "$Id: demo_norm.py,v 1.9 2009-09-24 20:30:14 rliebscher Exp $"
 
+import sys, os
+sys.path.insert(0, os.path.join(os.path.abspath('$0'),os.path.pardir))
 
 try:
     # If the package has been installed correctly, this should work:
     import Gnuplot, Gnuplot.funcutils
 except ImportError:
     print "Sorry, you need Gnuplot to use this."
-    import sys
     sys.exit(1)
 
-from utils import get_classes
+from utils import get_classes, get_test_params
 import fuzzy.norm
+import string
 
-def get_Gnuplot():
+def getGnuplot():
     # A straightforward use of gnuplot.  The `debug=1' switch is used
     # in these examples so that the commands that are sent to gnuplot
     # are also output on stderr.
@@ -67,7 +69,7 @@ def plot(norm,title,filename,gnuplot=None,interactive=False):
     x = [ i*1./steps for i in range(steps+1) ]
     y = [ i*1./steps for i in range(steps+1) ]
 
-    g = gnuplot or get_Gnuplot()
+    g = gnuplot or getGnuplot()
     g.title(title) 
     print "Plot %s ... " % title
     #g.splot(Gnuplot.funcutils.compute_GridData(x,y, norm, binary=1))
@@ -82,14 +84,23 @@ def plot(norm,title,filename,gnuplot=None,interactive=False):
     g = None
 
 
-def plotNorm(norm,name,params=[0.05,0.25,0.50,0.75,0.95],gnuplot=None,interactive=False):
+#def plotNorm(norm,name,params=[0.05,0.25,0.50,0.75,0.95],gnuplot=None,interactive=False):
+def plotNorm(norm,name,params=None,gnuplot=None,interactive=False):
     import fuzzy.norm.ParametricNorm
     if isinstance(norm,fuzzy.norm.ParametricNorm.ParametricNorm):
-        for p in params:
-            norm.p = p
-            title = "%s (p=%4.2f)" % (name,p)
-            filename = "%s_%.2f" % (name,p)
-            plot(norm,title,filename,gnuplot,interactive)
+        if params is None:
+            params = get_test_params(norm.p_range)
+        # use letters to get sortable filenames
+        for p,letter in zip(params,string.ascii_lowercase):
+            try:
+                norm.p = p
+                title = "%s (p=%s)" % (name,p)
+                filename = "%s_%s_%s" % (name,letter,p)
+                plot(norm,title,filename,gnuplot,interactive)
+            except:
+                import traceback
+                traceback.print_exc()
+                raw_input('Please press return to continue...\n')
     else:
         title = "%s" % (name)
         filename = title
@@ -109,6 +120,7 @@ def test():
         except:
             import traceback
             traceback.print_exc()
+            #raw_input('Please press return to continue...\n')
 
 def interactive(name,params):
     """interactive use: plot norm using given params"""
@@ -119,19 +131,18 @@ def interactive(name,params):
         print "%s is unknown." % name 
         return
 
-    g = get_Gnuplot()
+    g = getGnuplot()
 
     if len(params) > 0:
         plotNorm(norm,name,params,gnuplot=g,interactive=True)
     else:
         plotNorm(norm,name,gnuplot=g,interactive=True)
-    
+
     g.close()
 
 
 # when executed, just run test():
 if __name__ == '__main__':
-    import sys
     if len(sys.argv) > 1:
         interactive(sys.argv[1],[float(x) for x in sys.argv[2:]])
     else:
