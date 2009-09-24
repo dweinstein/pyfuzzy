@@ -15,13 +15,12 @@
 # this program; if not, see <http://www.gnu.org/licenses/>. 
 #
 
-__revision__ = "$Id: Yager.py,v 1.1 2009-08-31 21:04:20 rliebscher Exp $"
+__revision__ = "$Id: Yager.py,v 1.2 2009-09-24 20:32:20 rliebscher Exp $"
 
-from fuzzy.complement.Base import Base
+from fuzzy.complement.Parametric import Parametric
 from fuzzy.utils import inf_p
-import math
 
-class Yager(Base):
+class Yager(Parametric):
     """Complement after Yager"""
 
     _range = [ (0.,inf_p) ]
@@ -29,9 +28,8 @@ class Yager(Base):
     def __init__(self,omega=1.,*args,**keywords):
         """
         """ 
-        super(Yager, self).__init__(*args,**keywords)
-        self.omega = float(omega)
+        super(Yager, self).__init__(omega,*args,**keywords)
 
     def __call__(self,value):
         """calculate the complement of the value"""
-        return math.pow(1. - math.pow(float(value),self.omega),1./self.omega)
+        return pow(1. - pow(float(value),self._p),1./self._p)

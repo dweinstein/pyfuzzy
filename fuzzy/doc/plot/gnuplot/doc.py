@@ -16,18 +16,18 @@
 #
 """Plotting of variables, adjectives, ... using gnuplot"""
 
-__revision__ = "$Id: doc.py,v 1.8 2009-08-31 21:02:06 rliebscher Exp $"
+__revision__ = "$Id: doc.py,v 1.9 2009-09-24 20:32:20 rliebscher Exp $"
 
 
 def getMinMax(set):
     """get tuple with minimum and maximum x-values used by the set."""
-    x_min = None
-    x_max = None
-
     ig = set.getIntervalGenerator()
 
     next = ig.nextInterval(None,None)
+    
     x_min = next
+    x_max = None
+    
     while next is not None:
         x_max = next
         next = ig.nextInterval(next,None)

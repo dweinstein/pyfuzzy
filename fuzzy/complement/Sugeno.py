@@ -15,12 +15,12 @@
 # this program; if not, see <http://www.gnu.org/licenses/>. 
 #
 
-__revision__ = "$Id: Sugeno.py,v 1.1 2009-08-31 21:04:20 rliebscher Exp $"
+__revision__ = "$Id: Sugeno.py,v 1.2 2009-09-24 20:32:20 rliebscher Exp $"
 
-from fuzzy.complement.Base import Base
+from fuzzy.complement.Parametric import Parametric
 from fuzzy.utils import inf_p
 
-class Sugeno(Base):
+class Sugeno(Parametric):
     """Complement after Sugeno"""
 
     _range = [ (-1.,inf_p) ]
@@ -28,9 +28,8 @@ class Sugeno(Base):
     def __init__(self,lambda_=0.,*args,**keywords):
         """
         """ 
-        super(Sugeno, self).__init__(*args,**keywords)
-        self.lambda_ = float(lambda_)
+        super(Sugeno, self).__init__(lambda_,*args,**keywords)
 
     def __call__(self,value):
         """calculate the complement of the value"""
-        return (1.-float(value))/(1.+self.lambda_*float(value))
+        return (1.-float(value))/(1.+self._p*float(value))

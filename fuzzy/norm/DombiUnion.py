@@ -15,13 +15,17 @@
 # this program; if not, see <http://www.gnu.org/licenses/>. 
 #
 
-__revision__ = "$Id: DombiUnion.py,v 1.4 2009-08-07 07:19:19 rliebscher Exp $"
+__revision__ = "$Id: DombiUnion.py,v 1.5 2009-09-24 20:32:20 rliebscher Exp $"
 
 from fuzzy.norm.Norm import NormException
 from fuzzy.norm.ParametricNorm import ParametricNorm
+from fuzzy.utils import inf_p
 
 class DombiUnion(ParametricNorm):
+    """Dombi 1982"""
 
+    _range = [ (0.,1.),(1.,inf_p) ]
+    
     def __init__(self,p=0.5):
         ParametricNorm.__init__(self,ParametricNorm.S_NORM,p)
 

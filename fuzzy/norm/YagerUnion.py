@@ -15,12 +15,17 @@
 # this program; if not, see <http://www.gnu.org/licenses/>. 
 #
 
-__revision__ = "$Id: YagerUnion.py,v 1.4 2009-08-31 21:02:06 rliebscher Exp $"
+__revision__ = "$Id: YagerUnion.py,v 1.5 2009-09-24 20:32:20 rliebscher Exp $"
 
 from fuzzy.norm.Norm import NormException
 from fuzzy.norm.ParametricNorm import ParametricNorm
+from fuzzy.utils import inf_p
 
 class YagerUnion(ParametricNorm):
+    """Yager 1980"""
+    
+    _range = [ (0,inf_p) ]
+    
 
     def __init__(self,p=1.):
         ParametricNorm.__init__(self,ParametricNorm.S_NORM,p)

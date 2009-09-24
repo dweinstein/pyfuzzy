@@ -51,7 +51,7 @@ Examples can be found here U{http://pyfuzzy.sourceforge.net/test/merge/}
   and act_value is the result of a rule calculation.
 """
 
-__revision__ = "$Id: operations.py,v 1.4 2009-08-31 21:02:06 rliebscher Exp $"
+__revision__ = "$Id: operations.py,v 1.5 2009-09-24 20:32:20 rliebscher Exp $"
 
 # helper functions
 def _find_null_steffensen(x,f,epsilon=None):
@@ -307,7 +307,6 @@ def _complement_generator(COMPLEMENT, set):
     @return: resulting fuzzy set
     @rtype: L{fuzzy.set.Polygon.Polygon}
     """
-    from fuzzy.set.Polygon import Polygon
     g = set.getIntervalGenerator()
 
     x = g.nextInterval(None,None)

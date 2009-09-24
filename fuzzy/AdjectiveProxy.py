@@ -15,7 +15,7 @@
 # this program; if not, see <http://www.gnu.org/licenses/>. 
 #
 
-__revision__ = "$Id: AdjectiveProxy.py,v 1.8 2009-08-07 07:19:17 rliebscher Exp $"
+__revision__ = "$Id: AdjectiveProxy.py,v 1.9 2009-09-24 20:32:20 rliebscher Exp $"
 
 
 class AdjectiveProxy(object):
@@ -54,4 +54,5 @@ class AdjectiveProxy(object):
         Returns a tuple (var_name,adj_name) of None."""
         if system is self.proxy_system:
             return [self.proxy_adjective,self.proxy_variable]
+        import fuzzy.Exception
         raise fuzzy.Exception.Exception()
