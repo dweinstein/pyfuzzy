@@ -1,9 +1,12 @@
 #!/usr/bin/env python
 # -*- coding: iso-8859-1 -*-
 #
+"""\
 # Helper utilities for tests.
 #  - Find all classes in directory and return creates instances of them.
-#
+#  - Get lists of values to use for show-off of parametric classes 
+#    depending on the allowed range of the parameters there
+"""
 #
 # Copyright (C) 2009  Rene Liebscher
 #
@@ -21,7 +24,7 @@
 #
 
 
-__revision__ = "$Id: utils.py,v 1.4 2009-09-24 20:30:14 rliebscher Exp $"
+__revision__ = "$Id: utils.py,v 1.5 2009-09-27 16:15:36 rliebscher Exp $"
 
 def get_classes(package):
     """Find all classes defined in given directory
@@ -51,8 +54,11 @@ def get_classes(package):
                 break
     return objects
 
+
 from fuzzy.utils import inf_p,inf_n
 
+# possible parameter values for some allowed ranges of this parameter
+# tuples of ( allowed_range, list_of_values ) 
 __params = (
     ( [[0.,1.]]     , [0.0,0.25,0.50,0.75,1.] ),
     ( [(0.,1.)]     , [0.05,0.25,0.50,0.75,0.95] ),
@@ -64,6 +70,7 @@ __params = (
 )
 
 def get_test_params(range_):
+    """Get a list of usable values depending of the allowed range for them."""
     for p in __params:
         if p[0] == range_:
             return p[1]

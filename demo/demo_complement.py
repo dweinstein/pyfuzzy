@@ -1,10 +1,12 @@
 #!/usr/bin/env python
 # -*- coding: iso-8859-1 -*-
 #
+"""\
 # Generate plots of all available fuzzy set classes using their default values
 # after processing with all available fuzzy complement classes.
 # The result are some images, which you have to check by yourself.
 # (They are also useful to put on the website.)
+"""
 #
 # Copyright (C) 2009  Rene Liebscher
 #
@@ -21,10 +23,10 @@
 # this program; if not, see <http://www.gnu.org/licenses/>. 
 #
 
-__revision__ = "$Id: demo_complement.py,v 1.2 2009-09-24 20:30:14 rliebscher Exp $"
+__revision__ = "$Id: demo_complement.py,v 1.3 2009-09-27 16:15:35 rliebscher Exp $"
 
 import sys, os
-sys.path.insert(0, os.path.join(os.path.abspath('$0'),os.path.pardir))
+sys.path.insert(0, os.path.join(os.path.abspath(sys.argv[0]),os.path.pardir))
 
 try:
     # If the package has been installed correctly, this should work:
@@ -39,6 +41,7 @@ import string
 x_min,x_max = -1.5,+1.5
 
 def getGnuplot():
+    """Get a preconfigured Gnuplot instance for plotting."""
     # A straightforward use of gnuplot.  The `debug=1' switch is used
     # in these examples so that the commands that are sent to gnuplot
     # are also output on stderr.
@@ -73,9 +76,9 @@ def plot(c,set,title,filename,gnuplot=None,interactive=False):
         p = set_c.points
         if len(p) == 0:
             raise Exception("Polygon with 0 points found.")
-        if p[0][0]>x_min:
+        if p[0][0] > x_min:
             p.insert(0,(x_min,p[0][1]))
-        if p[-1][0]<x_max:
+        if p[-1][0] < x_max:
             p.append((x_max,p[-1][1]))
         g.plot(p)
     else:
@@ -88,6 +91,16 @@ def plot(c,set,title,filename,gnuplot=None,interactive=False):
 
 
 def plotComplement(c,name,s,name2,params=None,gnuplot=None,interactive=False):
+    """Plot a given complement with the given set, using the names for the title/filename.
+    For parametric complements, it uses several values of the parameter.
+    These values depend on the valid range of the parameter.
+
+    For different parameters a letter is inserted in the filename of get a consistent sorting of filenames.
+    (They sort then according ascending parameter values.)
+    
+    If gnuplot is not None, use it for the plot, otherwise create a own instance.
+    If interactive is True, wait after plotting for key press.
+    """    
     import fuzzy.complement.Parametric
     if isinstance(c,fuzzy.complement.Parametric.Parametric):
         if params is None:

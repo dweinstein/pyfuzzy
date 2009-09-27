@@ -1,10 +1,12 @@
 #!/usr/bin/env python
 # -*- coding: iso-8859-1 -*-
 #
+"""\
 # Runs all defuzzification methods over (default) instances of all 
 # fuzzy set classes and some additional examples to check the results
 # you get.
 # This is not an automatic test. You have to check the results by yourself.
+"""
 #
 #
 # Copyright (C) 2009  Rene Liebscher
@@ -22,10 +24,10 @@
 # this program; if not, see <http://www.gnu.org/licenses/>. 
 #
 
-__revision__ = "$Id: demo_defuzzyfication.py,v 1.11 2009-09-24 20:30:14 rliebscher Exp $"
+__revision__ = "$Id: demo_defuzzyfication.py,v 1.12 2009-09-27 16:15:36 rliebscher Exp $"
 
 import sys, os
-sys.path.insert(0, os.path.join(os.path.abspath('$0'),os.path.pardir))
+sys.path.insert(0, os.path.join(os.path.abspath(sys.argv[0]),os.path.pardir))
 
 from utils import get_classes
 

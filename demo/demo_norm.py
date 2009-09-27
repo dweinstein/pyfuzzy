@@ -1,10 +1,12 @@
 #!/usr/bin/env python
 # -*- coding: iso-8859-1 -*-
 #
+"""\
 # Run all fuzzy norms over the valid input ranges and create a 3D-plot 
 # of the result. Paramtric norms are done with several paramter values.
 # The result are some images, which you have to check by yourself.
 # (They are also useful to put on the website.)
+"""
 #
 # Copyright (C) 2009  Rene Liebscher
 #
@@ -21,10 +23,10 @@
 # this program; if not, see <http://www.gnu.org/licenses/>. 
 #
 
-__revision__ = "$Id: demo_norm.py,v 1.9 2009-09-24 20:30:14 rliebscher Exp $"
+__revision__ = "$Id: demo_norm.py,v 1.10 2009-09-27 16:15:36 rliebscher Exp $"
 
 import sys, os
-sys.path.insert(0, os.path.join(os.path.abspath('$0'),os.path.pardir))
+sys.path.insert(0, os.path.join(os.path.abspath(sys.argv[0]),os.path.pardir))
 
 try:
     # If the package has been installed correctly, this should work:
@@ -38,6 +40,7 @@ import fuzzy.norm
 import string
 
 def getGnuplot():
+    """Get a preconfigured Gnuplot instance for plotting."""
     # A straightforward use of gnuplot.  The `debug=1' switch is used
     # in these examples so that the commands that are sent to gnuplot
     # are also output on stderr.
@@ -86,6 +89,16 @@ def plot(norm,title,filename,gnuplot=None,interactive=False):
 
 #def plotNorm(norm,name,params=[0.05,0.25,0.50,0.75,0.95],gnuplot=None,interactive=False):
 def plotNorm(norm,name,params=None,gnuplot=None,interactive=False):
+    """Plot a given norm using the name for the title/filename.
+    For parametric norms, it uses several values of the parameter.
+    These values depend on the valid range of the parameter.
+
+    For different parameters a letter is inserted in the filename of get a consistent sorting of filenames.
+    (They sort then according ascending parameter values.)
+    
+    If gnuplot is not None, use it for the plot, otherwise create a own instance.
+    If interactive is True, wait after plotting for key press.
+    """
     import fuzzy.norm.ParametricNorm
     if isinstance(norm,fuzzy.norm.ParametricNorm.ParametricNorm):
         if params is None:
