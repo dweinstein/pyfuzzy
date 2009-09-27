@@ -1,9 +1,12 @@
-# $ANTLR 3.1.2 FCL.g 2009-09-26 23:07:17
+# $ANTLR 3.1.2 FCL.g 2009-09-27 20:18:17
 
 import sys
 from antlr3 import *
 from antlr3.compat import set, frozenset
          
+#docstring
+"""Parser for reading FCL by the pyfuzzy package."""
+__revision__ = "$Id: FCLParser.py,v 1.5 2009-09-27 18:20:00 rliebscher Exp $"
 import fuzzy.System
 import fuzzy.InputVariable
 import fuzzy.OutputVariable
@@ -185,20 +188,20 @@ class FCLParser(Parser):
 
 
     # $ANTLR start "main"
-    # FCL.g:102:1: main returns [system] : function_block_declaration ;
+    # FCL.g:111:1: main returns [system] : function_block_declaration ;
     def main(self, ):
 
         system = None
 
         try:
             try:
-                # FCL.g:102:23: ( function_block_declaration )
-                # FCL.g:102:25: function_block_declaration
+                # FCL.g:111:23: ( function_block_declaration )
+                # FCL.g:111:25: function_block_declaration
                 pass 
                 #action start
                 self.System = None;
                 #action end
-                self._state.following.append(self.FOLLOW_function_block_declaration_in_main48)
+                self._state.following.append(self.FOLLOW_function_block_declaration_in_main55)
                 self.function_block_declaration()
 
                 self._state.following.pop()
@@ -222,7 +225,7 @@ class FCLParser(Parser):
 
 
     # $ANTLR start "function_block_declaration"
-    # FCL.g:104:1: function_block_declaration : 'FUNCTION_BLOCK' function_block_name ( type_definition )* ( fb_io_var_declarations )* function_block_body 'END_FUNCTION_BLOCK' EOF ;
+    # FCL.g:113:1: function_block_declaration : 'FUNCTION_BLOCK' function_block_name ( type_definition )* ( fb_io_var_declarations )* function_block_body 'END_FUNCTION_BLOCK' EOF ;
     def function_block_declaration(self, ):
 
         function_block_name1 = None
@@ -230,18 +233,18 @@ class FCLParser(Parser):
 
         try:
             try:
-                # FCL.g:105:3: ( 'FUNCTION_BLOCK' function_block_name ( type_definition )* ( fb_io_var_declarations )* function_block_body 'END_FUNCTION_BLOCK' EOF )
-                # FCL.g:106:5: 'FUNCTION_BLOCK' function_block_name ( type_definition )* ( fb_io_var_declarations )* function_block_body 'END_FUNCTION_BLOCK' EOF
+                # FCL.g:114:3: ( 'FUNCTION_BLOCK' function_block_name ( type_definition )* ( fb_io_var_declarations )* function_block_body 'END_FUNCTION_BLOCK' EOF )
+                # FCL.g:115:5: 'FUNCTION_BLOCK' function_block_name ( type_definition )* ( fb_io_var_declarations )* function_block_body 'END_FUNCTION_BLOCK' EOF
                 pass 
-                self.match(self.input, 14, self.FOLLOW_14_in_function_block_declaration64)
-                self._state.following.append(self.FOLLOW_function_block_name_in_function_block_declaration70)
+                self.match(self.input, 14, self.FOLLOW_14_in_function_block_declaration71)
+                self._state.following.append(self.FOLLOW_function_block_name_in_function_block_declaration77)
                 function_block_name1 = self.function_block_name()
 
                 self._state.following.pop()
                 #action start
                 self.System = fuzzy.System.System(description=((function_block_name1 is not None) and [self.input.toString(function_block_name1.start,function_block_name1.stop)] or [None])[0]); 
                 #action end
-                # FCL.g:108:5: ( type_definition )*
+                # FCL.g:117:5: ( type_definition )*
                 while True: #loop1
                     alt1 = 2
                     LA1_0 = self.input.LA(1)
@@ -251,9 +254,9 @@ class FCLParser(Parser):
 
 
                     if alt1 == 1:
-                        # FCL.g:108:5: type_definition
+                        # FCL.g:117:5: type_definition
                         pass 
-                        self._state.following.append(self.FOLLOW_type_definition_in_function_block_declaration78)
+                        self._state.following.append(self.FOLLOW_type_definition_in_function_block_declaration85)
                         self.type_definition()
 
                         self._state.following.pop()
@@ -263,7 +266,7 @@ class FCLParser(Parser):
                         break #loop1
 
 
-                # FCL.g:109:5: ( fb_io_var_declarations )*
+                # FCL.g:118:5: ( fb_io_var_declarations )*
                 while True: #loop2
                     alt2 = 2
                     LA2_0 = self.input.LA(1)
@@ -273,9 +276,9 @@ class FCLParser(Parser):
 
 
                     if alt2 == 1:
-                        # FCL.g:109:5: fb_io_var_declarations
+                        # FCL.g:118:5: fb_io_var_declarations
                         pass 
-                        self._state.following.append(self.FOLLOW_fb_io_var_declarations_in_function_block_declaration85)
+                        self._state.following.append(self.FOLLOW_fb_io_var_declarations_in_function_block_declaration92)
                         self.fb_io_var_declarations()
 
                         self._state.following.pop()
@@ -285,12 +288,12 @@ class FCLParser(Parser):
                         break #loop2
 
 
-                self._state.following.append(self.FOLLOW_function_block_body_in_function_block_declaration93)
+                self._state.following.append(self.FOLLOW_function_block_body_in_function_block_declaration100)
                 self.function_block_body()
 
                 self._state.following.pop()
-                self.match(self.input, 15, self.FOLLOW_15_in_function_block_declaration99)
-                self.match(self.input, EOF, self.FOLLOW_EOF_in_function_block_declaration105)
+                self.match(self.input, 15, self.FOLLOW_15_in_function_block_declaration106)
+                self.match(self.input, EOF, self.FOLLOW_EOF_in_function_block_declaration112)
 
 
 
@@ -308,22 +311,22 @@ class FCLParser(Parser):
 
 
     # $ANTLR start "type_definition"
-    # FCL.g:116:1: type_definition : 'STRUCT' Identifier ( struct_element[$Identifier.text] )+ 'END_STRUCT' ;
+    # FCL.g:125:1: type_definition : 'STRUCT' Identifier ( struct_element[$Identifier.text] )+ 'END_STRUCT' ;
     def type_definition(self, ):
 
         Identifier2 = None
 
         try:
             try:
-                # FCL.g:117:3: ( 'STRUCT' Identifier ( struct_element[$Identifier.text] )+ 'END_STRUCT' )
-                # FCL.g:117:6: 'STRUCT' Identifier ( struct_element[$Identifier.text] )+ 'END_STRUCT'
+                # FCL.g:126:3: ( 'STRUCT' Identifier ( struct_element[$Identifier.text] )+ 'END_STRUCT' )
+                # FCL.g:126:6: 'STRUCT' Identifier ( struct_element[$Identifier.text] )+ 'END_STRUCT'
                 pass 
-                self.match(self.input, 16, self.FOLLOW_16_in_type_definition119)
-                Identifier2=self.match(self.input, Identifier, self.FOLLOW_Identifier_in_type_definition121)
+                self.match(self.input, 16, self.FOLLOW_16_in_type_definition126)
+                Identifier2=self.match(self.input, Identifier, self.FOLLOW_Identifier_in_type_definition128)
                 #action start
                 defineStructType(Identifier2.text); 
                 #action end
-                # FCL.g:117:66: ( struct_element[$Identifier.text] )+
+                # FCL.g:126:66: ( struct_element[$Identifier.text] )+
                 cnt3 = 0
                 while True: #loop3
                     alt3 = 2
@@ -334,9 +337,9 @@ class FCLParser(Parser):
 
 
                     if alt3 == 1:
-                        # FCL.g:117:66: struct_element[$Identifier.text]
+                        # FCL.g:126:66: struct_element[$Identifier.text]
                         pass 
-                        self._state.following.append(self.FOLLOW_struct_element_in_type_definition125)
+                        self._state.following.append(self.FOLLOW_struct_element_in_type_definition132)
                         self.struct_element(Identifier2.text)
 
                         self._state.following.pop()
@@ -352,7 +355,7 @@ class FCLParser(Parser):
                     cnt3 += 1
 
 
-                self.match(self.input, 17, self.FOLLOW_17_in_type_definition129)
+                self.match(self.input, 17, self.FOLLOW_17_in_type_definition136)
 
 
 
@@ -370,20 +373,20 @@ class FCLParser(Parser):
 
 
     # $ANTLR start "struct_element"
-    # FCL.g:120:1: struct_element[struct_name] : Identifier ':' 'REAL' ';' ;
+    # FCL.g:129:1: struct_element[struct_name] : Identifier ':' 'REAL' ';' ;
     def struct_element(self, struct_name):
 
         Identifier3 = None
 
         try:
             try:
-                # FCL.g:121:3: ( Identifier ':' 'REAL' ';' )
-                # FCL.g:121:6: Identifier ':' 'REAL' ';'
+                # FCL.g:130:3: ( Identifier ':' 'REAL' ';' )
+                # FCL.g:130:6: Identifier ':' 'REAL' ';'
                 pass 
-                Identifier3=self.match(self.input, Identifier, self.FOLLOW_Identifier_in_struct_element144)
-                self.match(self.input, 18, self.FOLLOW_18_in_struct_element146)
-                self.match(self.input, 19, self.FOLLOW_19_in_struct_element148)
-                self.match(self.input, 20, self.FOLLOW_20_in_struct_element150)
+                Identifier3=self.match(self.input, Identifier, self.FOLLOW_Identifier_in_struct_element151)
+                self.match(self.input, 18, self.FOLLOW_18_in_struct_element153)
+                self.match(self.input, 19, self.FOLLOW_19_in_struct_element155)
+                self.match(self.input, 20, self.FOLLOW_20_in_struct_element157)
                 #action start
                 defineStructTypeElement(struct_name,Identifier3.text);
                 #action end
@@ -404,12 +407,12 @@ class FCLParser(Parser):
 
 
     # $ANTLR start "fb_io_var_declarations"
-    # FCL.g:124:1: fb_io_var_declarations : ( input_declarations | output_declarations );
+    # FCL.g:133:1: fb_io_var_declarations : ( input_declarations | output_declarations );
     def fb_io_var_declarations(self, ):
 
         try:
             try:
-                # FCL.g:125:3: ( input_declarations | output_declarations )
+                # FCL.g:134:3: ( input_declarations | output_declarations )
                 alt4 = 2
                 LA4_0 = self.input.LA(1)
 
@@ -423,18 +426,18 @@ class FCLParser(Parser):
                     raise nvae
 
                 if alt4 == 1:
-                    # FCL.g:125:5: input_declarations
+                    # FCL.g:134:5: input_declarations
                     pass 
-                    self._state.following.append(self.FOLLOW_input_declarations_in_fb_io_var_declarations165)
+                    self._state.following.append(self.FOLLOW_input_declarations_in_fb_io_var_declarations172)
                     self.input_declarations()
 
                     self._state.following.pop()
 
 
                 elif alt4 == 2:
-                    # FCL.g:126:5: output_declarations
+                    # FCL.g:135:5: output_declarations
                     pass 
-                    self._state.following.append(self.FOLLOW_output_declarations_in_fb_io_var_declarations171)
+                    self._state.following.append(self.FOLLOW_output_declarations_in_fb_io_var_declarations178)
                     self.output_declarations()
 
                     self._state.following.pop()
@@ -454,16 +457,16 @@ class FCLParser(Parser):
 
 
     # $ANTLR start "input_declarations"
-    # FCL.g:129:1: input_declarations : 'VAR_INPUT' ( var_decl[0] )+ 'END_VAR' ;
+    # FCL.g:138:1: input_declarations : 'VAR_INPUT' ( var_decl[0] )+ 'END_VAR' ;
     def input_declarations(self, ):
 
         try:
             try:
-                # FCL.g:129:20: ( 'VAR_INPUT' ( var_decl[0] )+ 'END_VAR' )
-                # FCL.g:129:22: 'VAR_INPUT' ( var_decl[0] )+ 'END_VAR'
+                # FCL.g:138:20: ( 'VAR_INPUT' ( var_decl[0] )+ 'END_VAR' )
+                # FCL.g:138:22: 'VAR_INPUT' ( var_decl[0] )+ 'END_VAR'
                 pass 
-                self.match(self.input, 21, self.FOLLOW_21_in_input_declarations182)
-                # FCL.g:129:34: ( var_decl[0] )+
+                self.match(self.input, 21, self.FOLLOW_21_in_input_declarations189)
+                # FCL.g:138:34: ( var_decl[0] )+
                 cnt5 = 0
                 while True: #loop5
                     alt5 = 2
@@ -474,9 +477,9 @@ class FCLParser(Parser):
 
 
                     if alt5 == 1:
-                        # FCL.g:129:34: var_decl[0]
+                        # FCL.g:138:34: var_decl[0]
                         pass 
-                        self._state.following.append(self.FOLLOW_var_decl_in_input_declarations184)
+                        self._state.following.append(self.FOLLOW_var_decl_in_input_declarations191)
                         self.var_decl(0)
 
                         self._state.following.pop()
@@ -492,7 +495,7 @@ class FCLParser(Parser):
                     cnt5 += 1
 
 
-                self.match(self.input, 22, self.FOLLOW_22_in_input_declarations188)
+                self.match(self.input, 22, self.FOLLOW_22_in_input_declarations195)
 
 
 
@@ -510,16 +513,16 @@ class FCLParser(Parser):
 
 
     # $ANTLR start "output_declarations"
-    # FCL.g:130:1: output_declarations : 'VAR_OUTPUT' ( var_decl[1] )+ 'END_VAR' ;
+    # FCL.g:139:1: output_declarations : 'VAR_OUTPUT' ( var_decl[1] )+ 'END_VAR' ;
     def output_declarations(self, ):
 
         try:
             try:
-                # FCL.g:130:21: ( 'VAR_OUTPUT' ( var_decl[1] )+ 'END_VAR' )
-                # FCL.g:130:23: 'VAR_OUTPUT' ( var_decl[1] )+ 'END_VAR'
+                # FCL.g:139:21: ( 'VAR_OUTPUT' ( var_decl[1] )+ 'END_VAR' )
+                # FCL.g:139:23: 'VAR_OUTPUT' ( var_decl[1] )+ 'END_VAR'
                 pass 
-                self.match(self.input, 23, self.FOLLOW_23_in_output_declarations196)
-                # FCL.g:130:36: ( var_decl[1] )+
+                self.match(self.input, 23, self.FOLLOW_23_in_output_declarations203)
+                # FCL.g:139:36: ( var_decl[1] )+
                 cnt6 = 0
                 while True: #loop6
                     alt6 = 2
@@ -530,9 +533,9 @@ class FCLParser(Parser):
 
 
                     if alt6 == 1:
-                        # FCL.g:130:36: var_decl[1]
+                        # FCL.g:139:36: var_decl[1]
                         pass 
-                        self._state.following.append(self.FOLLOW_var_decl_in_output_declarations198)
+                        self._state.following.append(self.FOLLOW_var_decl_in_output_declarations205)
                         self.var_decl(1)
 
                         self._state.following.pop()
@@ -548,7 +551,7 @@ class FCLParser(Parser):
                     cnt6 += 1
 
 
-                self.match(self.input, 22, self.FOLLOW_22_in_output_declarations202)
+                self.match(self.input, 22, self.FOLLOW_22_in_output_declarations209)
 
 
 
@@ -566,7 +569,7 @@ class FCLParser(Parser):
 
 
     # $ANTLR start "var_decl"
-    # FCL.g:133:1: var_decl[output_var] : Identifier ':' type ';' ;
+    # FCL.g:142:1: var_decl[output_var] : Identifier ':' type ';' ;
     def var_decl(self, output_var):
 
         Identifier5 = None
@@ -575,16 +578,16 @@ class FCLParser(Parser):
 
         try:
             try:
-                # FCL.g:134:3: ( Identifier ':' type ';' )
-                # FCL.g:135:3: Identifier ':' type ';'
+                # FCL.g:143:3: ( Identifier ':' type ';' )
+                # FCL.g:144:3: Identifier ':' type ';'
                 pass 
-                Identifier5=self.match(self.input, Identifier, self.FOLLOW_Identifier_in_var_decl216)
-                self.match(self.input, 18, self.FOLLOW_18_in_var_decl220)
-                self._state.following.append(self.FOLLOW_type_in_var_decl224)
+                Identifier5=self.match(self.input, Identifier, self.FOLLOW_Identifier_in_var_decl223)
+                self.match(self.input, 18, self.FOLLOW_18_in_var_decl227)
+                self._state.following.append(self.FOLLOW_type_in_var_decl231)
                 type4 = self.type()
 
                 self._state.following.pop()
-                self.match(self.input, 20, self.FOLLOW_20_in_var_decl228)
+                self.match(self.input, 20, self.FOLLOW_20_in_var_decl235)
                 #action start
                  
                 if output_var == 0:
@@ -626,7 +629,7 @@ class FCLParser(Parser):
 
 
     # $ANTLR start "type"
-    # FCL.g:163:1: type returns [struct_type] : ( 'REAL' | Identifier );
+    # FCL.g:172:1: type returns [struct_type] : ( 'REAL' | Identifier );
     def type(self, ):
 
         struct_type = None
@@ -635,7 +638,7 @@ class FCLParser(Parser):
 
         try:
             try:
-                # FCL.g:164:3: ( 'REAL' | Identifier )
+                # FCL.g:173:3: ( 'REAL' | Identifier )
                 alt7 = 2
                 LA7_0 = self.input.LA(1)
 
@@ -649,18 +652,18 @@ class FCLParser(Parser):
                     raise nvae
 
                 if alt7 == 1:
-                    # FCL.g:165:3: 'REAL'
+                    # FCL.g:174:3: 'REAL'
                     pass 
-                    self.match(self.input, 19, self.FOLLOW_19_in_type247)
+                    self.match(self.input, 19, self.FOLLOW_19_in_type254)
                     #action start
                     struct_type =  None 
                     #action end
 
 
                 elif alt7 == 2:
-                    # FCL.g:167:3: Identifier
+                    # FCL.g:176:3: Identifier
                     pass 
-                    Identifier6=self.match(self.input, Identifier, self.FOLLOW_Identifier_in_type257)
+                    Identifier6=self.match(self.input, Identifier, self.FOLLOW_Identifier_in_type264)
                     #action start
                     struct_type =  getStructType(Identifier6.text) 
                     #action end
@@ -680,15 +683,15 @@ class FCLParser(Parser):
 
 
     # $ANTLR start "function_block_body"
-    # FCL.g:173:1: function_block_body : ( fuzzify_block )* ( defuzzify_block )* ( rule_block )* ( option_block )* ;
+    # FCL.g:182:1: function_block_body : ( fuzzify_block )* ( defuzzify_block )* ( rule_block )* ( option_block )* ;
     def function_block_body(self, ):
 
         try:
             try:
-                # FCL.g:174:3: ( ( fuzzify_block )* ( defuzzify_block )* ( rule_block )* ( option_block )* )
-                # FCL.g:175:5: ( fuzzify_block )* ( defuzzify_block )* ( rule_block )* ( option_block )*
+                # FCL.g:183:3: ( ( fuzzify_block )* ( defuzzify_block )* ( rule_block )* ( option_block )* )
+                # FCL.g:184:5: ( fuzzify_block )* ( defuzzify_block )* ( rule_block )* ( option_block )*
                 pass 
-                # FCL.g:175:5: ( fuzzify_block )*
+                # FCL.g:184:5: ( fuzzify_block )*
                 while True: #loop8
                     alt8 = 2
                     LA8_0 = self.input.LA(1)
@@ -698,9 +701,9 @@ class FCLParser(Parser):
 
 
                     if alt8 == 1:
-                        # FCL.g:175:5: fuzzify_block
+                        # FCL.g:184:5: fuzzify_block
                         pass 
-                        self._state.following.append(self.FOLLOW_fuzzify_block_in_function_block_body279)
+                        self._state.following.append(self.FOLLOW_fuzzify_block_in_function_block_body286)
                         self.fuzzify_block()
 
                         self._state.following.pop()
@@ -710,7 +713,7 @@ class FCLParser(Parser):
                         break #loop8
 
 
-                # FCL.g:176:5: ( defuzzify_block )*
+                # FCL.g:185:5: ( defuzzify_block )*
                 while True: #loop9
                     alt9 = 2
                     LA9_0 = self.input.LA(1)
@@ -720,9 +723,9 @@ class FCLParser(Parser):
 
 
                     if alt9 == 1:
-                        # FCL.g:176:5: defuzzify_block
+                        # FCL.g:185:5: defuzzify_block
                         pass 
-                        self._state.following.append(self.FOLLOW_defuzzify_block_in_function_block_body286)
+                        self._state.following.append(self.FOLLOW_defuzzify_block_in_function_block_body293)
                         self.defuzzify_block()
 
                         self._state.following.pop()
@@ -732,7 +735,7 @@ class FCLParser(Parser):
                         break #loop9
 
 
-                # FCL.g:177:5: ( rule_block )*
+                # FCL.g:186:5: ( rule_block )*
                 while True: #loop10
                     alt10 = 2
                     LA10_0 = self.input.LA(1)
@@ -742,9 +745,9 @@ class FCLParser(Parser):
 
 
                     if alt10 == 1:
-                        # FCL.g:177:5: rule_block
+                        # FCL.g:186:5: rule_block
                         pass 
-                        self._state.following.append(self.FOLLOW_rule_block_in_function_block_body293)
+                        self._state.following.append(self.FOLLOW_rule_block_in_function_block_body300)
                         self.rule_block()
 
                         self._state.following.pop()
@@ -754,7 +757,7 @@ class FCLParser(Parser):
                         break #loop10
 
 
-                # FCL.g:178:5: ( option_block )*
+                # FCL.g:187:5: ( option_block )*
                 while True: #loop11
                     alt11 = 2
                     LA11_0 = self.input.LA(1)
@@ -764,9 +767,9 @@ class FCLParser(Parser):
 
 
                     if alt11 == 1:
-                        # FCL.g:178:5: option_block
+                        # FCL.g:187:5: option_block
                         pass 
-                        self._state.following.append(self.FOLLOW_option_block_in_function_block_body300)
+                        self._state.following.append(self.FOLLOW_option_block_in_function_block_body307)
                         self.option_block()
 
                         self._state.following.pop()
@@ -793,7 +796,7 @@ class FCLParser(Parser):
 
 
     # $ANTLR start "fuzzify_block"
-    # FCL.g:181:1: fuzzify_block : 'FUZZIFY' variable_name ( linguistic_term[$variable_name.text] )* 'END_FUZZIFY' ;
+    # FCL.g:190:1: fuzzify_block : 'FUZZIFY' variable_name ( linguistic_term[$variable_name.text] )* 'END_FUZZIFY' ;
     def fuzzify_block(self, ):
 
         variable_name7 = None
@@ -801,15 +804,15 @@ class FCLParser(Parser):
 
         try:
             try:
-                # FCL.g:182:3: ( 'FUZZIFY' variable_name ( linguistic_term[$variable_name.text] )* 'END_FUZZIFY' )
-                # FCL.g:183:5: 'FUZZIFY' variable_name ( linguistic_term[$variable_name.text] )* 'END_FUZZIFY'
+                # FCL.g:191:3: ( 'FUZZIFY' variable_name ( linguistic_term[$variable_name.text] )* 'END_FUZZIFY' )
+                # FCL.g:192:5: 'FUZZIFY' variable_name ( linguistic_term[$variable_name.text] )* 'END_FUZZIFY'
                 pass 
-                self.match(self.input, 24, self.FOLLOW_24_in_fuzzify_block318)
-                self._state.following.append(self.FOLLOW_variable_name_in_fuzzify_block324)
+                self.match(self.input, 24, self.FOLLOW_24_in_fuzzify_block325)
+                self._state.following.append(self.FOLLOW_variable_name_in_fuzzify_block331)
                 variable_name7 = self.variable_name()
 
                 self._state.following.pop()
-                # FCL.g:185:5: ( linguistic_term[$variable_name.text] )*
+                # FCL.g:194:5: ( linguistic_term[$variable_name.text] )*
                 while True: #loop12
                     alt12 = 2
                     LA12_0 = self.input.LA(1)
@@ -819,9 +822,9 @@ class FCLParser(Parser):
 
 
                     if alt12 == 1:
-                        # FCL.g:185:5: linguistic_term[$variable_name.text]
+                        # FCL.g:194:5: linguistic_term[$variable_name.text]
                         pass 
-                        self._state.following.append(self.FOLLOW_linguistic_term_in_fuzzify_block330)
+                        self._state.following.append(self.FOLLOW_linguistic_term_in_fuzzify_block337)
                         self.linguistic_term(((variable_name7 is not None) and [self.input.toString(variable_name7.start,variable_name7.stop)] or [None])[0])
 
                         self._state.following.pop()
@@ -831,7 +834,7 @@ class FCLParser(Parser):
                         break #loop12
 
 
-                self.match(self.input, 25, self.FOLLOW_25_in_fuzzify_block338)
+                self.match(self.input, 25, self.FOLLOW_25_in_fuzzify_block345)
 
 
 
@@ -849,7 +852,7 @@ class FCLParser(Parser):
 
 
     # $ANTLR start "defuzzify_block"
-    # FCL.g:189:1: defuzzify_block : 'DEFUZZIFY' f_variable_name ( linguistic_term[$f_variable_name.text] )* accumulation_method defuzzification_method[$f_variable_name.text] ( default_value[$f_variable_name.text] )? ( range )? 'END_DEFUZZIFY' ;
+    # FCL.g:198:1: defuzzify_block : 'DEFUZZIFY' f_variable_name ( linguistic_term[$f_variable_name.text] )* accumulation_method defuzzification_method[$f_variable_name.text] ( default_value[$f_variable_name.text] )? ( range )? 'END_DEFUZZIFY' ;
     def defuzzify_block(self, ):
 
         f_variable_name8 = None
@@ -857,15 +860,15 @@ class FCLParser(Parser):
 
         try:
             try:
-                # FCL.g:190:3: ( 'DEFUZZIFY' f_variable_name ( linguistic_term[$f_variable_name.text] )* accumulation_method defuzzification_method[$f_variable_name.text] ( default_value[$f_variable_name.text] )? ( range )? 'END_DEFUZZIFY' )
-                # FCL.g:191:5: 'DEFUZZIFY' f_variable_name ( linguistic_term[$f_variable_name.text] )* accumulation_method defuzzification_method[$f_variable_name.text] ( default_value[$f_variable_name.text] )? ( range )? 'END_DEFUZZIFY'
+                # FCL.g:199:3: ( 'DEFUZZIFY' f_variable_name ( linguistic_term[$f_variable_name.text] )* accumulation_method defuzzification_method[$f_variable_name.text] ( default_value[$f_variable_name.text] )? ( range )? 'END_DEFUZZIFY' )
+                # FCL.g:200:5: 'DEFUZZIFY' f_variable_name ( linguistic_term[$f_variable_name.text] )* accumulation_method defuzzification_method[$f_variable_name.text] ( default_value[$f_variable_name.text] )? ( range )? 'END_DEFUZZIFY'
                 pass 
-                self.match(self.input, 26, self.FOLLOW_26_in_defuzzify_block355)
-                self._state.following.append(self.FOLLOW_f_variable_name_in_defuzzify_block361)
+                self.match(self.input, 26, self.FOLLOW_26_in_defuzzify_block362)
+                self._state.following.append(self.FOLLOW_f_variable_name_in_defuzzify_block368)
                 f_variable_name8 = self.f_variable_name()
 
                 self._state.following.pop()
-                # FCL.g:193:5: ( linguistic_term[$f_variable_name.text] )*
+                # FCL.g:202:5: ( linguistic_term[$f_variable_name.text] )*
                 while True: #loop13
                     alt13 = 2
                     LA13_0 = self.input.LA(1)
@@ -875,9 +878,9 @@ class FCLParser(Parser):
 
 
                     if alt13 == 1:
-                        # FCL.g:193:5: linguistic_term[$f_variable_name.text]
+                        # FCL.g:202:5: linguistic_term[$f_variable_name.text]
                         pass 
-                        self._state.following.append(self.FOLLOW_linguistic_term_in_defuzzify_block367)
+                        self._state.following.append(self.FOLLOW_linguistic_term_in_defuzzify_block374)
                         self.linguistic_term(((f_variable_name8 is not None) and [self.input.toString(f_variable_name8.start,f_variable_name8.stop)] or [None])[0])
 
                         self._state.following.pop()
@@ -887,47 +890,47 @@ class FCLParser(Parser):
                         break #loop13
 
 
-                self._state.following.append(self.FOLLOW_accumulation_method_in_defuzzify_block375)
+                self._state.following.append(self.FOLLOW_accumulation_method_in_defuzzify_block382)
                 self.accumulation_method()
 
                 self._state.following.pop()
-                self._state.following.append(self.FOLLOW_defuzzification_method_in_defuzzify_block381)
+                self._state.following.append(self.FOLLOW_defuzzification_method_in_defuzzify_block388)
                 self.defuzzification_method(((f_variable_name8 is not None) and [self.input.toString(f_variable_name8.start,f_variable_name8.stop)] or [None])[0])
 
                 self._state.following.pop()
-                # FCL.g:196:5: ( default_value[$f_variable_name.text] )?
+                # FCL.g:205:5: ( default_value[$f_variable_name.text] )?
                 alt14 = 2
                 LA14_0 = self.input.LA(1)
 
                 if (LA14_0 == 38) :
                     alt14 = 1
                 if alt14 == 1:
-                    # FCL.g:196:5: default_value[$f_variable_name.text]
+                    # FCL.g:205:5: default_value[$f_variable_name.text]
                     pass 
-                    self._state.following.append(self.FOLLOW_default_value_in_defuzzify_block388)
+                    self._state.following.append(self.FOLLOW_default_value_in_defuzzify_block395)
                     self.default_value(((f_variable_name8 is not None) and [self.input.toString(f_variable_name8.start,f_variable_name8.stop)] or [None])[0])
 
                     self._state.following.pop()
 
 
 
-                # FCL.g:197:5: ( range )?
+                # FCL.g:206:5: ( range )?
                 alt15 = 2
                 LA15_0 = self.input.LA(1)
 
                 if (LA15_0 == 40) :
                     alt15 = 1
                 if alt15 == 1:
-                    # FCL.g:197:5: range
+                    # FCL.g:206:5: range
                     pass 
-                    self._state.following.append(self.FOLLOW_range_in_defuzzify_block396)
+                    self._state.following.append(self.FOLLOW_range_in_defuzzify_block403)
                     self.range()
 
                     self._state.following.pop()
 
 
 
-                self.match(self.input, 27, self.FOLLOW_27_in_defuzzify_block403)
+                self.match(self.input, 27, self.FOLLOW_27_in_defuzzify_block410)
 
 
 
@@ -945,7 +948,7 @@ class FCLParser(Parser):
 
 
     # $ANTLR start "rule_block"
-    # FCL.g:201:1: rule_block : 'RULEBLOCK' rule_block_name ( operator_definition )* ( activation_method )? ( rule[$rule_block_name.text] )* 'END_RULEBLOCK' ;
+    # FCL.g:210:1: rule_block : 'RULEBLOCK' rule_block_name ( operator_definition )* ( activation_method )? ( rule[$rule_block_name.text] )* 'END_RULEBLOCK' ;
     def rule_block(self, ):
 
         rule_block_name9 = None
@@ -953,15 +956,15 @@ class FCLParser(Parser):
 
         try:
             try:
-                # FCL.g:202:3: ( 'RULEBLOCK' rule_block_name ( operator_definition )* ( activation_method )? ( rule[$rule_block_name.text] )* 'END_RULEBLOCK' )
-                # FCL.g:203:5: 'RULEBLOCK' rule_block_name ( operator_definition )* ( activation_method )? ( rule[$rule_block_name.text] )* 'END_RULEBLOCK'
+                # FCL.g:211:3: ( 'RULEBLOCK' rule_block_name ( operator_definition )* ( activation_method )? ( rule[$rule_block_name.text] )* 'END_RULEBLOCK' )
+                # FCL.g:212:5: 'RULEBLOCK' rule_block_name ( operator_definition )* ( activation_method )? ( rule[$rule_block_name.text] )* 'END_RULEBLOCK'
                 pass 
-                self.match(self.input, 28, self.FOLLOW_28_in_rule_block420)
-                self._state.following.append(self.FOLLOW_rule_block_name_in_rule_block428)
+                self.match(self.input, 28, self.FOLLOW_28_in_rule_block427)
+                self._state.following.append(self.FOLLOW_rule_block_name_in_rule_block435)
                 rule_block_name9 = self.rule_block_name()
 
                 self._state.following.pop()
-                # FCL.g:205:7: ( operator_definition )*
+                # FCL.g:214:7: ( operator_definition )*
                 while True: #loop16
                     alt16 = 2
                     LA16_0 = self.input.LA(1)
@@ -971,9 +974,9 @@ class FCLParser(Parser):
 
 
                     if alt16 == 1:
-                        # FCL.g:205:7: operator_definition
+                        # FCL.g:214:7: operator_definition
                         pass 
-                        self._state.following.append(self.FOLLOW_operator_definition_in_rule_block436)
+                        self._state.following.append(self.FOLLOW_operator_definition_in_rule_block443)
                         self.operator_definition()
 
                         self._state.following.pop()
@@ -983,23 +986,23 @@ class FCLParser(Parser):
                         break #loop16
 
 
-                # FCL.g:206:7: ( activation_method )?
+                # FCL.g:215:7: ( activation_method )?
                 alt17 = 2
                 LA17_0 = self.input.LA(1)
 
                 if (LA17_0 == 50) :
                     alt17 = 1
                 if alt17 == 1:
-                    # FCL.g:206:7: activation_method
+                    # FCL.g:215:7: activation_method
                     pass 
-                    self._state.following.append(self.FOLLOW_activation_method_in_rule_block445)
+                    self._state.following.append(self.FOLLOW_activation_method_in_rule_block452)
                     self.activation_method()
 
                     self._state.following.pop()
 
 
 
-                # FCL.g:207:7: ( rule[$rule_block_name.text] )*
+                # FCL.g:216:7: ( rule[$rule_block_name.text] )*
                 while True: #loop18
                     alt18 = 2
                     LA18_0 = self.input.LA(1)
@@ -1009,9 +1012,9 @@ class FCLParser(Parser):
 
 
                     if alt18 == 1:
-                        # FCL.g:207:7: rule[$rule_block_name.text]
+                        # FCL.g:216:7: rule[$rule_block_name.text]
                         pass 
-                        self._state.following.append(self.FOLLOW_rule_in_rule_block454)
+                        self._state.following.append(self.FOLLOW_rule_in_rule_block461)
                         self.rule(((rule_block_name9 is not None) and [self.input.toString(rule_block_name9.start,rule_block_name9.stop)] or [None])[0])
 
                         self._state.following.pop()
@@ -1021,7 +1024,7 @@ class FCLParser(Parser):
                         break #loop18
 
 
-                self.match(self.input, 29, self.FOLLOW_29_in_rule_block462)
+                self.match(self.input, 29, self.FOLLOW_29_in_rule_block469)
 
 
 
@@ -1039,16 +1042,16 @@ class FCLParser(Parser):
 
 
     # $ANTLR start "option_block"
-    # FCL.g:210:1: option_block : 'OPTION' 'END_OPTION' ;
+    # FCL.g:219:1: option_block : 'OPTION' 'END_OPTION' ;
     def option_block(self, ):
 
         try:
             try:
-                # FCL.g:210:14: ( 'OPTION' 'END_OPTION' )
-                # FCL.g:210:16: 'OPTION' 'END_OPTION'
+                # FCL.g:219:14: ( 'OPTION' 'END_OPTION' )
+                # FCL.g:219:16: 'OPTION' 'END_OPTION'
                 pass 
-                self.match(self.input, 30, self.FOLLOW_30_in_option_block470)
-                self.match(self.input, 31, self.FOLLOW_31_in_option_block474)
+                self.match(self.input, 30, self.FOLLOW_30_in_option_block477)
+                self.match(self.input, 31, self.FOLLOW_31_in_option_block481)
 
 
 
@@ -1066,7 +1069,7 @@ class FCLParser(Parser):
 
 
     # $ANTLR start "linguistic_term"
-    # FCL.g:215:1: linguistic_term[var_name] : 'TERM' term_name ':=' membership_function ';' ;
+    # FCL.g:224:1: linguistic_term[var_name] : 'TERM' term_name ':=' membership_function ';' ;
     def linguistic_term(self, var_name):
 
         term_name10 = None
@@ -1076,20 +1079,20 @@ class FCLParser(Parser):
 
         try:
             try:
-                # FCL.g:216:3: ( 'TERM' term_name ':=' membership_function ';' )
-                # FCL.g:217:3: 'TERM' term_name ':=' membership_function ';'
+                # FCL.g:225:3: ( 'TERM' term_name ':=' membership_function ';' )
+                # FCL.g:226:3: 'TERM' term_name ':=' membership_function ';'
                 pass 
-                self.match(self.input, 32, self.FOLLOW_32_in_linguistic_term489)
-                self._state.following.append(self.FOLLOW_term_name_in_linguistic_term491)
+                self.match(self.input, 32, self.FOLLOW_32_in_linguistic_term496)
+                self._state.following.append(self.FOLLOW_term_name_in_linguistic_term498)
                 term_name10 = self.term_name()
 
                 self._state.following.pop()
-                self.match(self.input, 33, self.FOLLOW_33_in_linguistic_term493)
-                self._state.following.append(self.FOLLOW_membership_function_in_linguistic_term495)
+                self.match(self.input, 33, self.FOLLOW_33_in_linguistic_term500)
+                self._state.following.append(self.FOLLOW_membership_function_in_linguistic_term502)
                 membership_function11 = self.membership_function()
 
                 self._state.following.pop()
-                self.match(self.input, 20, self.FOLLOW_20_in_linguistic_term497)
+                self.match(self.input, 20, self.FOLLOW_20_in_linguistic_term504)
                 #action start
                  
                 self.System.variables[var_name].adjectives[((term_name10 is not None) and [self.input.toString(term_name10.start,term_name10.stop)] or [None])[0]] = fuzzy.Adjective.Adjective(membership_function11);
@@ -1112,7 +1115,7 @@ class FCLParser(Parser):
 
 
     # $ANTLR start "membership_function"
-    # FCL.g:224:1: membership_function returns [set] : ( singleton | points );
+    # FCL.g:233:1: membership_function returns [set] : ( singleton | points );
     def membership_function(self, ):
 
         set = None
@@ -1124,7 +1127,7 @@ class FCLParser(Parser):
 
         try:
             try:
-                # FCL.g:225:3: ( singleton | points )
+                # FCL.g:234:3: ( singleton | points )
                 alt19 = 2
                 LA19_0 = self.input.LA(1)
 
@@ -1138,9 +1141,9 @@ class FCLParser(Parser):
                     raise nvae
 
                 if alt19 == 1:
-                    # FCL.g:226:5: singleton
+                    # FCL.g:235:5: singleton
                     pass 
-                    self._state.following.append(self.FOLLOW_singleton_in_membership_function519)
+                    self._state.following.append(self.FOLLOW_singleton_in_membership_function526)
                     singleton12 = self.singleton()
 
                     self._state.following.pop()
@@ -1150,9 +1153,9 @@ class FCLParser(Parser):
 
 
                 elif alt19 == 2:
-                    # FCL.g:228:5: points
+                    # FCL.g:237:5: points
                     pass 
-                    self._state.following.append(self.FOLLOW_points_in_membership_function531)
+                    self._state.following.append(self.FOLLOW_points_in_membership_function538)
                     points13 = self.points()
 
                     self._state.following.pop()
@@ -1175,7 +1178,7 @@ class FCLParser(Parser):
 
 
     # $ANTLR start "singleton"
-    # FCL.g:231:1: singleton returns [set] : ( numeric_literal | variable_name );
+    # FCL.g:240:1: singleton returns [set] : ( numeric_literal | variable_name );
     def singleton(self, ):
 
         set = None
@@ -1185,7 +1188,7 @@ class FCLParser(Parser):
 
         try:
             try:
-                # FCL.g:232:3: ( numeric_literal | variable_name )
+                # FCL.g:241:3: ( numeric_literal | variable_name )
                 alt20 = 2
                 LA20_0 = self.input.LA(1)
 
@@ -1199,9 +1202,9 @@ class FCLParser(Parser):
                     raise nvae
 
                 if alt20 == 1:
-                    # FCL.g:233:5: numeric_literal
+                    # FCL.g:242:5: numeric_literal
                     pass 
-                    self._state.following.append(self.FOLLOW_numeric_literal_in_singleton554)
+                    self._state.following.append(self.FOLLOW_numeric_literal_in_singleton561)
                     numeric_literal14 = self.numeric_literal()
 
                     self._state.following.pop()
@@ -1211,9 +1214,9 @@ class FCLParser(Parser):
 
 
                 elif alt20 == 2:
-                    # FCL.g:235:5: variable_name
+                    # FCL.g:244:5: variable_name
                     pass 
-                    self._state.following.append(self.FOLLOW_variable_name_in_singleton566)
+                    self._state.following.append(self.FOLLOW_variable_name_in_singleton573)
                     self.variable_name()
 
                     self._state.following.pop()
@@ -1233,7 +1236,7 @@ class FCLParser(Parser):
 
 
     # $ANTLR start "points"
-    # FCL.g:238:1: points returns [set] : ( '(' (x= numeric_literal | variable_name ) ',' y= numeric_literal ')' )* ;
+    # FCL.g:247:1: points returns [set] : ( '(' (x= numeric_literal | variable_name ) ',' y= numeric_literal ')' )* ;
     def points(self, ):
 
         set = None
@@ -1248,10 +1251,10 @@ class FCLParser(Parser):
 
         try:
             try:
-                # FCL.g:242:3: ( ( '(' (x= numeric_literal | variable_name ) ',' y= numeric_literal ')' )* )
-                # FCL.g:243:4: ( '(' (x= numeric_literal | variable_name ) ',' y= numeric_literal ')' )*
+                # FCL.g:251:3: ( ( '(' (x= numeric_literal | variable_name ) ',' y= numeric_literal ')' )* )
+                # FCL.g:252:4: ( '(' (x= numeric_literal | variable_name ) ',' y= numeric_literal ')' )*
                 pass 
-                # FCL.g:243:4: ( '(' (x= numeric_literal | variable_name ) ',' y= numeric_literal ')' )*
+                # FCL.g:252:4: ( '(' (x= numeric_literal | variable_name ) ',' y= numeric_literal ')' )*
                 while True: #loop22
                     alt22 = 2
                     LA22_0 = self.input.LA(1)
@@ -1261,10 +1264,10 @@ class FCLParser(Parser):
 
 
                     if alt22 == 1:
-                        # FCL.g:244:6: '(' (x= numeric_literal | variable_name ) ',' y= numeric_literal ')'
+                        # FCL.g:253:6: '(' (x= numeric_literal | variable_name ) ',' y= numeric_literal ')'
                         pass 
-                        self.match(self.input, 34, self.FOLLOW_34_in_points598)
-                        # FCL.g:245:6: (x= numeric_literal | variable_name )
+                        self.match(self.input, 34, self.FOLLOW_34_in_points605)
+                        # FCL.g:254:6: (x= numeric_literal | variable_name )
                         alt21 = 2
                         LA21_0 = self.input.LA(1)
 
@@ -1278,30 +1281,30 @@ class FCLParser(Parser):
                             raise nvae
 
                         if alt21 == 1:
-                            # FCL.g:245:7: x= numeric_literal
+                            # FCL.g:254:7: x= numeric_literal
                             pass 
-                            self._state.following.append(self.FOLLOW_numeric_literal_in_points608)
+                            self._state.following.append(self.FOLLOW_numeric_literal_in_points615)
                             x = self.numeric_literal()
 
                             self._state.following.pop()
 
 
                         elif alt21 == 2:
-                            # FCL.g:245:27: variable_name
+                            # FCL.g:254:27: variable_name
                             pass 
-                            self._state.following.append(self.FOLLOW_variable_name_in_points612)
+                            self._state.following.append(self.FOLLOW_variable_name_in_points619)
                             self.variable_name()
 
                             self._state.following.pop()
 
 
 
-                        self.match(self.input, 35, self.FOLLOW_35_in_points620)
-                        self._state.following.append(self.FOLLOW_numeric_literal_in_points629)
+                        self.match(self.input, 35, self.FOLLOW_35_in_points627)
+                        self._state.following.append(self.FOLLOW_numeric_literal_in_points636)
                         y = self.numeric_literal()
 
                         self._state.following.pop()
-                        self.match(self.input, 36, self.FOLLOW_36_in_points636)
+                        self.match(self.input, 36, self.FOLLOW_36_in_points643)
                         #action start
                         p.append((float(((x is not None) and [self.input.toString(x.start,x.stop)] or [None])[0]),float(((y is not None) and [self.input.toString(y.start,y.stop)] or [None])[0])));
                         #action end
@@ -1331,23 +1334,23 @@ class FCLParser(Parser):
 
 
     # $ANTLR start "defuzzification_method"
-    # FCL.g:256:1: defuzzification_method[var_name] : 'METHOD' ':' Identifier ';' ;
+    # FCL.g:265:1: defuzzification_method[var_name] : 'METHOD' ':' Identifier ';' ;
     def defuzzification_method(self, var_name):
 
         Identifier15 = None
 
         try:
             try:
-                # FCL.g:256:35: ( 'METHOD' ':' Identifier ';' )
-                # FCL.g:257:3: 'METHOD' ':' Identifier ';'
+                # FCL.g:265:35: ( 'METHOD' ':' Identifier ';' )
+                # FCL.g:266:3: 'METHOD' ':' Identifier ';'
                 pass 
-                self.match(self.input, 37, self.FOLLOW_37_in_defuzzification_method672)
-                self.match(self.input, 18, self.FOLLOW_18_in_defuzzification_method674)
-                Identifier15=self.match(self.input, Identifier, self.FOLLOW_Identifier_in_defuzzification_method678)
+                self.match(self.input, 37, self.FOLLOW_37_in_defuzzification_method679)
+                self.match(self.input, 18, self.FOLLOW_18_in_defuzzification_method681)
+                Identifier15=self.match(self.input, Identifier, self.FOLLOW_Identifier_in_defuzzification_method685)
                 #action start
                 self.System.variables[var_name].defuzzify = getDefuzzificationMethod(Identifier15.text);
                 #action end
-                self.match(self.input, 20, self.FOLLOW_20_in_defuzzification_method684)
+                self.match(self.input, 20, self.FOLLOW_20_in_defuzzification_method691)
 
 
 
@@ -1365,7 +1368,7 @@ class FCLParser(Parser):
 
 
     # $ANTLR start "default_value"
-    # FCL.g:262:1: default_value[var_name] : 'DEFAULT' ':=' ( numeric_literal | 'NC' ) ';' ;
+    # FCL.g:271:1: default_value[var_name] : 'DEFAULT' ':=' ( numeric_literal | 'NC' ) ';' ;
     def default_value(self, var_name):
 
         numeric_literal16 = None
@@ -1373,12 +1376,12 @@ class FCLParser(Parser):
 
         try:
             try:
-                # FCL.g:262:26: ( 'DEFAULT' ':=' ( numeric_literal | 'NC' ) ';' )
-                # FCL.g:263:3: 'DEFAULT' ':=' ( numeric_literal | 'NC' ) ';'
+                # FCL.g:271:26: ( 'DEFAULT' ':=' ( numeric_literal | 'NC' ) ';' )
+                # FCL.g:272:3: 'DEFAULT' ':=' ( numeric_literal | 'NC' ) ';'
                 pass 
-                self.match(self.input, 38, self.FOLLOW_38_in_default_value699)
-                self.match(self.input, 33, self.FOLLOW_33_in_default_value701)
-                # FCL.g:264:3: ( numeric_literal | 'NC' )
+                self.match(self.input, 38, self.FOLLOW_38_in_default_value706)
+                self.match(self.input, 33, self.FOLLOW_33_in_default_value708)
+                # FCL.g:273:3: ( numeric_literal | 'NC' )
                 alt23 = 2
                 LA23_0 = self.input.LA(1)
 
@@ -1392,9 +1395,9 @@ class FCLParser(Parser):
                     raise nvae
 
                 if alt23 == 1:
-                    # FCL.g:265:5: numeric_literal
+                    # FCL.g:274:5: numeric_literal
                     pass 
-                    self._state.following.append(self.FOLLOW_numeric_literal_in_default_value711)
+                    self._state.following.append(self.FOLLOW_numeric_literal_in_default_value718)
                     numeric_literal16 = self.numeric_literal()
 
                     self._state.following.pop()
@@ -1404,16 +1407,16 @@ class FCLParser(Parser):
 
 
                 elif alt23 == 2:
-                    # FCL.g:267:5: 'NC'
+                    # FCL.g:276:5: 'NC'
                     pass 
-                    self.match(self.input, 39, self.FOLLOW_39_in_default_value723)
+                    self.match(self.input, 39, self.FOLLOW_39_in_default_value730)
                     #action start
                     self.System.variables[var_name].defuzzify.failsafe = None;
                     #action end
 
 
 
-                self.match(self.input, 20, self.FOLLOW_20_in_default_value733)
+                self.match(self.input, 20, self.FOLLOW_20_in_default_value740)
 
 
 
@@ -1431,28 +1434,28 @@ class FCLParser(Parser):
 
 
     # $ANTLR start "range"
-    # FCL.g:272:1: range : 'RANGE' ':=' '(' numeric_literal '..' numeric_literal ')' ';' ;
+    # FCL.g:281:1: range : 'RANGE' ':=' '(' numeric_literal '..' numeric_literal ')' ';' ;
     def range(self, ):
 
         try:
             try:
-                # FCL.g:272:7: ( 'RANGE' ':=' '(' numeric_literal '..' numeric_literal ')' ';' )
-                # FCL.g:272:9: 'RANGE' ':=' '(' numeric_literal '..' numeric_literal ')' ';'
+                # FCL.g:281:7: ( 'RANGE' ':=' '(' numeric_literal '..' numeric_literal ')' ';' )
+                # FCL.g:281:9: 'RANGE' ':=' '(' numeric_literal '..' numeric_literal ')' ';'
                 pass 
-                self.match(self.input, 40, self.FOLLOW_40_in_range744)
-                self.match(self.input, 33, self.FOLLOW_33_in_range746)
-                self.match(self.input, 34, self.FOLLOW_34_in_range748)
-                self._state.following.append(self.FOLLOW_numeric_literal_in_range750)
+                self.match(self.input, 40, self.FOLLOW_40_in_range751)
+                self.match(self.input, 33, self.FOLLOW_33_in_range753)
+                self.match(self.input, 34, self.FOLLOW_34_in_range755)
+                self._state.following.append(self.FOLLOW_numeric_literal_in_range757)
                 self.numeric_literal()
 
                 self._state.following.pop()
-                self.match(self.input, 41, self.FOLLOW_41_in_range752)
-                self._state.following.append(self.FOLLOW_numeric_literal_in_range754)
+                self.match(self.input, 41, self.FOLLOW_41_in_range759)
+                self._state.following.append(self.FOLLOW_numeric_literal_in_range761)
                 self.numeric_literal()
 
                 self._state.following.pop()
-                self.match(self.input, 36, self.FOLLOW_36_in_range756)
-                self.match(self.input, 20, self.FOLLOW_20_in_range758)
+                self.match(self.input, 36, self.FOLLOW_36_in_range763)
+                self.match(self.input, 20, self.FOLLOW_20_in_range765)
 
 
 
@@ -1470,7 +1473,7 @@ class FCLParser(Parser):
 
 
     # $ANTLR start "operator_name_any"
-    # FCL.g:275:1: operator_name_any returns [op] : i1= Identifier ( '[' param= numeric_literal ']' )? ;
+    # FCL.g:284:1: operator_name_any returns [op] : i1= Identifier ( '[' param= numeric_literal ']' )? ;
     def operator_name_any(self, ):
 
         op = None
@@ -1481,25 +1484,25 @@ class FCLParser(Parser):
 
         try:
             try:
-                # FCL.g:276:3: (i1= Identifier ( '[' param= numeric_literal ']' )? )
-                # FCL.g:277:3: i1= Identifier ( '[' param= numeric_literal ']' )?
+                # FCL.g:285:3: (i1= Identifier ( '[' param= numeric_literal ']' )? )
+                # FCL.g:286:3: i1= Identifier ( '[' param= numeric_literal ']' )?
                 pass 
-                i1=self.match(self.input, Identifier, self.FOLLOW_Identifier_in_operator_name_any777)
-                # FCL.g:277:17: ( '[' param= numeric_literal ']' )?
+                i1=self.match(self.input, Identifier, self.FOLLOW_Identifier_in_operator_name_any784)
+                # FCL.g:286:17: ( '[' param= numeric_literal ']' )?
                 alt24 = 2
                 LA24_0 = self.input.LA(1)
 
                 if (LA24_0 == 42) :
                     alt24 = 1
                 if alt24 == 1:
-                    # FCL.g:277:18: '[' param= numeric_literal ']'
+                    # FCL.g:286:18: '[' param= numeric_literal ']'
                     pass 
-                    self.match(self.input, 42, self.FOLLOW_42_in_operator_name_any780)
-                    self._state.following.append(self.FOLLOW_numeric_literal_in_operator_name_any784)
+                    self.match(self.input, 42, self.FOLLOW_42_in_operator_name_any787)
+                    self._state.following.append(self.FOLLOW_numeric_literal_in_operator_name_any791)
                     param = self.numeric_literal()
 
                     self._state.following.pop()
-                    self.match(self.input, 43, self.FOLLOW_43_in_operator_name_any786)
+                    self.match(self.input, 43, self.FOLLOW_43_in_operator_name_any793)
 
 
 
@@ -1529,7 +1532,7 @@ class FCLParser(Parser):
 
 
     # $ANTLR start "operator_name_AND"
-    # FCL.g:287:1: operator_name_AND returns [op] : ( ( 'MIN' ) | ( 'PROD' ) | ( 'BDIF' ) | (norm= operator_name_any ) );
+    # FCL.g:296:1: operator_name_AND returns [op] : ( ( 'MIN' ) | ( 'PROD' ) | ( 'BDIF' ) | (norm= operator_name_any ) );
     def operator_name_AND(self, ):
 
         op = None
@@ -1539,7 +1542,7 @@ class FCLParser(Parser):
 
         try:
             try:
-                # FCL.g:288:3: ( ( 'MIN' ) | ( 'PROD' ) | ( 'BDIF' ) | (norm= operator_name_any ) )
+                # FCL.g:297:3: ( ( 'MIN' ) | ( 'PROD' ) | ( 'BDIF' ) | (norm= operator_name_any ) )
                 alt25 = 4
                 LA25 = self.input.LA(1)
                 if LA25 == 44:
@@ -1556,12 +1559,12 @@ class FCLParser(Parser):
                     raise nvae
 
                 if alt25 == 1:
-                    # FCL.g:288:5: ( 'MIN' )
+                    # FCL.g:297:5: ( 'MIN' )
                     pass 
-                    # FCL.g:288:5: ( 'MIN' )
-                    # FCL.g:288:6: 'MIN'
+                    # FCL.g:297:5: ( 'MIN' )
+                    # FCL.g:297:6: 'MIN'
                     pass 
-                    self.match(self.input, 44, self.FOLLOW_44_in_operator_name_AND809)
+                    self.match(self.input, 44, self.FOLLOW_44_in_operator_name_AND816)
                     #action start
                     op =  getNorm("Min")
                     #action end
@@ -1571,12 +1574,12 @@ class FCLParser(Parser):
 
 
                 elif alt25 == 2:
-                    # FCL.g:289:5: ( 'PROD' )
+                    # FCL.g:298:5: ( 'PROD' )
                     pass 
-                    # FCL.g:289:5: ( 'PROD' )
-                    # FCL.g:289:6: 'PROD'
+                    # FCL.g:298:5: ( 'PROD' )
+                    # FCL.g:298:6: 'PROD'
                     pass 
-                    self.match(self.input, 45, self.FOLLOW_45_in_operator_name_AND819)
+                    self.match(self.input, 45, self.FOLLOW_45_in_operator_name_AND826)
                     #action start
                     op =  getNorm("AlgebraicProduct")
                     #action end
@@ -1586,12 +1589,12 @@ class FCLParser(Parser):
 
 
                 elif alt25 == 3:
-                    # FCL.g:290:5: ( 'BDIF' )
+                    # FCL.g:299:5: ( 'BDIF' )
                     pass 
-                    # FCL.g:290:5: ( 'BDIF' )
-                    # FCL.g:290:6: 'BDIF'
+                    # FCL.g:299:5: ( 'BDIF' )
+                    # FCL.g:299:6: 'BDIF'
                     pass 
-                    self.match(self.input, 46, self.FOLLOW_46_in_operator_name_AND829)
+                    self.match(self.input, 46, self.FOLLOW_46_in_operator_name_AND836)
                     #action start
                     op =  getNorm("BoundedDifference")
                     #action end
@@ -1601,12 +1604,12 @@ class FCLParser(Parser):
 
 
                 elif alt25 == 4:
-                    # FCL.g:291:5: (norm= operator_name_any )
+                    # FCL.g:300:5: (norm= operator_name_any )
                     pass 
-                    # FCL.g:291:5: (norm= operator_name_any )
-                    # FCL.g:291:6: norm= operator_name_any
+                    # FCL.g:300:5: (norm= operator_name_any )
+                    # FCL.g:300:6: norm= operator_name_any
                     pass 
-                    self._state.following.append(self.FOLLOW_operator_name_any_in_operator_name_AND842)
+                    self._state.following.append(self.FOLLOW_operator_name_any_in_operator_name_AND849)
                     norm = self.operator_name_any()
 
                     self._state.following.pop()
@@ -1632,7 +1635,7 @@ class FCLParser(Parser):
 
 
     # $ANTLR start "operator_name_OR"
-    # FCL.g:294:1: operator_name_OR returns [op] : ( ( 'MAX' ) | ( 'ASUM' ) | ( 'BSUM' ) | (norm= operator_name_any ) );
+    # FCL.g:303:1: operator_name_OR returns [op] : ( ( 'MAX' ) | ( 'ASUM' ) | ( 'BSUM' ) | (norm= operator_name_any ) );
     def operator_name_OR(self, ):
 
         op = None
@@ -1642,7 +1645,7 @@ class FCLParser(Parser):
 
         try:
             try:
-                # FCL.g:295:3: ( ( 'MAX' ) | ( 'ASUM' ) | ( 'BSUM' ) | (norm= operator_name_any ) )
+                # FCL.g:304:3: ( ( 'MAX' ) | ( 'ASUM' ) | ( 'BSUM' ) | (norm= operator_name_any ) )
                 alt26 = 4
                 LA26 = self.input.LA(1)
                 if LA26 == 47:
@@ -1659,12 +1662,12 @@ class FCLParser(Parser):
                     raise nvae
 
                 if alt26 == 1:
-                    # FCL.g:295:5: ( 'MAX' )
+                    # FCL.g:304:5: ( 'MAX' )
                     pass 
-                    # FCL.g:295:5: ( 'MAX' )
-                    # FCL.g:295:6: 'MAX'
+                    # FCL.g:304:5: ( 'MAX' )
+                    # FCL.g:304:6: 'MAX'
                     pass 
-                    self.match(self.input, 47, self.FOLLOW_47_in_operator_name_OR863)
+                    self.match(self.input, 47, self.FOLLOW_47_in_operator_name_OR870)
                     #action start
                     op =  getNorm("Max")
                     #action end
@@ -1674,12 +1677,12 @@ class FCLParser(Parser):
 
 
                 elif alt26 == 2:
-                    # FCL.g:296:5: ( 'ASUM' )
+                    # FCL.g:305:5: ( 'ASUM' )
                     pass 
-                    # FCL.g:296:5: ( 'ASUM' )
-                    # FCL.g:296:6: 'ASUM'
+                    # FCL.g:305:5: ( 'ASUM' )
+                    # FCL.g:305:6: 'ASUM'
                     pass 
-                    self.match(self.input, 48, self.FOLLOW_48_in_operator_name_OR873)
+                    self.match(self.input, 48, self.FOLLOW_48_in_operator_name_OR880)
                     #action start
                     op =  getNorm("AlgebraicSum")
                     #action end
@@ -1689,12 +1692,12 @@ class FCLParser(Parser):
 
 
                 elif alt26 == 3:
-                    # FCL.g:297:5: ( 'BSUM' )
+                    # FCL.g:306:5: ( 'BSUM' )
                     pass 
-                    # FCL.g:297:5: ( 'BSUM' )
-                    # FCL.g:297:6: 'BSUM'
+                    # FCL.g:306:5: ( 'BSUM' )
+                    # FCL.g:306:6: 'BSUM'
                     pass 
-                    self.match(self.input, 49, self.FOLLOW_49_in_operator_name_OR883)
+                    self.match(self.input, 49, self.FOLLOW_49_in_operator_name_OR890)
                     #action start
                     op =  getNorm("BoundedSum")
                     #action end
@@ -1704,12 +1707,12 @@ class FCLParser(Parser):
 
 
                 elif alt26 == 4:
-                    # FCL.g:298:5: (norm= operator_name_any )
+                    # FCL.g:307:5: (norm= operator_name_any )
                     pass 
-                    # FCL.g:298:5: (norm= operator_name_any )
-                    # FCL.g:298:6: norm= operator_name_any
+                    # FCL.g:307:5: (norm= operator_name_any )
+                    # FCL.g:307:6: norm= operator_name_any
                     pass 
-                    self._state.following.append(self.FOLLOW_operator_name_any_in_operator_name_OR896)
+                    self._state.following.append(self.FOLLOW_operator_name_any_in_operator_name_OR903)
                     norm = self.operator_name_any()
 
                     self._state.following.pop()
@@ -1735,7 +1738,7 @@ class FCLParser(Parser):
 
 
     # $ANTLR start "operator_definition"
-    # FCL.g:304:1: operator_definition : ( (or_name= OR_ ':' or_op= operator_name_OR ) | (and_name= AND_ ':' and_op= operator_name_AND ) ) ';' ;
+    # FCL.g:313:1: operator_definition : ( (or_name= OR_ ':' or_op= operator_name_OR ) | (and_name= AND_ ':' and_op= operator_name_AND ) ) ';' ;
     def operator_definition(self, ):
 
         or_name = None
@@ -1747,10 +1750,10 @@ class FCLParser(Parser):
 
         try:
             try:
-                # FCL.g:304:21: ( ( (or_name= OR_ ':' or_op= operator_name_OR ) | (and_name= AND_ ':' and_op= operator_name_AND ) ) ';' )
-                # FCL.g:305:1: ( (or_name= OR_ ':' or_op= operator_name_OR ) | (and_name= AND_ ':' and_op= operator_name_AND ) ) ';'
+                # FCL.g:313:21: ( ( (or_name= OR_ ':' or_op= operator_name_OR ) | (and_name= AND_ ':' and_op= operator_name_AND ) ) ';' )
+                # FCL.g:314:1: ( (or_name= OR_ ':' or_op= operator_name_OR ) | (and_name= AND_ ':' and_op= operator_name_AND ) ) ';'
                 pass 
-                # FCL.g:305:1: ( (or_name= OR_ ':' or_op= operator_name_OR ) | (and_name= AND_ ':' and_op= operator_name_AND ) )
+                # FCL.g:314:1: ( (or_name= OR_ ':' or_op= operator_name_OR ) | (and_name= AND_ ':' and_op= operator_name_AND ) )
                 alt27 = 2
                 LA27_0 = self.input.LA(1)
 
@@ -1764,14 +1767,14 @@ class FCLParser(Parser):
                     raise nvae
 
                 if alt27 == 1:
-                    # FCL.g:306:1: (or_name= OR_ ':' or_op= operator_name_OR )
+                    # FCL.g:315:1: (or_name= OR_ ':' or_op= operator_name_OR )
                     pass 
-                    # FCL.g:306:1: (or_name= OR_ ':' or_op= operator_name_OR )
-                    # FCL.g:306:2: or_name= OR_ ':' or_op= operator_name_OR
+                    # FCL.g:315:1: (or_name= OR_ ':' or_op= operator_name_OR )
+                    # FCL.g:315:2: or_name= OR_ ':' or_op= operator_name_OR
                     pass 
-                    or_name=self.match(self.input, OR_, self.FOLLOW_OR__in_operator_definition940)
-                    self.match(self.input, 18, self.FOLLOW_18_in_operator_definition942)
-                    self._state.following.append(self.FOLLOW_operator_name_OR_in_operator_definition946)
+                    or_name=self.match(self.input, OR_, self.FOLLOW_OR__in_operator_definition947)
+                    self.match(self.input, 18, self.FOLLOW_18_in_operator_definition949)
+                    self._state.following.append(self.FOLLOW_operator_name_OR_in_operator_definition953)
                     or_op = self.operator_name_OR()
 
                     self._state.following.pop()
@@ -1784,14 +1787,14 @@ class FCLParser(Parser):
 
 
                 elif alt27 == 2:
-                    # FCL.g:308:1: (and_name= AND_ ':' and_op= operator_name_AND )
+                    # FCL.g:317:1: (and_name= AND_ ':' and_op= operator_name_AND )
                     pass 
-                    # FCL.g:308:1: (and_name= AND_ ':' and_op= operator_name_AND )
-                    # FCL.g:308:2: and_name= AND_ ':' and_op= operator_name_AND
+                    # FCL.g:317:1: (and_name= AND_ ':' and_op= operator_name_AND )
+                    # FCL.g:317:2: and_name= AND_ ':' and_op= operator_name_AND
                     pass 
-                    and_name=self.match(self.input, AND_, self.FOLLOW_AND__in_operator_definition957)
-                    self.match(self.input, 18, self.FOLLOW_18_in_operator_definition959)
-                    self._state.following.append(self.FOLLOW_operator_name_AND_in_operator_definition963)
+                    and_name=self.match(self.input, AND_, self.FOLLOW_AND__in_operator_definition964)
+                    self.match(self.input, 18, self.FOLLOW_18_in_operator_definition966)
+                    self._state.following.append(self.FOLLOW_operator_name_AND_in_operator_definition970)
                     and_op = self.operator_name_AND()
 
                     self._state.following.pop()
@@ -1804,7 +1807,7 @@ class FCLParser(Parser):
 
 
 
-                self.match(self.input, 20, self.FOLLOW_20_in_operator_definition972)
+                self.match(self.input, 20, self.FOLLOW_20_in_operator_definition979)
 
 
 
@@ -1822,16 +1825,16 @@ class FCLParser(Parser):
 
 
     # $ANTLR start "activation_method"
-    # FCL.g:313:1: activation_method : 'ACT' ':' ( 'PROD' | 'MIN' ) ';' ;
+    # FCL.g:322:1: activation_method : 'ACT' ':' ( 'PROD' | 'MIN' ) ';' ;
     def activation_method(self, ):
 
         try:
             try:
-                # FCL.g:313:19: ( 'ACT' ':' ( 'PROD' | 'MIN' ) ';' )
-                # FCL.g:313:21: 'ACT' ':' ( 'PROD' | 'MIN' ) ';'
+                # FCL.g:322:19: ( 'ACT' ':' ( 'PROD' | 'MIN' ) ';' )
+                # FCL.g:322:21: 'ACT' ':' ( 'PROD' | 'MIN' ) ';'
                 pass 
-                self.match(self.input, 50, self.FOLLOW_50_in_activation_method981)
-                self.match(self.input, 18, self.FOLLOW_18_in_activation_method983)
+                self.match(self.input, 50, self.FOLLOW_50_in_activation_method988)
+                self.match(self.input, 18, self.FOLLOW_18_in_activation_method990)
                 if (44 <= self.input.LA(1) <= 45):
                     self.input.consume()
                     self._state.errorRecovery = False
@@ -1841,7 +1844,7 @@ class FCLParser(Parser):
                     raise mse
 
 
-                self.match(self.input, 20, self.FOLLOW_20_in_activation_method993)
+                self.match(self.input, 20, self.FOLLOW_20_in_activation_method1000)
 
 
 
@@ -1859,16 +1862,16 @@ class FCLParser(Parser):
 
 
     # $ANTLR start "accumulation_method"
-    # FCL.g:315:1: accumulation_method : 'ACCU' ':' ( 'MAX' | 'BSUM' | 'NSUM' ) ';' ;
+    # FCL.g:324:1: accumulation_method : 'ACCU' ':' ( 'MAX' | 'BSUM' | 'NSUM' ) ';' ;
     def accumulation_method(self, ):
 
         try:
             try:
-                # FCL.g:315:21: ( 'ACCU' ':' ( 'MAX' | 'BSUM' | 'NSUM' ) ';' )
-                # FCL.g:315:23: 'ACCU' ':' ( 'MAX' | 'BSUM' | 'NSUM' ) ';'
+                # FCL.g:324:21: ( 'ACCU' ':' ( 'MAX' | 'BSUM' | 'NSUM' ) ';' )
+                # FCL.g:324:23: 'ACCU' ':' ( 'MAX' | 'BSUM' | 'NSUM' ) ';'
                 pass 
-                self.match(self.input, 51, self.FOLLOW_51_in_accumulation_method1001)
-                self.match(self.input, 18, self.FOLLOW_18_in_accumulation_method1003)
+                self.match(self.input, 51, self.FOLLOW_51_in_accumulation_method1008)
+                self.match(self.input, 18, self.FOLLOW_18_in_accumulation_method1010)
                 if self.input.LA(1) == 47 or self.input.LA(1) == 49 or self.input.LA(1) == 52:
                     self.input.consume()
                     self._state.errorRecovery = False
@@ -1878,7 +1881,7 @@ class FCLParser(Parser):
                     raise mse
 
 
-                self.match(self.input, 20, self.FOLLOW_20_in_accumulation_method1017)
+                self.match(self.input, 20, self.FOLLOW_20_in_accumulation_method1024)
 
 
 
@@ -1896,7 +1899,7 @@ class FCLParser(Parser):
 
 
     # $ANTLR start "condition"
-    # FCL.g:320:1: condition returns [input] : (s1= subcondition ) ( (op= ( AND_ | OR_ ) s2= subcondition ) )* ;
+    # FCL.g:329:1: condition returns [input] : (s1= subcondition ) ( (op= ( AND_ | OR_ ) s2= subcondition ) )* ;
     def condition(self, ):
 
         input = None
@@ -1912,13 +1915,13 @@ class FCLParser(Parser):
 
         try:
             try:
-                # FCL.g:324:3: ( (s1= subcondition ) ( (op= ( AND_ | OR_ ) s2= subcondition ) )* )
-                # FCL.g:325:3: (s1= subcondition ) ( (op= ( AND_ | OR_ ) s2= subcondition ) )*
+                # FCL.g:333:3: ( (s1= subcondition ) ( (op= ( AND_ | OR_ ) s2= subcondition ) )* )
+                # FCL.g:334:3: (s1= subcondition ) ( (op= ( AND_ | OR_ ) s2= subcondition ) )*
                 pass 
-                # FCL.g:325:3: (s1= subcondition )
-                # FCL.g:326:5: s1= subcondition
+                # FCL.g:334:3: (s1= subcondition )
+                # FCL.g:335:5: s1= subcondition
                 pass 
-                self._state.following.append(self.FOLLOW_subcondition_in_condition1048)
+                self._state.following.append(self.FOLLOW_subcondition_in_condition1055)
                 s1 = self.subcondition()
 
                 self._state.following.pop()
@@ -1928,7 +1931,7 @@ class FCLParser(Parser):
 
 
 
-                # FCL.g:330:3: ( (op= ( AND_ | OR_ ) s2= subcondition ) )*
+                # FCL.g:339:3: ( (op= ( AND_ | OR_ ) s2= subcondition ) )*
                 while True: #loop28
                     alt28 = 2
                     LA28_0 = self.input.LA(1)
@@ -1938,10 +1941,10 @@ class FCLParser(Parser):
 
 
                     if alt28 == 1:
-                        # FCL.g:331:5: (op= ( AND_ | OR_ ) s2= subcondition )
+                        # FCL.g:340:5: (op= ( AND_ | OR_ ) s2= subcondition )
                         pass 
-                        # FCL.g:331:5: (op= ( AND_ | OR_ ) s2= subcondition )
-                        # FCL.g:332:7: op= ( AND_ | OR_ ) s2= subcondition
+                        # FCL.g:340:5: (op= ( AND_ | OR_ ) s2= subcondition )
+                        # FCL.g:341:7: op= ( AND_ | OR_ ) s2= subcondition
                         pass 
                         op = self.input.LT(1)
                         if (OR_ <= self.input.LA(1) <= AND_):
@@ -1961,7 +1964,7 @@ class FCLParser(Parser):
                             op_name = op.text
                               
                         #action end
-                        self._state.following.append(self.FOLLOW_subcondition_in_condition1098)
+                        self._state.following.append(self.FOLLOW_subcondition_in_condition1105)
                         s2 = self.subcondition()
 
                         self._state.following.pop()
@@ -1996,7 +1999,7 @@ class FCLParser(Parser):
 
 
     # $ANTLR start "subcondition"
-    # FCL.g:350:1: subcondition returns [input] : ( ( 'NOT' '(' condition ')' ) | ( subcondition2 ) );
+    # FCL.g:359:1: subcondition returns [input] : ( ( 'NOT' '(' condition ')' ) | ( subcondition2 ) );
     def subcondition(self, ):
 
         input = None
@@ -2008,7 +2011,7 @@ class FCLParser(Parser):
 
         try:
             try:
-                # FCL.g:351:3: ( ( 'NOT' '(' condition ')' ) | ( subcondition2 ) )
+                # FCL.g:360:3: ( ( 'NOT' '(' condition ')' ) | ( subcondition2 ) )
                 alt29 = 2
                 LA29_0 = self.input.LA(1)
 
@@ -2022,18 +2025,18 @@ class FCLParser(Parser):
                     raise nvae
 
                 if alt29 == 1:
-                    # FCL.g:351:5: ( 'NOT' '(' condition ')' )
+                    # FCL.g:360:5: ( 'NOT' '(' condition ')' )
                     pass 
-                    # FCL.g:351:5: ( 'NOT' '(' condition ')' )
-                    # FCL.g:351:6: 'NOT' '(' condition ')'
+                    # FCL.g:360:5: ( 'NOT' '(' condition ')' )
+                    # FCL.g:360:6: 'NOT' '(' condition ')'
                     pass 
-                    self.match(self.input, 53, self.FOLLOW_53_in_subcondition1138)
-                    self.match(self.input, 34, self.FOLLOW_34_in_subcondition1140)
-                    self._state.following.append(self.FOLLOW_condition_in_subcondition1142)
+                    self.match(self.input, 53, self.FOLLOW_53_in_subcondition1145)
+                    self.match(self.input, 34, self.FOLLOW_34_in_subcondition1147)
+                    self._state.following.append(self.FOLLOW_condition_in_subcondition1149)
                     condition17 = self.condition()
 
                     self._state.following.pop()
-                    self.match(self.input, 36, self.FOLLOW_36_in_subcondition1144)
+                    self.match(self.input, 36, self.FOLLOW_36_in_subcondition1151)
                     #action start
                     input =  fuzzy.operator.Not.Not(condition17)
                     #action end
@@ -2043,12 +2046,12 @@ class FCLParser(Parser):
 
 
                 elif alt29 == 2:
-                    # FCL.g:352:5: ( subcondition2 )
+                    # FCL.g:361:5: ( subcondition2 )
                     pass 
-                    # FCL.g:352:5: ( subcondition2 )
-                    # FCL.g:352:7: subcondition2
+                    # FCL.g:361:5: ( subcondition2 )
+                    # FCL.g:361:7: subcondition2
                     pass 
-                    self._state.following.append(self.FOLLOW_subcondition2_in_subcondition1156)
+                    self._state.following.append(self.FOLLOW_subcondition2_in_subcondition1163)
                     subcondition218 = self.subcondition2()
 
                     self._state.following.pop()
@@ -2074,7 +2077,7 @@ class FCLParser(Parser):
 
 
     # $ANTLR start "subcondition2"
-    # FCL.g:359:1: subcondition2 returns [input] : ( ( '(' c1= condition ')' ) | ( variable_name ( 'IS' (x= 'NOT' )? | '.' ) term_name ) | (norm= operator_name_any '(' c4= condition ',' c5= condition ')' ) );
+    # FCL.g:368:1: subcondition2 returns [input] : ( ( '(' c1= condition ')' ) | ( variable_name ( 'IS' (x= 'NOT' )? | '.' ) term_name ) | (norm= operator_name_any '(' c4= condition ',' c5= condition ')' ) );
     def subcondition2(self, ):
 
         input = None
@@ -2095,7 +2098,7 @@ class FCLParser(Parser):
 
         try:
             try:
-                # FCL.g:360:3: ( ( '(' c1= condition ')' ) | ( variable_name ( 'IS' (x= 'NOT' )? | '.' ) term_name ) | (norm= operator_name_any '(' c4= condition ',' c5= condition ')' ) )
+                # FCL.g:369:3: ( ( '(' c1= condition ')' ) | ( variable_name ( 'IS' (x= 'NOT' )? | '.' ) term_name ) | (norm= operator_name_any '(' c4= condition ',' c5= condition ')' ) )
                 alt32 = 3
                 LA32_0 = self.input.LA(1)
 
@@ -2119,17 +2122,17 @@ class FCLParser(Parser):
                     raise nvae
 
                 if alt32 == 1:
-                    # FCL.g:361:3: ( '(' c1= condition ')' )
+                    # FCL.g:370:3: ( '(' c1= condition ')' )
                     pass 
-                    # FCL.g:361:3: ( '(' c1= condition ')' )
-                    # FCL.g:361:4: '(' c1= condition ')'
+                    # FCL.g:370:3: ( '(' c1= condition ')' )
+                    # FCL.g:370:4: '(' c1= condition ')'
                     pass 
-                    self.match(self.input, 34, self.FOLLOW_34_in_subcondition21183)
-                    self._state.following.append(self.FOLLOW_condition_in_subcondition21187)
+                    self.match(self.input, 34, self.FOLLOW_34_in_subcondition21190)
+                    self._state.following.append(self.FOLLOW_condition_in_subcondition21194)
                     c1 = self.condition()
 
                     self._state.following.pop()
-                    self.match(self.input, 36, self.FOLLOW_36_in_subcondition21189)
+                    self.match(self.input, 36, self.FOLLOW_36_in_subcondition21196)
                     #action start
                          
                     input =  c1
@@ -2141,16 +2144,16 @@ class FCLParser(Parser):
 
 
                 elif alt32 == 2:
-                    # FCL.g:367:3: ( variable_name ( 'IS' (x= 'NOT' )? | '.' ) term_name )
+                    # FCL.g:376:3: ( variable_name ( 'IS' (x= 'NOT' )? | '.' ) term_name )
                     pass 
-                    # FCL.g:367:3: ( variable_name ( 'IS' (x= 'NOT' )? | '.' ) term_name )
-                    # FCL.g:367:5: variable_name ( 'IS' (x= 'NOT' )? | '.' ) term_name
+                    # FCL.g:376:3: ( variable_name ( 'IS' (x= 'NOT' )? | '.' ) term_name )
+                    # FCL.g:376:5: variable_name ( 'IS' (x= 'NOT' )? | '.' ) term_name
                     pass 
-                    self._state.following.append(self.FOLLOW_variable_name_in_subcondition21209)
+                    self._state.following.append(self.FOLLOW_variable_name_in_subcondition21216)
                     variable_name19 = self.variable_name()
 
                     self._state.following.pop()
-                    # FCL.g:367:19: ( 'IS' (x= 'NOT' )? | '.' )
+                    # FCL.g:376:19: ( 'IS' (x= 'NOT' )? | '.' )
                     alt31 = 2
                     LA31_0 = self.input.LA(1)
 
@@ -2164,32 +2167,32 @@ class FCLParser(Parser):
                         raise nvae
 
                     if alt31 == 1:
-                        # FCL.g:367:20: 'IS' (x= 'NOT' )?
+                        # FCL.g:376:20: 'IS' (x= 'NOT' )?
                         pass 
-                        self.match(self.input, 54, self.FOLLOW_54_in_subcondition21212)
-                        # FCL.g:367:26: (x= 'NOT' )?
+                        self.match(self.input, 54, self.FOLLOW_54_in_subcondition21219)
+                        # FCL.g:376:26: (x= 'NOT' )?
                         alt30 = 2
                         LA30_0 = self.input.LA(1)
 
                         if (LA30_0 == 53) :
                             alt30 = 1
                         if alt30 == 1:
-                            # FCL.g:367:26: x= 'NOT'
+                            # FCL.g:376:26: x= 'NOT'
                             pass 
-                            x=self.match(self.input, 53, self.FOLLOW_53_in_subcondition21216)
+                            x=self.match(self.input, 53, self.FOLLOW_53_in_subcondition21223)
 
 
 
 
 
                     elif alt31 == 2:
-                        # FCL.g:367:36: '.'
+                        # FCL.g:376:36: '.'
                         pass 
-                        self.match(self.input, 55, self.FOLLOW_55_in_subcondition21221)
+                        self.match(self.input, 55, self.FOLLOW_55_in_subcondition21228)
 
 
 
-                    self._state.following.append(self.FOLLOW_term_name_in_subcondition21225)
+                    self._state.following.append(self.FOLLOW_term_name_in_subcondition21232)
                     term_name20 = self.term_name()
 
                     self._state.following.pop()
@@ -2206,26 +2209,26 @@ class FCLParser(Parser):
 
 
                 elif alt32 == 3:
-                    # FCL.g:375:3: (norm= operator_name_any '(' c4= condition ',' c5= condition ')' )
+                    # FCL.g:384:3: (norm= operator_name_any '(' c4= condition ',' c5= condition ')' )
                     pass 
-                    # FCL.g:375:3: (norm= operator_name_any '(' c4= condition ',' c5= condition ')' )
-                    # FCL.g:375:4: norm= operator_name_any '(' c4= condition ',' c5= condition ')'
+                    # FCL.g:384:3: (norm= operator_name_any '(' c4= condition ',' c5= condition ')' )
+                    # FCL.g:384:4: norm= operator_name_any '(' c4= condition ',' c5= condition ')'
                     pass 
-                    self._state.following.append(self.FOLLOW_operator_name_any_in_subcondition21247)
+                    self._state.following.append(self.FOLLOW_operator_name_any_in_subcondition21254)
                     norm = self.operator_name_any()
 
                     self._state.following.pop()
-                    self.match(self.input, 34, self.FOLLOW_34_in_subcondition21249)
-                    self._state.following.append(self.FOLLOW_condition_in_subcondition21253)
+                    self.match(self.input, 34, self.FOLLOW_34_in_subcondition21256)
+                    self._state.following.append(self.FOLLOW_condition_in_subcondition21260)
                     c4 = self.condition()
 
                     self._state.following.pop()
-                    self.match(self.input, 35, self.FOLLOW_35_in_subcondition21255)
-                    self._state.following.append(self.FOLLOW_condition_in_subcondition21259)
+                    self.match(self.input, 35, self.FOLLOW_35_in_subcondition21262)
+                    self._state.following.append(self.FOLLOW_condition_in_subcondition21266)
                     c5 = self.condition()
 
                     self._state.following.pop()
-                    self.match(self.input, 36, self.FOLLOW_36_in_subcondition21261)
+                    self.match(self.input, 36, self.FOLLOW_36_in_subcondition21268)
                     #action start
                          
                     input =  fuzzy.operator.Compound.Compound(norm,c4,c5)
@@ -2250,7 +2253,7 @@ class FCLParser(Parser):
 
 
     # $ANTLR start "conclusion"
-    # FCL.g:384:1: conclusion returns [adjs] : ( (c1= conclusion2 ) ( ',' c2= conclusion2 )* ) ;
+    # FCL.g:393:1: conclusion returns [adjs] : ( (c1= conclusion2 ) ( ',' c2= conclusion2 )* ) ;
     def conclusion(self, ):
 
         adjs = None
@@ -2265,16 +2268,16 @@ class FCLParser(Parser):
 
         try:
             try:
-                # FCL.g:388:3: ( ( (c1= conclusion2 ) ( ',' c2= conclusion2 )* ) )
-                # FCL.g:388:5: ( (c1= conclusion2 ) ( ',' c2= conclusion2 )* )
+                # FCL.g:397:3: ( ( (c1= conclusion2 ) ( ',' c2= conclusion2 )* ) )
+                # FCL.g:397:5: ( (c1= conclusion2 ) ( ',' c2= conclusion2 )* )
                 pass 
-                # FCL.g:388:5: ( (c1= conclusion2 ) ( ',' c2= conclusion2 )* )
-                # FCL.g:389:5: (c1= conclusion2 ) ( ',' c2= conclusion2 )*
+                # FCL.g:397:5: ( (c1= conclusion2 ) ( ',' c2= conclusion2 )* )
+                # FCL.g:398:5: (c1= conclusion2 ) ( ',' c2= conclusion2 )*
                 pass 
-                # FCL.g:389:5: (c1= conclusion2 )
-                # FCL.g:389:11: c1= conclusion2
+                # FCL.g:398:5: (c1= conclusion2 )
+                # FCL.g:398:11: c1= conclusion2
                 pass 
-                self._state.following.append(self.FOLLOW_conclusion2_in_conclusion1309)
+                self._state.following.append(self.FOLLOW_conclusion2_in_conclusion1316)
                 c1 = self.conclusion2()
 
                 self._state.following.pop()
@@ -2284,7 +2287,7 @@ class FCLParser(Parser):
 
 
 
-                # FCL.g:390:5: ( ',' c2= conclusion2 )*
+                # FCL.g:399:5: ( ',' c2= conclusion2 )*
                 while True: #loop33
                     alt33 = 2
                     LA33_0 = self.input.LA(1)
@@ -2294,10 +2297,10 @@ class FCLParser(Parser):
 
 
                     if alt33 == 1:
-                        # FCL.g:390:8: ',' c2= conclusion2
+                        # FCL.g:399:8: ',' c2= conclusion2
                         pass 
-                        self.match(self.input, 35, self.FOLLOW_35_in_conclusion1323)
-                        self._state.following.append(self.FOLLOW_conclusion2_in_conclusion1327)
+                        self.match(self.input, 35, self.FOLLOW_35_in_conclusion1330)
+                        self._state.following.append(self.FOLLOW_conclusion2_in_conclusion1334)
                         c2 = self.conclusion2()
 
                         self._state.following.pop()
@@ -2333,7 +2336,7 @@ class FCLParser(Parser):
 
 
     # $ANTLR start "conclusion2"
-    # FCL.g:394:1: conclusion2 returns [adj] : ( ( '(' c2= conclusion3 ')' ) | (c1= conclusion3 ) );
+    # FCL.g:403:1: conclusion2 returns [adj] : ( ( '(' c2= conclusion3 ')' ) | (c1= conclusion3 ) );
     def conclusion2(self, ):
 
         adj = None
@@ -2345,7 +2348,7 @@ class FCLParser(Parser):
 
         try:
             try:
-                # FCL.g:395:3: ( ( '(' c2= conclusion3 ')' ) | (c1= conclusion3 ) )
+                # FCL.g:404:3: ( ( '(' c2= conclusion3 ')' ) | (c1= conclusion3 ) )
                 alt34 = 2
                 LA34_0 = self.input.LA(1)
 
@@ -2359,17 +2362,17 @@ class FCLParser(Parser):
                     raise nvae
 
                 if alt34 == 1:
-                    # FCL.g:396:3: ( '(' c2= conclusion3 ')' )
+                    # FCL.g:405:3: ( '(' c2= conclusion3 ')' )
                     pass 
-                    # FCL.g:396:3: ( '(' c2= conclusion3 ')' )
-                    # FCL.g:396:5: '(' c2= conclusion3 ')'
+                    # FCL.g:405:3: ( '(' c2= conclusion3 ')' )
+                    # FCL.g:405:5: '(' c2= conclusion3 ')'
                     pass 
-                    self.match(self.input, 34, self.FOLLOW_34_in_conclusion21361)
-                    self._state.following.append(self.FOLLOW_conclusion3_in_conclusion21365)
+                    self.match(self.input, 34, self.FOLLOW_34_in_conclusion21368)
+                    self._state.following.append(self.FOLLOW_conclusion3_in_conclusion21372)
                     c2 = self.conclusion3()
 
                     self._state.following.pop()
-                    self.match(self.input, 36, self.FOLLOW_36_in_conclusion21368)
+                    self.match(self.input, 36, self.FOLLOW_36_in_conclusion21375)
                     #action start
                     adj = c2
                     #action end
@@ -2379,12 +2382,12 @@ class FCLParser(Parser):
 
 
                 elif alt34 == 2:
-                    # FCL.g:398:3: (c1= conclusion3 )
+                    # FCL.g:407:3: (c1= conclusion3 )
                     pass 
-                    # FCL.g:398:3: (c1= conclusion3 )
-                    # FCL.g:398:9: c1= conclusion3
+                    # FCL.g:407:3: (c1= conclusion3 )
+                    # FCL.g:407:9: c1= conclusion3
                     pass 
-                    self._state.following.append(self.FOLLOW_conclusion3_in_conclusion21388)
+                    self._state.following.append(self.FOLLOW_conclusion3_in_conclusion21395)
                     c1 = self.conclusion3()
 
                     self._state.following.pop()
@@ -2410,7 +2413,7 @@ class FCLParser(Parser):
 
 
     # $ANTLR start "conclusion3"
-    # FCL.g:401:1: conclusion3 returns [adj] : ( (v2= variable_name 'IS' t2= term_name ) ) ;
+    # FCL.g:410:1: conclusion3 returns [adj] : ( (v2= variable_name 'IS' t2= term_name ) ) ;
     def conclusion3(self, ):
 
         adj = None
@@ -2422,21 +2425,21 @@ class FCLParser(Parser):
 
         try:
             try:
-                # FCL.g:402:3: ( ( (v2= variable_name 'IS' t2= term_name ) ) )
-                # FCL.g:403:3: ( (v2= variable_name 'IS' t2= term_name ) )
+                # FCL.g:411:3: ( ( (v2= variable_name 'IS' t2= term_name ) ) )
+                # FCL.g:412:3: ( (v2= variable_name 'IS' t2= term_name ) )
                 pass 
-                # FCL.g:403:3: ( (v2= variable_name 'IS' t2= term_name ) )
-                # FCL.g:406:3: (v2= variable_name 'IS' t2= term_name )
+                # FCL.g:412:3: ( (v2= variable_name 'IS' t2= term_name ) )
+                # FCL.g:415:3: (v2= variable_name 'IS' t2= term_name )
                 pass 
-                # FCL.g:406:3: (v2= variable_name 'IS' t2= term_name )
-                # FCL.g:406:4: v2= variable_name 'IS' t2= term_name
+                # FCL.g:415:3: (v2= variable_name 'IS' t2= term_name )
+                # FCL.g:415:4: v2= variable_name 'IS' t2= term_name
                 pass 
-                self._state.following.append(self.FOLLOW_variable_name_in_conclusion31425)
+                self._state.following.append(self.FOLLOW_variable_name_in_conclusion31432)
                 v2 = self.variable_name()
 
                 self._state.following.pop()
-                self.match(self.input, 54, self.FOLLOW_54_in_conclusion31427)
-                self._state.following.append(self.FOLLOW_term_name_in_conclusion31431)
+                self.match(self.input, 54, self.FOLLOW_54_in_conclusion31434)
+                self._state.following.append(self.FOLLOW_term_name_in_conclusion31438)
                 t2 = self.term_name()
 
                 self._state.following.pop()
@@ -2466,7 +2469,7 @@ class FCLParser(Parser):
 
 
     # $ANTLR start "rule"
-    # FCL.g:410:1: rule[block_name] : 'RULE' Integer_literal ':' 'IF' condition 'THEN' conclusion ( 'WITH' weighting_factor )? ';' ;
+    # FCL.g:419:1: rule[block_name] : 'RULE' Integer_literal ':' 'IF' condition 'THEN' conclusion ( 'WITH' weighting_factor )? ';' ;
     def rule(self, block_name):
 
         Integer_literal24 = None
@@ -2482,33 +2485,33 @@ class FCLParser(Parser):
 
         try:
             try:
-                # FCL.g:413:3: ( 'RULE' Integer_literal ':' 'IF' condition 'THEN' conclusion ( 'WITH' weighting_factor )? ';' )
-                # FCL.g:413:5: 'RULE' Integer_literal ':' 'IF' condition 'THEN' conclusion ( 'WITH' weighting_factor )? ';'
+                # FCL.g:422:3: ( 'RULE' Integer_literal ':' 'IF' condition 'THEN' conclusion ( 'WITH' weighting_factor )? ';' )
+                # FCL.g:422:5: 'RULE' Integer_literal ':' 'IF' condition 'THEN' conclusion ( 'WITH' weighting_factor )? ';'
                 pass 
-                self.match(self.input, 56, self.FOLLOW_56_in_rule1455)
-                Integer_literal24=self.match(self.input, Integer_literal, self.FOLLOW_Integer_literal_in_rule1457)
-                self.match(self.input, 18, self.FOLLOW_18_in_rule1459)
-                self.match(self.input, 57, self.FOLLOW_57_in_rule1461)
-                self._state.following.append(self.FOLLOW_condition_in_rule1463)
+                self.match(self.input, 56, self.FOLLOW_56_in_rule1462)
+                Integer_literal24=self.match(self.input, Integer_literal, self.FOLLOW_Integer_literal_in_rule1464)
+                self.match(self.input, 18, self.FOLLOW_18_in_rule1466)
+                self.match(self.input, 57, self.FOLLOW_57_in_rule1468)
+                self._state.following.append(self.FOLLOW_condition_in_rule1470)
                 condition22 = self.condition()
 
                 self._state.following.pop()
-                self.match(self.input, 58, self.FOLLOW_58_in_rule1465)
-                self._state.following.append(self.FOLLOW_conclusion_in_rule1467)
+                self.match(self.input, 58, self.FOLLOW_58_in_rule1472)
+                self._state.following.append(self.FOLLOW_conclusion_in_rule1474)
                 conclusion23 = self.conclusion()
 
                 self._state.following.pop()
-                # FCL.g:413:65: ( 'WITH' weighting_factor )?
+                # FCL.g:422:65: ( 'WITH' weighting_factor )?
                 alt35 = 2
                 LA35_0 = self.input.LA(1)
 
                 if (LA35_0 == 59) :
                     alt35 = 1
                 if alt35 == 1:
-                    # FCL.g:413:66: 'WITH' weighting_factor
+                    # FCL.g:422:66: 'WITH' weighting_factor
                     pass 
-                    self.match(self.input, 59, self.FOLLOW_59_in_rule1470)
-                    self._state.following.append(self.FOLLOW_weighting_factor_in_rule1472)
+                    self.match(self.input, 59, self.FOLLOW_59_in_rule1477)
+                    self._state.following.append(self.FOLLOW_weighting_factor_in_rule1479)
                     weighting_factor21 = self.weighting_factor()
 
                     self._state.following.pop()
@@ -2518,7 +2521,7 @@ class FCLParser(Parser):
 
 
 
-                self.match(self.input, 20, self.FOLLOW_20_in_rule1478)
+                self.match(self.input, 20, self.FOLLOW_20_in_rule1485)
                 #action start
                  
                 input = condition22
@@ -2550,7 +2553,7 @@ class FCLParser(Parser):
 
 
     # $ANTLR start "weighting_factor"
-    # FCL.g:421:1: weighting_factor : numeric_literal ;
+    # FCL.g:430:1: weighting_factor : numeric_literal ;
     def weighting_factor(self, ):
 
         retval = self.weighting_factor_return()
@@ -2558,10 +2561,10 @@ class FCLParser(Parser):
 
         try:
             try:
-                # FCL.g:421:18: ( numeric_literal )
-                # FCL.g:424:3: numeric_literal
+                # FCL.g:430:18: ( numeric_literal )
+                # FCL.g:433:3: numeric_literal
                 pass 
-                self._state.following.append(self.FOLLOW_numeric_literal_in_weighting_factor1493)
+                self._state.following.append(self.FOLLOW_numeric_literal_in_weighting_factor1500)
                 self.numeric_literal()
 
                 self._state.following.pop()
@@ -2591,7 +2594,7 @@ class FCLParser(Parser):
 
 
     # $ANTLR start "function_block_name"
-    # FCL.g:427:1: function_block_name : Identifier ;
+    # FCL.g:436:1: function_block_name : Identifier ;
     def function_block_name(self, ):
 
         retval = self.function_block_name_return()
@@ -2599,10 +2602,10 @@ class FCLParser(Parser):
 
         try:
             try:
-                # FCL.g:427:21: ( Identifier )
-                # FCL.g:427:23: Identifier
+                # FCL.g:436:21: ( Identifier )
+                # FCL.g:436:23: Identifier
                 pass 
-                self.match(self.input, Identifier, self.FOLLOW_Identifier_in_function_block_name1504)
+                self.match(self.input, Identifier, self.FOLLOW_Identifier_in_function_block_name1511)
 
 
 
@@ -2629,7 +2632,7 @@ class FCLParser(Parser):
 
 
     # $ANTLR start "rule_block_name"
-    # FCL.g:429:1: rule_block_name : Identifier ;
+    # FCL.g:438:1: rule_block_name : Identifier ;
     def rule_block_name(self, ):
 
         retval = self.rule_block_name_return()
@@ -2637,10 +2640,10 @@ class FCLParser(Parser):
 
         try:
             try:
-                # FCL.g:429:17: ( Identifier )
-                # FCL.g:429:19: Identifier
+                # FCL.g:438:17: ( Identifier )
+                # FCL.g:438:19: Identifier
                 pass 
-                self.match(self.input, Identifier, self.FOLLOW_Identifier_in_rule_block_name1512)
+                self.match(self.input, Identifier, self.FOLLOW_Identifier_in_rule_block_name1519)
 
 
 
@@ -2667,7 +2670,7 @@ class FCLParser(Parser):
 
 
     # $ANTLR start "term_name"
-    # FCL.g:430:1: term_name : Identifier ;
+    # FCL.g:439:1: term_name : Identifier ;
     def term_name(self, ):
 
         retval = self.term_name_return()
@@ -2675,10 +2678,10 @@ class FCLParser(Parser):
 
         try:
             try:
-                # FCL.g:430:11: ( Identifier )
-                # FCL.g:430:13: Identifier
+                # FCL.g:439:11: ( Identifier )
+                # FCL.g:439:13: Identifier
                 pass 
-                self.match(self.input, Identifier, self.FOLLOW_Identifier_in_term_name1520)
+                self.match(self.input, Identifier, self.FOLLOW_Identifier_in_term_name1527)
 
 
 
@@ -2705,7 +2708,7 @@ class FCLParser(Parser):
 
 
     # $ANTLR start "f_variable_name"
-    # FCL.g:431:1: f_variable_name : Identifier ;
+    # FCL.g:440:1: f_variable_name : Identifier ;
     def f_variable_name(self, ):
 
         retval = self.f_variable_name_return()
@@ -2713,10 +2716,10 @@ class FCLParser(Parser):
 
         try:
             try:
-                # FCL.g:431:17: ( Identifier )
-                # FCL.g:431:19: Identifier
+                # FCL.g:440:17: ( Identifier )
+                # FCL.g:440:19: Identifier
                 pass 
-                self.match(self.input, Identifier, self.FOLLOW_Identifier_in_f_variable_name1528)
+                self.match(self.input, Identifier, self.FOLLOW_Identifier_in_f_variable_name1535)
 
 
 
@@ -2743,7 +2746,7 @@ class FCLParser(Parser):
 
 
     # $ANTLR start "variable_name"
-    # FCL.g:432:1: variable_name : Identifier ;
+    # FCL.g:441:1: variable_name : Identifier ;
     def variable_name(self, ):
 
         retval = self.variable_name_return()
@@ -2751,10 +2754,10 @@ class FCLParser(Parser):
 
         try:
             try:
-                # FCL.g:432:15: ( Identifier )
-                # FCL.g:432:17: Identifier
+                # FCL.g:441:15: ( Identifier )
+                # FCL.g:441:17: Identifier
                 pass 
-                self.match(self.input, Identifier, self.FOLLOW_Identifier_in_variable_name1536)
+                self.match(self.input, Identifier, self.FOLLOW_Identifier_in_variable_name1543)
 
 
 
@@ -2781,7 +2784,7 @@ class FCLParser(Parser):
 
 
     # $ANTLR start "numeric_literal"
-    # FCL.g:433:1: numeric_literal : ( Integer_literal | Real_literal );
+    # FCL.g:442:1: numeric_literal : ( Integer_literal | Real_literal );
     def numeric_literal(self, ):
 
         retval = self.numeric_literal_return()
@@ -2789,7 +2792,7 @@ class FCLParser(Parser):
 
         try:
             try:
-                # FCL.g:433:17: ( Integer_literal | Real_literal )
+                # FCL.g:442:17: ( Integer_literal | Real_literal )
                 # FCL.g:
                 pass 
                 if (Integer_literal <= self.input.LA(1) <= Real_literal):
@@ -2824,167 +2827,167 @@ class FCLParser(Parser):
 
  
 
-    FOLLOW_function_block_declaration_in_main48 = frozenset([1])
-    FOLLOW_14_in_function_block_declaration64 = frozenset([4])
-    FOLLOW_function_block_name_in_function_block_declaration70 = frozenset([15, 16, 21, 23, 24, 26, 28, 30])
-    FOLLOW_type_definition_in_function_block_declaration78 = frozenset([15, 16, 21, 23, 24, 26, 28, 30])
-    FOLLOW_fb_io_var_declarations_in_function_block_declaration85 = frozenset([15, 21, 23, 24, 26, 28, 30])
-    FOLLOW_function_block_body_in_function_block_declaration93 = frozenset([15])
-    FOLLOW_15_in_function_block_declaration99 = frozenset([])
-    FOLLOW_EOF_in_function_block_declaration105 = frozenset([1])
-    FOLLOW_16_in_type_definition119 = frozenset([4])
-    FOLLOW_Identifier_in_type_definition121 = frozenset([4])
-    FOLLOW_struct_element_in_type_definition125 = frozenset([4, 17])
-    FOLLOW_17_in_type_definition129 = frozenset([1])
-    FOLLOW_Identifier_in_struct_element144 = frozenset([18])
-    FOLLOW_18_in_struct_element146 = frozenset([19])
-    FOLLOW_19_in_struct_element148 = frozenset([20])
-    FOLLOW_20_in_struct_element150 = frozenset([1])
-    FOLLOW_input_declarations_in_fb_io_var_declarations165 = frozenset([1])
-    FOLLOW_output_declarations_in_fb_io_var_declarations171 = frozenset([1])
-    FOLLOW_21_in_input_declarations182 = frozenset([4])
-    FOLLOW_var_decl_in_input_declarations184 = frozenset([4, 22])
-    FOLLOW_22_in_input_declarations188 = frozenset([1])
-    FOLLOW_23_in_output_declarations196 = frozenset([4])
-    FOLLOW_var_decl_in_output_declarations198 = frozenset([4, 22])
-    FOLLOW_22_in_output_declarations202 = frozenset([1])
-    FOLLOW_Identifier_in_var_decl216 = frozenset([18])
-    FOLLOW_18_in_var_decl220 = frozenset([4, 19])
-    FOLLOW_type_in_var_decl224 = frozenset([20])
-    FOLLOW_20_in_var_decl228 = frozenset([1])
-    FOLLOW_19_in_type247 = frozenset([1])
-    FOLLOW_Identifier_in_type257 = frozenset([1])
-    FOLLOW_fuzzify_block_in_function_block_body279 = frozenset([1, 24, 26, 28, 30])
-    FOLLOW_defuzzify_block_in_function_block_body286 = frozenset([1, 26, 28, 30])
-    FOLLOW_rule_block_in_function_block_body293 = frozenset([1, 28, 30])
-    FOLLOW_option_block_in_function_block_body300 = frozenset([1, 30])
-    FOLLOW_24_in_fuzzify_block318 = frozenset([4])
-    FOLLOW_variable_name_in_fuzzify_block324 = frozenset([25, 32])
-    FOLLOW_linguistic_term_in_fuzzify_block330 = frozenset([25, 32])
-    FOLLOW_25_in_fuzzify_block338 = frozenset([1])
-    FOLLOW_26_in_defuzzify_block355 = frozenset([4])
-    FOLLOW_f_variable_name_in_defuzzify_block361 = frozenset([32, 51])
-    FOLLOW_linguistic_term_in_defuzzify_block367 = frozenset([32, 51])
-    FOLLOW_accumulation_method_in_defuzzify_block375 = frozenset([37])
-    FOLLOW_defuzzification_method_in_defuzzify_block381 = frozenset([27, 38, 40])
-    FOLLOW_default_value_in_defuzzify_block388 = frozenset([27, 40])
-    FOLLOW_range_in_defuzzify_block396 = frozenset([27])
-    FOLLOW_27_in_defuzzify_block403 = frozenset([1])
-    FOLLOW_28_in_rule_block420 = frozenset([4])
-    FOLLOW_rule_block_name_in_rule_block428 = frozenset([6, 7, 29, 50, 56])
-    FOLLOW_operator_definition_in_rule_block436 = frozenset([6, 7, 29, 50, 56])
-    FOLLOW_activation_method_in_rule_block445 = frozenset([29, 56])
-    FOLLOW_rule_in_rule_block454 = frozenset([29, 56])
-    FOLLOW_29_in_rule_block462 = frozenset([1])
-    FOLLOW_30_in_option_block470 = frozenset([31])
-    FOLLOW_31_in_option_block474 = frozenset([1])
-    FOLLOW_32_in_linguistic_term489 = frozenset([4])
-    FOLLOW_term_name_in_linguistic_term491 = frozenset([33])
-    FOLLOW_33_in_linguistic_term493 = frozenset([4, 8, 9, 34])
-    FOLLOW_membership_function_in_linguistic_term495 = frozenset([20])
-    FOLLOW_20_in_linguistic_term497 = frozenset([1])
-    FOLLOW_singleton_in_membership_function519 = frozenset([1])
-    FOLLOW_points_in_membership_function531 = frozenset([1])
-    FOLLOW_numeric_literal_in_singleton554 = frozenset([1])
-    FOLLOW_variable_name_in_singleton566 = frozenset([1])
-    FOLLOW_34_in_points598 = frozenset([4, 8, 9])
-    FOLLOW_numeric_literal_in_points608 = frozenset([35])
-    FOLLOW_variable_name_in_points612 = frozenset([35])
-    FOLLOW_35_in_points620 = frozenset([8, 9])
-    FOLLOW_numeric_literal_in_points629 = frozenset([36])
-    FOLLOW_36_in_points636 = frozenset([1, 34])
-    FOLLOW_37_in_defuzzification_method672 = frozenset([18])
-    FOLLOW_18_in_defuzzification_method674 = frozenset([4])
-    FOLLOW_Identifier_in_defuzzification_method678 = frozenset([20])
-    FOLLOW_20_in_defuzzification_method684 = frozenset([1])
-    FOLLOW_38_in_default_value699 = frozenset([33])
-    FOLLOW_33_in_default_value701 = frozenset([8, 9, 39])
-    FOLLOW_numeric_literal_in_default_value711 = frozenset([20])
-    FOLLOW_39_in_default_value723 = frozenset([20])
-    FOLLOW_20_in_default_value733 = frozenset([1])
-    FOLLOW_40_in_range744 = frozenset([33])
-    FOLLOW_33_in_range746 = frozenset([34])
-    FOLLOW_34_in_range748 = frozenset([8, 9])
-    FOLLOW_numeric_literal_in_range750 = frozenset([41])
-    FOLLOW_41_in_range752 = frozenset([8, 9])
-    FOLLOW_numeric_literal_in_range754 = frozenset([36])
-    FOLLOW_36_in_range756 = frozenset([20])
-    FOLLOW_20_in_range758 = frozenset([1])
-    FOLLOW_Identifier_in_operator_name_any777 = frozenset([1, 42])
-    FOLLOW_42_in_operator_name_any780 = frozenset([8, 9])
-    FOLLOW_numeric_literal_in_operator_name_any784 = frozenset([43])
-    FOLLOW_43_in_operator_name_any786 = frozenset([1])
-    FOLLOW_44_in_operator_name_AND809 = frozenset([1])
-    FOLLOW_45_in_operator_name_AND819 = frozenset([1])
-    FOLLOW_46_in_operator_name_AND829 = frozenset([1])
-    FOLLOW_operator_name_any_in_operator_name_AND842 = frozenset([1])
-    FOLLOW_47_in_operator_name_OR863 = frozenset([1])
-    FOLLOW_48_in_operator_name_OR873 = frozenset([1])
-    FOLLOW_49_in_operator_name_OR883 = frozenset([1])
-    FOLLOW_operator_name_any_in_operator_name_OR896 = frozenset([1])
-    FOLLOW_OR__in_operator_definition940 = frozenset([18])
-    FOLLOW_18_in_operator_definition942 = frozenset([4, 47, 48, 49])
-    FOLLOW_operator_name_OR_in_operator_definition946 = frozenset([20])
-    FOLLOW_AND__in_operator_definition957 = frozenset([18])
-    FOLLOW_18_in_operator_definition959 = frozenset([4, 44, 45, 46, 47, 48, 49])
-    FOLLOW_operator_name_AND_in_operator_definition963 = frozenset([20])
-    FOLLOW_20_in_operator_definition972 = frozenset([1])
-    FOLLOW_50_in_activation_method981 = frozenset([18])
-    FOLLOW_18_in_activation_method983 = frozenset([44, 45])
-    FOLLOW_set_in_activation_method985 = frozenset([20])
-    FOLLOW_20_in_activation_method993 = frozenset([1])
-    FOLLOW_51_in_accumulation_method1001 = frozenset([18])
-    FOLLOW_18_in_accumulation_method1003 = frozenset([47, 49, 52])
-    FOLLOW_set_in_accumulation_method1005 = frozenset([20])
-    FOLLOW_20_in_accumulation_method1017 = frozenset([1])
-    FOLLOW_subcondition_in_condition1048 = frozenset([1, 6, 7])
-    FOLLOW_set_in_condition1076 = frozenset([4, 34, 47, 48, 49, 53])
-    FOLLOW_subcondition_in_condition1098 = frozenset([1, 6, 7])
-    FOLLOW_53_in_subcondition1138 = frozenset([34])
-    FOLLOW_34_in_subcondition1140 = frozenset([4, 34, 47, 48, 49, 53])
-    FOLLOW_condition_in_subcondition1142 = frozenset([36])
-    FOLLOW_36_in_subcondition1144 = frozenset([1])
-    FOLLOW_subcondition2_in_subcondition1156 = frozenset([1])
-    FOLLOW_34_in_subcondition21183 = frozenset([4, 34, 47, 48, 49, 53])
-    FOLLOW_condition_in_subcondition21187 = frozenset([36])
-    FOLLOW_36_in_subcondition21189 = frozenset([1])
-    FOLLOW_variable_name_in_subcondition21209 = frozenset([54, 55])
-    FOLLOW_54_in_subcondition21212 = frozenset([4, 53])
-    FOLLOW_53_in_subcondition21216 = frozenset([4])
-    FOLLOW_55_in_subcondition21221 = frozenset([4])
-    FOLLOW_term_name_in_subcondition21225 = frozenset([1])
-    FOLLOW_operator_name_any_in_subcondition21247 = frozenset([34])
-    FOLLOW_34_in_subcondition21249 = frozenset([4, 34, 47, 48, 49, 53])
-    FOLLOW_condition_in_subcondition21253 = frozenset([35])
-    FOLLOW_35_in_subcondition21255 = frozenset([4, 34, 47, 48, 49, 53])
-    FOLLOW_condition_in_subcondition21259 = frozenset([36])
-    FOLLOW_36_in_subcondition21261 = frozenset([1])
-    FOLLOW_conclusion2_in_conclusion1309 = frozenset([1, 35])
-    FOLLOW_35_in_conclusion1323 = frozenset([4, 34])
-    FOLLOW_conclusion2_in_conclusion1327 = frozenset([1, 35])
-    FOLLOW_34_in_conclusion21361 = frozenset([4, 34])
-    FOLLOW_conclusion3_in_conclusion21365 = frozenset([36])
-    FOLLOW_36_in_conclusion21368 = frozenset([1])
-    FOLLOW_conclusion3_in_conclusion21388 = frozenset([1])
-    FOLLOW_variable_name_in_conclusion31425 = frozenset([54])
-    FOLLOW_54_in_conclusion31427 = frozenset([4])
-    FOLLOW_term_name_in_conclusion31431 = frozenset([1])
-    FOLLOW_56_in_rule1455 = frozenset([8])
-    FOLLOW_Integer_literal_in_rule1457 = frozenset([18])
-    FOLLOW_18_in_rule1459 = frozenset([57])
-    FOLLOW_57_in_rule1461 = frozenset([4, 34, 47, 48, 49, 53])
-    FOLLOW_condition_in_rule1463 = frozenset([58])
-    FOLLOW_58_in_rule1465 = frozenset([4, 34])
-    FOLLOW_conclusion_in_rule1467 = frozenset([20, 59])
-    FOLLOW_59_in_rule1470 = frozenset([8, 9])
-    FOLLOW_weighting_factor_in_rule1472 = frozenset([20])
-    FOLLOW_20_in_rule1478 = frozenset([1])
-    FOLLOW_numeric_literal_in_weighting_factor1493 = frozenset([1])
-    FOLLOW_Identifier_in_function_block_name1504 = frozenset([1])
-    FOLLOW_Identifier_in_rule_block_name1512 = frozenset([1])
-    FOLLOW_Identifier_in_term_name1520 = frozenset([1])
-    FOLLOW_Identifier_in_f_variable_name1528 = frozenset([1])
-    FOLLOW_Identifier_in_variable_name1536 = frozenset([1])
+    FOLLOW_function_block_declaration_in_main55 = frozenset([1])
+    FOLLOW_14_in_function_block_declaration71 = frozenset([4])
+    FOLLOW_function_block_name_in_function_block_declaration77 = frozenset([15, 16, 21, 23, 24, 26, 28, 30])
+    FOLLOW_type_definition_in_function_block_declaration85 = frozenset([15, 16, 21, 23, 24, 26, 28, 30])
+    FOLLOW_fb_io_var_declarations_in_function_block_declaration92 = frozenset([15, 21, 23, 24, 26, 28, 30])
+    FOLLOW_function_block_body_in_function_block_declaration100 = frozenset([15])
+    FOLLOW_15_in_function_block_declaration106 = frozenset([])
+    FOLLOW_EOF_in_function_block_declaration112 = frozenset([1])
+    FOLLOW_16_in_type_definition126 = frozenset([4])
+    FOLLOW_Identifier_in_type_definition128 = frozenset([4])
+    FOLLOW_struct_element_in_type_definition132 = frozenset([4, 17])
+    FOLLOW_17_in_type_definition136 = frozenset([1])
+    FOLLOW_Identifier_in_struct_element151 = frozenset([18])
+    FOLLOW_18_in_struct_element153 = frozenset([19])
+    FOLLOW_19_in_struct_element155 = frozenset([20])
+    FOLLOW_20_in_struct_element157 = frozenset([1])
+    FOLLOW_input_declarations_in_fb_io_var_declarations172 = frozenset([1])
+    FOLLOW_output_declarations_in_fb_io_var_declarations178 = frozenset([1])
+    FOLLOW_21_in_input_declarations189 = frozenset([4])
+    FOLLOW_var_decl_in_input_declarations191 = frozenset([4, 22])
+    FOLLOW_22_in_input_declarations195 = frozenset([1])
+    FOLLOW_23_in_output_declarations203 = frozenset([4])
+    FOLLOW_var_decl_in_output_declarations205 = frozenset([4, 22])
+    FOLLOW_22_in_output_declarations209 = frozenset([1])
+    FOLLOW_Identifier_in_var_decl223 = frozenset([18])
+    FOLLOW_18_in_var_decl227 = frozenset([4, 19])
+    FOLLOW_type_in_var_decl231 = frozenset([20])
+    FOLLOW_20_in_var_decl235 = frozenset([1])
+    FOLLOW_19_in_type254 = frozenset([1])
+    FOLLOW_Identifier_in_type264 = frozenset([1])
+    FOLLOW_fuzzify_block_in_function_block_body286 = frozenset([1, 24, 26, 28, 30])
+    FOLLOW_defuzzify_block_in_function_block_body293 = frozenset([1, 26, 28, 30])
+    FOLLOW_rule_block_in_function_block_body300 = frozenset([1, 28, 30])
+    FOLLOW_option_block_in_function_block_body307 = frozenset([1, 30])
+    FOLLOW_24_in_fuzzify_block325 = frozenset([4])
+    FOLLOW_variable_name_in_fuzzify_block331 = frozenset([25, 32])
+    FOLLOW_linguistic_term_in_fuzzify_block337 = frozenset([25, 32])
+    FOLLOW_25_in_fuzzify_block345 = frozenset([1])
+    FOLLOW_26_in_defuzzify_block362 = frozenset([4])
+    FOLLOW_f_variable_name_in_defuzzify_block368 = frozenset([32, 51])
+    FOLLOW_linguistic_term_in_defuzzify_block374 = frozenset([32, 51])
+    FOLLOW_accumulation_method_in_defuzzify_block382 = frozenset([37])
+    FOLLOW_defuzzification_method_in_defuzzify_block388 = frozenset([27, 38, 40])
+    FOLLOW_default_value_in_defuzzify_block395 = frozenset([27, 40])
+    FOLLOW_range_in_defuzzify_block403 = frozenset([27])
+    FOLLOW_27_in_defuzzify_block410 = frozenset([1])
+    FOLLOW_28_in_rule_block427 = frozenset([4])
+    FOLLOW_rule_block_name_in_rule_block435 = frozenset([6, 7, 29, 50, 56])
+    FOLLOW_operator_definition_in_rule_block443 = frozenset([6, 7, 29, 50, 56])
+    FOLLOW_activation_method_in_rule_block452 = frozenset([29, 56])
+    FOLLOW_rule_in_rule_block461 = frozenset([29, 56])
+    FOLLOW_29_in_rule_block469 = frozenset([1])
+    FOLLOW_30_in_option_block477 = frozenset([31])
+    FOLLOW_31_in_option_block481 = frozenset([1])
+    FOLLOW_32_in_linguistic_term496 = frozenset([4])
+    FOLLOW_term_name_in_linguistic_term498 = frozenset([33])
+    FOLLOW_33_in_linguistic_term500 = frozenset([4, 8, 9, 34])
+    FOLLOW_membership_function_in_linguistic_term502 = frozenset([20])
+    FOLLOW_20_in_linguistic_term504 = frozenset([1])
+    FOLLOW_singleton_in_membership_function526 = frozenset([1])
+    FOLLOW_points_in_membership_function538 = frozenset([1])
+    FOLLOW_numeric_literal_in_singleton561 = frozenset([1])
+    FOLLOW_variable_name_in_singleton573 = frozenset([1])
+    FOLLOW_34_in_points605 = frozenset([4, 8, 9])
+    FOLLOW_numeric_literal_in_points615 = frozenset([35])
+    FOLLOW_variable_name_in_points619 = frozenset([35])
+    FOLLOW_35_in_points627 = frozenset([8, 9])
+    FOLLOW_numeric_literal_in_points636 = frozenset([36])
+    FOLLOW_36_in_points643 = frozenset([1, 34])
+    FOLLOW_37_in_defuzzification_method679 = frozenset([18])
+    FOLLOW_18_in_defuzzification_method681 = frozenset([4])
+    FOLLOW_Identifier_in_defuzzification_method685 = frozenset([20])
+    FOLLOW_20_in_defuzzification_method691 = frozenset([1])
+    FOLLOW_38_in_default_value706 = frozenset([33])
+    FOLLOW_33_in_default_value708 = frozenset([8, 9, 39])
+    FOLLOW_numeric_literal_in_default_value718 = frozenset([20])
+    FOLLOW_39_in_default_value730 = frozenset([20])
+    FOLLOW_20_in_default_value740 = frozenset([1])
+    FOLLOW_40_in_range751 = frozenset([33])
+    FOLLOW_33_in_range753 = frozenset([34])
+    FOLLOW_34_in_range755 = frozenset([8, 9])
+    FOLLOW_numeric_literal_in_range757 = frozenset([41])
+    FOLLOW_41_in_range759 = frozenset([8, 9])
+    FOLLOW_numeric_literal_in_range761 = frozenset([36])
+    FOLLOW_36_in_range763 = frozenset([20])
+    FOLLOW_20_in_range765 = frozenset([1])
+    FOLLOW_Identifier_in_operator_name_any784 = frozenset([1, 42])
+    FOLLOW_42_in_operator_name_any787 = frozenset([8, 9])
+    FOLLOW_numeric_literal_in_operator_name_any791 = frozenset([43])
+    FOLLOW_43_in_operator_name_any793 = frozenset([1])
+    FOLLOW_44_in_operator_name_AND816 = frozenset([1])
+    FOLLOW_45_in_operator_name_AND826 = frozenset([1])
+    FOLLOW_46_in_operator_name_AND836 = frozenset([1])
+    FOLLOW_operator_name_any_in_operator_name_AND849 = frozenset([1])
+    FOLLOW_47_in_operator_name_OR870 = frozenset([1])
+    FOLLOW_48_in_operator_name_OR880 = frozenset([1])
+    FOLLOW_49_in_operator_name_OR890 = frozenset([1])
+    FOLLOW_operator_name_any_in_operator_name_OR903 = frozenset([1])
+    FOLLOW_OR__in_operator_definition947 = frozenset([18])
+    FOLLOW_18_in_operator_definition949 = frozenset([4, 47, 48, 49])
+    FOLLOW_operator_name_OR_in_operator_definition953 = frozenset([20])
+    FOLLOW_AND__in_operator_definition964 = frozenset([18])
+    FOLLOW_18_in_operator_definition966 = frozenset([4, 44, 45, 46, 47, 48, 49])
+    FOLLOW_operator_name_AND_in_operator_definition970 = frozenset([20])
+    FOLLOW_20_in_operator_definition979 = frozenset([1])
+    FOLLOW_50_in_activation_method988 = frozenset([18])
+    FOLLOW_18_in_activation_method990 = frozenset([44, 45])
+    FOLLOW_set_in_activation_method992 = frozenset([20])
+    FOLLOW_20_in_activation_method1000 = frozenset([1])
+    FOLLOW_51_in_accumulation_method1008 = frozenset([18])
+    FOLLOW_18_in_accumulation_method1010 = frozenset([47, 49, 52])
+    FOLLOW_set_in_accumulation_method1012 = frozenset([20])
+    FOLLOW_20_in_accumulation_method1024 = frozenset([1])
+    FOLLOW_subcondition_in_condition1055 = frozenset([1, 6, 7])
+    FOLLOW_set_in_condition1083 = frozenset([4, 34, 47, 48, 49, 53])
+    FOLLOW_subcondition_in_condition1105 = frozenset([1, 6, 7])
+    FOLLOW_53_in_subcondition1145 = frozenset([34])
+    FOLLOW_34_in_subcondition1147 = frozenset([4, 34, 47, 48, 49, 53])
+    FOLLOW_condition_in_subcondition1149 = frozenset([36])
+    FOLLOW_36_in_subcondition1151 = frozenset([1])
+    FOLLOW_subcondition2_in_subcondition1163 = frozenset([1])
+    FOLLOW_34_in_subcondition21190 = frozenset([4, 34, 47, 48, 49, 53])
+    FOLLOW_condition_in_subcondition21194 = frozenset([36])
+    FOLLOW_36_in_subcondition21196 = frozenset([1])
+    FOLLOW_variable_name_in_subcondition21216 = frozenset([54, 55])
+    FOLLOW_54_in_subcondition21219 = frozenset([4, 53])
+    FOLLOW_53_in_subcondition21223 = frozenset([4])
+    FOLLOW_55_in_subcondition21228 = frozenset([4])
+    FOLLOW_term_name_in_subcondition21232 = frozenset([1])
+    FOLLOW_operator_name_any_in_subcondition21254 = frozenset([34])
+    FOLLOW_34_in_subcondition21256 = frozenset([4, 34, 47, 48, 49, 53])
+    FOLLOW_condition_in_subcondition21260 = frozenset([35])
+    FOLLOW_35_in_subcondition21262 = frozenset([4, 34, 47, 48, 49, 53])
+    FOLLOW_condition_in_subcondition21266 = frozenset([36])
+    FOLLOW_36_in_subcondition21268 = frozenset([1])
+    FOLLOW_conclusion2_in_conclusion1316 = frozenset([1, 35])
+    FOLLOW_35_in_conclusion1330 = frozenset([4, 34])
+    FOLLOW_conclusion2_in_conclusion1334 = frozenset([1, 35])
+    FOLLOW_34_in_conclusion21368 = frozenset([4, 34])
+    FOLLOW_conclusion3_in_conclusion21372 = frozenset([36])
+    FOLLOW_36_in_conclusion21375 = frozenset([1])
+    FOLLOW_conclusion3_in_conclusion21395 = frozenset([1])
+    FOLLOW_variable_name_in_conclusion31432 = frozenset([54])
+    FOLLOW_54_in_conclusion31434 = frozenset([4])
+    FOLLOW_term_name_in_conclusion31438 = frozenset([1])
+    FOLLOW_56_in_rule1462 = frozenset([8])
+    FOLLOW_Integer_literal_in_rule1464 = frozenset([18])
+    FOLLOW_18_in_rule1466 = frozenset([57])
+    FOLLOW_57_in_rule1468 = frozenset([4, 34, 47, 48, 49, 53])
+    FOLLOW_condition_in_rule1470 = frozenset([58])
+    FOLLOW_58_in_rule1472 = frozenset([4, 34])
+    FOLLOW_conclusion_in_rule1474 = frozenset([20, 59])
+    FOLLOW_59_in_rule1477 = frozenset([8, 9])
+    FOLLOW_weighting_factor_in_rule1479 = frozenset([20])
+    FOLLOW_20_in_rule1485 = frozenset([1])
+    FOLLOW_numeric_literal_in_weighting_factor1500 = frozenset([1])
+    FOLLOW_Identifier_in_function_block_name1511 = frozenset([1])
+    FOLLOW_Identifier_in_rule_block_name1519 = frozenset([1])
+    FOLLOW_Identifier_in_term_name1527 = frozenset([1])
+    FOLLOW_Identifier_in_f_variable_name1535 = frozenset([1])
+    FOLLOW_Identifier_in_variable_name1543 = frozenset([1])
     FOLLOW_set_in_numeric_literal0 = frozenset([1])
 
 

@@ -1,8 +1,13 @@
-# $ANTLR 3.1.2 FCL.g 2009-09-26 23:07:17
+# $ANTLR 3.1.2 FCL.g 2009-09-27 20:18:17
 
 import sys
 from antlr3 import *
 from antlr3.compat import set, frozenset
+                        
+#docstring
+"""Lexer for reading FCL by the pyfuzzy package."""
+__revision__ = "$Id: FCLLexer.py,v 1.5 2009-09-27 18:20:00 rliebscher Exp $"
+
 
 
 # for convenience in actions
@@ -102,8 +107,8 @@ class FCLLexer(Lexer):
             _type = T__14
             _channel = DEFAULT_CHANNEL
 
-            # FCL.g:7:7: ( 'FUNCTION_BLOCK' )
-            # FCL.g:7:9: 'FUNCTION_BLOCK'
+            # FCL.g:13:7: ( 'FUNCTION_BLOCK' )
+            # FCL.g:13:9: 'FUNCTION_BLOCK'
             pass 
             self.match("FUNCTION_BLOCK")
 
@@ -127,8 +132,8 @@ class FCLLexer(Lexer):
             _type = T__15
             _channel = DEFAULT_CHANNEL
 
-            # FCL.g:8:7: ( 'END_FUNCTION_BLOCK' )
-            # FCL.g:8:9: 'END_FUNCTION_BLOCK'
+            # FCL.g:14:7: ( 'END_FUNCTION_BLOCK' )
+            # FCL.g:14:9: 'END_FUNCTION_BLOCK'
             pass 
             self.match("END_FUNCTION_BLOCK")
 
@@ -152,8 +157,8 @@ class FCLLexer(Lexer):
             _type = T__16
             _channel = DEFAULT_CHANNEL
 
-            # FCL.g:9:7: ( 'STRUCT' )
-            # FCL.g:9:9: 'STRUCT'
+            # FCL.g:15:7: ( 'STRUCT' )
+            # FCL.g:15:9: 'STRUCT'
             pass 
             self.match("STRUCT")
 
@@ -177,8 +182,8 @@ class FCLLexer(Lexer):
             _type = T__17
             _channel = DEFAULT_CHANNEL
 
-            # FCL.g:10:7: ( 'END_STRUCT' )
-            # FCL.g:10:9: 'END_STRUCT'
+            # FCL.g:16:7: ( 'END_STRUCT' )
+            # FCL.g:16:9: 'END_STRUCT'
             pass 
             self.match("END_STRUCT")
 
@@ -202,8 +207,8 @@ class FCLLexer(Lexer):
             _type = T__18
             _channel = DEFAULT_CHANNEL
 
-            # FCL.g:11:7: ( ':' )
-            # FCL.g:11:9: ':'
+            # FCL.g:17:7: ( ':' )
+            # FCL.g:17:9: ':'
             pass 
             self.match(58)
 
@@ -227,8 +232,8 @@ class FCLLexer(Lexer):
             _type = T__19
             _channel = DEFAULT_CHANNEL
 
-            # FCL.g:12:7: ( 'REAL' )
-            # FCL.g:12:9: 'REAL'
+            # FCL.g:18:7: ( 'REAL' )
+            # FCL.g:18:9: 'REAL'
             pass 
             self.match("REAL")
 
@@ -252,8 +257,8 @@ class FCLLexer(Lexer):
             _type = T__20
             _channel = DEFAULT_CHANNEL
 
-            # FCL.g:13:7: ( ';' )
-            # FCL.g:13:9: ';'
+            # FCL.g:19:7: ( ';' )
+            # FCL.g:19:9: ';'
             pass 
             self.match(59)
 
@@ -277,8 +282,8 @@ class FCLLexer(Lexer):
             _type = T__21
             _channel = DEFAULT_CHANNEL
 
-            # FCL.g:14:7: ( 'VAR_INPUT' )
-            # FCL.g:14:9: 'VAR_INPUT'
+            # FCL.g:20:7: ( 'VAR_INPUT' )
+            # FCL.g:20:9: 'VAR_INPUT'
             pass 
             self.match("VAR_INPUT")
 
@@ -302,8 +307,8 @@ class FCLLexer(Lexer):
             _type = T__22
             _channel = DEFAULT_CHANNEL
 
-            # FCL.g:15:7: ( 'END_VAR' )
-            # FCL.g:15:9: 'END_VAR'
+            # FCL.g:21:7: ( 'END_VAR' )
+            # FCL.g:21:9: 'END_VAR'
             pass 
             self.match("END_VAR")
 
@@ -327,8 +332,8 @@ class FCLLexer(Lexer):
             _type = T__23
             _channel = DEFAULT_CHANNEL
 
-            # FCL.g:16:7: ( 'VAR_OUTPUT' )
-            # FCL.g:16:9: 'VAR_OUTPUT'
+            # FCL.g:22:7: ( 'VAR_OUTPUT' )
+            # FCL.g:22:9: 'VAR_OUTPUT'
             pass 
             self.match("VAR_OUTPUT")
 
@@ -352,8 +357,8 @@ class FCLLexer(Lexer):
             _type = T__24
             _channel = DEFAULT_CHANNEL
 
-            # FCL.g:17:7: ( 'FUZZIFY' )
-            # FCL.g:17:9: 'FUZZIFY'
+            # FCL.g:23:7: ( 'FUZZIFY' )
+            # FCL.g:23:9: 'FUZZIFY'
             pass 
             self.match("FUZZIFY")
 
@@ -377,8 +382,8 @@ class FCLLexer(Lexer):
             _type = T__25
             _channel = DEFAULT_CHANNEL
 
-            # FCL.g:18:7: ( 'END_FUZZIFY' )
-            # FCL.g:18:9: 'END_FUZZIFY'
+            # FCL.g:24:7: ( 'END_FUZZIFY' )
+            # FCL.g:24:9: 'END_FUZZIFY'
             pass 
             self.match("END_FUZZIFY")
 
@@ -402,8 +407,8 @@ class FCLLexer(Lexer):
             _type = T__26
             _channel = DEFAULT_CHANNEL
 
-            # FCL.g:19:7: ( 'DEFUZZIFY' )
-            # FCL.g:19:9: 'DEFUZZIFY'
+            # FCL.g:25:7: ( 'DEFUZZIFY' )
+            # FCL.g:25:9: 'DEFUZZIFY'
             pass 
             self.match("DEFUZZIFY")
 
@@ -427,8 +432,8 @@ class FCLLexer(Lexer):
             _type = T__27
             _channel = DEFAULT_CHANNEL
 
-            # FCL.g:20:7: ( 'END_DEFUZZIFY' )
-            # FCL.g:20:9: 'END_DEFUZZIFY'
+            # FCL.g:26:7: ( 'END_DEFUZZIFY' )
+            # FCL.g:26:9: 'END_DEFUZZIFY'
             pass 
             self.match("END_DEFUZZIFY")
 
@@ -452,8 +457,8 @@ class FCLLexer(Lexer):
             _type = T__28
             _channel = DEFAULT_CHANNEL
 
-            # FCL.g:21:7: ( 'RULEBLOCK' )
-            # FCL.g:21:9: 'RULEBLOCK'
+            # FCL.g:27:7: ( 'RULEBLOCK' )
+            # FCL.g:27:9: 'RULEBLOCK'
             pass 
             self.match("RULEBLOCK")
 
@@ -477,8 +482,8 @@ class FCLLexer(Lexer):
             _type = T__29
             _channel = DEFAULT_CHANNEL
 
-            # FCL.g:22:7: ( 'END_RULEBLOCK' )
-            # FCL.g:22:9: 'END_RULEBLOCK'
+            # FCL.g:28:7: ( 'END_RULEBLOCK' )
+            # FCL.g:28:9: 'END_RULEBLOCK'
             pass 
             self.match("END_RULEBLOCK")
 
@@ -502,8 +507,8 @@ class FCLLexer(Lexer):
             _type = T__30
             _channel = DEFAULT_CHANNEL
 
-            # FCL.g:23:7: ( 'OPTION' )
-            # FCL.g:23:9: 'OPTION'
+            # FCL.g:29:7: ( 'OPTION' )
+            # FCL.g:29:9: 'OPTION'
             pass 
             self.match("OPTION")
 
@@ -527,8 +532,8 @@ class FCLLexer(Lexer):
             _type = T__31
             _channel = DEFAULT_CHANNEL
 
-            # FCL.g:24:7: ( 'END_OPTION' )
-            # FCL.g:24:9: 'END_OPTION'
+            # FCL.g:30:7: ( 'END_OPTION' )
+            # FCL.g:30:9: 'END_OPTION'
             pass 
             self.match("END_OPTION")
 
@@ -552,8 +557,8 @@ class FCLLexer(Lexer):
             _type = T__32
             _channel = DEFAULT_CHANNEL
 
-            # FCL.g:25:7: ( 'TERM' )
-            # FCL.g:25:9: 'TERM'
+            # FCL.g:31:7: ( 'TERM' )
+            # FCL.g:31:9: 'TERM'
             pass 
             self.match("TERM")
 
@@ -577,8 +582,8 @@ class FCLLexer(Lexer):
             _type = T__33
             _channel = DEFAULT_CHANNEL
 
-            # FCL.g:26:7: ( ':=' )
-            # FCL.g:26:9: ':='
+            # FCL.g:32:7: ( ':=' )
+            # FCL.g:32:9: ':='
             pass 
             self.match(":=")
 
@@ -602,8 +607,8 @@ class FCLLexer(Lexer):
             _type = T__34
             _channel = DEFAULT_CHANNEL
 
-            # FCL.g:27:7: ( '(' )
-            # FCL.g:27:9: '('
+            # FCL.g:33:7: ( '(' )
+            # FCL.g:33:9: '('
             pass 
             self.match(40)
 
@@ -627,8 +632,8 @@ class FCLLexer(Lexer):
             _type = T__35
             _channel = DEFAULT_CHANNEL
 
-            # FCL.g:28:7: ( ',' )
-            # FCL.g:28:9: ','
+            # FCL.g:34:7: ( ',' )
+            # FCL.g:34:9: ','
             pass 
             self.match(44)
 
@@ -652,8 +657,8 @@ class FCLLexer(Lexer):
             _type = T__36
             _channel = DEFAULT_CHANNEL
 
-            # FCL.g:29:7: ( ')' )
-            # FCL.g:29:9: ')'
+            # FCL.g:35:7: ( ')' )
+            # FCL.g:35:9: ')'
             pass 
             self.match(41)
 
@@ -677,8 +682,8 @@ class FCLLexer(Lexer):
             _type = T__37
             _channel = DEFAULT_CHANNEL
 
-            # FCL.g:30:7: ( 'METHOD' )
-            # FCL.g:30:9: 'METHOD'
+            # FCL.g:36:7: ( 'METHOD' )
+            # FCL.g:36:9: 'METHOD'
             pass 
             self.match("METHOD")
 
@@ -702,8 +707,8 @@ class FCLLexer(Lexer):
             _type = T__38
             _channel = DEFAULT_CHANNEL
 
-            # FCL.g:31:7: ( 'DEFAULT' )
-            # FCL.g:31:9: 'DEFAULT'
+            # FCL.g:37:7: ( 'DEFAULT' )
+            # FCL.g:37:9: 'DEFAULT'
             pass 
             self.match("DEFAULT")
 
@@ -727,8 +732,8 @@ class FCLLexer(Lexer):
             _type = T__39
             _channel = DEFAULT_CHANNEL
 
-            # FCL.g:32:7: ( 'NC' )
-            # FCL.g:32:9: 'NC'
+            # FCL.g:38:7: ( 'NC' )
+            # FCL.g:38:9: 'NC'
             pass 
             self.match("NC")
 
@@ -752,8 +757,8 @@ class FCLLexer(Lexer):
             _type = T__40
             _channel = DEFAULT_CHANNEL
 
-            # FCL.g:33:7: ( 'RANGE' )
-            # FCL.g:33:9: 'RANGE'
+            # FCL.g:39:7: ( 'RANGE' )
+            # FCL.g:39:9: 'RANGE'
             pass 
             self.match("RANGE")
 
@@ -777,8 +782,8 @@ class FCLLexer(Lexer):
             _type = T__41
             _channel = DEFAULT_CHANNEL
 
-            # FCL.g:34:7: ( '..' )
-            # FCL.g:34:9: '..'
+            # FCL.g:40:7: ( '..' )
+            # FCL.g:40:9: '..'
             pass 
             self.match("..")
 
@@ -802,8 +807,8 @@ class FCLLexer(Lexer):
             _type = T__42
             _channel = DEFAULT_CHANNEL
 
-            # FCL.g:35:7: ( '[' )
-            # FCL.g:35:9: '['
+            # FCL.g:41:7: ( '[' )
+            # FCL.g:41:9: '['
             pass 
             self.match(91)
 
@@ -827,8 +832,8 @@ class FCLLexer(Lexer):
             _type = T__43
             _channel = DEFAULT_CHANNEL
 
-            # FCL.g:36:7: ( ']' )
-            # FCL.g:36:9: ']'
+            # FCL.g:42:7: ( ']' )
+            # FCL.g:42:9: ']'
             pass 
             self.match(93)
 
@@ -852,8 +857,8 @@ class FCLLexer(Lexer):
             _type = T__44
             _channel = DEFAULT_CHANNEL
 
-            # FCL.g:37:7: ( 'MIN' )
-            # FCL.g:37:9: 'MIN'
+            # FCL.g:43:7: ( 'MIN' )
+            # FCL.g:43:9: 'MIN'
             pass 
             self.match("MIN")
 
@@ -877,8 +882,8 @@ class FCLLexer(Lexer):
             _type = T__45
             _channel = DEFAULT_CHANNEL
 
-            # FCL.g:38:7: ( 'PROD' )
-            # FCL.g:38:9: 'PROD'
+            # FCL.g:44:7: ( 'PROD' )
+            # FCL.g:44:9: 'PROD'
             pass 
             self.match("PROD")
 
@@ -902,8 +907,8 @@ class FCLLexer(Lexer):
             _type = T__46
             _channel = DEFAULT_CHANNEL
 
-            # FCL.g:39:7: ( 'BDIF' )
-            # FCL.g:39:9: 'BDIF'
+            # FCL.g:45:7: ( 'BDIF' )
+            # FCL.g:45:9: 'BDIF'
             pass 
             self.match("BDIF")
 
@@ -927,8 +932,8 @@ class FCLLexer(Lexer):
             _type = T__47
             _channel = DEFAULT_CHANNEL
 
-            # FCL.g:40:7: ( 'MAX' )
-            # FCL.g:40:9: 'MAX'
+            # FCL.g:46:7: ( 'MAX' )
+            # FCL.g:46:9: 'MAX'
             pass 
             self.match("MAX")
 
@@ -952,8 +957,8 @@ class FCLLexer(Lexer):
             _type = T__48
             _channel = DEFAULT_CHANNEL
 
-            # FCL.g:41:7: ( 'ASUM' )
-            # FCL.g:41:9: 'ASUM'
+            # FCL.g:47:7: ( 'ASUM' )
+            # FCL.g:47:9: 'ASUM'
             pass 
             self.match("ASUM")
 
@@ -977,8 +982,8 @@ class FCLLexer(Lexer):
             _type = T__49
             _channel = DEFAULT_CHANNEL
 
-            # FCL.g:42:7: ( 'BSUM' )
-            # FCL.g:42:9: 'BSUM'
+            # FCL.g:48:7: ( 'BSUM' )
+            # FCL.g:48:9: 'BSUM'
             pass 
             self.match("BSUM")
 
@@ -1002,8 +1007,8 @@ class FCLLexer(Lexer):
             _type = T__50
             _channel = DEFAULT_CHANNEL
 
-            # FCL.g:43:7: ( 'ACT' )
-            # FCL.g:43:9: 'ACT'
+            # FCL.g:49:7: ( 'ACT' )
+            # FCL.g:49:9: 'ACT'
             pass 
             self.match("ACT")
 
@@ -1027,8 +1032,8 @@ class FCLLexer(Lexer):
             _type = T__51
             _channel = DEFAULT_CHANNEL
 
-            # FCL.g:44:7: ( 'ACCU' )
-            # FCL.g:44:9: 'ACCU'
+            # FCL.g:50:7: ( 'ACCU' )
+            # FCL.g:50:9: 'ACCU'
             pass 
             self.match("ACCU")
 
@@ -1052,8 +1057,8 @@ class FCLLexer(Lexer):
             _type = T__52
             _channel = DEFAULT_CHANNEL
 
-            # FCL.g:45:7: ( 'NSUM' )
-            # FCL.g:45:9: 'NSUM'
+            # FCL.g:51:7: ( 'NSUM' )
+            # FCL.g:51:9: 'NSUM'
             pass 
             self.match("NSUM")
 
@@ -1077,8 +1082,8 @@ class FCLLexer(Lexer):
             _type = T__53
             _channel = DEFAULT_CHANNEL
 
-            # FCL.g:46:7: ( 'NOT' )
-            # FCL.g:46:9: 'NOT'
+            # FCL.g:52:7: ( 'NOT' )
+            # FCL.g:52:9: 'NOT'
             pass 
             self.match("NOT")
 
@@ -1102,8 +1107,8 @@ class FCLLexer(Lexer):
             _type = T__54
             _channel = DEFAULT_CHANNEL
 
-            # FCL.g:47:7: ( 'IS' )
-            # FCL.g:47:9: 'IS'
+            # FCL.g:53:7: ( 'IS' )
+            # FCL.g:53:9: 'IS'
             pass 
             self.match("IS")
 
@@ -1127,8 +1132,8 @@ class FCLLexer(Lexer):
             _type = T__55
             _channel = DEFAULT_CHANNEL
 
-            # FCL.g:48:7: ( '.' )
-            # FCL.g:48:9: '.'
+            # FCL.g:54:7: ( '.' )
+            # FCL.g:54:9: '.'
             pass 
             self.match(46)
 
@@ -1152,8 +1157,8 @@ class FCLLexer(Lexer):
             _type = T__56
             _channel = DEFAULT_CHANNEL
 
-            # FCL.g:49:7: ( 'RULE' )
-            # FCL.g:49:9: 'RULE'
+            # FCL.g:55:7: ( 'RULE' )
+            # FCL.g:55:9: 'RULE'
             pass 
             self.match("RULE")
 
@@ -1177,8 +1182,8 @@ class FCLLexer(Lexer):
             _type = T__57
             _channel = DEFAULT_CHANNEL
 
-            # FCL.g:50:7: ( 'IF' )
-            # FCL.g:50:9: 'IF'
+            # FCL.g:56:7: ( 'IF' )
+            # FCL.g:56:9: 'IF'
             pass 
             self.match("IF")
 
@@ -1202,8 +1207,8 @@ class FCLLexer(Lexer):
             _type = T__58
             _channel = DEFAULT_CHANNEL
 
-            # FCL.g:51:7: ( 'THEN' )
-            # FCL.g:51:9: 'THEN'
+            # FCL.g:57:7: ( 'THEN' )
+            # FCL.g:57:9: 'THEN'
             pass 
             self.match("THEN")
 
@@ -1227,8 +1232,8 @@ class FCLLexer(Lexer):
             _type = T__59
             _channel = DEFAULT_CHANNEL
 
-            # FCL.g:52:7: ( 'WITH' )
-            # FCL.g:52:9: 'WITH'
+            # FCL.g:58:7: ( 'WITH' )
+            # FCL.g:58:9: 'WITH'
             pass 
             self.match("WITH")
 
@@ -1252,11 +1257,11 @@ class FCLLexer(Lexer):
             _type = OR_
             _channel = DEFAULT_CHANNEL
 
-            # FCL.g:301:6: ( 'OR' ( DIGIT )* )
-            # FCL.g:301:8: 'OR' ( DIGIT )*
+            # FCL.g:310:6: ( 'OR' ( DIGIT )* )
+            # FCL.g:310:8: 'OR' ( DIGIT )*
             pass 
             self.match("OR")
-            # FCL.g:301:13: ( DIGIT )*
+            # FCL.g:310:13: ( DIGIT )*
             while True: #loop1
                 alt1 = 2
                 LA1_0 = self.input.LA(1)
@@ -1266,7 +1271,7 @@ class FCLLexer(Lexer):
 
 
                 if alt1 == 1:
-                    # FCL.g:301:13: DIGIT
+                    # FCL.g:310:13: DIGIT
                     pass 
                     self.mDIGIT()
 
@@ -1296,11 +1301,11 @@ class FCLLexer(Lexer):
             _type = AND_
             _channel = DEFAULT_CHANNEL
 
-            # FCL.g:302:6: ( 'AND' ( DIGIT )* )
-            # FCL.g:302:8: 'AND' ( DIGIT )*
+            # FCL.g:311:6: ( 'AND' ( DIGIT )* )
+            # FCL.g:311:8: 'AND' ( DIGIT )*
             pass 
             self.match("AND")
-            # FCL.g:302:14: ( DIGIT )*
+            # FCL.g:311:14: ( DIGIT )*
             while True: #loop2
                 alt2 = 2
                 LA2_0 = self.input.LA(1)
@@ -1310,7 +1315,7 @@ class FCLLexer(Lexer):
 
 
                 if alt2 == 1:
-                    # FCL.g:302:14: DIGIT
+                    # FCL.g:311:14: DIGIT
                     pass 
                     self.mDIGIT()
 
@@ -1340,11 +1345,11 @@ class FCLLexer(Lexer):
             _type = Identifier
             _channel = DEFAULT_CHANNEL
 
-            # FCL.g:438:12: ( LETTER ( LETTER | DIGIT )* )
-            # FCL.g:438:14: LETTER ( LETTER | DIGIT )*
+            # FCL.g:447:12: ( LETTER ( LETTER | DIGIT )* )
+            # FCL.g:447:14: LETTER ( LETTER | DIGIT )*
             pass 
             self.mLETTER()
-            # FCL.g:438:21: ( LETTER | DIGIT )*
+            # FCL.g:447:21: ( LETTER | DIGIT )*
             while True: #loop3
                 alt3 = 2
                 LA3_0 = self.input.LA(1)
@@ -1387,10 +1392,10 @@ class FCLLexer(Lexer):
     def mInteger_literal_wo_sign(self, ):
 
         try:
-            # FCL.g:441:3: ( ( DIGIT )+ )
-            # FCL.g:441:5: ( DIGIT )+
+            # FCL.g:450:3: ( ( DIGIT )+ )
+            # FCL.g:450:5: ( DIGIT )+
             pass 
-            # FCL.g:441:5: ( DIGIT )+
+            # FCL.g:450:5: ( DIGIT )+
             cnt4 = 0
             while True: #loop4
                 alt4 = 2
@@ -1401,7 +1406,7 @@ class FCLLexer(Lexer):
 
 
                 if alt4 == 1:
-                    # FCL.g:441:5: DIGIT
+                    # FCL.g:450:5: DIGIT
                     pass 
                     self.mDIGIT()
 
@@ -1435,10 +1440,10 @@ class FCLLexer(Lexer):
             _type = Integer_literal
             _channel = DEFAULT_CHANNEL
 
-            # FCL.g:443:3: ( ( '+' | '-' )? Integer_literal_wo_sign )
-            # FCL.g:444:5: ( '+' | '-' )? Integer_literal_wo_sign
+            # FCL.g:452:3: ( ( '+' | '-' )? Integer_literal_wo_sign )
+            # FCL.g:453:5: ( '+' | '-' )? Integer_literal_wo_sign
             pass 
-            # FCL.g:444:5: ( '+' | '-' )?
+            # FCL.g:453:5: ( '+' | '-' )?
             alt5 = 2
             LA5_0 = self.input.LA(1)
 
@@ -1476,7 +1481,7 @@ class FCLLexer(Lexer):
     def mLETTER(self, ):
 
         try:
-            # FCL.g:446:18: ( 'A' .. 'Z' | 'a' .. 'z' | '_' )
+            # FCL.g:455:18: ( 'A' .. 'Z' | 'a' .. 'z' | '_' )
             # FCL.g:
             pass 
             if (65 <= self.input.LA(1) <= 90) or self.input.LA(1) == 95 or (97 <= self.input.LA(1) <= 122):
@@ -1502,8 +1507,8 @@ class FCLLexer(Lexer):
     def mDIGIT(self, ):
 
         try:
-            # FCL.g:447:17: ( '0' .. '9' )
-            # FCL.g:447:19: '0' .. '9'
+            # FCL.g:456:17: ( '0' .. '9' )
+            # FCL.g:456:19: '0' .. '9'
             pass 
             self.matchRange(48, 57)
 
@@ -1525,20 +1530,20 @@ class FCLLexer(Lexer):
             _type = Real_literal
             _channel = DEFAULT_CHANNEL
 
-            # FCL.g:450:3: ( Integer_literal '.' Integer_literal_wo_sign ( ( 'e' | 'E' ) Integer_literal )? )
-            # FCL.g:450:6: Integer_literal '.' Integer_literal_wo_sign ( ( 'e' | 'E' ) Integer_literal )?
+            # FCL.g:459:3: ( Integer_literal '.' Integer_literal_wo_sign ( ( 'e' | 'E' ) Integer_literal )? )
+            # FCL.g:459:6: Integer_literal '.' Integer_literal_wo_sign ( ( 'e' | 'E' ) Integer_literal )?
             pass 
             self.mInteger_literal()
             self.match(46)
             self.mInteger_literal_wo_sign()
-            # FCL.g:450:50: ( ( 'e' | 'E' ) Integer_literal )?
+            # FCL.g:459:50: ( ( 'e' | 'E' ) Integer_literal )?
             alt6 = 2
             LA6_0 = self.input.LA(1)
 
             if (LA6_0 == 69 or LA6_0 == 101) :
                 alt6 = 1
             if alt6 == 1:
-                # FCL.g:450:51: ( 'e' | 'E' ) Integer_literal
+                # FCL.g:459:51: ( 'e' | 'E' ) Integer_literal
                 pass 
                 if self.input.LA(1) == 69 or self.input.LA(1) == 101:
                     self.input.consume()
@@ -1572,8 +1577,8 @@ class FCLLexer(Lexer):
             _type = WS
             _channel = DEFAULT_CHANNEL
 
-            # FCL.g:452:5: ( ( ' ' | '\\r' | '\\t' | '\\u000C' | '\\n' ) )
-            # FCL.g:452:8: ( ' ' | '\\r' | '\\t' | '\\u000C' | '\\n' )
+            # FCL.g:461:5: ( ( ' ' | '\\r' | '\\t' | '\\u000C' | '\\n' ) )
+            # FCL.g:461:8: ( ' ' | '\\r' | '\\t' | '\\u000C' | '\\n' )
             pass 
             if (9 <= self.input.LA(1) <= 10) or (12 <= self.input.LA(1) <= 13) or self.input.LA(1) == 32:
                 self.input.consume()
@@ -1606,11 +1611,11 @@ class FCLLexer(Lexer):
             _type = COMMENT
             _channel = DEFAULT_CHANNEL
 
-            # FCL.g:456:5: ( '(*' ( options {greedy=false; } : . )* '*)' )
-            # FCL.g:456:9: '(*' ( options {greedy=false; } : . )* '*)'
+            # FCL.g:465:5: ( '(*' ( options {greedy=false; } : . )* '*)' )
+            # FCL.g:465:9: '(*' ( options {greedy=false; } : . )* '*)'
             pass 
             self.match("(*")
-            # FCL.g:456:14: ( options {greedy=false; } : . )*
+            # FCL.g:465:14: ( options {greedy=false; } : . )*
             while True: #loop7
                 alt7 = 2
                 LA7_0 = self.input.LA(1)
@@ -1629,7 +1634,7 @@ class FCLLexer(Lexer):
 
 
                 if alt7 == 1:
-                    # FCL.g:456:42: .
+                    # FCL.g:465:42: .
                     pass 
                     self.matchAny()
 

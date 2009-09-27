@@ -16,13 +16,22 @@
  You should have received a copy of the GNU Lesser General Public License along with
  this program; if not, see <http://www.gnu.org/licenses/>. 
 
+ $Id: FCL.g,v 1.6 2009-09-27 18:20:00 rliebscher Exp $
 */
 grammar FCL;
 
 options {
     language=Python;
 }
+@lexer::header{
+#docstring
+"""Lexer for reading FCL by the pyfuzzy package."""
+__revision__ = "\$Id: FCL.g,v 1.6 2009-09-27 18:20:00 rliebscher Exp $"
+}
 @header {
+#docstring
+"""Parser for reading FCL by the pyfuzzy package."""
+__revision__ = "\$Id: FCL.g,v 1.6 2009-09-27 18:20:00 rliebscher Exp $"
 import fuzzy.System
 import fuzzy.InputVariable
 import fuzzy.OutputVariable
@@ -412,9 +421,9 @@ rule [block_name]
 certainty = 1.0
 } : 'RULE' Integer_literal ':' 'IF' condition 'THEN' conclusion ('WITH' weighting_factor {certainty = float($weighting_factor.text);})? ';'
 {
-input = $condition.input
-adjective = $conclusion.adjs
-self.System.rules[$block_name+'.'+$Integer_literal.text] = fuzzy.Rule.Rule(adjective,input,certainty=certainty)
+    input = $condition.input
+    adjective = $conclusion.adjs
+    self.System.rules[$block_name+'.'+$Integer_literal.text] = fuzzy.Rule.Rule(adjective,input,certainty=certainty)
 }
 ;
 
