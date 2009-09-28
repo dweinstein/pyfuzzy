@@ -22,10 +22,10 @@
 # this program; if not, see <http://www.gnu.org/licenses/>. 
 #
 
-__revision__ = "$Id: demo_set.py,v 1.11 2009-09-27 16:15:35 rliebscher Exp $"
+__revision__ = "$Id: demo_set.py,v 1.12 2009-09-28 06:52:12 rliebscher Exp $"
 
 import sys, os
-sys.path.insert(0, os.path.join(os.path.abspath(sys.argv[0]),os.path.pardir))
+sys.path.insert(0, os.path.join(os.path.abspath(os.path.dirname(sys.argv[0])),os.path.pardir))
 
 try:
     # If the package has been installed correctly, this should work:
