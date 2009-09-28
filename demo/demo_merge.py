@@ -22,7 +22,7 @@
 # this program; if not, see <http://www.gnu.org/licenses/>. 
 #
 
-__revision__ = "$Id: demo_merge.py,v 1.13 2009-09-28 06:52:12 rliebscher Exp $"
+__revision__ = "$Id: demo_merge.py,v 1.14 2009-09-28 15:26:46 rliebscher Exp $"
 
 import sys, os
 sys.path.insert(0, os.path.join(os.path.abspath(os.path.dirname(sys.argv[0])),os.path.pardir))
@@ -40,9 +40,7 @@ def makePlotItem(points,title):
     extended for x-values 0 and 60.
     """
     # extend polygon so its is in [0:60]
-    l = []
-    for i in points:
-        l.append(list(i))
+    l = map(list,points)
     l.insert(0,[0,points[0][1]])
     l.append([60,points[-1][1]])
     return Gnuplot.PlotItems.Data(l,title=title)
@@ -59,11 +57,7 @@ def plotPlotItems(items,title,filename):
     g('set xrange [0:60]')
     g('set yrange [-0.2:1.2]')
     g("set title '%s'" % title)
-    unique_items = []
-    for item in items:
-        if item not in unique_items:
-            unique_items.append(item)
-    g.plot(*unique_items)
+    g.plot(*set(items)) # set() discards multiple entries of same object
     g.close()
     g = None
 

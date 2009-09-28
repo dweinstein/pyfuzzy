@@ -24,7 +24,7 @@
 #
 
 
-__revision__ = "$Id: utils.py,v 1.5 2009-09-27 16:15:36 rliebscher Exp $"
+__revision__ = "$Id: utils.py,v 1.6 2009-09-28 15:26:46 rliebscher Exp $"
 
 def get_classes(package):
     """Find all classes defined in given directory
@@ -32,9 +32,7 @@ def get_classes(package):
     import os,imp
     package_name = package.__name__
     classes_dir = os.path.dirname(package.__file__)
-    suffixes = []
-    for suffix in imp.get_suffixes():
-        suffixes.append(suffix[0])
+    suffixes = [suffix[0] for suffix in imp.get_suffixes()]
     objects = {}
     for class_file in os.listdir(classes_dir):
         for suffix in suffixes:
