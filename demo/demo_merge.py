@@ -22,7 +22,7 @@
 # this program; if not, see <http://www.gnu.org/licenses/>. 
 #
 
-__revision__ = "$Id: demo_merge.py,v 1.14 2009-09-28 15:26:46 rliebscher Exp $"
+__revision__ = "$Id: demo_merge.py,v 1.15 2009-09-28 19:38:25 rliebscher Exp $"
 
 import sys, os
 sys.path.insert(0, os.path.join(os.path.abspath(os.path.dirname(sys.argv[0])),os.path.pardir))
@@ -31,7 +31,7 @@ try:
     # If the package has been installed correctly, this should work:
     import Gnuplot, Gnuplot.PlotItems
 except ImportError:
-    print "Sorry, you need Gnuplot to use this."
+    print "Sorry, you need Gnuplot.py (http://gnuplot-py.sourceforge.net) to use this."
     sys.exit(1)
 
 def makePlotItem(points,title):
