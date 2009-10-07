@@ -1,9 +1,11 @@
 #!/usr/bin/env python
 # -*- coding: iso-8859-1 -*-
 #
+"""\
 # Modifies the pydoc contained in Python to use the member function filelink
 # for filelink generation, so it can be later overridden.
 # See also http://bugs.python.org/issue902061
+"""
 #
 # Copyright (C) 2009  Rene Liebscher
 #
@@ -20,19 +22,19 @@
 # this program; if not, see <http://www.gnu.org/licenses/>. 
 #
 
-__revision__ = "$Id: mypydoc.py,v 1.8 2009-08-07 07:18:09 rliebscher Exp $"
+__revision__ = "$Id: mypydoc.py,v 1.9 2009-10-07 20:52:24 rliebscher Exp $"
 
-import sys, imp, os, stat, re, types, inspect
-from repr import Repr
-from string import expandtabs, find, join, lower, split, strip, rfind, rstrip
+import sys, inspect
+from string import join, split, strip
 
 import pydoc
-from pydoc import *
+from pydoc import visiblename, pkgutil, getdoc, isdata
 
-class MyHTMLDoc(HTMLDoc):
+class MyHTMLDoc(pydoc.HTMLDoc):
     """Formatter class for HTML documentation."""
 
-    def filelink(self,url,path):
+    def filelink(self, url, path):
+        """Create link to source file."""
         return '<a href="file:%s">%s</a>' % (url, path)
 
     def docmodule(self, object, name=None, mod=None, *ignored):

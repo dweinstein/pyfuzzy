@@ -16,7 +16,7 @@
 # You should have received a copy of the GNU Lesser General Public License along with 
 # this program; if not, see <http://www.gnu.org/licenses/>. 
 #
-# $Id: makedocs.sh,v 1.2 2009-08-31 21:03:01 rliebscher Exp $
+# $Id: makedocs.sh,v 1.3 2009-10-07 20:52:24 rliebscher Exp $
 
 function run_pydoc {
     # this create docs with links to sourceforge cvs browser
@@ -39,11 +39,11 @@ function create_pydoc {
 
 function create_epydoc {
     export PYTHONPATH=..
-    epydoc --html -v --graph=all --redundant-details --navlink='<a class="navbar" target="_top" href="http://pyfuzzy.sourceforge.net">pyfuzzy</a> <b>/</b> <a class="navbar" target="_top" href="http://sourceforge.net/projects/pyfuzzy"><img style="border: 0px;vertical-align:bottom;padding: 2px 4px;" src="http://sflogo.sourceforge.net/sflogo.php?group_id=59160&amp;type=9" width="80" height="15" alt="Get pyfuzzy at SourceForge.net. Fast, secure and Free Open Source software downloads" /></a>' -n pyfuzzy -o epydoc fuzzy
+    epydoc --config=epydoc.cfg --config=epydoc.html.cfg
 }
 function create_epydoc_pdf {
     export PYTHONPATH=..
-    epydoc --pdf -v --graph=all --redundant-details -u http://pyfuzzy.sourceforge.net -n pyfuzzy -o epydoc_pdf fuzzy
+    epydoc --config=epydoc.cfg --config=epydoc.pdf.cfg
 }
 
 create_pydoc
