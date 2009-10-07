@@ -14,8 +14,8 @@
 # You should have received a copy of the GNU Lesser General Public License along with 
 # this program; if not, see <http://www.gnu.org/licenses/>. 
 #
-
-__revision__ = "$Id: Adjective.py,v 1.12 2009-08-07 07:19:17 rliebscher Exp $"
+"""Describes a ... of a variable."""
+__revision__ = "$Id: Adjective.py,v 1.13 2009-10-07 21:08:12 rliebscher Exp $"
 
 
 from fuzzy.norm.Max import Max

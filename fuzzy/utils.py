@@ -14,10 +14,8 @@
 # You should have received a copy of the GNU Lesser General Public License along with 
 # this program; if not, see <http://www.gnu.org/licenses/>. 
 #
-
 """Helper functions for  pyfuzzy."""
-
-__revision__ = "$Id: utils.py,v 1.4 2009-08-31 21:02:06 rliebscher Exp $"
+__revision__ = "$Id: utils.py,v 1.5 2009-10-07 21:08:12 rliebscher Exp $"
 
 def prop(func):
     """Function decorator for defining property attributes

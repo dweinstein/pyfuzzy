@@ -14,8 +14,8 @@
 # You should have received a copy of the GNU Lesser General Public License along with 
 # this program; if not, see <http://www.gnu.org/licenses/>. 
 #
-
-__revision__ = "$Id: Parametric.py,v 1.1 2009-09-24 20:44:16 rliebscher Exp $"
+"""Abstract base class for any parametric fuzzy complement"""
+__revision__ = "$Id: Parametric.py,v 1.2 2009-10-07 21:08:14 rliebscher Exp $"
 
 from fuzzy.complement.Base import Base
 from fuzzy.utils import prop
@@ -50,15 +50,14 @@ class Parametric(Base):
 
     @prop
     def p_range():
-        """range(s) of valid values for p
-        @type: float"""
+        """range(s) of valid values for p"""
         def fget(self):
             return self._range
         return locals()
 
     def _checkParam(self,value):
         """check parameter if allowed for paramter p
-        @var value: the value to be checked 
+        @param value: the value to be checked 
         @type value: float"""
         from fuzzy.utils import checkRange
         if not checkRange(value,self._range):

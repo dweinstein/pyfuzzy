@@ -18,7 +18,7 @@
     Base class for any kind of parametric fuzzy norm.
 """
 
-__revision__ = "$Id: ParametricNorm.py,v 1.7 2009-08-31 21:02:06 rliebscher Exp $"
+__revision__ = "$Id: ParametricNorm.py,v 1.8 2009-10-07 21:08:14 rliebscher Exp $"
 
 from fuzzy.norm.Norm import Norm
 from fuzzy.utils import prop
@@ -53,15 +53,14 @@ class ParametricNorm(Norm):
 
     @prop
     def p_range():
-        """range(s) of valid values for p
-        @type: float"""
+        """range(s) of valid values for p"""
         def fget(self):
             return self._range
         return locals()
 
     def _checkParam(self,value):
         """check parameter if allowed for paramter p
-        @var value: the value to be checked 
+        @param value: the value to be checked 
         @type value: float"""
         from fuzzy.utils import checkRange
         if not checkRange(value,self._range):

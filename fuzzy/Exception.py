@@ -14,8 +14,8 @@
 # You should have received a copy of the GNU Lesser General Public License along with 
 # this program; if not, see <http://www.gnu.org/licenses/>. 
 #
-
-__revision__ = "$Id: Exception.py,v 1.4 2009-08-07 07:19:18 rliebscher Exp $"
+"""Base class for any kind of exceptions used by this package."""
+__revision__ = "$Id: Exception.py,v 1.5 2009-10-07 21:08:12 rliebscher Exp $"
 
 
 import exceptions

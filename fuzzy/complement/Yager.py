@@ -14,8 +14,8 @@
 # You should have received a copy of the GNU Lesser General Public License along with 
 # this program; if not, see <http://www.gnu.org/licenses/>. 
 #
-
-__revision__ = "$Id: Yager.py,v 1.2 2009-09-24 20:32:20 rliebscher Exp $"
+"""Complement after Yager"""
+__revision__ = "$Id: Yager.py,v 1.3 2009-10-07 21:08:14 rliebscher Exp $"
 
 from fuzzy.complement.Parametric import Parametric
 from fuzzy.utils import inf_p
@@ -26,10 +26,17 @@ class Yager(Parametric):
     _range = [ (0.,inf_p) ]
 
     def __init__(self,omega=1.,*args,**keywords):
+        """Initialize instance with given parameter
+        @param omega: The parameter
+        @type omega: float  
         """
-        """ 
         super(Yager, self).__init__(omega,*args,**keywords)
 
     def __call__(self,value):
-        """calculate the complement of the value"""
+        """calculate the complement of the value
+        @param value: the value to complement
+        @type value: float
+        @return: the complemented value
+        @rtype: float  
+        """
         return pow(1. - pow(float(value),self._p),1./self._p)

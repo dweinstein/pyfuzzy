@@ -21,7 +21,7 @@ pyfuzzy is a python module for working with fuzzy sets
 (for example for controllers or other similar stuff, 
 it can be also used for decision making in business.)
 """
-__revision__ = "$Id: setup.py,v 1.12 2009-08-31 21:07:35 rliebscher Exp $"
+__revision__ = "$Id: setup.py,v 1.13 2009-10-07 21:08:14 rliebscher Exp $"
 
 from distutils.core import setup
 
@@ -60,7 +60,7 @@ try:
             'fuzzy.storage.fcl',
             ])
 except:
-    print """
+    print """\
 Sorry, without the python runtime of ANTLR3, there will be
 no reading of FCL files.
 """
@@ -77,7 +77,7 @@ if __name__ == "__main__":
        download_url = "http://sourceforge.net/project/showfiles.php?group_id=59160&package_id=55171",
        license = "LGPL+",
        long_description = "\n".join(DOCLINES[2:]),
-       classifiers=filter(None, CLASSIFIERS.split('\n')),
+       classifiers=CLASSIFIERS.split('\n'),
        platforms = ["OS Independent"],
        packages = PACKAGES,
       )

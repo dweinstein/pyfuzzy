@@ -14,12 +14,10 @@
 # You should have received a copy of the GNU Lesser General Public License along with 
 # this program; if not, see <http://www.gnu.org/licenses/>. 
 #
-
-__revision__ = "$Id: OutputVariable.py,v 1.9 2009-08-07 07:19:18 rliebscher Exp $"
-
+"""General instance of an output variable."""
+__revision__ = "$Id: OutputVariable.py,v 1.10 2009-10-07 21:08:12 rliebscher Exp $"
 
 from fuzzy.Variable import Variable
-
 
 class OutputVariable(Variable):
     """General instance of an output variable.

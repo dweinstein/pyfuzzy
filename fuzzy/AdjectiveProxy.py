@@ -14,8 +14,8 @@
 # You should have received a copy of the GNU Lesser General Public License along with 
 # this program; if not, see <http://www.gnu.org/licenses/>. 
 #
-
-__revision__ = "$Id: AdjectiveProxy.py,v 1.9 2009-09-24 20:32:20 rliebscher Exp $"
+"""Serves as proxy for a named variable.adjective."""
+__revision__ = "$Id: AdjectiveProxy.py,v 1.10 2009-10-07 21:08:13 rliebscher Exp $"
 
 
 class AdjectiveProxy(object):

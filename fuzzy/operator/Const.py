@@ -14,14 +14,13 @@
 # You should have received a copy of the GNU Lesser General Public License along with 
 # this program; if not, see <http://www.gnu.org/licenses/>. 
 #
-
-__revision__ = "$Id: Const.py,v 1.10 2009-08-07 07:19:19 rliebscher Exp $"
-
+"""Special operator class which returns a constant value."""
+__revision__ = "$Id: Const.py,v 1.11 2009-10-07 21:08:14 rliebscher Exp $"
 
 from fuzzy.operator.Operator import Operator
 
 class Const(Operator):
-    """Special operator which return a constant value.
+    """Special operator which returns a constant value.
        
        @ivar value: value returned at call of __call__().
        @type value: float

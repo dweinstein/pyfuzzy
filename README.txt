@@ -3,7 +3,7 @@
 
                              Python Fuzzy
                              release 0.1.0
-                            August xxth, 2009
+                           October xxth, 2009
 
 
 INTRODUCTION
@@ -70,7 +70,7 @@ EXAMPLES
 Examples are not provided directly in this package, see at the project
 website for them.
 
-In the examples directory you can find three subdirectories:
+In the examples directory you can find several subdirectories:
 
 inverted pendulum:
     This is a example of controller for an inverted
@@ -80,17 +80,6 @@ inverted pendulum:
     Currently it is controlled by an (imperfect) neural network, which was
     trained with data from a fuzzy controller (used in the Delphi fuzzy
     system which was the base of this python fuzzy project)
-
-mixer:
-    This is an example of a mixer where you can control the temperature of
-    incoming substances (eg. water) and it tries to control to hold the
-    temperature on a constant value.
-    It is controlled by a fuzzy controller and shows the typical results of
-    a P controller with time lag.
-
-    The example shows how to define and use fuzzy variable, ruler, and the
-    controller. It also realizes storing/loading the controller object to/from
-    a pickled file.
 
 ...
 
@@ -136,4 +125,4 @@ Others:
         - example "analyse" (not included here, see webpage)
 
 
-$Id: README.txt,v 1.4 2009-08-09 08:44:02 rliebscher Exp $
+$Id: README.txt,v 1.5 2009-10-07 21:08:14 rliebscher Exp $

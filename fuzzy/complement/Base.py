@@ -14,22 +14,29 @@
 # You should have received a copy of the GNU Lesser General Public License along with 
 # this program; if not, see <http://www.gnu.org/licenses/>. 
 #
-
-__revision__ = "$Id: Base.py,v 1.1 2009-08-31 21:02:06 rliebscher Exp $"
+"""Base class for all complement methods"""
+__revision__ = "$Id: Base.py,v 1.2 2009-10-07 21:08:14 rliebscher Exp $"
 
 import fuzzy.Exception
 
 class ComplementException(fuzzy.Exception.Exception):
+    """An own exception type for complements."""
     pass
 
 
 class Base(object):
-    """base class for all complement methods"""
+    """Base class for all complement methods"""
 
     def __init__(self,*args,**keywords):
+        """Initialize the complement instance"""
         super(Base, self).__init__(*args,**keywords)
 
     def __call__(self,value):
-        """Calculate the complement of the value."""
+        """Calculate the complement of the value.
+        @param value: the value to complement
+        @type value: float
+        @return: the complemented value
+        @rtype: float  
+        """
         raise ComplementException("don't use the abstract base class")
 

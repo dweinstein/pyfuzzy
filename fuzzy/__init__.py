@@ -15,5 +15,9 @@
 # this program; if not, see <http://www.gnu.org/licenses/>. 
 #
 
-"""Initialize the fuzzy module."""
-__revision__ = "$Id: __init__.py,v 1.5 2009-08-07 07:19:18 rliebscher Exp $"
+"""Initialize the fuzzy module.
+
+G{packagetree}"""
+
+__revision__ = "$Id: __init__.py,v 1.6 2009-10-07 21:08:12 rliebscher Exp $"
+

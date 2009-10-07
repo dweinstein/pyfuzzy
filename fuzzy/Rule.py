@@ -14,14 +14,13 @@
 # You should have received a copy of the GNU Lesser General Public License along with 
 # this program; if not, see <http://www.gnu.org/licenses/>. 
 #
-
-__revision__ = "$Id: Rule.py,v 1.12 2009-08-07 07:19:18 rliebscher Exp $"
-
+"""Represents a fuzzy rule."""
+__revision__ = "$Id: Rule.py,v 1.13 2009-10-07 21:08:13 rliebscher Exp $"
 
 from fuzzy.norm.Min import Min
 
 class Rule(object):
-    """This is realizes an important part of the inferenz engine.
+    """This is realizes an important part of the inference engine.
        It represents and calculates the value of a fuzzy rule
        and sets the given adjective to the appropriate value.
 

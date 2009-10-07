@@ -17,8 +17,7 @@
 
 """Main coordinator class of a whole fuzzy system"""
 
-__revision__ = "$Id: System.py,v 1.15 2009-08-07 07:19:18 rliebscher Exp $"
-
+__revision__ = "$Id: System.py,v 1.16 2009-10-07 21:08:13 rliebscher Exp $"
 
 class System(object):
     """Holds all stuff together. (variables, rules, ...)

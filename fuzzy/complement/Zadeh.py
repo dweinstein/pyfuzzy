@@ -14,8 +14,8 @@
 # You should have received a copy of the GNU Lesser General Public License along with 
 # this program; if not, see <http://www.gnu.org/licenses/>. 
 #
-
-__revision__ = "$Id: Zadeh.py,v 1.1 2009-08-31 21:02:06 rliebscher Exp $"
+"""Complement after Zadeh"""
+__revision__ = "$Id: Zadeh.py,v 1.2 2009-10-07 21:08:14 rliebscher Exp $"
 
 from fuzzy.complement.Base import Base
 
@@ -23,10 +23,14 @@ class Zadeh(Base):
     """Complement after Zadeh"""
 
     def __init__(self,*args,**keywords):
-        """
-        """ 
+        """Initialize the complement instance"""
         super(Zadeh, self).__init__(*args,**keywords)
 
     def __call__(self,value):
-        """calculate the complement of the value"""
+        """calculate the complement of the value
+        @param value: the value to complement
+        @type value: float
+        @return: the complemented value
+        @rtype: float  
+        """
         return 1. - float(value)

@@ -14,9 +14,8 @@
 # You should have received a copy of the GNU Lesser General Public License along with 
 # this program; if not, see <http://www.gnu.org/licenses/>. 
 #
-
-__revision__ = "$Id: Not.py,v 1.12 2009-08-31 21:02:06 rliebscher Exp $"
-
+"""Operator class which takes value of input operator and calculates complement of it."""
+__revision__ = "$Id: Not.py,v 1.13 2009-10-07 21:08:14 rliebscher Exp $"
 
 from fuzzy.operator.Operator import Operator
 

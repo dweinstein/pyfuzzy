@@ -14,9 +14,9 @@
 # You should have received a copy of the GNU Lesser General Public License along with 
 # this program; if not, see <http://www.gnu.org/licenses/>. 
 #
-
-__revision__ = "$Id: Compound.py,v 1.11 2009-08-07 07:19:19 rliebscher Exp $"
-
+"""The Compound class takes values of several input operators  and 
+processes them through a given norm."""
+__revision__ = "$Id: Compound.py,v 1.12 2009-10-07 21:08:14 rliebscher Exp $"
 
 from fuzzy.operator.Operator import Operator
 

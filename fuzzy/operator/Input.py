@@ -14,9 +14,8 @@
 # You should have received a copy of the GNU Lesser General Public License along with 
 # this program; if not, see <http://www.gnu.org/licenses/>. 
 #
-
-__revision__ = "$Id: Input.py,v 1.11 2009-08-07 07:19:19 rliebscher Exp $"
-
+"""Special operator class which gets it value from a fuzzy adjective."""
+__revision__ = "$Id: Input.py,v 1.12 2009-10-07 21:08:14 rliebscher Exp $"
 
 from fuzzy.operator.Operator import Operator
 
@@ -25,7 +24,7 @@ class Input(Operator):
        
        @ivar adjective: from which adjective get the membership value.
        @type adjective: L{fuzzy.Adjective.Adjective}
-"""
+    """
 
     def __init__(self,adjective):
         """Constructor.

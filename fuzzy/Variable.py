@@ -14,8 +14,8 @@
 # You should have received a copy of the GNU Lesser General Public License along with 
 # this program; if not, see <http://www.gnu.org/licenses/>. 
 #
-
-__revision__ = "$Id: Variable.py,v 1.12 2009-08-07 07:19:18 rliebscher Exp $"
+"""Base class for any kind of fuzzy variable."""
+__revision__ = "$Id: Variable.py,v 1.13 2009-10-07 21:08:13 rliebscher Exp $"
 
 
 class Variable(object):

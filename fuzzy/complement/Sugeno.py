@@ -14,8 +14,8 @@
 # You should have received a copy of the GNU Lesser General Public License along with 
 # this program; if not, see <http://www.gnu.org/licenses/>. 
 #
-
-__revision__ = "$Id: Sugeno.py,v 1.2 2009-09-24 20:32:20 rliebscher Exp $"
+"""Complement after Sugeno"""
+__revision__ = "$Id: Sugeno.py,v 1.3 2009-10-07 21:08:14 rliebscher Exp $"
 
 from fuzzy.complement.Parametric import Parametric
 from fuzzy.utils import inf_p
@@ -26,10 +26,17 @@ class Sugeno(Parametric):
     _range = [ (-1.,inf_p) ]
 
     def __init__(self,lambda_=0.,*args,**keywords):
+        """Initialize instance with given parameter
+        @param lambda_: The parameter
+        @type lambda_: float  
         """
-        """ 
         super(Sugeno, self).__init__(lambda_,*args,**keywords)
 
     def __call__(self,value):
-        """calculate the complement of the value"""
+        """calculate the complement of the value
+        @param value: the value to complement
+        @type value: float
+        @return: the complemented value
+        @rtype: float  
+        """
         return (1.-float(value))/(1.+self._p*float(value))
