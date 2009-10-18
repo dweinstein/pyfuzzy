@@ -22,7 +22,7 @@
 # this program; if not, see <http://www.gnu.org/licenses/>. 
 #
 
-__revision__ = "$Id: demo_merge.py,v 1.15 2009-09-28 19:38:25 rliebscher Exp $"
+__revision__ = "$Id: demo_merge.py,v 1.16 2009-10-18 19:44:46 rliebscher Exp $"
 
 import sys, os
 sys.path.insert(0, os.path.join(os.path.abspath(os.path.dirname(sys.argv[0])),os.path.pardir))
@@ -175,15 +175,17 @@ def main():
 
     # a more complex example
     p = merge(fuzzy.norm.AlgebraicSum.AlgebraicSum(),set_c.set,merge(fuzzy.norm.AlgebraicProduct.AlgebraicProduct(),set_a.set,set_b.set))
-    plotPlotItems([set_a.plotItems,set_b.plotItems,set_c.plotItems,makePlotItem(p.points,"AlgebraicSum(c,AlgebraicProduct(a,b))")],"AlgebraicSum(c,AlgebraicProduct(a,b))","AlgebraicSum_c_AlgebraicProduct_a_b")
+    plotPlotItems([set_a.plotItems,set_b.plotItems,set_c.plotItems,makePlotItem(p.points,"AlgebraicSum(c,AlgebraicProduct(a,b))")],"AlgebraicSum(c,AlgebraicProduct(a,b))","X_AlgebraicSum_c_AlgebraicProduct_a_b")
 
     # demonstration of associativity of AlgebraicSum
     p = merge(fuzzy.norm.AlgebraicSum.AlgebraicSum(),set_c.set,merge(fuzzy.norm.AlgebraicSum.AlgebraicSum(),set_a.set,set_b.set))
-    plotPlotItems([set_a.plotItems,set_b.plotItems,set_c.plotItems,makePlotItem(p.points,"AlgebraicSum(c,AlgebraicSums(a,b))")],"AlgebraicSum(c,AlgebraicSum(a,b))","AlgebraicSum_c_AlgebraicSum_a_b")
+    plotPlotItems([set_a.plotItems,set_b.plotItems,set_c.plotItems,makePlotItem(p.points,"AlgebraicSum(c,AlgebraicSums(a,b))")],"AlgebraicSum(c,AlgebraicSum(a,b))","X_AlgebraicSum_c_AlgebraicSum_a_b")
     p = merge(fuzzy.norm.AlgebraicSum.AlgebraicSum(),merge(fuzzy.norm.AlgebraicSum.AlgebraicSum(),set_c.set,set_a.set),set_b.set)
-    plotPlotItems([set_a.plotItems,set_b.plotItems,set_c.plotItems,makePlotItem(p.points,"AlgebraicSum(AlgebraicSums(c,a),b))")],"AlgebraicSum(AlgebraicSum(c,a),b))","AlgebraicSum_AlgebraicSum_c_a_b")
+    plotPlotItems([set_a.plotItems,set_b.plotItems,set_c.plotItems,makePlotItem(p.points,"AlgebraicSum(AlgebraicSums(c,a),b))")],"AlgebraicSum(AlgebraicSum(c,a),b))","X_AlgebraicSum_AlgebraicSum_c_a_b")
 
 # when executed, just run main():
 if __name__ == '__main__':
+    if not os.path.exists("merge"):
+        os.mkdir("merge")
     main()
 

@@ -22,7 +22,7 @@
 # this program; if not, see <http://www.gnu.org/licenses/>. 
 #
 
-__revision__ = "$Id: demo_set.py,v 1.13 2009-09-28 19:38:25 rliebscher Exp $"
+__revision__ = "$Id: demo_set.py,v 1.14 2009-10-18 19:44:46 rliebscher Exp $"
 
 import sys, os
 sys.path.insert(0, os.path.join(os.path.abspath(os.path.dirname(sys.argv[0])),os.path.pardir))
@@ -152,6 +152,8 @@ if __name__ == '__main__':
     if len(sys.argv) > 1:
         interactive(sys.argv[1])
     else:
+        if not os.path.exists("set"):
+            os.mkdir("set")
         test()
 
 
