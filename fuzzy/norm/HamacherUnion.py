@@ -15,7 +15,7 @@
 # this program; if not, see <http://www.gnu.org/licenses/>. 
 #
 
-__revision__ = "$Id: HamacherUnion.py,v 1.4 2009-09-24 20:32:20 rliebscher Exp $"
+__revision__ = "$Id: HamacherUnion.py,v 1.5 2009-10-18 19:46:59 rliebscher Exp $"
 
 from fuzzy.norm.Norm import NormException
 from fuzzy.norm.ParametricNorm import ParametricNorm
@@ -25,8 +25,8 @@ class HamacherUnion(ParametricNorm):
     """Hamacher 1978"""
     
     _range = [ (0.,inf_p) ]
-    
-    def __init__(self,p=0.):
+
+    def __init__(self,p=1.):
         ParametricNorm.__init__(self,ParametricNorm.S_NORM,p)
 
     def __call__(self,*args):

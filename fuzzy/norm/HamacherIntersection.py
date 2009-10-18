@@ -15,7 +15,7 @@
 # this program; if not, see <http://www.gnu.org/licenses/>. 
 #
 
-__revision__ = "$Id: HamacherIntersection.py,v 1.4 2009-08-31 21:02:06 rliebscher Exp $"
+__revision__ = "$Id: HamacherIntersection.py,v 1.5 2009-10-18 19:46:59 rliebscher Exp $"
 
 from fuzzy.norm.Norm import NormException
 from fuzzy.norm.ParametricNorm import ParametricNorm
@@ -26,7 +26,7 @@ class HamacherIntersection(ParametricNorm):
     
     _range = [ (0.,inf_p) ]
 
-    def __init__(self,p=0.5):
+    def __init__(self,p=1.):
         ParametricNorm.__init__(self,ParametricNorm.T_NORM,p)
 
     def __call__(self,*args):

@@ -15,14 +15,17 @@
 # this program; if not, see <http://www.gnu.org/licenses/>. 
 #
 
-__revision__ = "$Id: SchweizerUnion2.py,v 1.4 2009-08-07 07:19:19 rliebscher Exp $"
+__revision__ = "$Id: SchweizerUnion2.py,v 1.5 2009-10-18 19:46:59 rliebscher Exp $"
 
 from fuzzy.norm.Norm import NormException
 from fuzzy.norm.ParametricNorm import ParametricNorm
+from fuzzy.utils import inf_p,inf_n
 
 class SchweizerUnion2(ParametricNorm):
 
-    def __init__(self,p=0.5):
+    _range = [ (0.,inf_p) ]
+
+    def __init__(self,p=1.):
         ParametricNorm.__init__(self,ParametricNorm.S_NORM,p)
 
     def __call__(self,*args):
