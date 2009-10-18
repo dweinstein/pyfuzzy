@@ -17,15 +17,12 @@
 # You should have received a copy of the GNU Lesser General Public License along with 
 # this program; if not, see <http://www.gnu.org/licenses/>. 
 #
-# $Id: MANIFEST.in,v 1.4 2009-08-07 07:22:09 rliebscher Exp $
+# $Id: MANIFEST.in,v 1.5 2009-10-18 19:48:28 rliebscher Exp $
 #
 
-include *.txt TODO
+include *.txt
 include MANIFEST.in
-#graft examples
+include demo/*.py
+include doc/*.py doc/*.sh doc/*.cfg
 global-exclude *.pyo
 global-exclude *.pyc
-
-#include doc/makehtml.sh
-#include doc/mypydoc.py
-#include doc/SFpydoc.py
