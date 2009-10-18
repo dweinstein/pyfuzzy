@@ -3,7 +3,7 @@
 
                              Python Fuzzy
                              release 0.1.0
-                           October xxth, 2009
+                           October 18th, 2009
 
 
 INTRODUCTION
@@ -125,4 +125,4 @@ Others:
         - example "analyse" (not included here, see webpage)
 
 
-$Id: README.txt,v 1.5 2009-10-07 21:08:14 rliebscher Exp $
+$Id: README.txt,v 1.6 2009-10-18 19:52:23 rliebscher Exp $

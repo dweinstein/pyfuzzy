@@ -1,4 +1,4 @@
-Release 0.1.0 (October ??th, 2009)
+Release 0.1.0 (October 18th, 2009)
 ------------------------------
   * added encoding lines
   * added license text to all files
@@ -22,4 +22,4 @@ Release 0.0.1 (February 14th, 2003)
   * initial public release
 
 
-$Id: CHANGES.txt,v 1.7 2009-10-07 21:08:14 rliebscher Exp $
+$Id: CHANGES.txt,v 1.8 2009-10-18 19:52:23 rliebscher Exp $
