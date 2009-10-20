@@ -24,10 +24,10 @@
 # this program; if not, see <http://www.gnu.org/licenses/>. 
 #
 
-__revision__ = "$Id: demo_defuzzyfication.py,v 1.13 2009-09-28 06:52:12 rliebscher Exp $"
+__revision__ = "$Id: demo_defuzzyfication.py,v 1.14 2009-10-20 19:14:29 rliebscher Exp $"
 
 import sys, os
-sys.path.insert(0, os.path.join(os.path.abspath(os.path.dirname(sys.argv[0])),os.path.pardir))
+sys.path.insert(0, os.path.join(os.path.abspath(os.path.dirname(sys.argv[0])), os.path.pardir))
 
 from utils import get_classes
 
@@ -51,17 +51,17 @@ def test():
         _
     _  / \  _
 ___/ \/   \/ \___
-"""] = fuzzy.set.Polygon.Polygon([(-2,0),(-1.5,0.5),(-1.,0.5),(-0.5,0.0),(-0.25,1.),(0.25,1.),(0.5,0.0),(1.,0.5),(1.5,0.5),(2,0)])
+"""] = fuzzy.set.Polygon.Polygon([(-2,0), (-1.5,0.5), (-1.,0.5), (-0.5,0.0), (-0.25,1.), (0.25,1.), (0.5,0.0), (1.,0.5), (1.5,0.5), (2,0)])
     sets["""~
       ___
 ___  /
    \/
-"""] = fuzzy.set.Polygon.Polygon([(-1,0.5),(0.,0.),(1.,1.)])
+"""] = fuzzy.set.Polygon.Polygon([(-1,0.5), (0.,0.), (1.,1.)])
     sets["""~
 __
   \  ___
    \/
-"""] = fuzzy.set.Polygon.Polygon([(-1,1.0),(0.,0.),(1.,0.5)])
+"""] = fuzzy.set.Polygon.Polygon([(-1,1.0), (0.,0.), (1.,0.5)])
     defuzzy = get_classes(fuzzy.defuzzify)
 
     for o in sorted(sets):
@@ -71,8 +71,8 @@ __
             continue
 
         print "Defuzzification of %s:" % o
-        print "%-*s | %s" % (row1,"method","value")
-        print "%s-+-%s" % ("-"*row1,"-"*row2)
+        print "%-*s | %s" % (row1, "method", "value")
+        print "%s-+-%s" % ("-"*row1, "-"*row2)
 
         for d in sorted(defuzzy):
             defuzzy_ = defuzzy[d]
@@ -87,13 +87,13 @@ __
                 a.setMembership(1.0)
                 v.adjectives["test"] = a
                 result = v.getValue()
-                if isinstance(result,types.FloatType):
+                if isinstance(result, types.FloatType):
                     result = "%.3g" % result
                 else:
                     result = str(result)
-                print "%-*s | %s" % (row1,d,result) 
+                print "%-*s | %s" % (row1, d, result) 
             except:
-                print "%-*s |         >>> %s <<<" % (row1,d,sys.exc_info()[1])
+                print "%-*s |         >>> %s <<<" % (row1, d, sys.exc_info()[1])
         print
 
 # when executed, just run test():
