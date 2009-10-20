@@ -15,18 +15,20 @@
 # this program; if not, see <http://www.gnu.org/licenses/>. 
 #
 
-__revision__ = "$Id: DualOfHarmonicMean.py,v 1.4 2009-08-07 07:19:19 rliebscher Exp $"
+__revision__ = "$Id: DualOfHarmonicMean.py,v 1.5 2009-10-20 20:48:16 rliebscher Exp $"
 
-from fuzzy.norm.Norm import Norm,product,sum
+from fuzzy.norm.Norm import Norm, product, sum
 
 class DualOfHarmonicMean(Norm):
 
     def __init__(self):
-        Norm.__init__(self,0) #XXX
+        super(DualOfHarmonicMean, self).__init__(Norm.UNKNOWN) #XXX
 
-    def __call__(self,*args):
+    def __call__(self, *args):
+        args = self.checkArgsN(args)
         sum_ = sum(*args)
-        if sum_ == len(args): return 1.0
+        if sum_ == len(args): 
+            return 1.0
         product_ = product(*args)
         count_ = float(len(args))
         return (sum_-count_*product_)/(count_-sum_) 

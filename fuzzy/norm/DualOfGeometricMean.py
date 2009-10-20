@@ -15,14 +15,15 @@
 # this program; if not, see <http://www.gnu.org/licenses/>. 
 #
 
-__revision__ = "$Id: DualOfGeometricMean.py,v 1.6 2009-08-07 07:19:19 rliebscher Exp $"
+__revision__ = "$Id: DualOfGeometricMean.py,v 1.7 2009-10-20 20:48:16 rliebscher Exp $"
 
-from fuzzy.norm.Norm import Norm,product
+from fuzzy.norm.Norm import Norm, product
 
 class DualOfGeometricMean(Norm):
 
     def __init__(self):
-        Norm.__init__(self,0) # XXX
+        super(DualOfGeometricMean, self).__init__(Norm.UNKNOWN) # XXX
 
-    def __call__(self,*args):
+    def __call__(self, *args):
+        args = self.checkArgsN(args)     
         return 1.0 - pow(product(*[1.0-x for x in args]),1.0/len(args)) 

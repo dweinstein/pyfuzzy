@@ -15,25 +15,21 @@
 # this program; if not, see <http://www.gnu.org/licenses/>. 
 #
 
-__revision__ = "$Id: SchweizerIntersection3.py,v 1.5 2009-10-18 19:46:59 rliebscher Exp $"
+__revision__ = "$Id: SchweizerIntersection3.py,v 1.6 2009-10-20 20:48:16 rliebscher Exp $"
 
-from fuzzy.norm.Norm import NormException
 from fuzzy.norm.ParametricNorm import ParametricNorm
-from fuzzy.utils import inf_p,inf_n
+from fuzzy.utils import inf_p
 
 class SchweizerIntersection3(ParametricNorm):
 
     _range = [ (0.,inf_p) ]
 
-    def __init__(self,p=1.):
-        ParametricNorm.__init__(self,ParametricNorm.T_NORM,p)
+    def __init__(self, p=1.):
+        super(SchweizerIntersection3, self).__init__(ParametricNorm.T_NORM, p)
 
-    def __call__(self,*args):
-        if len(args) != 2:
-            raise NormException("%s is supported only for 2 parameters" % self.__class__.__name__ )
+    def __call__(self, *args):
+        x, y = self.checkArgs2(args)
         p = self.p
-        x = float(args[0])
-        y = float(args[1])
         xp = pow(1-x,p)
         yp = pow(1-y,p)
         return 1.0-pow(xp+yp-xp*yp,1.0/p)

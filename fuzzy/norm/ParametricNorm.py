@@ -18,7 +18,7 @@
     Base class for any kind of parametric fuzzy norm.
 """
 
-__revision__ = "$Id: ParametricNorm.py,v 1.8 2009-10-07 21:08:14 rliebscher Exp $"
+__revision__ = "$Id: ParametricNorm.py,v 1.9 2009-10-20 20:48:16 rliebscher Exp $"
 
 from fuzzy.norm.Norm import Norm
 from fuzzy.utils import prop
@@ -31,26 +31,31 @@ class ParametricNorm(Norm):
     """
     _range = None
 
-    def __init__(self,type,p):
+    def __init__(self, type, p):
         """Initialize type and parameter
         
         @param p: parameter for norm
         @type p: float
         """
-        super(ParametricNorm,self).__init__(type)
+        super(ParametricNorm, self).__init__(type)
         self.p = p
 
+    # pylint: disable-msg=E0202,E0211
+    #ID:E0202 ParametricNorm.p: An attribute inherited from ParametricNorm hide this method
+    #ID:E0211 TParametricNorm.p: Method has no argument
     @prop
     def p():
         """x
         @type: float"""
         def fget(self):
             return self._p
-        def fset(self,value):
+        def fset(self, value):
             self._checkParam(value)
             self._p = value
         return locals()
 
+    # pylint: disable-msg=E0211
+    #ID:E0211 TParametricNorm.p_range: Method has no argument
     @prop
     def p_range():
         """range(s) of valid values for p"""
@@ -58,10 +63,10 @@ class ParametricNorm(Norm):
             return self._range
         return locals()
 
-    def _checkParam(self,value):
+    def _checkParam(self, value):
         """check parameter if allowed for paramter p
         @param value: the value to be checked 
         @type value: float"""
         from fuzzy.utils import checkRange
-        if not checkRange(value,self._range):
+        if not checkRange(value, self._range):
             raise Exception("Parameter value %s is not allowed" % str(value))

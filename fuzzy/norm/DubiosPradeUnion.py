@@ -15,9 +15,8 @@
 # this program; if not, see <http://www.gnu.org/licenses/>. 
 #
 
-__revision__ = "$Id: DubiosPradeUnion.py,v 1.1 2009-08-31 21:06:40 rliebscher Exp $"
+__revision__ = "$Id: DubiosPradeUnion.py,v 1.2 2009-10-20 20:48:16 rliebscher Exp $"
 
-from fuzzy.norm.Norm import NormException
 from fuzzy.norm.ParametricNorm import ParametricNorm
 
 class DubiosPradeUnion(ParametricNorm):
@@ -25,13 +24,10 @@ class DubiosPradeUnion(ParametricNorm):
 
     _range = [ (0.,1.) ]
 
-    def __init__(self,p=0.5):
-        ParametricNorm.__init__(self,ParametricNorm.S_NORM,p)
+    def __init__(self, p=0.5):
+        super(DubiosPradeUnion, self).__init__(ParametricNorm.S_NORM, p)
 
-    def __call__(self,*args):
-        if len(args) != 2:
-            raise NormException("%s is supported only for 2 parameters" % self.__class__.__name__ )
+    def __call__(self, *args):
+        x, y = self.checkArgs2(args)
         p = self.p
-        x = float(args[0])
-        y = float(args[1])
         return (x+y-x*y-min(x,y,1.-p))/max(1.-x,1.-y,p)

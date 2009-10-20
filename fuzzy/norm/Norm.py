@@ -18,7 +18,7 @@
     Abstract base class for any kind of fuzzy norm.
 """
 
-__revision__ = "$Id: Norm.py,v 1.11 2009-08-07 07:19:19 rliebscher Exp $"
+__revision__ = "$Id: Norm.py,v 1.12 2009-10-20 20:48:16 rliebscher Exp $"
 
 from fuzzy.Exception import Exception
 class NormException(Exception):
@@ -34,11 +34,11 @@ class Norm(object):
     T_NORM = 1 #: norm is t-norm
     S_NORM = 2 #: norm is s-norm
 
-    def __init__(self,type=0):
+    def __init__(self, type=UNKNOWN):
         """Initialize type of norm"""
         self._type = type
 
-    def __call__(self,*args):
+    def __call__(self, *args):
         """
             Calculate result of norm(arg1,arg2,...)
         
@@ -59,6 +59,30 @@ class Norm(object):
 
         """
         return self._type
+    
+    def checkArgs2(self, args):
+        """Checks args to be 2 float values.
+    
+        @param args: list of arguments
+        @type args: list of float?
+        @return: first two args as float values
+        @rtype: (float,float)
+        """
+        if len(args) != 2:
+            raise NormException("%s is supported only for 2 arguments" % self.__class__.__name__ )
+        return float(args[0]), float(args[1])
+
+    def checkArgsN(self, args):
+        """Checks args to be at least 2 float values.
+    
+        @param args: list of arguments
+        @type args: list of float?
+        @return: arguments as float values
+        @rtype: list of float
+        """
+        if len(args) < 2:
+            raise NormException("%s is supported only for more the 2 arguments" % self.__class__.__name__ )
+        return map(float, args)
 
 
 def product(*args):

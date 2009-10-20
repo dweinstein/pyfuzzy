@@ -15,20 +15,17 @@
 # this program; if not, see <http://www.gnu.org/licenses/>. 
 #
 
-__revision__ = "$Id: DrasticProduct.py,v 1.4 2009-08-31 21:02:06 rliebscher Exp $"
+__revision__ = "$Id: DrasticProduct.py,v 1.5 2009-10-20 20:48:16 rliebscher Exp $"
 
-from fuzzy.norm.Norm import Norm,NormException
+from fuzzy.norm.Norm import Norm
 
 class DrasticProduct(Norm):
 
     def __init__(self):
-        Norm.__init__(self,Norm.T_NORM)
+        super(DrasticProduct, self).__init__(Norm.T_NORM)
 
-    def __call__(self,*args):
-        if len(args) != 2:
-            raise NormException("%s is supported only for 2 parameters" % self.__class__.__name__ )
-        x = float(args[0])
-        y = float(args[1])
+    def __call__(self, *args):
+        x, y = self.checkArgs2(args)
         if y == 1.0:
             return x
         if x == 1.0:

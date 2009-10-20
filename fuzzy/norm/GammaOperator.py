@@ -15,24 +15,20 @@
 # this program; if not, see <http://www.gnu.org/licenses/>. 
 #
 
-__revision__ = "$Id: GammaOperator.py,v 1.6 2009-09-24 20:32:20 rliebscher Exp $"
+__revision__ = "$Id: GammaOperator.py,v 1.7 2009-10-20 20:48:16 rliebscher Exp $"
 
-from fuzzy.norm.Norm import NormException
 from fuzzy.norm.ParametricNorm import ParametricNorm
 
 class GammaOperator(ParametricNorm):
 
     _range = [ [0.,1.] ]
 
-    def __init__(self,p=0.5):
-        ParametricNorm.__init__(self,0,p)
+    def __init__(self, p=0.5):
+        super(GammaOperator, self).__init__(ParametricNorm.UNKNOWN, p)
 
-    def __call__(self,*args):
-        if len(args) != 2:
-            raise NormException("%s is supported only for 2 parameters" % self.__class__.__name__ )
+    def __call__(self, *args):
+        x, y = self.checkArgs2(args)
         p = self.p
-        x = float(args[0])
-        y = float(args[1])
         if x == 0. or y == 0.:
             return 0. if p != 1. else (x or y)
         return x*y*pow((x+y)/(x*y)-1,p)
