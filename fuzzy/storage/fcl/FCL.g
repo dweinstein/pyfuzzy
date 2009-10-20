@@ -16,7 +16,7 @@
  You should have received a copy of the GNU Lesser General Public License along with
  this program; if not, see <http://www.gnu.org/licenses/>. 
 
- $Id: FCL.g,v 1.6 2009-09-27 18:20:00 rliebscher Exp $
+ $Id: FCL.g,v 1.7 2009-10-20 19:15:33 rliebscher Exp $
 */
 grammar FCL;
 
@@ -25,13 +25,31 @@ options {
 }
 @lexer::header{
 #docstring
-"""Lexer for reading FCL by the pyfuzzy package."""
-__revision__ = "\$Id: FCL.g,v 1.6 2009-09-27 18:20:00 rliebscher Exp $"
+__doc__ = """Lexer for reading FCL by the pyfuzzy package."""
+__revision__ = "\$Id: FCL.g,v 1.7 2009-10-20 19:15:33 rliebscher Exp $"
+
+# pylint: disable-msg=W0107,W0301,W0401,W0614,W0621,C0103,C0111,C0301,C0302,C0322,R0904,R0912,R0915
+#ID:W0107 : Unnecessary pass statement
+#ID:W0301 : Unnecessary semicolon
+#ID:W0401 : Wildcard import antlr3
+#ID:W0614 : Unused import ... from wildcard import
+#ID:W0621 : Redefining name 'main' from outer scope
+#ID:C0103 : Invalid name
+#ID:C0111 : Missing docstring
+#ID:C0301 : Line too long
+#ID:C0302 : Too many lines in module
+#ID:C0322 : Operator not preceded by a space
+#ID:R0904 : Too many public methods
+#ID:R0912 : Too many branches
+#ID:R0915 : Too many statements
+
+
 }
 @header {
 #docstring
-"""Parser for reading FCL by the pyfuzzy package."""
-__revision__ = "\$Id: FCL.g,v 1.6 2009-09-27 18:20:00 rliebscher Exp $"
+__doc__ = """Parser for reading FCL by the pyfuzzy package."""
+__revision__ = "\$Id: FCL.g,v 1.7 2009-10-20 19:15:33 rliebscher Exp $"
+
 import fuzzy.System
 import fuzzy.InputVariable
 import fuzzy.OutputVariable
@@ -50,11 +68,11 @@ import fuzzy.Rule
 import fuzzy.norm.Min
 import fuzzy.norm.Max
 
-def getNorm(name,p=None):
+def getNorm(name, p=None):
     """Get an instance of a fuzzy norm with given name.
     Normally looks into the fuzzy.norm package for a suitable class.
     """
-    m = __import__("fuzzy.norm."+name,fromlist=[name])
+    m = __import__("fuzzy.norm."+name, fromlist=[name])
     c = m.__dict__[name]
     if p is None:
         return c()
@@ -65,7 +83,7 @@ def getDefuzzificationMethod(name):
     """Get an instance of a defuzzification method with given name.
     Normally looks into the fuzzy.defuzzify package for a suitable class.
     """
-    m = __import__("fuzzy.defuzzify."+name,fromlist=[name])
+    m = __import__("fuzzy.defuzzify."+name, fromlist=[name])
     c = m.__dict__[name]
     return c()
 
@@ -75,7 +93,7 @@ _operators = {
     "OR":fuzzy.norm.Max.Max()
     }
 
-def defineOperator(name,norm):
+def defineOperator(name, norm):
     """Defines a operator (AND,OR,...) to use a given norm."""
     _operators[name] = norm
     #print "defineOperator ",name,norm
@@ -92,13 +110,30 @@ def defineStructType(name):
     """Remember name of a struct definition"""
     _structs[name] = []
 
-def defineStructTypeElement(name,elem):
+def defineStructTypeElement(name, elem):
     """Add a struct element"""
     _structs[name].append(elem)
 
 def getStructType(name):
     """Get list of elements of a struct definition"""
     return _structs[name]
+
+# pylint: disable-msg=W0107,W0301,W0401,W0614,W0621,C0103,C0111,C0301,C0302,C0322,C0324,R0904,R0912,R0915
+#ID:W0107 : Unnecessary pass statement
+#ID:W0301 : Unnecessary semicolon
+#ID:W0401 : Wildcard import antlr3
+#ID:W0614 : Unused import ... from wildcard import
+#ID:W0621 : Redefining name 'main' from outer scope
+#ID:C0103 : Invalid name
+#ID:C0111 : Missing docstring
+#ID:C0301 : Line too long
+#ID:C0302 : Too many lines in module
+#ID:C0322 : Operator not preceded by a space
+#ID:C0324 : Comma not followed by a space
+#ID:R0912 : Too many branches
+#ID:R0915 : Too many statements
+#ID:R0904 : Too many public methods
+
 }
 @init {
 self.System = None
@@ -127,7 +162,7 @@ type_definition
   ;
 
 struct_element[struct_name]
-  :  Identifier ':' 'REAL' ';' { defineStructTypeElement($struct_name,$Identifier.text);}
+  :  Identifier ':' 'REAL' ';' { defineStructTypeElement($struct_name, $Identifier.text);}
   ;
 
 fb_io_var_declarations
@@ -255,7 +290,7 @@ p = []
      ','
      y=numeric_literal
      ')'
-     {p.append((float($x.text),float($y.text)));}
+     {p.append((float($x.text), float($y.text)));}
    )*
    {$set = fuzzy.set.Polygon.Polygon(p);}
    ;
@@ -288,7 +323,7 @@ operator_name_any returns [op]
         p = float($param.text)
     else:
         p = None
-    $op = getNorm($i1.text,p);
+    $op = getNorm($i1.text, p);
   }
   ;
 
@@ -312,9 +347,9 @@ AND_ : 'AND' DIGIT* ;
 // define an operator like AND, OR, AND1,AND2, OR1,OR123, ... to use a specific norm
 operator_definition : 
 (
-(or_name=OR_ ':' or_op=operator_name_OR  {defineOperator($or_name.text,$or_op.op);})
+(or_name=OR_ ':' or_op=operator_name_OR  {defineOperator($or_name.text, $or_op.op);})
 |
-(and_name=AND_ ':' and_op=operator_name_AND  {defineOperator($and_name.text,$and_op.op);})
+(and_name=AND_ ':' and_op=operator_name_AND  {defineOperator($and_name.text, $and_op.op);})
 )
  ';'
 ;
@@ -347,7 +382,7 @@ op_name = None;
       }
       s2=subcondition
       {
-        $input = fuzzy.operator.Compound.Compound(getOperator($op.text),$input,$s2.input);
+        $input = fuzzy.operator.Compound.Compound(getOperator($op.text), $input, $s2.input);
       }
     )
 //    |
@@ -383,7 +418,7 @@ subcondition2 returns [input]
   |
   (norm=operator_name_any '(' c4=condition ',' c5=condition ')'
     {
-        $input = fuzzy.operator.Compound.Compound($norm.op,$c4.input,$c5.input);
+        $input = fuzzy.operator.Compound.Compound($norm.op, $c4.input, $c5.input);
     }// function call
   )
   ;
@@ -423,7 +458,7 @@ certainty = 1.0
 {
     input = $condition.input
     adjective = $conclusion.adjs
-    self.System.rules[$block_name+'.'+$Integer_literal.text] = fuzzy.Rule.Rule(adjective,input,certainty=certainty)
+    self.System.rules[$block_name+'.'+$Integer_literal.text] = fuzzy.Rule.Rule(adjective, input, certainty=certainty)
 }
 ;
 
