@@ -9,13 +9,14 @@
 #
 # This program is distributed in the hope that it will be useful, but WITHOUT 
 # ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
-# FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details.
+# FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+# details.
 # 
-# You should have received a copy of the GNU Lesser General Public License along with 
-# this program; if not, see <http://www.gnu.org/licenses/>. 
+# You should have received a copy of the GNU Lesser General Public License
+# along with this program; if not, see <http://www.gnu.org/licenses/>. 
 #
 
-__revision__ = "$Id: Triangle.py,v 1.13 2009-08-07 07:19:19 rliebscher Exp $"
+__revision__ = "$Id: Triangle.py,v 1.14 2009-10-22 17:13:41 rliebscher Exp $"
 
 
 from fuzzy.set.Polygon import Polygon
@@ -33,10 +34,10 @@ class Triangle(Polygon):
           |   |   |
          alpha|beta
 
-    See also U{http://pyfuzzy.sourceforge.net/test/set/Triangle.png}
+    See also U{http://pyfuzzy.sourceforge.net/demo/set/Triangle.png}
     """
 
-    def __init__(self,m=0.0,alpha=1.0,beta=1.0,y_max=1.0,y_min=0.0):
+    def __init__(self, m=0.0, alpha=1.0, beta=1.0, y_max=1.0, y_min=0.0):
         """
         Initialize a triangle-shaped fuzzy set.
 
@@ -54,57 +55,67 @@ class Triangle(Polygon):
         self._beta = beta
         self._update() # update polygon
 
+    # pylint: disable-msg=E0211
+    #ID:E0211 Triangle.y_max: Method has no argument
     @prop
     def y_max():
         """y-value at top of the triangle
         @type: float"""
         def fget(self):
             return self._y_max
-        def fset(self,value):
+        def fset(self, value):
             self._y_max = value
             self._update()
         return locals()
 
+    # pylint: disable-msg=E0211
+    #ID:E0211 Triangle.y_min: Method has no argument
     @prop
     def y_min():
         """y-value outside the triangle
         @type: float"""
         def fget(self):
             return self._y_min
-        def fset(self,value):
+        def fset(self, value):
             self._y_min = value
             self._update()
         return locals()
 
+    # pylint: disable-msg=E0211
+    #ID:E0211 Triangle.m: Method has no argument
     @prop
     def m():
         """x-value of top of triangle
         @type: float"""
         def fget(self):
             return self._m
-        def fset(self,value):
+        def fset(self, value):
             self._m = value
             self._update()
         return locals()
 
+    # pylint: disable-msg=E0211
+    #ID:E0211 Triangle.alpha: Method has no argument
     @prop
     def alpha():
         """distance of left corner to m
         @type: float"""
         def fget(self):
             return self._alpha
-        def fset(self,value):
+        def fset(self, value):
             self._alpha = value
             self._update()
         return locals()
 
+    # pylint: disable-msg=E0211
+    #ID:E0211 Triangle.beta: Method has no argument
     @prop
     def beta():
         """distance of right corner to m
         @type: float"""
         def fget(self):
             return self._beta
-        def fset(self,value):
+        def fset(self, value):
             self._beta = value
             self._update()
         return locals()
@@ -113,15 +124,15 @@ class Triangle(Polygon):
         """update polygon"""
         p = super(Triangle, self)
         p.clear()
-        p.add(self._m-self._alpha,self._y_min)
-        p.add(self._m,self._y_max)
-        p.add(self._m+self._beta,self._y_min)
+        p.add(self._m-self._alpha, self._y_min)
+        p.add(self._m, self._y_max)
+        p.add(self._m+self._beta, self._y_min)
 
-    def add(self,x,y,where=Polygon.END):
+    def add(self, x, y, where=Polygon.END):
         """Don't let anyone destroy our triangle."""
         raise Exception()
 
-    def remove(self,x,where=Polygon.END):
+    def remove(self, x, where=Polygon.END):
         """Don't let anyone destroy our triangle."""
         raise Exception()
 

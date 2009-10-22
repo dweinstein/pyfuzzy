@@ -9,13 +9,14 @@
 #
 # This program is distributed in the hope that it will be useful, but WITHOUT 
 # ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
-# FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details.
+# FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+# details.
 # 
-# You should have received a copy of the GNU Lesser General Public License along with 
-# this program; if not, see <http://www.gnu.org/licenses/>. 
+# You should have received a copy of the GNU Lesser General Public License
+# along with this program; if not, see <http://www.gnu.org/licenses/>. 
 #
 
-__revision__ = "$Id: SFunction.py,v 1.14 2009-08-31 21:02:06 rliebscher Exp $"
+__revision__ = "$Id: SFunction.py,v 1.15 2009-10-22 17:13:41 rliebscher Exp $"
 
 
 from fuzzy.set.Function import Function
@@ -32,7 +33,7 @@ class SFunction(Function):
              |   |
              delta
 
-    See also U{http://pyfuzzy.sourceforge.net/test/set/SFunction.png}
+    See also U{http://pyfuzzy.sourceforge.net/demo/set/SFunction.png}
     
     @ivar a: center of set.
     @type a: float
@@ -40,7 +41,7 @@ class SFunction(Function):
     @type delta: float
     """
 
-    def __init__(self,a=0.0,delta=1.0):
+    def __init__(self, a=0.0, delta=1.0):
         """Initialize a S-shaped fuzzy set.
 
         @param a: center of set
@@ -52,7 +53,7 @@ class SFunction(Function):
         self.a = a
         self.delta = delta
 
-    def __call__(self,x):
+    def __call__(self, x):
         """Return membership of x in this fuzzy set.
            This method makes the set work like a function.
            
@@ -78,17 +79,17 @@ class SFunction(Function):
         raise Exception("COG of SFunction uncalculable")
 
     class __IntervalGenerator(Function.IntervalGenerator):
-        def __init__(self,set):
+        def __init__(self, set):
             self.set = set
 
-        def nextInterval(self,prev,next):
+        def nextInterval(self, prev, next):
             a = self.set.a
             d = self.set.delta
             if prev is None:
                 if next is None:
                     return a-d
                 else:
-                    return min(next,a-d)
+                    return min(next, a-d)
             else:
                 # right of our area of interest
                 if prev >= a+d:
@@ -97,11 +98,11 @@ class SFunction(Function):
                     # maximal interval length
                     stepsize = 2.0*d/Function._resolution
                     if next is None:
-                        return min(a+d,prev + stepsize)
+                        return min(a+d, prev + stepsize)
                     else:
                         if next - prev > stepsize:
                             # split interval in n equal sized interval of length < stepsize
-                            return min(a+d,prev+(next-prev)/(int((next-prev)/stepsize)+1.0))
+                            return min(a+d, prev+(next-prev)/(int((next-prev)/stepsize)+1.0))
                         else:
                             return next
 

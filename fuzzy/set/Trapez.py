@@ -9,13 +9,14 @@
 #
 # This program is distributed in the hope that it will be useful, but WITHOUT 
 # ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
-# FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details.
+# FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+# details.
 # 
-# You should have received a copy of the GNU Lesser General Public License along with 
-# this program; if not, see <http://www.gnu.org/licenses/>. 
+# You should have received a copy of the GNU Lesser General Public License
+# along with this program; if not, see <http://www.gnu.org/licenses/>. 
 #
 
-__revision__ = "$Id: Trapez.py,v 1.12 2009-08-07 07:19:19 rliebscher Exp $"
+__revision__ = "$Id: Trapez.py,v 1.13 2009-10-22 17:13:41 rliebscher Exp $"
 
 
 from fuzzy.set.Polygon import Polygon
@@ -34,10 +35,10 @@ class Trapez(Polygon):
           |   |     |   |
          alpha|     |beta
 
-    See also U{http://pyfuzzy.sourceforge.net/test/set/Trapez.png}
+    See also U{http://pyfuzzy.sourceforge.net/demo/set/Trapez.png}
     """
 
-    def __init__(self,m1=-0.5,m2=0.5,alpha=0.5,beta=0.5,y_max=1.0,y_min=0.0):
+    def __init__(self, m1=-0.5, m2=0.5, alpha=0.5, beta=0.5, y_max=1.0, y_min=0.0):
         """
         Initialize a trapez-shaped fuzzy set.
 
@@ -57,68 +58,80 @@ class Trapez(Polygon):
         self._beta = beta
         self._update() # update polygon
 
+    # pylint: disable-msg=E0211
+    #ID:E0211 Trapez.y_max: Method has no argument
     @prop
     def y_max():
         """y-value at top of the trapez
         @type: float"""
         def fget(self):
             return self._y_max
-        def fset(self,value):
+        def fset(self, value):
             self._y_max = value
             self._update()
         return locals()
 
+    # pylint: disable-msg=E0211
+    #ID:E0211 Trapez.y_min: Method has no argument
     @prop
     def y_min():
         """y-value outside the trapez
         @type: float"""
         def fget(self):
             return self._y_min
-        def fset(self,value):
+        def fset(self, value):
             self._y_min = value
             self._update()
         return locals()
 
+    # pylint: disable-msg=E0211
+    #ID:E0211 Trapez.m1: Method has no argument
     @prop
     def m1():
         """x-value of left top of trapez
         @type: float"""
         def fget(self):
             return self._m1
-        def fset(self,value):
+        def fset(self, value):
             self._m1 = value
             self._update()
         return locals()
 
+    # pylint: disable-msg=E0211
+    #ID:E0211 Trapez.m2: Method has no argument
     @prop
     def m2():
         """x-value of right top of trapez
         @type: float"""
         def fget(self):
             return self._m2
-        def fset(self,value):
+        def fset(self, value):
             self._m2 = value
             self._update()
         return locals()
 
+    # pylint: disable-msg=E0211
+    #ID:E0211 Trapez.alpha: Method has no argument
     @prop
     def alpha():
         """distance of left corner to m1
         @type: float"""
         def fget(self):
             return self._alpha
-        def fset(self,value):
+        def fset(self, value):
             self._alpha = value
             self._update()
         return locals()
 
+    # pylint: disable-msg=E0211
+    #ID:E0211 Trapez.beta: Method has no argument
     @prop
     def beta():
         """distance of right corner to m2
         @type: float"""
         def fget(self):
             return self._beta
-        def fset(self,value):
+        def fset(self, value):
             self._beta = value
             self._update()
         return locals()
@@ -127,16 +140,16 @@ class Trapez(Polygon):
         """update polygon"""
         p = super(Trapez, self)
         p.clear()
-        p.add(self._m1-self._alpha,self._y_min)
-        p.add(self._m1,self._y_max)
-        p.add(self._m2,self._y_max)
-        p.add(self._m2+self._beta,self._y_min)
+        p.add(self._m1-self._alpha, self._y_min)
+        p.add(self._m1, self._y_max)
+        p.add(self._m2, self._y_max)
+        p.add(self._m2+self._beta, self._y_min)
 
-    def add(self,x,y,where=Polygon.END):
+    def add(self, x, y, where=Polygon.END):
         """Don't let anyone destroy our trapez."""
         raise Exception()
 
-    def remove(self,x,where=Polygon.END):
+    def remove(self, x, where=Polygon.END):
         """Don't let anyone destroy our trapez."""
         raise Exception()
 

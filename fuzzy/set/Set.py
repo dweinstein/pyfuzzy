@@ -9,22 +9,23 @@
 #
 # This program is distributed in the hope that it will be useful, but WITHOUT 
 # ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
-# FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details.
+# FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+# details.
 # 
-# You should have received a copy of the GNU Lesser General Public License along with 
-# this program; if not, see <http://www.gnu.org/licenses/>. 
+# You should have received a copy of the GNU Lesser General Public License
+# along with this program; if not, see <http://www.gnu.org/licenses/>. 
 #
 
 """
 Base class for all fuzzy sets.
 """
 
-__revision__ = "$Id: Set.py,v 1.17 2009-08-07 07:19:19 rliebscher Exp $"
+__revision__ = "$Id: Set.py,v 1.18 2009-10-22 17:13:41 rliebscher Exp $"
 
 class Set(object):
     """Base class for all types of fuzzy sets."""
 
-    def __call__(self,x):
+    def __call__(self, x):
         """Return membership of x in this fuzzy set.
            This method makes the set work like a function.
            
@@ -36,7 +37,7 @@ class Set(object):
         return 0.
 
     class IntervalGenerator(object):
-        def nextInterval(self,prev,next):
+        def nextInterval(self, prev, next):
             """For conversion of any set to a polygon representation.
                Return which end value should have the interval started
                by prev. (next is the current proposal.)

@@ -9,15 +9,16 @@
 #
 # This program is distributed in the hope that it will be useful, but WITHOUT 
 # ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
-# FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details.
+# FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+# details.
 # 
-# You should have received a copy of the GNU Lesser General Public License along with 
-# this program; if not, see <http://www.gnu.org/licenses/>. 
+# You should have received a copy of the GNU Lesser General Public License
+# along with this program; if not, see <http://www.gnu.org/licenses/>. 
 #
 """
 Helper functions for calculation with fuzzy sets.
 
-Examples can be found here U{http://pyfuzzy.sourceforge.net/test/merge/}
+Examples can be found here U{http://pyfuzzy.sourceforge.net/demo/merge/}
 
 * Intersection of set1 and set2 can be done by
   
@@ -51,10 +52,10 @@ Examples can be found here U{http://pyfuzzy.sourceforge.net/test/merge/}
   and act_value is the result of a rule calculation.
 """
 
-__revision__ = "$Id: operations.py,v 1.5 2009-09-24 20:32:20 rliebscher Exp $"
+__revision__ = "$Id: operations.py,v 1.6 2009-10-22 17:13:41 rliebscher Exp $"
 
 # helper functions
-def _find_null_steffensen(x,f,epsilon=None):
+def _find_null_steffensen(x, f, epsilon=None):
     """Find zero of function f by using the Steffensen method.
        As fixpoint equation M{g(x) = x - f(x)} is used.
        The algorithm stops if the error estimation is smaller than epsilon
@@ -77,24 +78,26 @@ def _find_null_steffensen(x,f,epsilon=None):
        @rtype: float
     """
     g = lambda x,f=f: x-f(x)
-    x_2,x_1,x_0 = None,None,x
-    q_0,q_1 = 0.0,0.0
-    while abs(q_0)<1.0 or abs(q_1)<1.0:
-        y0 = x_0
+    x2, x1, x0 = None, None, x
+    q0, q1 = 0., 0.
+    while abs(q0) < 1. or abs(q1) < 1.:
+        y0 = x0
         y1 = g(y0)
         y2 = g(y1)
+        print x0,y0,x1,y1,x2,y2,q0,q1
         try:
-            x_2,x_1,x_0 = x_1,x_0,y2 - (y2-y1)*(y2-y1)/(y2-2*y1+y0)
-            if x_2 is not None:
+            x2, x1, x0 = x1, x0, y2 - (y2-y1)*(y2-y1)/(y2-2*y1+y0)
+            if x2 is not None:
                 # Konvergenzquotient
-                q_1,q_0 = q_0,(x_0-x_1)/(x_1-x_2)
+                q1, q0 = q0, (x0-x1)/(x1-x2)
                 if epsilon is not None:
                     # Fehlerschaetzung
-                    if epsilon > abs((x_0-x_1)*(x_0-x_1)/(x_0-2*x_1+x_2)):
+                    if epsilon > abs((x0-x1)*(x0-x1)/(x0-2*x1+x2)):
                         break
         except ZeroDivisionError:
+            print ZeroDivisionError, x0,y0,x1,y1,x2,y2,q0,q1
             break
-    return x_0
+    return x0
 
 
 def _merge_generator(NORM, set1, set2):
@@ -115,20 +118,20 @@ def _merge_generator(NORM, set1, set2):
     g1 = set1.getIntervalGenerator()
     g2 = set2.getIntervalGenerator()
 
-    x = g1.nextInterval(None,None)
-    x_ = g2.nextInterval(None,x)
+    x = g1.nextInterval(None, None)
+    x_ = g2.nextInterval(None, x)
     if x_ is not None and x_ < x:
         x = x_
     if x is None:
         return
     y1 = set1(x)
     y2 = set2(x)
-    yield (x,NORM(y1,y2))
+    yield (x, NORM(y1, y2))
     while 1:
         prev_x, prev_y1, prev_y2 = x, y1, y2
         # get new interval from sets
-        x = g1.nextInterval(prev_x,None)
-        x_ = g2.nextInterval(prev_x,x)
+        x = g1.nextInterval(prev_x, None)
+        x_ = g2.nextInterval(prev_x, x)
         if x is None and x_ is None: # no need for more intervals
             break
         if x is None: 
@@ -152,19 +155,19 @@ def _merge_generator(NORM, set1, set2):
             prev_y_diff = prev_y2-prev_y1
             p = prev_y_diff/(prev_y_diff + y_diff)
             x = prev_x + p * (x-prev_x)
-            if not (isinstance(set1,Polygon)
-               and isinstance(set2,Polygon)):
+            if not (isinstance(set1, Polygon)
+               and isinstance(set2, Polygon)):
                 # in this case we have only an approximation
-                x = _find_null_steffensen(x,lambda x,set1=set1,set2=set2:set1(x)-set2(x))
+                x = _find_null_steffensen(x, lambda x,set1=set1,set2=set2:set1(x)-set2(x))
             y1 = set1(x)
             y2 = set2(x)
             # add this point
-            yield (x,NORM(y1,y2))
+            yield (x, NORM(y1, y2))
             # restore saved point
             prev_x, prev_y1, prev_y2 = x, y1, y2
-            x,y1,y2 = saved_x,saved_y1,saved_y2
+            x, y1, y2 = saved_x, saved_y1, saved_y2
         # add this point
-        yield (x,NORM(y1,y2))
+        yield (x, NORM(y1, y2))
     return
 
 
@@ -175,8 +178,8 @@ def merge(NORM, set1, set2, segment_size=None):
     For nonlinear operations you might want set the segment size to a value 
     which controls how large a linear segment of the result can be. 
     See also the following examples:
-      - U{http://pyfuzzy.sourceforge.net/test/merge/AlgebraicProduct_d_d.png} - The algebraic product is M{x*y}, so using it on the same set, it calculates the square of it.
-      - U{http://pyfuzzy.sourceforge.net/test/merge/AlgebraicSum_d_d.png} - The algebraic sum is M{x+y-x*y}.
+      - U{http://pyfuzzy.sourceforge.net/demo/merge/AlgebraicProduct_d_d.png} - The algebraic product is M{x*y}, so using it on the same set, it calculates the square of it.
+      - U{http://pyfuzzy.sourceforge.net/demo/merge/AlgebraicSum_d_d.png} - The algebraic sum is M{x+y-x*y}.
        
     @param NORM: fuzzy norm to calculate both sets values. For example Min(), Max(), ...
         Also possible as two params function, eg. C{lambda a,b: (a+b)/2.}.
@@ -193,18 +196,18 @@ def merge(NORM, set1, set2, segment_size=None):
     from fuzzy.set.Polygon import Polygon
     ret = Polygon()
 
-    prev_x,prev_y = None,None
-    for x,y in _merge_generator(NORM,set1,set2):
+    prev_x, prev_y = None, None
+    for x, y in _merge_generator(NORM, set1, set2):
         if (segment_size is not None) and (prev_x is not None) and (abs(y-prev_y)>0.01):
             diff = x-prev_x
             if  diff > 2.*segment_size:
                 n = int(diff/segment_size)
                 dx = diff/n
-                for i in range(1,n):
+                for i in range(1, n):
                     x_ = prev_x+i*dx
-                    ret.add(x_,NORM(set1(x_),set2(x_)))
-        ret.add(x,y)
-        prev_x,prev_y = x,y
+                    ret.add(x_, NORM(set1(x_), set2(x_)))
+        ret.add(x, y)
+        prev_x, prev_y = x, y
 
     return ret
 
@@ -226,15 +229,15 @@ def _norm_generator(NORM, set, value):
     from fuzzy.set.Polygon import Polygon
     g = set.getIntervalGenerator()
 
-    x = g.nextInterval(None,None)
+    x = g.nextInterval(None, None)
     if x is None:
         return
     y = set(x)
-    yield (x,NORM(y,value))
+    yield (x, NORM(y, value))
     while 1:
         prev_x, prev_y = x, y
         # get new interval from sets
-        x = g.nextInterval(prev_x,None)
+        x = g.nextInterval(prev_x, None)
         if x is None: # no need for more intervals
             break
         y = set(x)
@@ -246,20 +249,20 @@ def _norm_generator(NORM, set, value):
             prev_y_diff = value-prev_y
             p = prev_y_diff/(prev_y_diff + y_diff)
             x = prev_x + p * (x-prev_x)
-            if not isinstance(set,Polygon):
+            if not isinstance(set, Polygon):
                 # in this case we have only an approximation
-                x = _find_null_steffensen(x,lambda x,set=set,value=value:set(x)-value)
+                x = _find_null_steffensen(x, lambda x,set=set,value=value:set(x)-value)
             y = set(x)
             # add this point
-            yield (x,NORM(y,value))
+            yield (x, NORM(y, value))
             # restore saved point
             prev_x, prev_y = x, y
-            x,y = saved_x,saved_y
+            x, y = saved_x, saved_y
         # add this point
-        yield (x,NORM(y,value))
+        yield (x, NORM(y, value))
     return
 
-def norm(NORM, set, value,segment_size=None):
+def norm(NORM, set, value, segment_size=None):
     """Returns a new fuzzy set which ist this set normed with value.
     where the membership of the result set is equal to C{NORM(set(x),value)}.
 
@@ -280,18 +283,18 @@ def norm(NORM, set, value,segment_size=None):
     from fuzzy.set.Polygon import Polygon
     ret = Polygon()
 
-    prev_x,prev_y = None,None
-    for x,y in _norm_generator(NORM,set,value):
+    prev_x, prev_y = None, None
+    for x, y in _norm_generator(NORM, set, value):
         if (segment_size is not None) and (prev_x is not None) and (abs(y-prev_y)>0.01):
             diff = x-prev_x
             if  diff > 2.*segment_size:
                 n = int(diff/segment_size)
                 dx = diff/n
-                for i in range(1,n):
+                for i in range(1, n):
                     x_ = prev_x+i*dx
-                    ret.add(x_,NORM(set(x_),value))
-        ret.add(x,y)
-        prev_x,prev_y = x,y
+                    ret.add(x_, NORM(set(x_), value))
+        ret.add(x, y)
+        prev_x, prev_y = x, y
 
     return ret
 
@@ -309,24 +312,24 @@ def _complement_generator(COMPLEMENT, set):
     """
     g = set.getIntervalGenerator()
 
-    x = g.nextInterval(None,None)
+    x = g.nextInterval(None, None)
     if x is None:
         return
     y = set(x)
-    yield (x,COMPLEMENT(y))
+    yield (x, COMPLEMENT(y))
     while 1:
         prev_x, prev_y = x, y
         # get new interval from sets
-        x = g.nextInterval(prev_x,None)
+        x = g.nextInterval(prev_x, None)
         if x is None: # no need for more intervals
             break
         y = set(x)
         # add this point
-        yield (x,COMPLEMENT(y))
+        yield (x, COMPLEMENT(y))
     return
 
 
-def complement(COMPLEMENT, set,segment_size=None):
+def complement(COMPLEMENT, set, segment_size=None):
     """Returns a new fuzzy set which ist this complement of the given set.
     (Where the membership of the result set is equal to C{COMPLEMENT(set(x))}.
 
@@ -345,17 +348,17 @@ def complement(COMPLEMENT, set,segment_size=None):
     from fuzzy.set.Polygon import Polygon
     ret = Polygon()
 
-    prev_x,prev_y = None,None
-    for x,y in _complement_generator(COMPLEMENT,set):
+    prev_x, prev_y = None, None
+    for x, y in _complement_generator(COMPLEMENT, set):
         if (segment_size is not None) and (prev_x is not None) and (abs(y-prev_y)>0.01):
             diff = x-prev_x
             if  diff > 2.*segment_size:
                 n = int(diff/segment_size)
                 dx = diff/n
-                for i in range(1,n):
+                for i in range(1, n):
                     x_ = prev_x+i*dx
-                    ret.add(x_,COMPLEMENT(set(x_)))
-        ret.add(x,y)
-        prev_x,prev_y = x,y
+                    ret.add(x_, COMPLEMENT(set(x_)))
+        ret.add(x, y)
+        prev_x, prev_y = x, y
 
     return ret

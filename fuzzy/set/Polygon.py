@@ -9,13 +9,14 @@
 #
 # This program is distributed in the hope that it will be useful, but WITHOUT 
 # ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
-# FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details.
+# FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+# details.
 # 
-# You should have received a copy of the GNU Lesser General Public License along with 
-# this program; if not, see <http://www.gnu.org/licenses/>. 
+# You should have received a copy of the GNU Lesser General Public License
+# along with this program; if not, see <http://www.gnu.org/licenses/>. 
 #
 
-__revision__ = "$Id: Polygon.py,v 1.18 2009-08-31 21:02:06 rliebscher Exp $"
+__revision__ = "$Id: Polygon.py,v 1.19 2009-10-22 17:13:41 rliebscher Exp $"
 
 
 from fuzzy.set.Set import Set
@@ -35,7 +36,7 @@ class Polygon(Set):
                 \               /
                  *---       ---*
 
-       See also U{http://pyfuzzy.sourceforge.net/test/set/Polygon%20(Demo).png}
+       See also U{http://pyfuzzy.sourceforge.net/demo/set/Polygon%20(Demo).png}
 
        """
 
@@ -43,7 +44,7 @@ class Polygon(Set):
     X = 0 #: index of x value in tuple
     Y = 1 #: index of y value in tuple
 
-    def __init__(self,points=[]):
+    def __init__(self, points=[]):
         """Initialize with given sorted list of (x,y) values
         
         @param points: sorted list of 2-tuples of (x,y) values
@@ -53,7 +54,7 @@ class Polygon(Set):
         import copy
         self.__points = copy.deepcopy(points)
 
-    def __call__(self,x):
+    def __call__(self, x):
         """Get membership of value x."""
         p = self.__points
 
@@ -68,7 +69,7 @@ class Polygon(Set):
             return p[-1][Polygon.Y]
 
         x0 = p[0][Polygon.X]
-        for i in range(1,len(p)):
+        for i in range(1, len(p)):
             x1 = p[i][Polygon.X]
             # found right interval border
             if x1 < x:
@@ -78,7 +79,7 @@ class Polygon(Set):
             if x1 == x:
                 y = p[i][Polygon.Y]
                 # ... check following points for same x-value ...
-                for j in range(i+1,len(p)):
+                for j in range(i+1, len(p)):
                     if p[j][Polygon.X] > x:
                         break
                     else:
@@ -91,7 +92,7 @@ class Polygon(Set):
             y1 = p[i][Polygon.Y]
             # interpolate value in interval
             if x1 == x0: # should never happen
-                return max(y0,y1)
+                return max(y0, y1)
             return y0+(y1-y0)/(x1-x0)*(x-x0)
         return 0.0 # should never be reached
 
@@ -99,7 +100,7 @@ class Polygon(Set):
     BEGIN = 0
     END = 1
 
-    def add(self,x,y,where=END):
+    def add(self, x, y, where=END):
         r"""Add a new point to the polygon.
            The parameter where controls at which end
            it is inserted. (The points are always sorted, but
@@ -113,14 +114,14 @@ class Polygon(Set):
         """
         # quick and dirty implementation
         if where == self.END:
-            self.__points.append((x,y))
+            self.__points.append((x, y))
         else:
-            self.__points.insert(0,(x,y))
+            self.__points.insert(0, (x, y))
         # use only x value for sorting
         self.__points.sort(key = lambda p:p[Polygon.X])
 
 
-    def remove(self,x,where=END):
+    def remove(self, x, where=END):
         r"""Remove a point from the polygon.
            The parameter where controls at which end
            it is removed. (The points are always sorted, but
@@ -160,11 +161,11 @@ class Polygon(Set):
         return self.__IntervalGenerator(self.__points)
 
     class __IntervalGenerator(Set.IntervalGenerator):
-        def __init__(self,points):
+        def __init__(self, points):
             self.__points = points
             self.index = 0
 
-        def nextInterval(self,prev,next):
+        def nextInterval(self, prev, next):
             l = len(self.__points)
             if l == 0 or self.index >= l:
                 return next
@@ -178,7 +179,7 @@ class Polygon(Set):
             if next is None:
                 return self.__points[self.index][Polygon.X]
             else:
-                return min(next,self.__points[self.index][Polygon.X])
+                return min(next, self.__points[self.index][Polygon.X])
 
     def getCOG(self):
         """Return center of gravity."""
@@ -190,17 +191,17 @@ class Polygon(Set):
         area = 0.
         COG = 0.
         iterator = iter(self.__points)
-        x0,y0 = iterator.next()
+        x0, y0 = iterator.next()
         x0_2 = x0*x0  # =x²
         x0_3 = x0_2*x0  # =x³
-        for x1,y1 in iterator:
+        for x1, y1 in iterator:
             if x1 != x0: # vertical slopes don't have an area to x.axis
                 x1_2 = x1*x1
                 x1_3 = x1_2*x1
                 area += (y0+y1)/2.0*(x1-x0) # area of trapez
                 # Integral( x*f(x) ) 
                 COG += y0/2.0*(x1_2-x0_2)+(y1-y0)/(x1-x0)*(x1_3/3.0-x0_3/3.0-x1_2*x0/2.0+x0_3/2.0)
-                x0,x0_2,x0_3 = x1,x1_2,x1_3
+                x0, x0_2, x0_3 = x1, x1_2, x1_3
             y0 = y1
         if area == 0.0:
             raise Exception("no COG calculable: polygon area is zero!")

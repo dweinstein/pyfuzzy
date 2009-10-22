@@ -9,10 +9,11 @@
 #
 # This program is distributed in the hope that it will be useful, but WITHOUT 
 # ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
-# FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details.
+# FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+# details.
 # 
-# You should have received a copy of the GNU Lesser General Public License along with 
-# this program; if not, see <http://www.gnu.org/licenses/>. 
+# You should have received a copy of the GNU Lesser General Public License
+# along with this program; if not, see <http://www.gnu.org/licenses/>. 
 #
 """
 Different kind of fuzzy sets.
@@ -20,12 +21,12 @@ For any of these you can call C{set(x)} to get the membership value of x.
 
 See L{Set<fuzzy.set.Set>} for more.
 
-examples can be found here U{http://pyfuzzy.sourceforge.net/test/set/}
+Examples can be found here U{http://pyfuzzy.sourceforge.net/demo/set/}
 
 
 """
 
-__revision__ = "$Id: __init__.py,v 1.8 2009-08-07 07:19:19 rliebscher Exp $"
+__revision__ = "$Id: __init__.py,v 1.9 2009-10-22 17:13:41 rliebscher Exp $"
 
 
 #def __import_classes(dir):
