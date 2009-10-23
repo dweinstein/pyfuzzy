@@ -52,56 +52,65 @@ Examples can be found here U{http://pyfuzzy.sourceforge.net/demo/merge/}
   and act_value is the result of a rule calculation.
 """
 
-__revision__ = "$Id: operations.py,v 1.6 2009-10-22 17:13:41 rliebscher Exp $"
+__revision__ = "$Id: operations.py,v 1.7 2009-10-23 19:20:03 rliebscher Exp $"
 
 # helper functions
-def _find_null_steffensen(x, f, epsilon=None):
-    """Find zero of function f by using the Steffensen method.
-       As fixpoint equation M{g(x) = x - f(x)} is used.
+def _find_root(f, x1, x2, f1=None, f2=None, epsilon=None):
+    """Find root of function f between x1,x2 by using the regula falsi method.
        The algorithm stops if the error estimation is smaller than epsilon
-       or the convergence quotient is larger than 1.0 (for at least two steps)
-       or there is an ZeroDivisionError, which means in the last steps
-       nothing changed.
-
-       Normally the number of correct digits doubles each step, which
-       means for 64 bits it needs not more than 6-7 steps for an
-       arbitrary function.
-       
-       
-       @param x: first estimation of result
-       @type x: float
+       or there is an ZeroDivisionError, which means both values f1 and f2 are 
+       identical (should be 0 then).
+           
        @param f: function for which to find M{f(x)=0}
        @type f: M{f(x)}
+       @param x1: left border of range
+       @type x1: float
+       @param x2: right border of range
+       @type x2: float
+       @param f1: value for x1, if available
+       @type f1: float
+       @param f2: value for x2, if available
+       @type f2: float
        @param epsilon: break condition for algorithm (value < epsilon)
        @type epsilon: float/None
        @return: M{x} where M{f(x)=0}
        @rtype: float
     """
-    g = lambda x,f=f: x-f(x)
-    x2, x1, x0 = None, None, x
-    q0, q1 = 0., 0.
-    while abs(q0) < 1. or abs(q1) < 1.:
-        y0 = x0
-        y1 = g(y0)
-        y2 = g(y1)
-        print x0,y0,x1,y1,x2,y2,q0,q1
-        try:
-            x2, x1, x0 = x1, x0, y2 - (y2-y1)*(y2-y1)/(y2-2*y1+y0)
-            if x2 is not None:
-                # Konvergenzquotient
-                q1, q0 = q0, (x0-x1)/(x1-x2)
-                if epsilon is not None:
-                    # Fehlerschaetzung
-                    if epsilon > abs((x0-x1)*(x0-x1)/(x0-2*x1+x2)):
-                        break
-        except ZeroDivisionError:
-            print ZeroDivisionError, x0,y0,x1,y1,x2,y2,q0,q1
-            break
-    return x0
-
-
+    if f1 is None:
+        f1 = f(x1)
+    if f2 is None:
+        f2 = f(x2)
+    if f1 * f2 > 0.:
+        raise Exception("need interval with root")
+    if epsilon is None:
+        epsilon = 1.e-10
+    epsx = epsz = epsilon
+    z = (x1+x2)/2.
+    try:
+        for i in xrange(1000):
+            z = x1 - f1 * (x2 - x1) / (f2 - f1) # approximation for root
+            fz = f(z)
+        
+            #print x1,z,x2,f1,fz,f2
+            # smaller than epsilon: return z as approximation
+            if abs(x2 - x1) <= epsx or abs(fz) <= epsz:
+                return z
+        
+            # root in [f(xz), f(x2)]?: 
+            if fz * f2 < 0.:
+                # check [z, x2]
+                x1,x2,f1,f2 = z,x2,fz,f2
+            else:
+                # check [x1, z]
+                x1,x2,f1,f2 = x1,z,f1,fz
+        raise Exception("Too much iterations: %d" % i)
+    except ZeroDivisionError:
+        #print "ZeroDivisionError"
+        return z
+    
+    
 def _merge_generator(NORM, set1, set2):
-    """Returns a new fuzzy set which ist the merger of set1 and set2,
+    """Returns a new fuzzy set which is the merger of set1 and set2,
     where the membership of the result set is equal to C{NORM(set1(x),set2(x))}.
     
     @param NORM: fuzzy norm to calculate both sets values. For example Min(), Max(), ...
@@ -127,6 +136,7 @@ def _merge_generator(NORM, set1, set2):
     y1 = set1(x)
     y2 = set2(x)
     yield (x, NORM(y1, y2))
+    use_find_root = not (isinstance(set1, Polygon) and isinstance(set2, Polygon))
     while 1:
         prev_x, prev_y1, prev_y2 = x, y1, y2
         # get new interval from sets
@@ -149,23 +159,21 @@ def _merge_generator(NORM, set1, set2):
         y2 = set2(x)
         # test if intersection => split interval
         if (x != prev_x) and ((y1>y2 and prev_y1<prev_y2) or (y1<y2 and prev_y1>prev_y2)):
-            saved_x, saved_y1, saved_y2 = x, y1, y2
             # calculate intersection
-            y_diff = y1-y2
-            prev_y_diff = prev_y2-prev_y1
-            p = prev_y_diff/(prev_y_diff + y_diff)
-            x = prev_x + p * (x-prev_x)
-            if not (isinstance(set1, Polygon)
-               and isinstance(set2, Polygon)):
-                # in this case we have only an approximation
-                x = _find_null_steffensen(x, lambda x,set1=set1,set2=set2:set1(x)-set2(x))
-            y1 = set1(x)
-            y2 = set2(x)
+            if use_find_root:
+                f = lambda x,set1=set1,set2=set2:set1(x)-set2(x)
+                x_ = _find_root(f, prev_x, x, prev_y1-prev_y2, y1-y2)
+            else:
+                y_diff = y1-y2
+                prev_y_diff = prev_y2-prev_y1
+                p = prev_y_diff/(prev_y_diff + y_diff)
+                x_ = prev_x + p * (x-prev_x)
+            y1_ = set1(x_)
+            y2_ = set2(x_)
             # add this point
-            yield (x, NORM(y1, y2))
-            # restore saved point
-            prev_x, prev_y1, prev_y2 = x, y1, y2
-            x, y1, y2 = saved_x, saved_y1, saved_y2
+            yield (x_, NORM(y1_, y2_))
+            # set saved point to intermediate
+            prev_x, prev_y1, prev_y2 = x_, y1_, y2_
         # add this point
         yield (x, NORM(y1, y2))
     return
@@ -234,6 +242,7 @@ def _norm_generator(NORM, set, value):
         return
     y = set(x)
     yield (x, NORM(y, value))
+    use_find_root = not isinstance(set, Polygon)
     while 1:
         prev_x, prev_y = x, y
         # get new interval from sets
@@ -243,21 +252,20 @@ def _norm_generator(NORM, set, value):
         y = set(x)
         # test if intersection => split interval
         if (x != prev_x) and ((y>value and prev_y<value) or (y<value and prev_y>value)):
-            saved_x, saved_y = x, y
             # calculate intersection
-            y_diff = y-value
-            prev_y_diff = value-prev_y
-            p = prev_y_diff/(prev_y_diff + y_diff)
-            x = prev_x + p * (x-prev_x)
-            if not isinstance(set, Polygon):
-                # in this case we have only an approximation
-                x = _find_null_steffensen(x, lambda x,set=set,value=value:set(x)-value)
-            y = set(x)
+            if use_find_root:
+                f = lambda x,set=set:set(x)-value
+                x_ = _find_root(f, prev_x, x, prev_y-value, y-value)
+            else:
+                y_diff = y-value
+                prev_y_diff = value-prev_y
+                p = prev_y_diff/(prev_y_diff + y_diff)
+                x_ = prev_x + p * (x-prev_x)
+            y_ = set(x_)
             # add this point
-            yield (x, NORM(y, value))
-            # restore saved point
-            prev_x, prev_y = x, y
-            x, y = saved_x, saved_y
+            yield (x_, NORM(y_, value))
+            # set saved point to intermediate
+            prev_x, prev_y = x_, y_
         # add this point
         yield (x, NORM(y, value))
     return
@@ -318,7 +326,7 @@ def _complement_generator(COMPLEMENT, set):
     y = set(x)
     yield (x, COMPLEMENT(y))
     while 1:
-        prev_x, prev_y = x, y
+        prev_x = x
         # get new interval from sets
         x = g.nextInterval(prev_x, None)
         if x is None: # no need for more intervals
