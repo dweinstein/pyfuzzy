@@ -7,6 +7,8 @@
 # See also http://bugs.python.org/issue902061
 """
 #
+# Copyright only for modified part, see also http://bugs.python.org/issue902061
+#
 # Copyright (C) 2009  Rene Liebscher
 #
 # This program is free software; you can redistribute it and/or modify it under
@@ -16,13 +18,14 @@
 #
 # This program is distributed in the hope that it will be useful, but WITHOUT 
 # ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
-# FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details.
+# FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+# details.
 # 
-# You should have received a copy of the GNU Lesser General Public License along with 
-# this program; if not, see <http://www.gnu.org/licenses/>. 
+# You should have received a copy of the GNU Lesser General Public License
+# along with this program; if not, see <http://www.gnu.org/licenses/>. 
 #
 
-__revision__ = "$Id: mypydoc.py,v 1.9 2009-10-07 20:52:24 rliebscher Exp $"
+__revision__ = "$Id: mypydoc.py,v 1.10 2009-10-27 19:40:35 rliebscher Exp $"
 
 import sys, inspect
 from string import join, split, strip
