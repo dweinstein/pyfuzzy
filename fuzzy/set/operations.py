@@ -52,11 +52,14 @@ Examples can be found here U{http://pyfuzzy.sourceforge.net/demo/merge/}
   and act_value is the result of a rule calculation.
 """
 
-__revision__ = "$Id: operations.py,v 1.7 2009-10-23 19:20:03 rliebscher Exp $"
+__revision__ = "$Id: operations.py,v 1.8 2009-10-27 19:37:49 rliebscher Exp $"
 
 # helper functions
 def _find_root(f, x1, x2, f1=None, f2=None, epsilon=None):
-    """Find root of function f between x1,x2 by using the regula falsi method.
+    """Find root of function f between x1,x2 by using the regula falsi method
+       with the pegasus modification. 
+       See also U{http://de.wikipedia.org/wiki/Regula_Falsi}. (The english 
+       version lacks the description of pegasus modification.) 
        The algorithm stops if the error estimation is smaller than epsilon
        or there is an ZeroDivisionError, which means both values f1 and f2 are 
        identical (should be 0 then).
@@ -91,18 +94,19 @@ def _find_root(f, x1, x2, f1=None, f2=None, epsilon=None):
             z = x1 - f1 * (x2 - x1) / (f2 - f1) # approximation for root
             fz = f(z)
         
-            #print x1,z,x2,f1,fz,f2
+            print x1,z,x2,f1,fz,f2
             # smaller than epsilon: return z as approximation
             if abs(x2 - x1) <= epsx or abs(fz) <= epsz:
                 return z
         
             # root in [f(xz), f(x2)]?: 
             if fz * f2 < 0.:
-                # check [z, x2]
-                x1,x2,f1,f2 = z,x2,fz,f2
+                # check [z, x2], but exchange borders 
+                x1,x2,f1,f2 = x2,z,f2,fz
             else:
-                # check [x1, z]
-                x1,x2,f1,f2 = x1,z,f1,fz
+                # check [x1, z], and modify the value f1, 
+                # so next steps x1 will move
+                x1,x2,f1,f2 = x1,z,f1*f2/(f2+fz),fz
         raise Exception("Too much iterations: %d" % i)
     except ZeroDivisionError:
         #print "ZeroDivisionError"
