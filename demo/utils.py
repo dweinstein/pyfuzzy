@@ -17,14 +17,15 @@
 #
 # This program is distributed in the hope that it will be useful, but WITHOUT 
 # ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
-# FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details.
+# FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+# details.
 # 
-# You should have received a copy of the GNU Lesser General Public License along with 
-# this program; if not, see <http://www.gnu.org/licenses/>. 
+# You should have received a copy of the GNU Lesser General Public License
+# along with this program; if not, see <http://www.gnu.org/licenses/>. 
 #
 
 
-__revision__ = "$Id: utils.py,v 1.6 2009-09-28 15:26:46 rliebscher Exp $"
+__revision__ = "$Id: utils.py,v 1.7 2009-10-27 19:29:04 rliebscher Exp $"
 
 def get_classes(package):
     """Find all classes defined in given directory
@@ -58,13 +59,14 @@ from fuzzy.utils import inf_p,inf_n
 # possible parameter values for some allowed ranges of this parameter
 # tuples of ( allowed_range, list_of_values ) 
 __params = (
-    ( [[0.,1.]]     , [0.0,0.25,0.50,0.75,1.] ),
-    ( [(0.,1.)]     , [0.05,0.25,0.50,0.75,0.95] ),
-    ( [(0.,inf_p)]  , [0.01,0.10,1.0,10.,100.] ),
-    ( [(-1.,inf_p)] , [-0.99,-0.1,0.0,0.10,1.0,10.,100.] ),
+    ( [[0.,1.]]                 , [0.0,0.25,0.50,0.75,1.] ),
+    ( [(0.,1.)]                 , [0.05,0.25,0.50,0.75,0.95] ),
+    ( [0., (0.,inf_p)]          , [0.,0.01,0.10,1.0,10.,100.] ),
+    ( [(0.,inf_p)]              , [0.01,0.10,1.0,10.,100.] ),
+    ( [(-1.,inf_p)]             , [-0.99,-0.1,0.0,0.10,1.0,10.,100.] ),
     ( [(inf_n,-1.),(-1.,inf_p)] , [-100.,-10,-0.99,0.0,1.0,10.,100.] ),
-    ( [(0.,1.),(1.,inf_p)] , [0.1,0.9,1.1,10.,100.] ),
-    ( [(inf_n,0.),(0.,inf_p)] , [-100.,-10,-1.,-0.1,0.1,1.,10.,100.] )
+    ( [(0.,1.),(1.,inf_p)]      , [0.1,0.9,1.1,10.,100.] ),
+    ( [(inf_n,0.),(0.,inf_p)]   , [-100.,-10,-1.,-0.1,0.1,1.,10.,100.] )
 )
 
 def get_test_params(range_):
