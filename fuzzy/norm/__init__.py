@@ -9,10 +9,11 @@
 #
 # This program is distributed in the hope that it will be useful, but WITHOUT 
 # ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
-# FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details.
+# FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+# details.
 # 
-# You should have received a copy of the GNU Lesser General Public License along with 
-# this program; if not, see <http://www.gnu.org/licenses/>. 
+# You should have received a copy of the GNU Lesser General Public License
+# along with this program; if not, see <http://www.gnu.org/licenses/>. 
 #
 """
 
@@ -22,4 +23,4 @@ Examples can be found here http://pyfuzzy.sourceforge.net/demo/norm/
 
 """
 
-__revision__ = "$Id: __init__.py,v 1.6 2009-10-20 20:48:16 rliebscher Exp $"
+__revision__ = "$Id: __init__.py,v 1.7 2009-10-27 19:26:05 rliebscher Exp $"

@@ -9,13 +9,14 @@
 #
 # This program is distributed in the hope that it will be useful, but WITHOUT 
 # ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
-# FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details.
+# FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+# details.
 # 
-# You should have received a copy of the GNU Lesser General Public License along with 
-# this program; if not, see <http://www.gnu.org/licenses/>. 
+# You should have received a copy of the GNU Lesser General Public License
+# along with this program; if not, see <http://www.gnu.org/licenses/>. 
 #
 
-__revision__ = "$Id: Reader.py,v 1.3 2009-08-31 21:02:06 rliebscher Exp $"
+__revision__ = "$Id: Reader.py,v 1.4 2009-10-27 19:27:09 rliebscher Exp $"
 
 import antlr3
 
@@ -28,18 +29,18 @@ class Reader(object):
     def __init__(self):
         pass
 
-    def __load(self,char_stream):
+    def __load(self, char_stream):
         lexer = FCLLexer(char_stream)
         tokens = antlr3.CommonTokenStream(lexer)
         parser = FCLParser(tokens)
         return parser.main()
 
-    def load_from_file(self,filename):
+    def load_from_file(self, filename):
         return self.__load(antlr3.ANTLRFileStream(filename))
 
-    def load_from_stream(self,stream):
+    def load_from_stream(self, stream):
         return self.__load(antlr3.ANTLRInputStream(stream))
 
-    def load_from_string(self,str):
+    def load_from_string(self, str):
         return self.__load(antlr3.ANTLRStringStream(str))
 

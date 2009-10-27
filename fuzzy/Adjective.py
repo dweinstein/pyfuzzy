@@ -9,13 +9,14 @@
 #
 # This program is distributed in the hope that it will be useful, but WITHOUT 
 # ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
-# FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details.
+# FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+# details.
 # 
-# You should have received a copy of the GNU Lesser General Public License along with 
-# this program; if not, see <http://www.gnu.org/licenses/>. 
+# You should have received a copy of the GNU Lesser General Public License
+# along with this program; if not, see <http://www.gnu.org/licenses/>. 
 #
 """Describes a ... of a variable."""
-__revision__ = "$Id: Adjective.py,v 1.13 2009-10-07 21:08:12 rliebscher Exp $"
+__revision__ = "$Id: Adjective.py,v 1.14 2009-10-27 19:27:09 rliebscher Exp $"
 
 
 from fuzzy.norm.Max import Max
@@ -37,7 +38,7 @@ class Adjective(object):
     # default if not set in instance
     _COM = Max()
 
-    def __init__(self,set=Set(),COM=None):
+    def __init__(self, set=Set(), COM=None):
         """Initialize adjective.
         
         @param set: fuzzy set
@@ -49,7 +50,7 @@ class Adjective(object):
         self.membership = None
         self.COM = COM
 
-    def setMembershipForValue(self,value):
+    def setMembershipForValue(self, value):
         """Get membership for an input value from the fuzzy set."""
         self.membership = self.set(value)
 
@@ -60,7 +61,7 @@ class Adjective(object):
         else:
             return self.membership
 
-    def setMembership(self,value):
+    def setMembership(self, value):
         """Set membership of this adjective as result 
            of a rule calculation, 
            if already set use COM norm to merge
@@ -78,7 +79,7 @@ class Adjective(object):
         """Reset membership to unknown value (None)."""
         self.membership = None
 
-    def getName(self,system):
+    def getName(self, system):
         """Find own name in given system.
         Returns a tuple (var_name,adj_name) of None."""
         return system.findAdjectiveName(self)

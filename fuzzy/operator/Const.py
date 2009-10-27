@@ -9,13 +9,14 @@
 #
 # This program is distributed in the hope that it will be useful, but WITHOUT 
 # ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
-# FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details.
+# FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+# details.
 # 
-# You should have received a copy of the GNU Lesser General Public License along with 
-# this program; if not, see <http://www.gnu.org/licenses/>. 
+# You should have received a copy of the GNU Lesser General Public License
+# along with this program; if not, see <http://www.gnu.org/licenses/>. 
 #
 """Special operator class which returns a constant value."""
-__revision__ = "$Id: Const.py,v 1.11 2009-10-07 21:08:14 rliebscher Exp $"
+__revision__ = "$Id: Const.py,v 1.12 2009-10-27 19:26:05 rliebscher Exp $"
 
 from fuzzy.operator.Operator import Operator
 
@@ -26,7 +27,7 @@ class Const(Operator):
        @type value: float
     """
 
-    def __init__(self,value):
+    def __init__(self, value):
         """Constructor.
         
         @param value: value returned at call of __call__().

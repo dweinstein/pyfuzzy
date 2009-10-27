@@ -9,15 +9,16 @@
 #
 # This program is distributed in the hope that it will be useful, but WITHOUT 
 # ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
-# FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details.
+# FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+# details.
 # 
-# You should have received a copy of the GNU Lesser General Public License along with 
-# this program; if not, see <http://www.gnu.org/licenses/>. 
+# You should have received a copy of the GNU Lesser General Public License
+# along with this program; if not, see <http://www.gnu.org/licenses/>. 
 #
 
 """Main coordinator class of a whole fuzzy system"""
 
-__revision__ = "$Id: System.py,v 1.16 2009-10-07 21:08:13 rliebscher Exp $"
+__revision__ = "$Id: System.py,v 1.17 2009-10-27 19:27:09 rliebscher Exp $"
 
 class System(object):
     """Holds all stuff together. (variables, rules, ...)
@@ -31,7 +32,7 @@ class System(object):
         @type description: string
     """ 
 
-    def __init__(self,description=""):
+    def __init__(self, description=""):
         """Constructor.
 
         @param description: description
@@ -46,12 +47,12 @@ class System(object):
         for variable in self.variables.values():
             variable.reset()
 
-    def fuzzify(self,input):
+    def fuzzify(self, input):
         """Fuzzify the inputs.
         The input dictionary contains the input values for the named variables."""
 
         # feed input values in variables and so in adjectives
-        for (name,value) in input.items():
+        for (name, value) in input.items():
             if name in self.variables:
                 self.variables[name].setValue(value)
             #else:
@@ -66,7 +67,7 @@ class System(object):
             rule.compute()
 
 
-    def defuzzify(self,output):
+    def defuzzify(self, output):
         """Defuzzyfy the variables.
         The output dictionary serves as container and provides the names of the
         variables to read."""
@@ -78,7 +79,7 @@ class System(object):
         return output
 
 
-    def calculate(self,input,output):
+    def calculate(self, input, output):
         """Do a complete fuzzy calculation step.
         The input dictionary contains the input values for the named variables.
         The output dictionary serves as container and provides the names of the
@@ -95,24 +96,24 @@ class System(object):
         return output
 
 
-    def findVariableName(self,var):
+    def findVariableName(self, var):
         """Find name of variable in this system"""
-        for name,variable in self.variables.items():
+        for name, variable in self.variables.items():
             if var is variable:
                 return name
         return None
 
-    def findAdjectiveName(self,adj):
+    def findAdjectiveName(self, adj):
         """Find name of adjective (and variable) in this system"""
-        for name,variable in self.variables.items():
-            for namea,adjective in variable.adjectives.items():
+        for name, variable in self.variables.items():
+            for namea, adjective in variable.adjectives.items():
                 if adj is adjective:
-                    return [namea,name]
+                    return [namea, name]
         return None
 
-    def findRuleName(self,_rule):
+    def findRuleName(self, _rule):
         """Find name of rule in this system"""
-        for name,rule in self.rules.items():
+        for name, rule in self.rules.items():
             if _rule is rule:
                 return name
         return None

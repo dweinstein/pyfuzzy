@@ -9,13 +9,14 @@
 #
 # This program is distributed in the hope that it will be useful, but WITHOUT 
 # ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
-# FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details.
+# FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+# details.
 # 
-# You should have received a copy of the GNU Lesser General Public License along with 
-# this program; if not, see <http://www.gnu.org/licenses/>. 
+# You should have received a copy of the GNU Lesser General Public License
+# along with this program; if not, see <http://www.gnu.org/licenses/>. 
 #
 """General instance of an output variable."""
-__revision__ = "$Id: OutputVariable.py,v 1.10 2009-10-07 21:08:12 rliebscher Exp $"
+__revision__ = "$Id: OutputVariable.py,v 1.11 2009-10-27 19:27:09 rliebscher Exp $"
 
 from fuzzy.Variable import Variable
 
@@ -29,13 +30,13 @@ class OutputVariable(Variable):
         @type defuzzify: L{fuzzy.defuzzify.Base.Base}
        """
 
-    def __init__(self,defuzzify=None,*args,**keywords):
+    def __init__(self, defuzzify=None, *args, **keywords):
         """Initialize this output variable with a defuzzification method.
 
         @param defuzzify: Defuzzification method.
         @type defuzzify: L{fuzzy.defuzzify.Base.Base}
         """
-        super(OutputVariable, self).__init__(*args,**keywords)
+        super(OutputVariable, self).__init__(*args, **keywords)
         self.defuzzify = defuzzify
 
     def getValue(self):

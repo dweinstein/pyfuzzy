@@ -9,16 +9,17 @@
 #
 # This program is distributed in the hope that it will be useful, but WITHOUT 
 # ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
-# FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details.
+# FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+# details.
 # 
-# You should have received a copy of the GNU Lesser General Public License along with 
-# this program; if not, see <http://www.gnu.org/licenses/>. 
+# You should have received a copy of the GNU Lesser General Public License
+# along with this program; if not, see <http://www.gnu.org/licenses/>. 
 #
 """ 
     Base class for any kind of parametric fuzzy norm.
 """
 
-__revision__ = "$Id: ParametricNorm.py,v 1.9 2009-10-20 20:48:16 rliebscher Exp $"
+__revision__ = "$Id: ParametricNorm.py,v 1.10 2009-10-27 19:26:05 rliebscher Exp $"
 
 from fuzzy.norm.Norm import Norm
 from fuzzy.utils import prop
@@ -31,14 +32,14 @@ class ParametricNorm(Norm):
     """
     _range = None
 
-    def __init__(self, type, p):
+    def __init__(self, type, param):
         """Initialize type and parameter
         
-        @param p: parameter for norm
-        @type p: float
+        @param param: parameter for norm
+        @type param: float
         """
         super(ParametricNorm, self).__init__(type)
-        self.p = p
+        self.p = param
 
     # pylint: disable-msg=E0202,E0211
     #ID:E0202 ParametricNorm.p: An attribute inherited from ParametricNorm hide this method

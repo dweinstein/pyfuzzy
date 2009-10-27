@@ -9,26 +9,27 @@
 #
 # This program is distributed in the hope that it will be useful, but WITHOUT 
 # ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
-# FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details.
+# FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+# details.
 # 
-# You should have received a copy of the GNU Lesser General Public License along with 
-# this program; if not, see <http://www.gnu.org/licenses/>. 
+# You should have received a copy of the GNU Lesser General Public License
+# along with this program; if not, see <http://www.gnu.org/licenses/>. 
 #
 
-__revision__ = "$Id: LM.py,v 1.2 2009-08-07 07:19:18 rliebscher Exp $"
+__revision__ = "$Id: LM.py,v 1.3 2009-10-27 19:24:31 rliebscher Exp $"
 
-from fuzzy.defuzzify.Base import Base,DefuzzificationException
+from fuzzy.defuzzify.Base import Base, DefuzzificationException
 
 class LM(Base):
     """Defuzzyfication which uses the left most (local) maximum."""
 
-    def __init__(self, INF=None, ACC=None, failsafe=None,*args,**keywords):
+    def __init__(self, INF=None, ACC=None, failsafe=None, *args, **keywords):
         """Initialize the defuzzification method with INF,ACC 
         and an optional value in case defuzzification is not possible"""
-        super(LM, self).__init__(INF,ACC,*args,**keywords)
+        super(LM, self).__init__(INF, ACC, *args, **keywords)
         self.failsafe = failsafe # which value if value not calculable
 
-    def getValue(self,variable):
+    def getValue(self, variable):
         """Defuzzyfication."""
         try:
             temp = self.accumulate(variable)
@@ -42,7 +43,7 @@ class LM(Base):
             y = table[0][1]
             x = float('-inf') # left end of polygon is always -infinity
 
-            for (x_,y_) in table[1:]:
+            for (x_, y_) in table[1:]:
                 if y_ > y:
                     y = y_
                     x = x_

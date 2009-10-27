@@ -9,13 +9,14 @@
 #
 # This program is distributed in the hope that it will be useful, but WITHOUT 
 # ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
-# FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details.
+# FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+# details.
 # 
-# You should have received a copy of the GNU Lesser General Public License along with 
-# this program; if not, see <http://www.gnu.org/licenses/>. 
+# You should have received a copy of the GNU Lesser General Public License
+# along with this program; if not, see <http://www.gnu.org/licenses/>. 
 #
 """Serves as proxy for a named variable.adjective."""
-__revision__ = "$Id: AdjectiveProxy.py,v 1.10 2009-10-07 21:08:13 rliebscher Exp $"
+__revision__ = "$Id: AdjectiveProxy.py,v 1.11 2009-10-27 19:27:09 rliebscher Exp $"
 
 
 class AdjectiveProxy(object):
@@ -24,35 +25,35 @@ class AdjectiveProxy(object):
     @deprecated: such objects have problems using pickle
     """
 
-    def __init__(self,system,variable,adjective):
+    def __init__(self, system, variable, adjective):
         self.proxy_system = system
         self.proxy_variable = variable
         self.proxy_adjective = adjective
 
-    def __getattr__(self,name):
+    def __getattr__(self, name):
         """Return attribute value from real adjective."""
-        if name in ["proxy_variable","proxy_adjective","proxy_system"]:
+        if name in ["proxy_variable", "proxy_adjective", "proxy_system"]:
             return self.__dict__[name]
         else:
             variable = self.__dict__["proxy_variable"]
             adjective = self.__dict__["proxy_adjective"]
             system = self.__dict__["proxy_system"]
-            return getattr(system.variables[variable].adjectives[adjective],name)
+            return getattr(system.variables[variable].adjectives[adjective], name)
 
-    def __setattr__(self,name,value):
+    def __setattr__(self, name, value):
         """Set attribute value in real adjective."""
-        if name in ["proxy_variable","proxy_adjective","proxy_system"]:
+        if name in ["proxy_variable", "proxy_adjective", "proxy_system"]:
             self.__dict__[name] = value
         else:
             variable = self.__dict__["proxy_variable"]
             adjective = self.__dict__["proxy_adjective"]
             system = self.__dict__["proxy_system"]
-            setattr(system.variables[variable].adjectives[adjective],name,value)
+            setattr(system.variables[variable].adjectives[adjective], name, value)
 
-    def getName(self,system):
+    def getName(self, system):
         """Find own name in given system.
         Returns a tuple (var_name,adj_name) of None."""
         if system is self.proxy_system:
-            return [self.proxy_adjective,self.proxy_variable]
+            return [self.proxy_adjective, self.proxy_variable]
         import fuzzy.Exception
         raise fuzzy.Exception.Exception()

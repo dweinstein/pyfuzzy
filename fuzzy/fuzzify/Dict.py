@@ -9,13 +9,14 @@
 #
 # This program is distributed in the hope that it will be useful, but WITHOUT 
 # ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
-# FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details.
+# FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+# details.
 # 
-# You should have received a copy of the GNU Lesser General Public License along with 
-# this program; if not, see <http://www.gnu.org/licenses/>. 
+# You should have received a copy of the GNU Lesser General Public License
+# along with this program; if not, see <http://www.gnu.org/licenses/>. 
 #
 
-__revision__ = "$Id: Dict.py,v 1.3 2009-08-31 21:02:06 rliebscher Exp $"
+__revision__ = "$Id: Dict.py,v 1.4 2009-10-27 19:26:05 rliebscher Exp $"
 
 
 from fuzzy.fuzzify.Base import Base
@@ -52,10 +53,10 @@ class Dict(Base):
 
       """
 
-    def __init__(self,*args,**keywords):
-        super(Dict,self).__init__(*args,**keywords)
+    def __init__(self, *args, **keywords):
+        super(Dict, self).__init__(*args, **keywords)
 
-    def setValue(self,variable,value):
+    def setValue(self, variable, value):
         """Do not let adjectives calculate their membership values."""
         for adjective_key in value:
             variable.adjectives[adjective_key].membership = value[adjective_key]

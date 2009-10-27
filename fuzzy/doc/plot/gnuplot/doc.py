@@ -9,14 +9,15 @@
 #
 # This program is distributed in the hope that it will be useful, but WITHOUT 
 # ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
-# FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details.
+# FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+# details.
 # 
-# You should have received a copy of the GNU Lesser General Public License along with 
-# this program; if not, see <http://www.gnu.org/licenses/>. 
+# You should have received a copy of the GNU Lesser General Public License
+# along with this program; if not, see <http://www.gnu.org/licenses/>. 
 #
 """Plotting of variables, adjectives, ... using gnuplot"""
 
-__revision__ = "$Id: doc.py,v 1.9 2009-09-24 20:32:20 rliebscher Exp $"
+__revision__ = "$Id: doc.py,v 1.10 2009-10-27 19:24:31 rliebscher Exp $"
 
 
 def getMinMax(set):

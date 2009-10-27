@@ -9,13 +9,14 @@
 #
 # This program is distributed in the hope that it will be useful, but WITHOUT 
 # ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
-# FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details.
+# FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+# details.
 # 
-# You should have received a copy of the GNU Lesser General Public License along with 
-# this program; if not, see <http://www.gnu.org/licenses/>. 
+# You should have received a copy of the GNU Lesser General Public License
+# along with this program; if not, see <http://www.gnu.org/licenses/>. 
 #
 """Base class for any kind of fuzzy variable."""
-__revision__ = "$Id: Variable.py,v 1.13 2009-10-07 21:08:13 rliebscher Exp $"
+__revision__ = "$Id: Variable.py,v 1.14 2009-10-27 19:27:09 rliebscher Exp $"
 
 
 class Variable(object):
@@ -32,7 +33,7 @@ class Variable(object):
        @type unit: string
        """
 
-    def __init__(self,description='',min=0.,max=1.,unit=''):
+    def __init__(self, description='', min=0., max=1., unit=''):
         """
             @param description: Description of the fuzzy variable
             @type description: string
@@ -50,7 +51,7 @@ class Variable(object):
         self.max         = max
         self.unit        = unit
 
-    def setValue(self,value):
+    def setValue(self, value):
         """Just store the value."""
         self.__value = value
 
@@ -63,6 +64,6 @@ class Variable(object):
         for adjective in self.adjectives.values():
             adjective.reset()
 
-    def getName(self,system):
+    def getName(self, system):
         """Lookup the name given this variable in the given system"""
         return system.findVariableName(self)

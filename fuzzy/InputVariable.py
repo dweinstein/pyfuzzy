@@ -9,13 +9,14 @@
 #
 # This program is distributed in the hope that it will be useful, but WITHOUT 
 # ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
-# FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details.
+# FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+# details.
 # 
-# You should have received a copy of the GNU Lesser General Public License along with 
-# this program; if not, see <http://www.gnu.org/licenses/>. 
+# You should have received a copy of the GNU Lesser General Public License
+# along with this program; if not, see <http://www.gnu.org/licenses/>. 
 #
 """General instance of an input variable.""" 
-__revision__ = "$Id: InputVariable.py,v 1.6 2009-10-07 21:08:13 rliebscher Exp $"
+__revision__ = "$Id: InputVariable.py,v 1.7 2009-10-27 19:27:09 rliebscher Exp $"
 
 from fuzzy.Variable import Variable
 
@@ -29,16 +30,16 @@ class InputVariable(Variable):
         @type fuzzify: L{fuzzy.fuzzify.Base.Base}
        """
 
-    def __init__(self,fuzzify=None,*args,**keywords):
+    def __init__(self, fuzzify=None, *args, **keywords):
         """Initialize this input variable with a fuzzification method.
 
         @param fuzzify: Fuzzification method.
         @type fuzzify: L{fuzzy.fuzzify.Base.Base}
         """
-        super(InputVariable, self).__init__(*args,**keywords)
+        super(InputVariable, self).__init__(*args, **keywords)
         self.fuzzify = fuzzify
 
-    def setValue(self,value):
+    def setValue(self, value):
         """Let adjectives calculate their membership values."""
-        self.__value = self.fuzzify.setValue(self,value)
+        self.__value = self.fuzzify.setValue(self, value)
 

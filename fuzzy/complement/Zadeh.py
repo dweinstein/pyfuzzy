@@ -9,24 +9,25 @@
 #
 # This program is distributed in the hope that it will be useful, but WITHOUT 
 # ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
-# FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details.
+# FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+# details.
 # 
-# You should have received a copy of the GNU Lesser General Public License along with 
-# this program; if not, see <http://www.gnu.org/licenses/>. 
+# You should have received a copy of the GNU Lesser General Public License
+# along with this program; if not, see <http://www.gnu.org/licenses/>. 
 #
 """Complement after Zadeh"""
-__revision__ = "$Id: Zadeh.py,v 1.2 2009-10-07 21:08:14 rliebscher Exp $"
+__revision__ = "$Id: Zadeh.py,v 1.3 2009-10-27 19:24:31 rliebscher Exp $"
 
 from fuzzy.complement.Base import Base
 
 class Zadeh(Base):
     """Complement after Zadeh"""
 
-    def __init__(self,*args,**keywords):
+    def __init__(self, *args, **keywords):
         """Initialize the complement instance"""
-        super(Zadeh, self).__init__(*args,**keywords)
+        super(Zadeh, self).__init__(*args, **keywords)
 
-    def __call__(self,value):
+    def __call__(self, value):
         """calculate the complement of the value
         @param value: the value to complement
         @type value: float

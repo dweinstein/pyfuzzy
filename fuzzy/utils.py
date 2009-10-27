@@ -9,13 +9,14 @@
 #
 # This program is distributed in the hope that it will be useful, but WITHOUT 
 # ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
-# FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details.
+# FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+# details.
 # 
-# You should have received a copy of the GNU Lesser General Public License along with 
-# this program; if not, see <http://www.gnu.org/licenses/>. 
+# You should have received a copy of the GNU Lesser General Public License
+# along with this program; if not, see <http://www.gnu.org/licenses/>. 
 #
 """Helper functions for  pyfuzzy."""
-__revision__ = "$Id: utils.py,v 1.5 2009-10-07 21:08:12 rliebscher Exp $"
+__revision__ = "$Id: utils.py,v 1.6 2009-10-27 19:27:09 rliebscher Exp $"
 
 def prop(func):
     """Function decorator for defining property attributes
@@ -31,7 +32,7 @@ def prop(func):
     """
     return property(doc=func.__doc__, **func())
 
-def checkRange(value,ranges):
+def checkRange(value, ranges):
     """Checks if the value is in the defined range.
     
     The range definition is a list/iterator from:
@@ -46,13 +47,13 @@ def checkRange(value,ranges):
     """
     import types
     for part in ranges:
-        if isinstance(part,types.FloatType):
+        if isinstance(part, types.FloatType):
             if part == value:
                 return True
-        elif isinstance(part,types.ListType) and len(part) == 2:
+        elif isinstance(part, types.ListType) and len(part) == 2:
             if part[0] <= value and value <= part[1]:
                 return True
-        elif isinstance(part,types.TupleType) and len(part) == 2:
+        elif isinstance(part, types.TupleType) and len(part) == 2:
             if part[0] < value and value < part[1]:
                 return True
         else:

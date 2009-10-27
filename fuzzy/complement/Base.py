@@ -9,13 +9,14 @@
 #
 # This program is distributed in the hope that it will be useful, but WITHOUT 
 # ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
-# FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details.
+# FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+# details.
 # 
-# You should have received a copy of the GNU Lesser General Public License along with 
-# this program; if not, see <http://www.gnu.org/licenses/>. 
+# You should have received a copy of the GNU Lesser General Public License
+# along with this program; if not, see <http://www.gnu.org/licenses/>. 
 #
 """Base class for all complement methods"""
-__revision__ = "$Id: Base.py,v 1.2 2009-10-07 21:08:14 rliebscher Exp $"
+__revision__ = "$Id: Base.py,v 1.3 2009-10-27 19:24:31 rliebscher Exp $"
 
 import fuzzy.Exception
 
@@ -27,11 +28,11 @@ class ComplementException(fuzzy.Exception.Exception):
 class Base(object):
     """Base class for all complement methods"""
 
-    def __init__(self,*args,**keywords):
+    def __init__(self, *args, **keywords):
         """Initialize the complement instance"""
-        super(Base, self).__init__(*args,**keywords)
+        super(Base, self).__init__(*args, **keywords)
 
-    def __call__(self,value):
+    def __call__(self, value):
         """Calculate the complement of the value.
         @param value: the value to complement
         @type value: float

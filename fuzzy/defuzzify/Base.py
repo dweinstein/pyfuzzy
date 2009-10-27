@@ -9,18 +9,19 @@
 #
 # This program is distributed in the hope that it will be useful, but WITHOUT 
 # ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
-# FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details.
+# FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+# details.
 # 
-# You should have received a copy of the GNU Lesser General Public License along with 
-# this program; if not, see <http://www.gnu.org/licenses/>. 
+# You should have received a copy of the GNU Lesser General Public License
+# along with this program; if not, see <http://www.gnu.org/licenses/>. 
 #
 
-__revision__ = "$Id: Base.py,v 1.7 2009-08-07 07:19:18 rliebscher Exp $"
+__revision__ = "$Id: Base.py,v 1.8 2009-10-27 19:24:31 rliebscher Exp $"
 
 
 from fuzzy.norm.Max import Max
 from fuzzy.norm.Min import Min
-from fuzzy.set.Set import norm,merge
+from fuzzy.set.Set import norm, merge
 import fuzzy.Exception
 
 class DefuzzificationException(fuzzy.Exception.Exception):
@@ -60,36 +61,36 @@ class Base(object):
         self.activated_sets = {}
         self.accumulated_set = None
 
-    def getValue(self,variable):
+    def getValue(self, variable):
         """Defuzzyfication."""
         raise DefuzzificationException("don't use the abstract base class")
 
 # helper methods for sub classes
 
-    def accumulate(self,variable,segment_size=None):
+    def accumulate(self, variable, segment_size=None):
         """combining adjective values into one set"""
         self.activated_sets = {}
         temp = None
-        for name,adjective in variable.adjectives.items():
+        for name, adjective in variable.adjectives.items():
             # get precomputed adjective set
-            temp2 = norm((self.INF or self._INF),adjective.set,adjective.getMembership(),segment_size)
+            temp2 = norm((self.INF or self._INF), adjective.set, adjective.getMembership(), segment_size)
             self.activated_sets[name] = temp2
             # accumulate all adjectives
             if temp is None:
                 temp = temp2
             else:
-                temp = merge((self.ACC or self._ACC),temp,temp2,segment_size)
+                temp = merge((self.ACC or self._ACC), temp, temp2, segment_size)
         self.accumulated_set = temp
         return temp
 
-    def value_table(self,set):
+    def value_table(self, set):
         """get a value table of the polygon representation"""
         # get polygon representation
         ig = set.getIntervalGenerator()
-        next = ig.nextInterval(None,None)
+        next = ig.nextInterval(None, None)
         while next is not None:
             x = next
             y = set(x)
-            yield (x,y)
+            yield (x, y)
             # get next point from polygon
-            next = ig.nextInterval(next,None)
+            next = ig.nextInterval(next, None)

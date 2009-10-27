@@ -9,13 +9,14 @@
 #
 # This program is distributed in the hope that it will be useful, but WITHOUT 
 # ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
-# FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details.
+# FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+# details.
 # 
-# You should have received a copy of the GNU Lesser General Public License along with 
-# this program; if not, see <http://www.gnu.org/licenses/>. 
+# You should have received a copy of the GNU Lesser General Public License
+# along with this program; if not, see <http://www.gnu.org/licenses/>. 
 #
 """Abstract base class for any parametric fuzzy complement"""
-__revision__ = "$Id: Parametric.py,v 1.2 2009-10-07 21:08:14 rliebscher Exp $"
+__revision__ = "$Id: Parametric.py,v 1.3 2009-10-27 19:24:31 rliebscher Exp $"
 
 from fuzzy.complement.Base import Base
 from fuzzy.utils import prop
@@ -28,26 +29,31 @@ class Parametric(Base):
     """
     _range = None
 
-    def __init__(self,p,*args,**keywords):
+    def __init__(self, p, *args, **keywords):
         """Initialize type and parameter
         
         @param p: parameter for complement
         @type p: float
         """
-        super(Parametric,self).__init__(*args,**keywords)
+        super(Parametric, self).__init__(*args, **keywords)
         self.p = p
 
+    # pylint: disable-msg=E0211,E0202
+    #ID:E0211 Parametric.p: Method has no argument
+    #ID:E0202 Parametric.p: An attribute inherited from Parametric hide this method
     @prop
     def p():
         """x
         @type: float"""
         def fget(self):
             return self._p
-        def fset(self,value):
+        def fset(self, value):
             self._checkParam(value)
             self._p = value
         return locals()
 
+    # pylint: disable-msg=E0211
+    #ID:E0211 Parametric.p_range: Method has no argument
     @prop
     def p_range():
         """range(s) of valid values for p"""
@@ -55,10 +61,10 @@ class Parametric(Base):
             return self._range
         return locals()
 
-    def _checkParam(self,value):
+    def _checkParam(self, value):
         """check parameter if allowed for paramter p
         @param value: the value to be checked 
         @type value: float"""
         from fuzzy.utils import checkRange
-        if not checkRange(value,self._range):
+        if not checkRange(value, self._range):
             raise Exception("Parameter value %s is not allowed" % str(value))

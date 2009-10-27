@@ -9,13 +9,14 @@
 #
 # This program is distributed in the hope that it will be useful, but WITHOUT 
 # ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
-# FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details.
+# FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+# details.
 # 
-# You should have received a copy of the GNU Lesser General Public License along with 
-# this program; if not, see <http://www.gnu.org/licenses/>. 
+# You should have received a copy of the GNU Lesser General Public License
+# along with this program; if not, see <http://www.gnu.org/licenses/>. 
 #
 """Base class for any kind of exceptions used by this package."""
-__revision__ = "$Id: Exception.py,v 1.5 2009-10-07 21:08:12 rliebscher Exp $"
+__revision__ = "$Id: Exception.py,v 1.6 2009-10-27 19:27:09 rliebscher Exp $"
 
 
 import exceptions

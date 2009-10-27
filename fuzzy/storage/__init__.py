@@ -9,11 +9,12 @@
 #
 # This program is distributed in the hope that it will be useful, but WITHOUT 
 # ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
-# FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details.
+# FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+# details.
 # 
-# You should have received a copy of the GNU Lesser General Public License along with 
-# this program; if not, see <http://www.gnu.org/licenses/>. 
+# You should have received a copy of the GNU Lesser General Public License
+# along with this program; if not, see <http://www.gnu.org/licenses/>. 
 #
 """Storage functions.
 """
-__revision__ = "$Id: __init__.py,v 1.2 2009-08-07 07:19:19 rliebscher Exp $"
+__revision__ = "$Id: __init__.py,v 1.3 2009-10-27 19:27:09 rliebscher Exp $"
