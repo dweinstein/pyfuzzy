@@ -1,4 +1,4 @@
-# -*- coding: iso-8859-1 -*-
+# -*- coding: utf-8 -*-
 #
 # Copyright (C) 2009  Rene Liebscher
 #
@@ -18,7 +18,7 @@
 
 """Generates description of structure in dot format"""
 
-__revision__ = "$Id: dot.py,v 1.5 2009-10-27 19:24:31 rliebscher Exp $"
+__revision__ = "$Id: dot.py,v 1.6 2009-10-27 20:06:27 rliebscher Exp $"
 
 # stores handler of different object types
 _registered_handler = {}

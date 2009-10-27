@@ -1,4 +1,4 @@
-# -*- coding: iso-8859-1 -*-
+# -*- coding: utf-8 -*-
 #
 # Copyright (C) 2009  Rene Liebscher
 #
@@ -17,4 +17,4 @@
 #
 """Fuzzyfication functions.
 """
-__revision__ = "$Id: __init__.py,v 1.3 2009-10-27 19:26:05 rliebscher Exp $"
+__revision__ = "$Id: __init__.py,v 1.4 2009-10-27 20:06:27 rliebscher Exp $"

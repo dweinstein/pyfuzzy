@@ -1,4 +1,4 @@
-# -*- coding: iso-8859-1 -*-
+# -*- coding: utf-8 -*-
 #
 # Copyright (C) 2009  Rene Liebscher
 #
@@ -20,7 +20,7 @@
 Base class for all fuzzy sets.
 """
 
-__revision__ = "$Id: Set.py,v 1.18 2009-10-22 17:13:41 rliebscher Exp $"
+__revision__ = "$Id: Set.py,v 1.19 2009-10-27 20:06:27 rliebscher Exp $"
 
 class Set(object):
     """Base class for all types of fuzzy sets."""

@@ -1,4 +1,4 @@
-# -*- coding: iso-8859-1 -*-
+# -*- coding: utf-8 -*-
 #
 # Copyright (C) 2009  Rene Liebscher
 #
@@ -20,5 +20,5 @@
 
 G{packagetree}"""
 
-__revision__ = "$Id: __init__.py,v 1.7 2009-10-27 19:27:09 rliebscher Exp $"
+__revision__ = "$Id: __init__.py,v 1.8 2009-10-27 20:06:27 rliebscher Exp $"
 

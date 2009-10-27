@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-# -*- coding: iso-8859-1 -*-
+# -*- coding: utf-8 -*-
 #
 """\
 # Generate plots of all available fuzzy set classes using their default values.
@@ -23,7 +23,7 @@
 # along with this program; if not, see <http://www.gnu.org/licenses/>. 
 #
 
-__revision__ = "$Id: demo_set.py,v 1.16 2009-10-27 19:29:04 rliebscher Exp $"
+__revision__ = "$Id: demo_set.py,v 1.17 2009-10-27 20:07:04 rliebscher Exp $"
 
 import sys, os
 sys.path.insert(0, os.path.join(os.path.abspath(os.path.dirname(sys.argv[0])), os.path.pardir))

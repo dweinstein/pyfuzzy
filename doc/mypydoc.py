@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-# -*- coding: iso-8859-1 -*-
+# -*- coding: utf-8 -*-
 #
 """\
 # Modifies the pydoc contained in Python to use the member function filelink
@@ -25,7 +25,7 @@
 # along with this program; if not, see <http://www.gnu.org/licenses/>. 
 #
 
-__revision__ = "$Id: mypydoc.py,v 1.10 2009-10-27 19:40:35 rliebscher Exp $"
+__revision__ = "$Id: mypydoc.py,v 1.11 2009-10-27 20:07:44 rliebscher Exp $"
 
 import sys, inspect
 from string import join, split, strip

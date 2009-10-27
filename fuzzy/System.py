@@ -1,4 +1,4 @@
-# -*- coding: iso-8859-1 -*-
+# -*- coding: utf-8 -*-
 #
 # Copyright (C) 2009  Rene Liebscher
 #
@@ -18,7 +18,7 @@
 
 """Main coordinator class of a whole fuzzy system"""
 
-__revision__ = "$Id: System.py,v 1.17 2009-10-27 19:27:09 rliebscher Exp $"
+__revision__ = "$Id: System.py,v 1.18 2009-10-27 20:06:27 rliebscher Exp $"
 
 class System(object):
     """Holds all stuff together. (variables, rules, ...)

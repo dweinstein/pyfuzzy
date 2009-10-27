@@ -1,4 +1,4 @@
-# -*- coding: iso-8859-1 -*-
+# -*- coding: utf-8 -*-
 #
 # Copyright (C) 2009  Rene Liebscher
 #
@@ -19,7 +19,7 @@
     Abstract base class for any kind of fuzzy norm.
 """
 
-__revision__ = "$Id: Norm.py,v 1.13 2009-10-27 19:26:05 rliebscher Exp $"
+__revision__ = "$Id: Norm.py,v 1.14 2009-10-27 20:06:27 rliebscher Exp $"
 
 from fuzzy.Exception import Exception
 class NormException(Exception):

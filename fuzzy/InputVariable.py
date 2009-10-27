@@ -1,4 +1,4 @@
-# -*- coding: iso-8859-1 -*-
+# -*- coding: utf-8 -*-
 #
 # Copyright (C) 2009  Rene Liebscher
 #
@@ -16,7 +16,7 @@
 # along with this program; if not, see <http://www.gnu.org/licenses/>. 
 #
 """General instance of an input variable.""" 
-__revision__ = "$Id: InputVariable.py,v 1.7 2009-10-27 19:27:09 rliebscher Exp $"
+__revision__ = "$Id: InputVariable.py,v 1.8 2009-10-27 20:06:27 rliebscher Exp $"
 
 from fuzzy.Variable import Variable
 

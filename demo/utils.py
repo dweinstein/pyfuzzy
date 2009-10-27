@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-# -*- coding: iso-8859-1 -*-
+# -*- coding: utf-8 -*-
 #
 """\
 # Helper utilities for tests.
@@ -25,7 +25,7 @@
 #
 
 
-__revision__ = "$Id: utils.py,v 1.7 2009-10-27 19:29:04 rliebscher Exp $"
+__revision__ = "$Id: utils.py,v 1.8 2009-10-27 20:07:04 rliebscher Exp $"
 
 def get_classes(package):
     """Find all classes defined in given directory

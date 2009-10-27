@@ -1,4 +1,4 @@
-# -*- coding: iso-8859-1 -*-
+# -*- coding: utf-8 -*-
 #
 # Copyright (C) 2009  Rene Liebscher
 #
@@ -16,7 +16,7 @@
 # along with this program; if not, see <http://www.gnu.org/licenses/>. 
 #
 """Special operator class which returns a constant value."""
-__revision__ = "$Id: Const.py,v 1.12 2009-10-27 19:26:05 rliebscher Exp $"
+__revision__ = "$Id: Const.py,v 1.13 2009-10-27 20:06:27 rliebscher Exp $"
 
 from fuzzy.operator.Operator import Operator
 

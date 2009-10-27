@@ -1,4 +1,4 @@
-# -*- coding: iso-8859-1 -*-
+# -*- coding: utf-8 -*-
 #
 # Copyright (C) 2009  Rene Liebscher
 #
@@ -26,7 +26,7 @@ Examples can be found here U{http://pyfuzzy.sourceforge.net/demo/set/}
 
 """
 
-__revision__ = "$Id: __init__.py,v 1.9 2009-10-22 17:13:41 rliebscher Exp $"
+__revision__ = "$Id: __init__.py,v 1.10 2009-10-27 20:06:27 rliebscher Exp $"
 
 
 #def __import_classes(dir):

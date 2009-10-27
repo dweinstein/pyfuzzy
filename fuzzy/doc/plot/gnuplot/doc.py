@@ -1,4 +1,4 @@
-# -*- coding: iso-8859-1 -*-
+# -*- coding: utf-8 -*-
 #
 # Copyright (C) 2009  Rene Liebscher
 #
@@ -17,7 +17,7 @@
 #
 """Plotting of variables, adjectives, ... using gnuplot"""
 
-__revision__ = "$Id: doc.py,v 1.10 2009-10-27 19:24:31 rliebscher Exp $"
+__revision__ = "$Id: doc.py,v 1.11 2009-10-27 20:06:27 rliebscher Exp $"
 
 
 def getMinMax(set):

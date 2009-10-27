@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-# -*- coding: iso-8859-1 -*-
+# -*- coding: utf-8 -*-
 #
 # Creates a pydoc documentation, but replaces all file link with links
 # to the CVS repository browser
@@ -21,7 +21,7 @@
 #
 
 
-__revision__ = "$Id: SFpydoc.py,v 1.7 2009-10-27 19:40:35 rliebscher Exp $"
+__revision__ = "$Id: SFpydoc.py,v 1.8 2009-10-27 20:07:44 rliebscher Exp $"
 
 from mypydoc import MyHTMLDoc
 import pydoc

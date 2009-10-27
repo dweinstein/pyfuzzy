@@ -1,4 +1,4 @@
-# -*- coding: iso-8859-1 -*-
+# -*- coding: utf-8 -*-
 #
 # Copyright (C) 2009  Rene Liebscher
 #
@@ -16,7 +16,7 @@
 # along with this program; if not, see <http://www.gnu.org/licenses/>. 
 #
 """Helper functions for  pyfuzzy."""
-__revision__ = "$Id: utils.py,v 1.6 2009-10-27 19:27:09 rliebscher Exp $"
+__revision__ = "$Id: utils.py,v 1.7 2009-10-27 20:06:27 rliebscher Exp $"
 
 def prop(func):
     """Function decorator for defining property attributes

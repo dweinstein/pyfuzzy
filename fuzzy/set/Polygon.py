@@ -1,4 +1,4 @@
-# -*- coding: iso-8859-1 -*-
+# -*- coding: utf-8 -*-
 #
 # Copyright (C) 2009  Rene Liebscher
 #
@@ -16,7 +16,7 @@
 # along with this program; if not, see <http://www.gnu.org/licenses/>. 
 #
 
-__revision__ = "$Id: Polygon.py,v 1.19 2009-10-22 17:13:41 rliebscher Exp $"
+__revision__ = "$Id: Polygon.py,v 1.20 2009-10-27 20:06:27 rliebscher Exp $"
 
 
 from fuzzy.set.Set import Set
@@ -192,8 +192,8 @@ class Polygon(Set):
         COG = 0.
         iterator = iter(self.__points)
         x0, y0 = iterator.next()
-        x0_2 = x0*x0  # =x²
-        x0_3 = x0_2*x0  # =x³
+        x0_2 = x0*x0  # =xÂ²
+        x0_3 = x0_2*x0  # =xÂ³
         for x1, y1 in iterator:
             if x1 != x0: # vertical slopes don't have an area to x.axis
                 x1_2 = x1*x1

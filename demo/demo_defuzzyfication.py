@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-# -*- coding: iso-8859-1 -*-
+# -*- coding: utf-8 -*-
 #
 """\
 # Runs all defuzzification methods over (default) instances of all 
@@ -25,7 +25,7 @@
 # along with this program; if not, see <http://www.gnu.org/licenses/>. 
 #
 
-__revision__ = "$Id: demo_defuzzyfication.py,v 1.15 2009-10-27 19:29:04 rliebscher Exp $"
+__revision__ = "$Id: demo_defuzzyfication.py,v 1.16 2009-10-27 20:07:04 rliebscher Exp $"
 
 import sys, os
 sys.path.insert(0, os.path.join(os.path.abspath(os.path.dirname(sys.argv[0])), os.path.pardir))
