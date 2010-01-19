@@ -16,15 +16,15 @@
 # along with this program; if not, see <http://www.gnu.org/licenses/>. 
 #
 
-__revision__ = "$Id: Base.py,v 1.9 2009-10-27 20:06:27 rliebscher Exp $"
+__revision__ = "$Id: Base.py,v 1.10 2010-01-19 21:45:36 rliebscher Exp $"
 
 
 from fuzzy.norm.Max import Max
 from fuzzy.norm.Min import Min
 from fuzzy.set.Set import norm, merge
-import fuzzy.Exception
+from fuzzy.Exception import FuzzyException
 
-class DefuzzificationException(fuzzy.Exception.Exception):
+class DefuzzificationException(FuzzyException):
     pass
 
 class Base(object):
@@ -86,11 +86,4 @@ class Base(object):
     def value_table(self, set):
         """get a value table of the polygon representation"""
         # get polygon representation
-        ig = set.getIntervalGenerator()
-        next = ig.nextInterval(None, None)
-        while next is not None:
-            x = next
-            y = set(x)
-            yield (x, y)
-            # get next point from polygon
-            next = ig.nextInterval(next, None)
+        return set.getValuesXY()

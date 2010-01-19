@@ -16,7 +16,7 @@
 # along with this program; if not, see <http://www.gnu.org/licenses/>. 
 #
 """Represents a fuzzy rule."""
-__revision__ = "$Id: Rule.py,v 1.15 2009-10-27 20:06:27 rliebscher Exp $"
+__revision__ = "$Id: Rule.py,v 1.16 2010-01-19 21:45:35 rliebscher Exp $"
 
 from fuzzy.norm.Min import Min
 
@@ -77,7 +77,8 @@ class Rule(object):
                                     )
                                 )
         else:
-            raise Exception("rule target not set.")
+            from fuzzy.Exception import FuzzyException
+            raise FuzzyException("rule target not set.")
 
     def getName(self, system):
         """Lookup the name given this rule in the given system"""

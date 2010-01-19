@@ -19,7 +19,7 @@
     Base class for any kind of parametric fuzzy norm.
 """
 
-__revision__ = "$Id: ParametricNorm.py,v 1.11 2009-10-27 20:06:27 rliebscher Exp $"
+__revision__ = "$Id: ParametricNorm.py,v 1.12 2010-01-19 21:45:36 rliebscher Exp $"
 
 from fuzzy.norm.Norm import Norm
 from fuzzy.utils import prop
@@ -70,4 +70,5 @@ class ParametricNorm(Norm):
         @type value: float"""
         from fuzzy.utils import checkRange
         if not checkRange(value, self._range):
-            raise Exception("Parameter value %s is not allowed" % str(value))
+            from fuzzy.Exception import FuzzyException
+            raise FuzzyException("Parameter value %s is not allowed" % str(value))

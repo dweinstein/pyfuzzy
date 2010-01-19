@@ -16,7 +16,7 @@
 # along with this program; if not, see <http://www.gnu.org/licenses/>. 
 #
 """Helper functions for  pyfuzzy."""
-__revision__ = "$Id: utils.py,v 1.7 2009-10-27 20:06:27 rliebscher Exp $"
+__revision__ = "$Id: utils.py,v 1.8 2010-01-19 21:45:35 rliebscher Exp $"
 
 def prop(func):
     """Function decorator for defining property attributes
@@ -45,19 +45,19 @@ def checkRange(value, ranges):
     It returns True if the value is in one of the defined ranges.
     Otherwise it returns false.
     """
-    import types
     for part in ranges:
-        if isinstance(part, types.FloatType):
+        if isinstance(part, float):
             if part == value:
                 return True
-        elif isinstance(part, types.ListType) and len(part) == 2:
+        elif isinstance(part, list) and len(part) == 2:
             if part[0] <= value and value <= part[1]:
                 return True
-        elif isinstance(part, types.TupleType) and len(part) == 2:
+        elif isinstance(part, tuple) and len(part) == 2:
             if part[0] < value and value < part[1]:
                 return True
         else:
-            raise Exception("Range definition is wrong")
+            from fuzzy.Exception import FuzzyException
+            raise FuzzyException("Range definition is wrong")
     return False
 
 

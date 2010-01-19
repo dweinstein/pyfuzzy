@@ -16,11 +16,11 @@
 # along with this program; if not, see <http://www.gnu.org/licenses/>. 
 #
 """Base class for all complement methods"""
-__revision__ = "$Id: Base.py,v 1.4 2009-10-27 20:06:27 rliebscher Exp $"
+__revision__ = "$Id: Base.py,v 1.5 2010-01-19 21:45:35 rliebscher Exp $"
 
 import fuzzy.Exception
 
-class ComplementException(fuzzy.Exception.Exception):
+class ComplementException(fuzzy.Exception.FuzzyException):
     """An own exception type for complements."""
     pass
 

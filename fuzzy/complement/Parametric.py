@@ -16,7 +16,7 @@
 # along with this program; if not, see <http://www.gnu.org/licenses/>. 
 #
 """Abstract base class for any parametric fuzzy complement"""
-__revision__ = "$Id: Parametric.py,v 1.4 2009-10-27 20:06:27 rliebscher Exp $"
+__revision__ = "$Id: Parametric.py,v 1.5 2010-01-19 21:45:35 rliebscher Exp $"
 
 from fuzzy.complement.Base import Base
 from fuzzy.utils import prop
@@ -67,4 +67,5 @@ class Parametric(Base):
         @type value: float"""
         from fuzzy.utils import checkRange
         if not checkRange(value, self._range):
-            raise Exception("Parameter value %s is not allowed" % str(value))
+            from fuzzy.Exception import FuzzyException
+            raise FuzzyException("Parameter value %s is not allowed" % str(value))

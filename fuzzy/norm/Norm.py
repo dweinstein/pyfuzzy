@@ -19,10 +19,10 @@
     Abstract base class for any kind of fuzzy norm.
 """
 
-__revision__ = "$Id: Norm.py,v 1.14 2009-10-27 20:06:27 rliebscher Exp $"
+__revision__ = "$Id: Norm.py,v 1.15 2010-01-19 21:45:36 rliebscher Exp $"
 
-from fuzzy.Exception import Exception
-class NormException(Exception):
+from fuzzy.Exception import FuzzyException
+class NormException(FuzzyException):
     """Base class for any exception in norm calculations."""
     pass
 

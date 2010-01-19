@@ -6,7 +6,7 @@ from antlr3.compat import set, frozenset
          
 #docstring
 __doc__ = """Parser for reading FCL by the pyfuzzy package."""
-__revision__ = "$Id: FCLParser.py,v 1.6 2009-10-20 19:15:33 rliebscher Exp $"
+__revision__ = "$Id: FCLParser.py,v 1.7 2010-01-19 21:45:36 rliebscher Exp $"
 
 import fuzzy.System
 import fuzzy.InputVariable
@@ -1977,7 +1977,8 @@ class FCLParser(Parser):
                         #action start
                                
                         if op_name is not None and op_name != op.text:
-                            raise Exception("Don't mix different operations in an expression.")
+                            from fuzzy.Exception import FuzzyException
+                            raise FuzzyException("Don't mix different operations in an expression.")
                         else:
                             op_name = op.text
                               

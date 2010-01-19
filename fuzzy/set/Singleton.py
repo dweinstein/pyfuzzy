@@ -16,11 +16,12 @@
 # along with this program; if not, see <http://www.gnu.org/licenses/>. 
 #
 
-__revision__ = "$Id: Singleton.py,v 1.13 2009-10-27 20:06:27 rliebscher Exp $"
+__revision__ = "$Id: Singleton.py,v 1.14 2010-01-19 21:45:36 rliebscher Exp $"
 
 
 from fuzzy.set.Polygon import Polygon
 from fuzzy.utils import prop
+from fuzzy.Exception import FuzzyException
 
 # use Polygon as base class so we dont need write all
 # methods again
@@ -79,13 +80,13 @@ class Singleton(Polygon):
 
     def add(self, x, y, where=Polygon.END):
         """Don't let anyone destroy our singleton."""
-        raise Exception()
+        raise FuzzyException()
 
     def remove(self, x, where=Polygon.END):
         """Don't let anyone destroy our singleton."""
-        raise Exception()
+        raise FuzzyException()
 
     def clear(self):
         """Don't let anyone destroy our singleton."""
-        raise Exception()
+        raise FuzzyException()
 

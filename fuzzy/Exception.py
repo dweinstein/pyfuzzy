@@ -16,10 +16,9 @@
 # along with this program; if not, see <http://www.gnu.org/licenses/>. 
 #
 """Base class for any kind of exceptions used by this package."""
-__revision__ = "$Id: Exception.py,v 1.7 2009-10-27 20:06:27 rliebscher Exp $"
+__revision__ = "$Id: Exception.py,v 1.8 2010-01-19 21:45:35 rliebscher Exp $"
 
 
-import exceptions
-class Exception(exceptions.Exception):
+class FuzzyException(Exception):
     """Base class for any kind of exceptions used by this package."""
     pass
