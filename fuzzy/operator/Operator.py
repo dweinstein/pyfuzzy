@@ -21,7 +21,7 @@
     Used to build fuzzy rules.
 """
 
-__revision__ = "$Id: Operator.py,v 1.11 2009-10-27 20:06:27 rliebscher Exp $"
+__revision__ = "$Id: Operator.py,v 1.12 2010-01-19 21:49:30 rliebscher Exp $"
 
 
 import fuzzy.Exception
@@ -39,6 +39,6 @@ class Operator(object):
         
         @return: result of operator calculation
         @rtype: float
-        @raise fuzzy.Exception.Exception: any problem in calculation
+        @raise fuzzy.FuzzyException.FuzzyException: any problem in calculation
         """
-        raise fuzzy.Exception.Exception("abtract class %s can't be called" % self.__class__.__name__)
+        raise fuzzy.Exception.FuzzyException("abtract class %s can't be called" % self.__class__.__name__)

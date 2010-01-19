@@ -16,11 +16,12 @@
 # along with this program; if not, see <http://www.gnu.org/licenses/>. 
 #
 
-__revision__ = "$Id: Triangle.py,v 1.15 2009-10-27 20:06:27 rliebscher Exp $"
+__revision__ = "$Id: Triangle.py,v 1.16 2010-01-19 21:47:54 rliebscher Exp $"
 
 
 from fuzzy.set.Polygon import Polygon
 from fuzzy.utils import prop
+from fuzzy.Exception import FuzzyException
 
 class Triangle(Polygon):
     r"""Realize a triangle-shaped fuzzy set::
@@ -130,13 +131,13 @@ class Triangle(Polygon):
 
     def add(self, x, y, where=Polygon.END):
         """Don't let anyone destroy our triangle."""
-        raise Exception()
+        raise FuzzyException()
 
     def remove(self, x, where=Polygon.END):
         """Don't let anyone destroy our triangle."""
-        raise Exception()
+        raise FuzzyException()
 
     def clear(self):
         """Don't let anyone destroy our triangle."""
-        raise Exception()
+        raise FuzzyException()
 
