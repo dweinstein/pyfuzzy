@@ -23,7 +23,7 @@
 # along with this program; if not, see <http://www.gnu.org/licenses/>. 
 #
 
-__revision__ = "$Id: demo_merge.py,v 1.19 2009-10-27 20:07:04 rliebscher Exp $"
+__revision__ = "$Id: demo_merge.py,v 1.20 2010-01-19 21:57:09 rliebscher Exp $"
 
 import sys, os
 sys.path.insert(0, os.path.join(os.path.abspath(os.path.dirname(sys.argv[0])), os.path.pardir))
@@ -32,7 +32,7 @@ try:
     # If the package has been installed correctly, this should work:
     import Gnuplot, Gnuplot.PlotItems
 except ImportError:
-    print "Sorry, you need Gnuplot.py (http://gnuplot-py.sourceforge.net) to use this."
+    sys.stderr.write("Sorry, you need Gnuplot.py (http://gnuplot-py.sourceforge.net) to use this.\n")
     sys.exit(1)
 
 def makePlotItem(points, title):
@@ -48,17 +48,19 @@ def makePlotItem(points, title):
 
 def plotPlotItems(items, title, filename):
     """Plot several plotitems into a file."""
-    print "Plot %s => %s" % (title, filename)
+    sys.stdout.write("Plot %s => %s ... " % (title, filename))
     g = Gnuplot.Gnuplot()
     g("set terminal png small transparent truecolor")
     g("set output 'merge/%s.png'" % filename)
     g('set style fill transparent solid 0.25 border')
     g('set style data filledcurves y1=0')
+    #g('set style data linespoints')
     g('set noautoscale xy')
     g('set xrange [0:60]')
     g('set yrange [-0.2:1.2]')
     g("set title '%s'" % title)
     g.plot(*set(items)) # set() discards multiple entries of same object
+    sys.stdout.write("ok.\n")
     g.close()
     g = None
 
@@ -95,7 +97,8 @@ def main():
         if isinstance(set, fuzzy.set.Polygon.Polygon):
             pi = makePlotItem(set.points, name)
         else:
-            pi = Gnuplot.PlotItems.Data([(i, set(i)) for i in range(0, 61)], title=name)
+            #pi = Gnuplot.PlotItems.Data([(i, set(i)) for i in range(0, 61)], title=name)
+            pi = makePlotItem([[x,y] for x,y in set.getValuesXY()], name)
         return helper(set, pi)
 
     set_a = define_set(fuzzy.set.PiFunction.PiFunction(a=30., delta=20.), "a: Pi a=30, delta=20")
@@ -167,12 +170,24 @@ def main():
         plotPlotItems([set1.plotItems, set2.plotItems, makePlotItem(p.points, item_name)], plot_name, file_name)
 
     # some examples for problems with nonlinear functions for norm, and how to use the segment_size parameter
-    p = merge(fuzzy.norm.AlgebraicProduct.AlgebraicProduct(), set_d.set, set_d.set, 1.0)
+    p = merge(fuzzy.norm.AlgebraicProduct.AlgebraicProduct(), set_d.set, set_d.set, None)
+    p1 = merge(fuzzy.norm.AlgebraicProduct.AlgebraicProduct(), set_d.set, set_d.set, 1.0)
     p2 = merge(fuzzy.norm.AlgebraicProduct.AlgebraicProduct(), set_d.set, set_d.set, 8.0)
-    plotPlotItems([set_d.plotItems, makePlotItem(p2.points, "AlgebraicProduct(d,d) => merge(...,8)"), makePlotItem(p.points, "AlgebraicProduct(d,d) => merge(...,1)")], "AlgebraicProduct(d,d)", "AlgebraicProduct_d_d")
-    p = merge(fuzzy.norm.AlgebraicSum.AlgebraicSum(), set_d.set, set_d.set, 1.0)
+    plotPlotItems([set_d.plotItems, 
+                   makePlotItem(p.points, "AlgebraicProduct(d,d) => merge(...,None)"),
+                   makePlotItem(p2.points, "AlgebraicProduct(d,d) => merge(...,8)"), 
+                   makePlotItem(p1.points, "AlgebraicProduct(d,d) => merge(...,1)")], 
+                   "AlgebraicProduct(d,d)", 
+                   "AlgebraicProduct_d_d")
+    p = merge(fuzzy.norm.AlgebraicSum.AlgebraicSum(), set_d.set, set_d.set, None)
+    p1 = merge(fuzzy.norm.AlgebraicSum.AlgebraicSum(), set_d.set, set_d.set, 1.0)
     p2 = merge(fuzzy.norm.AlgebraicSum.AlgebraicSum(), set_d.set, set_d.set, 8.0)
-    plotPlotItems([set_d.plotItems, makePlotItem(p2.points, "AlgebraicSum(d,d) => merge(...,8)"),makePlotItem(p.points, "AlgebraicSum(d,d) => merge(...,1)")], "AlgebraicSum(d,d)", "AlgebraicSum_d_d")
+    plotPlotItems([set_d.plotItems, 
+                   makePlotItem(p.points, "AlgebraicSum(d,d) => merge(...,None)"),
+                   makePlotItem(p2.points, "AlgebraicSum(d,d) => merge(...,8)"),
+                   makePlotItem(p1.points, "AlgebraicSum(d,d) => merge(...,1)")], 
+                   "AlgebraicSum(d,d)", 
+                   "AlgebraicSum_d_d")
 
     # a more complex example
     p = merge(fuzzy.norm.AlgebraicSum.AlgebraicSum(), set_c.set, merge(fuzzy.norm.AlgebraicProduct.AlgebraicProduct(), set_a.set, set_b.set))

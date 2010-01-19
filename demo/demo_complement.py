@@ -24,7 +24,7 @@
 # along with this program; if not, see <http://www.gnu.org/licenses/>. 
 #
 
-__revision__ = "$Id: demo_complement.py,v 1.9 2009-10-27 20:07:04 rliebscher Exp $"
+__revision__ = "$Id: demo_complement.py,v 1.10 2010-01-19 21:57:09 rliebscher Exp $"
 
 import sys, os
 sys.path.insert(0, os.path.join(os.path.abspath(os.path.dirname(sys.argv[0])), os.path.pardir))
@@ -33,7 +33,7 @@ try:
     # If the package has been installed correctly, this should work:
     import Gnuplot, Gnuplot.funcutils
 except ImportError:
-    print "Sorry, you need Gnuplot.py (http://gnuplot-py.sourceforge.net) to use this."
+    sys.stderr.write("Sorry, you need Gnuplot.py (http://gnuplot-py.sourceforge.net) to use this.\n")
     sys.exit(1)
 
 from utils import get_classes, get_test_params
@@ -64,12 +64,12 @@ def plot(c, set, title, filename, gnuplot=None, interactive=False):
     # make array in range x_min,x_max
     x = [ i*(x_max-x_min)/float(steps) + x_min for i in range(steps) ]
 
-    set_c = fuzzy.set.operations.complement(c, set)
+    set_c = fuzzy.set.operations.complement(c, set, 1./64.)
 
     g = gnuplot or getGnuplot()
     g.title(title)
 
-    print "Plot %s ... " % title
+    sys.stdout.write("Plot %s ... " % title)
     if interactive == False:
         g("set terminal png small truecolor nocrop")
         g("set output 'complement/%s.png'" % filename)
@@ -84,6 +84,7 @@ def plot(c, set, title, filename, gnuplot=None, interactive=False):
         g.plot(p)
     else:
         g.plot(Gnuplot.funcutils.compute_Data(x, set_c))
+    sys.stdout.write("ok.\n")
     if interactive == True:
         raw_input('Please press return to continue...\n')
     if gnuplot is None:
@@ -166,7 +167,7 @@ def interactive(name, params):
     try:
         complement = objects[name]
     except KeyError:
-        print "%s is unknown." % name 
+        sys.stderr.write("%s: %s is unknown.\n" % (sys.argv[0],name)) 
         return
 
     g = getGnuplot()

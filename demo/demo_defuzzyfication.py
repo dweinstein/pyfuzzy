@@ -25,7 +25,7 @@
 # along with this program; if not, see <http://www.gnu.org/licenses/>. 
 #
 
-__revision__ = "$Id: demo_defuzzyfication.py,v 1.16 2009-10-27 20:07:04 rliebscher Exp $"
+__revision__ = "$Id: demo_defuzzyfication.py,v 1.17 2010-01-19 21:57:09 rliebscher Exp $"
 
 import sys, os
 sys.path.insert(0, os.path.join(os.path.abspath(os.path.dirname(sys.argv[0])), os.path.pardir))
@@ -71,9 +71,9 @@ __
         if o in ["Set","Function","Polygon"]:
             continue
 
-        print "Defuzzification of %s:" % o
-        print "%-*s | %s" % (row1, "method", "value")
-        print "%s-+-%s" % ("-"*row1, "-"*row2)
+        sys.stdout.write("Defuzzification of %s:\n" % o)
+        sys.stdout.write("%-*s | %s\n" % (row1, "method", "value"))
+        sys.stdout.write("%s-+-%s\n" % ("-"*row1, "-"*row2))
 
         for d in sorted(defuzzy):
             defuzzy_ = defuzzy[d]
@@ -88,13 +88,13 @@ __
                 a.setMembership(1.0)
                 v.adjectives["test"] = a
                 result = v.getValue()
-                if isinstance(result, types.FloatType):
+                if isinstance(result, float):
                     result = "%.3g" % result
                 else:
                     result = str(result)
-                print "%-*s | %s" % (row1, d, result) 
+                sys.stdout.write("%-*s | %s\n" % (row1, d, result))
             except:
-                print "%-*s |         >>> %s <<<" % (row1, d, sys.exc_info()[1])
+                sys.stdout.write("%-*s |         >>> %s <<<\n" % (row1, d, sys.exc_info()[1]))
         print
 
 # when executed, just run test():
