@@ -16,7 +16,7 @@
 # along with this program; if not, see <http://www.gnu.org/licenses/>. 
 #
 
-__revision__ = "$Id: ZFunction.py,v 1.15 2009-10-27 20:06:27 rliebscher Exp $"
+__revision__ = "$Id: ZFunction.py,v 1.16 2010-01-19 21:49:00 rliebscher Exp $"
 
 
 from fuzzy.set.SFunction import SFunction
@@ -31,7 +31,7 @@ class ZFunction(SFunction):
              | | \__
              | a |
              |   |
-             delta
+            2*delta
 
     see also U{http://pyfuzzy.sourceforge.net/demo/set/ZFunction.png}
     

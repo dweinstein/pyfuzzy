@@ -16,7 +16,7 @@
 # along with this program; if not, see <http://www.gnu.org/licenses/>. 
 #
 
-__revision__ = "$Id: Function.py,v 1.11 2009-10-27 20:06:27 rliebscher Exp $"
+__revision__ = "$Id: Function.py,v 1.12 2010-01-19 21:49:00 rliebscher Exp $"
 
 
 from fuzzy.set.Set import Set
@@ -24,6 +24,6 @@ from fuzzy.set.Set import Set
 class Function(Set):
     """Base class for any fuzzy set defined by a function (not a polygon)."""
 
-    # if converted if linear polygon form use
+    # if converted in linear polygon form use
     # at least x pieces
     _resolution = 25 #: segments when converting into a polygon
