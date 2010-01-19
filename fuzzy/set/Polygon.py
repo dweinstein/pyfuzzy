@@ -16,11 +16,12 @@
 # along with this program; if not, see <http://www.gnu.org/licenses/>. 
 #
 
-__revision__ = "$Id: Polygon.py,v 1.20 2009-10-27 20:06:27 rliebscher Exp $"
+__revision__ = "$Id: Polygon.py,v 1.21 2010-01-19 21:59:13 rliebscher Exp $"
 
 
 from fuzzy.set.Set import Set
 from fuzzy.utils import prop
+from fuzzy.Exception import FuzzyException
 
 class Polygon(Set):
     r"""Represents a fuzzy set, which membership function
@@ -141,7 +142,7 @@ class Polygon(Set):
             if self.__points[i][Polygon.X] == x:
                 self.__points.remove(i)
                 return
-        #raise Exception("Not in points list")
+        #raise FuzzyException("Not in points list")
 
     def clear(self):
         """Reset polygon to zero."""
@@ -157,43 +158,56 @@ class Polygon(Set):
         return locals()
 
 
-    def getIntervalGenerator(self):
-        return self.__IntervalGenerator(self.__points)
+    def getValuesX(self):
+        previous = None
+        for x,_ in self.__points:
+            if x != previous:
+                yield x
+            previous = x
 
-    class __IntervalGenerator(Set.IntervalGenerator):
-        def __init__(self, points):
-            self.__points = points
-            self.index = 0
-
-        def nextInterval(self, prev, next):
-            l = len(self.__points)
-            if l == 0 or self.index >= l:
-                return next
-            if prev is None:
-                self.index = 0
+    def getValuesXY(self, flat = True):
+        current = None
+        values = []
+        for x,y in self.__points:
+            if x != current:
+                if current is None:
+                    pass
+                else:
+                    if flat:
+                        for y_ in values:
+                            yield current,y_
+                    else:
+                        yield current,values
+                    values = []
+                current = x
+                values.append(y)
             else:
-                if prev == self.__points[self.index][Polygon.X]:
-                    self.index = self.index + 1
-                if self.index >= l:
-                    return next
-            if next is None:
-                return self.__points[self.index][Polygon.X]
+                values.append(y)
+        if len(values) > 0:
+            if flat:
+                for y_ in values:
+                    yield current,y_
             else:
-                return min(next, self.__points[self.index][Polygon.X])
+                yield current,values              
 
     def getCOG(self):
         """Return center of gravity."""
         if len(self.__points) <=1 :
             #return 0.0
-            raise Exception("no COG calculable: single point = constant value")
+            raise FuzzyException("no COG calculable: single point = constant value")
         if self.__points[0][Polygon.Y] > 0 or self.__points[-1][Polygon.Y] > 0:
-            raise Exception("no COG calculable: end points of polygon not y=0.0")
+            raise FuzzyException("no COG calculable: end points of polygon not y=0.0")
         area = 0.
         COG = 0.
         iterator = iter(self.__points)
-        x0, y0 = iterator.next()
-        x0_2 = x0*x0  # =xÂ²
-        x0_3 = x0_2*x0  # =xÂ³
+        for x0, y0 in iterator:
+            # only to initialize x0,y0
+            # up to 2.6 one could do this with x0, y0 in iterator.next()
+            # but 3.x doesn't support no longer the next() method
+            # TODO: But it supports a built-in function next()!
+            break
+        x0_2 = x0*x0  # =x²
+        x0_3 = x0_2*x0  # =x³
         for x1, y1 in iterator:
             if x1 != x0: # vertical slopes don't have an area to x.axis
                 x1_2 = x1*x1
@@ -204,6 +218,6 @@ class Polygon(Set):
                 x0, x0_2, x0_3 = x1, x1_2, x1_3
             y0 = y1
         if area == 0.0:
-            raise Exception("no COG calculable: polygon area is zero!")
+            raise FuzzyException("no COG calculable: polygon area is zero!")
         COG /= area
         return COG # XXX

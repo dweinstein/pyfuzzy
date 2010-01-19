@@ -17,21 +17,17 @@
 #
 """Plotting of variables, adjectives, ... using gnuplot"""
 
-__revision__ = "$Id: doc.py,v 1.11 2009-10-27 20:06:27 rliebscher Exp $"
+__revision__ = "$Id: doc.py,v 1.12 2010-01-19 21:59:13 rliebscher Exp $"
 
 
 def getMinMax(set):
     """get tuple with minimum and maximum x-values used by the set."""
-    ig = set.getIntervalGenerator()
-
-    next = ig.nextInterval(None,None)
-    
-    x_min = next
+    x_min = None
     x_max = None
-    
-    while next is not None:
-        x_max = next
-        next = ig.nextInterval(next,None)
+    for x in  set.getValuesX():
+        if x_min is None:
+            x_min = x
+        x_max = x
 
     return (x_min,x_max)
 
@@ -152,9 +148,11 @@ class Doc(object):
 
         for name,var in system.variables.items():
             if isinstance(var,OutputVariable) and isinstance(var.defuzzify,fuzzy.defuzzify.Dict.Dict):
-                print "ignore variable %s because it is of type OutputVariable => Dict" % name
+                import sys
+                sys.stderr.write("ignore variable %s because it is of type OutputVariable => Dict\n" % name)
             elif isinstance(var,InputVariable) and isinstance(var.fuzzify,fuzzy.fuzzify.Dict.Dict):
-                print "ignore variable %s because it is of type InputVariable => Dict" % name
+                import sys
+                sys.stderr.write("ignore variable %s because it is of type InputVariable => Dict\n" % name)
             else:
                 self.createDocVariable(var,name)
 
@@ -173,7 +171,7 @@ class Doc(object):
         # sort sets by lowest x values and higher membership values next
         def sort_key(a):
             s = sets[a]
-            x = s.getIntervalGenerator().nextInterval(None,None)
+            x = s.getValuesX().next()
             return (x,-s(x))
 
         (x_min,x_max,x) = self.getValuesSets(sets)

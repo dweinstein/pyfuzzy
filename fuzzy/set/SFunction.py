@@ -16,7 +16,7 @@
 # along with this program; if not, see <http://www.gnu.org/licenses/>. 
 #
 
-__revision__ = "$Id: SFunction.py,v 1.16 2009-10-27 20:06:27 rliebscher Exp $"
+__revision__ = "$Id: SFunction.py,v 1.17 2010-01-19 21:59:13 rliebscher Exp $"
 
 
 from fuzzy.set.Function import Function
@@ -31,7 +31,7 @@ class SFunction(Function):
             _/ | |
              | a |
              |   |
-             delta
+            2*delta
 
     See also U{http://pyfuzzy.sourceforge.net/demo/set/SFunction.png}
     
@@ -76,35 +76,15 @@ class SFunction(Function):
 
     def getCOG(self):
         """Return center of gravity."""
-        raise Exception("COG of SFunction uncalculable")
+        from fuzzy.Exception import FuzzyException
+        raise FuzzyException("COG of SFunction uncalculable")
 
-    class __IntervalGenerator(Function.IntervalGenerator):
-        def __init__(self, set):
-            self.set = set
-
-        def nextInterval(self, prev, next):
-            a = self.set.a
-            d = self.set.delta
-            if prev is None:
-                if next is None:
-                    return a-d
-                else:
-                    return min(next, a-d)
-            else:
-                # right of our area of interest
-                if prev >= a+d:
-                    return next
-                else:
-                    # maximal interval length
-                    stepsize = 2.0*d/Function._resolution
-                    if next is None:
-                        return min(a+d, prev + stepsize)
-                    else:
-                        if next - prev > stepsize:
-                            # split interval in n equal sized interval of length < stepsize
-                            return min(a+d, prev+(next-prev)/(int((next-prev)/stepsize)+1.0))
-                        else:
-                            return next
-
-    def getIntervalGenerator(self):
-        return self.__IntervalGenerator(self)
+    def getValuesX(self):
+        a = self.a
+        d = self.delta
+        stepsize = 2. * d / Function._resolution
+        x = a - d
+        for _ in range(Function._resolution):
+            yield x
+            x += stepsize
+        yield a + d
