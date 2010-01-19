@@ -25,7 +25,7 @@
 #
 
 
-__revision__ = "$Id: utils.py,v 1.8 2009-10-27 20:07:04 rliebscher Exp $"
+__revision__ = "$Id: utils.py,v 1.9 2010-01-19 21:54:34 rliebscher Exp $"
 
 def get_classes(package):
     """Find all classes defined in given directory
@@ -74,4 +74,5 @@ def get_test_params(range_):
     for p in __params:
         if p[0] == range_:
             return p[1]
-    raise Exception("No params for range %s defined." % repr(range_))
+    from fuzzy.Exception import FuzzyException
+    raise FuzzyException("No params for range %s defined." % repr(range_))
