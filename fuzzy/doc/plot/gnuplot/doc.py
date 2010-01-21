@@ -17,8 +17,11 @@
 #
 """Plotting of variables, adjectives, ... using gnuplot"""
 
-__revision__ = "$Id: doc.py,v 1.12 2010-01-19 21:59:13 rliebscher Exp $"
+__revision__ = "$Id: doc.py,v 1.13 2010-01-21 20:53:58 rliebscher Exp $"
 
+import sys
+import Gnuplot
+import Gnuplot.funcutils
 
 def getMinMax(set):
     """get tuple with minimum and maximum x-values used by the set."""
@@ -83,7 +86,6 @@ class Doc(object):
         g("set output '%s/%s.png'" % (self.directory,filename))
 
     def initGnuplot2D(self,filename="plot",xlabel=None,ylabel=None,title=None,xrange_=None,yrange=None,x_logscale=0,y_logscale=0):
-        import Gnuplot
         g = Gnuplot.Gnuplot(debug=0)
         self.setTerminal(g,filename)
         if xlabel is not None: g.xlabel(xlabel)
@@ -98,7 +100,6 @@ class Doc(object):
         return g
 
     def initGnuplot3D(self,filename="plot3D",xlabel=None,ylabel=None,zlabel=None,title=None,xrange_=None,yrange=None,zrange=None,x_logscale=0,y_logscale=0,z_logscale=0):
-        import Gnuplot
         g = Gnuplot.Gnuplot(debug=0)
         self.setTerminal(g,filename)
         if xlabel is not None: g.xlabel(xlabel)
@@ -148,10 +149,8 @@ class Doc(object):
 
         for name,var in system.variables.items():
             if isinstance(var,OutputVariable) and isinstance(var.defuzzify,fuzzy.defuzzify.Dict.Dict):
-                import sys
                 sys.stderr.write("ignore variable %s because it is of type OutputVariable => Dict\n" % name)
             elif isinstance(var,InputVariable) and isinstance(var.fuzzify,fuzzy.fuzzify.Dict.Dict):
-                import sys
                 sys.stderr.write("ignore variable %s because it is of type InputVariable => Dict\n" % name)
             else:
                 self.createDocVariable(var,name)
@@ -164,8 +163,6 @@ class Doc(object):
     def createDocSets(self,sets,name,x_logscale=0,y_logscale=0,description=None,units=None):
         """Creates a 2D plot of dict of sets"""
 
-        import Gnuplot
-        import Gnuplot.funcutils
         import fuzzy.set.Polygon
 
         # sort sets by lowest x values and higher membership values next
@@ -216,9 +213,6 @@ class Doc(object):
         @type y_logscale: bool
         """
 
-        import Gnuplot
-        import Gnuplot.funcutils
-
         (x_min,x_max,x) = self.getValues(system.variables[x_name])
 
         def f(x,
@@ -262,9 +256,6 @@ class Doc(object):
         @param z_logscale: use logarithmic scale for z values
         @type z_logscale: bool
         """
-
-        import Gnuplot
-        import Gnuplot.funcutils
 
         (x_min,x_max,x) = self.getValues(system.variables[x_name])
         (y_min,y_max,y) = self.getValues(system.variables[y_name])
@@ -314,9 +305,6 @@ class Doc(object):
         @param z_logscale: use logarithmic scale for z values
         @type z_logscale: bool
         """
-
-        import Gnuplot
-        import Gnuplot.funcutils
 
         (x_min,x_max,x) = self.getValues(system.variables[x_name])
         (y_min,y_max,y) = self.getValues(system.variables[y_name])
