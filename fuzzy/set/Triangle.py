@@ -16,7 +16,7 @@
 # along with this program; if not, see <http://www.gnu.org/licenses/>. 
 #
 
-__revision__ = "$Id: Triangle.py,v 1.16 2010-01-19 21:47:54 rliebscher Exp $"
+__revision__ = "$Id: Triangle.py,v 1.17 2010-01-21 20:58:57 rliebscher Exp $"
 
 
 from fuzzy.set.Polygon import Polygon
@@ -49,75 +49,75 @@ class Triangle(Polygon):
         @param beta:   distance of right corner to m (1.0)
         """
         super(Triangle, self).__init__()
-        self._y_max = y_max
-        self._y_min = y_min
-        self._m = m
-        self._alpha = alpha
-        self._beta = beta
+        self._y_max = float(y_max)
+        self._y_min = float(y_min)
+        self._m = float(m)
+        self._alpha = float(alpha)
+        self._beta = float(beta)
         self._update() # update polygon
 
     # pylint: disable-msg=E0211
     #ID:E0211 Triangle.y_max: Method has no argument
     @prop
-    def y_max():
+    def y_max(): #@NoSelf
         """y-value at top of the triangle
         @type: float"""
         def fget(self):
             return self._y_max
         def fset(self, value):
-            self._y_max = value
+            self._y_max = float(value)
             self._update()
         return locals()
 
     # pylint: disable-msg=E0211
     #ID:E0211 Triangle.y_min: Method has no argument
     @prop
-    def y_min():
+    def y_min(): #@NoSelf
         """y-value outside the triangle
         @type: float"""
         def fget(self):
             return self._y_min
         def fset(self, value):
-            self._y_min = value
+            self._y_min = float(value)
             self._update()
         return locals()
 
     # pylint: disable-msg=E0211
     #ID:E0211 Triangle.m: Method has no argument
     @prop
-    def m():
+    def m(): #@NoSelf
         """x-value of top of triangle
         @type: float"""
         def fget(self):
             return self._m
         def fset(self, value):
-            self._m = value
+            self._m = float(value)
             self._update()
         return locals()
 
     # pylint: disable-msg=E0211
     #ID:E0211 Triangle.alpha: Method has no argument
     @prop
-    def alpha():
+    def alpha(): #@NoSelf
         """distance of left corner to m
         @type: float"""
         def fget(self):
             return self._alpha
         def fset(self, value):
-            self._alpha = value
+            self._alpha = float(value)
             self._update()
         return locals()
 
     # pylint: disable-msg=E0211
     #ID:E0211 Triangle.beta: Method has no argument
     @prop
-    def beta():
+    def beta(): #@NoSelf
         """distance of right corner to m
         @type: float"""
         def fget(self):
             return self._beta
         def fset(self, value):
-            self._beta = value
+            self._beta = float(value)
             self._update()
         return locals()
 

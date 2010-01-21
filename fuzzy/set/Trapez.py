@@ -16,7 +16,7 @@
 # along with this program; if not, see <http://www.gnu.org/licenses/>. 
 #
 
-__revision__ = "$Id: Trapez.py,v 1.15 2010-01-19 21:47:54 rliebscher Exp $"
+__revision__ = "$Id: Trapez.py,v 1.16 2010-01-21 20:58:57 rliebscher Exp $"
 
 
 from fuzzy.set.Polygon import Polygon
@@ -51,89 +51,89 @@ class Trapez(Polygon):
         @param beta:   distance of right corner to m2 (0.5)
         """
         super(Trapez, self).__init__()
-        self._y_max = y_max
-        self._y_min = y_min
-        self._m1 = m1
-        self._m2 = m2
-        self._alpha = alpha
-        self._beta = beta
+        self._y_max = float(y_max)
+        self._y_min = float(y_min)
+        self._m1 = float(m1)
+        self._m2 = float(m2)
+        self._alpha = float(alpha)
+        self._beta = float(beta)
         self._update() # update polygon
 
     # pylint: disable-msg=E0211
     #ID:E0211 Trapez.y_max: Method has no argument
     @prop
-    def y_max():
+    def y_max(): #@NoSelf
         """y-value at top of the trapez
         @type: float"""
         def fget(self):
             return self._y_max
         def fset(self, value):
-            self._y_max = value
+            self._y_max = float(value)
             self._update()
         return locals()
 
     # pylint: disable-msg=E0211
     #ID:E0211 Trapez.y_min: Method has no argument
     @prop
-    def y_min():
+    def y_min(): #@NoSelf
         """y-value outside the trapez
         @type: float"""
         def fget(self):
             return self._y_min
         def fset(self, value):
-            self._y_min = value
+            self._y_min = float(value)
             self._update()
         return locals()
 
     # pylint: disable-msg=E0211
     #ID:E0211 Trapez.m1: Method has no argument
     @prop
-    def m1():
+    def m1(): #@NoSelf
         """x-value of left top of trapez
         @type: float"""
         def fget(self):
             return self._m1
         def fset(self, value):
-            self._m1 = value
+            self._m1 = float(value)
             self._update()
         return locals()
 
     # pylint: disable-msg=E0211
     #ID:E0211 Trapez.m2: Method has no argument
     @prop
-    def m2():
+    def m2(): #@NoSelf
         """x-value of right top of trapez
         @type: float"""
         def fget(self):
             return self._m2
         def fset(self, value):
-            self._m2 = value
+            self._m2 = float(value)
             self._update()
         return locals()
 
     # pylint: disable-msg=E0211
     #ID:E0211 Trapez.alpha: Method has no argument
     @prop
-    def alpha():
+    def alpha(): #@NoSelf
         """distance of left corner to m1
         @type: float"""
         def fget(self):
             return self._alpha
         def fset(self, value):
-            self._alpha = value
+            self._alpha = float(value)
             self._update()
         return locals()
 
     # pylint: disable-msg=E0211
     #ID:E0211 Trapez.beta: Method has no argument
     @prop
-    def beta():
+    def beta(): #@NoSelf
         """distance of right corner to m2
         @type: float"""
         def fget(self):
             return self._beta
         def fset(self, value):
-            self._beta = value
+            self._beta = float(value)
             self._update()
         return locals()
 

@@ -16,7 +16,7 @@
 # along with this program; if not, see <http://www.gnu.org/licenses/>. 
 #
 """Abstract base class for any parametric fuzzy complement"""
-__revision__ = "$Id: Parametric.py,v 1.5 2010-01-19 21:45:35 rliebscher Exp $"
+__revision__ = "$Id: Parametric.py,v 1.6 2010-01-21 20:58:57 rliebscher Exp $"
 
 from fuzzy.complement.Base import Base
 from fuzzy.utils import prop
@@ -42,7 +42,7 @@ class Parametric(Base):
     #ID:E0211 Parametric.p: Method has no argument
     #ID:E0202 Parametric.p: An attribute inherited from Parametric hide this method
     @prop
-    def p():
+    def p(): #@NoSelf
         """x
         @type: float"""
         def fget(self):
@@ -55,7 +55,7 @@ class Parametric(Base):
     # pylint: disable-msg=E0211
     #ID:E0211 Parametric.p_range: Method has no argument
     @prop
-    def p_range():
+    def p_range(): #@NoSelf
         """range(s) of valid values for p"""
         def fget(self):
             return self._range

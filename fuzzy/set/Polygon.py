@@ -16,7 +16,7 @@
 # along with this program; if not, see <http://www.gnu.org/licenses/>. 
 #
 
-__revision__ = "$Id: Polygon.py,v 1.21 2010-01-19 21:59:13 rliebscher Exp $"
+__revision__ = "$Id: Polygon.py,v 1.22 2010-01-21 20:58:57 rliebscher Exp $"
 
 
 from fuzzy.set.Set import Set
@@ -52,8 +52,7 @@ class Polygon(Set):
         @type points: list of 2-tuples (float,float)
         """
         super(Polygon, self).__init__()
-        import copy
-        self.__points = copy.deepcopy(points)
+        self.__points = [(float(x),float(y)) for (x,y) in points]
 
     def __call__(self, x):
         """Get membership of value x."""
@@ -113,6 +112,8 @@ class Polygon(Set):
                  \            |               \| \
                   *           *--*             *  *
         """
+        x = float(x)
+        y = float(y) 
         # quick and dirty implementation
         if where == self.END:
             self.__points.append((x, y))
@@ -149,7 +150,7 @@ class Polygon(Set):
         del self.__points[:]
 
     @prop
-    def points():
+    def points(): #@NoSelf
         """points of the polygon.
         @type: list of 2-tuple (x,y)"""
         def fget(self):
