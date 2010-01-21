@@ -20,7 +20,7 @@
 Base class for all fuzzy sets.
 """
 
-__revision__ = "$Id: Set.py,v 1.20 2010-01-19 21:59:13 rliebscher Exp $"
+__revision__ = "$Id: Set.py,v 1.21 2010-01-21 20:56:26 rliebscher Exp $"
 
 class Set(object):
     """Base class for all types of fuzzy sets."""
@@ -70,4 +70,4 @@ class Set(object):
 
 
 # too make old code happy
-from fuzzy.set.operations import norm,merge
+from fuzzy.set.operations import norm,merge #@UnusedImport

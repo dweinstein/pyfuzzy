@@ -18,7 +18,7 @@
 
 """Generates description of structure in dot format"""
 
-__revision__ = "$Id: dot.py,v 1.6 2009-10-27 20:06:27 rliebscher Exp $"
+__revision__ = "$Id: dot.py,v 1.7 2010-01-21 20:54:44 rliebscher Exp $"
 
 # stores handler of different object types
 _registered_handler = {}
@@ -61,4 +61,4 @@ def print_footer(out):
     out.write("}\n")
 
 # import handlers for object types
-import fuzzy.doc.structure.dot.handlers
+import fuzzy.doc.structure.dot.handlers #@UnusedImport
