@@ -52,7 +52,7 @@ Examples can be found here U{http://pyfuzzy.sourceforge.net/demo/merge/}
   and act_value is the result of a rule calculation.
 """
 
-__revision__ = "$Id: operations.py,v 1.10 2010-01-19 21:59:13 rliebscher Exp $"
+__revision__ = "$Id: operations.py,v 1.11 2010-01-21 21:07:01 rliebscher Exp $"
 
 from fuzzy.Exception import FuzzyException
 
@@ -160,7 +160,7 @@ def check(x,y1,y2):
     elif isinstance(y1,float) and isinstance(y2,list):
         return [(x,y1,y2_) for y2_ in y2]
     elif isinstance(y1,list) and isinstance(y2,float):
-        return [(x,y2,y1) for x,y1,y2 in check(x,y2_,y1_)]
+        return [(x,y2_,y1_) for x,y1_,y2_ in check(x,y2,y1)]
     else:
         if len(y1) == len(y2):
             # intersection 

@@ -20,7 +20,7 @@
 Unit tests for function merge in module fuzzy.set.operations
 """
 
-__revision__ = "$Id: test_operations_merge.py,v 1.1 2010-01-19 21:51:15 rliebscher Exp $"
+__revision__ = "$Id: test_operations_merge.py,v 1.2 2010-01-21 21:07:01 rliebscher Exp $"
 
 import unittest
 from fuzzy.set.Polygon import Polygon
@@ -58,7 +58,9 @@ class Function__check(unittest.TestCase):
 "8": [0.0, [0.5, 0.75], [0.125, 0.25], [(0.0, 0.5, 0.125), (0.0, 0.75, 0.25)]],
 "9": [0.0, [0.5, 0.75], [0.125, 0.25, 1.0], [(0.0, 0.5, 0.125), (0.0, 0.75, 0.25), (0.0, 0.75, 1.0)]],
 "10": [0.0, [0.5, 0.75, 1.0], [0.125, 0.25, 0.5], [(0.0, 0.5, 0.125), (0.0, 0.75, 0.25), (0.0, 1.0, 0.5)]],
-                }
+"11": [0.0, [0.5, 0.75], 0.25, [(0.0, 0.5, 0.25), (0.0, 0.75, 0.25)]],
+"12": [0.0, 0.5, [0.25, 0.75], [(0.0, 0.5, 0.25), (0.0, 0.5, 0.75)]],
+               }
 
     def template(self,x,y1,y2,z):
         r = list(check(x,y1,y2))
