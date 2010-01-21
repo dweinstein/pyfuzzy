@@ -16,7 +16,7 @@
 # along with this program; if not, see <http://www.gnu.org/licenses/>. 
 #
 
-__revision__ = "$Id: PiFunction.py,v 1.16 2010-01-19 21:59:13 rliebscher Exp $"
+__revision__ = "$Id: PiFunction.py,v 1.17 2010-01-21 21:00:31 rliebscher Exp $"
 
 
 from fuzzy.set.Function import Function
@@ -67,9 +67,7 @@ class PiFunction(Function):
            @return: membership
            @rtype: float
            """
-        a = self.a
-        d = self.delta / 2.0
-        if x < a:
+        if x < self.a:
             return self._sfunction(x)
         else:
             return self._zfunction(x)
