@@ -16,10 +16,10 @@
 # along with this program; if not, see <http://www.gnu.org/licenses/>. 
 #
 
-__revision__ = "$Id: SchweizerIntersection2.py,v 1.9 2009-10-27 20:06:27 rliebscher Exp $"
+__revision__ = "$Id: SchweizerIntersection2.py,v 1.10 2010-01-21 20:55:51 rliebscher Exp $"
 
 from fuzzy.norm.ParametricNorm import ParametricNorm
-from fuzzy.utils import inf_p,inf_n
+from fuzzy.utils import inf_p
 
 class SchweizerIntersection2(ParametricNorm):
     """Schweizer,Sklar 1960"""
