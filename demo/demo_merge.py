@@ -23,7 +23,7 @@
 # along with this program; if not, see <http://www.gnu.org/licenses/>. 
 #
 
-__revision__ = "$Id: demo_merge.py,v 1.20 2010-01-19 21:57:09 rliebscher Exp $"
+__revision__ = "$Id: demo_merge.py,v 1.21 2010-01-21 20:51:25 rliebscher Exp $"
 
 import sys, os
 sys.path.insert(0, os.path.join(os.path.abspath(os.path.dirname(sys.argv[0])), os.path.pardir))
@@ -66,8 +66,6 @@ def plotPlotItems(items, title, filename):
 
 def main():
     """Show examples merge and norm function using some example sets and norms"""
-    import fuzzy
-    import fuzzy.norm
     import fuzzy.norm.Min
     import fuzzy.norm.Max
     import fuzzy.norm.AlgebraicProduct
