@@ -18,7 +18,7 @@
 #
 """run all unit tests.
 """
-__revision__ = "$Id: runtests.py,v 1.1 2010-01-19 21:51:15 rliebscher Exp $"
+__revision__ = "$Id: runtests.py,v 1.2 2010-01-21 20:52:37 rliebscher Exp $"
 
 import unittest
 
@@ -29,9 +29,34 @@ import fnmatch
 # insert directory with sources at first position of python module search path
 sys.path.insert(0, os.path.join(os.path.abspath(os.path.dirname(sys.argv[0])), os.path.pardir))
 
+try:
+    # check if os.path.relpath is available
+    from os.path import relpath #@UnresolvedImport
+    _os_path_relpath = relpath
+    del relpath
+except:
+    def _os_path_relpath(path,start=None):
+        """\
+        Own implementation of os.path.relpath which don't exist before Python 2.6.
+        See U{http://docs.python.org/library/os.path.html?highlight=os.path.relpath#os.path.relpath}
+        """
+        if start is None:
+            start = os.curdir
+        path = os.path.abspath(path).split(os.sep)
+        start = os.path.abspath(start).split(os.sep)
+        numberCommonElements = 0
+        for i in range(min(len(path),len(start))):
+            if path[i] == start[i]:
+                numberCommonElements += 1
+            else:
+                break
+        path = path[numberCommonElements:]
+        start = start[numberCommonElements:]
+        return os.path.join(*([os.path.pardir for _ in range(len(start))] + path))
+
 def discover(top_level_dir="."):
     """\
-    find and load all unit test scripts in given directory
+    Find and load all unit test scripts in given directory
     """
     s = unittest.TestSuite()
     for root, dirs, files in os.walk(top_level_dir):
@@ -42,7 +67,7 @@ def discover(top_level_dir="."):
 
         for file in fnmatch.filter(files, "test_*.py"):
             path = os.path.splitext(os.path.normpath(os.path.join(root, file)))[0]
-            relpath = os.path.relpath(path, top_level_dir)
+            relpath = _os_path_relpath(path, top_level_dir)
             name = relpath.replace(os.path.sep, ".")
             __import__(name) # return value is top level module, not the specified!!!
             module = sys.modules[name]
