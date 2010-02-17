@@ -15,32 +15,51 @@
 # You should have received a copy of the GNU Lesser General Public License
 # along with this program; if not, see <http://www.gnu.org/licenses/>. 
 #
+"""Load a fuzzy system from FCL file, stream or string."""
 
-__revision__ = "$Id: Reader.py,v 1.4 2009-10-27 19:27:09 rliebscher Exp $"
+__revision__ = "$Id: Reader.py,v 1.5 2010-02-17 19:34:18 rliebscher Exp $"
 
 import antlr3
 
-from FCLLexer import FCLLexer
-from FCLParser import FCLParser
+from fuzzy.storage.fcl.FCLLexer import FCLLexer
+from fuzzy.storage.fcl.FCLParser import FCLParser
 
 class Reader(object):
     """Parses a FCL file to a fuzzy.System.System instance"""
 
-    def __init__(self):
-        pass
-
     def __load(self, char_stream):
+        """Common part of load methods."""
         lexer = FCLLexer(char_stream)
         tokens = antlr3.CommonTokenStream(lexer)
         parser = FCLParser(tokens)
         return parser.main()
 
     def load_from_file(self, filename):
-        return self.__load(antlr3.ANTLRFileStream(filename))
+        """Load a fuzzy system from FCL file."""
+        encoding = None
+        f = None
+        try:
+            # read first line
+            f = open(filename)
+            line = f.readline()
+            import re
+            # check for coding
+            result = re.search(r'coding[=:]\s*([-\w.]+)', line)
+            if result:
+                # found one and use it
+                encoding = result.group(1)
+        except:
+            # ok, then try without encoding
+            pass
+        if f:
+            f.close()
+        return self.__load(antlr3.ANTLRFileStream(filename, encoding))
 
     def load_from_stream(self, stream):
+        """Load a fuzzy system from FCL stream."""
         return self.__load(antlr3.ANTLRInputStream(stream))
 
     def load_from_string(self, str):
+        """Load a fuzzy system from FCL string."""
         return self.__load(antlr3.ANTLRStringStream(str))
 
