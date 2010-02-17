@@ -16,7 +16,7 @@
 # along with this program; if not, see <http://www.gnu.org/licenses/>. 
 #
 
-__revision__ = "$Id: SFunction.py,v 1.17 2010-01-19 21:59:13 rliebscher Exp $"
+__revision__ = "$Id: SFunction.py,v 1.18 2010-02-17 19:45:00 rliebscher Exp $"
 
 
 from fuzzy.set.Function import Function
@@ -88,3 +88,11 @@ class SFunction(Function):
             yield x
             x += stepsize
         yield a + d
+
+    def __repr__(self):
+        """Return representation of instance.
+                   
+           @return: representation of instance
+           @rtype: string
+           """
+        return "%s.%s(a=%s, delta=%s)" % (self.__class__.__module__, self.__class__.__name__, self.a, self.delta)

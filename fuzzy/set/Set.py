@@ -20,7 +20,7 @@
 Base class for all fuzzy sets.
 """
 
-__revision__ = "$Id: Set.py,v 1.21 2010-01-21 20:56:26 rliebscher Exp $"
+__revision__ = "$Id: Set.py,v 1.22 2010-02-17 19:45:00 rliebscher Exp $"
 
 class Set(object):
     """Base class for all types of fuzzy sets."""
@@ -36,17 +36,6 @@ class Set(object):
            """
         return 0.
 
-#    class IntervalGenerator(object):
-#        def nextInterval(self, prev, next):
-#            """For conversion of any set to a polygon representation.
-#               Return which end value should have the interval started
-#               by prev. (next is the current proposal.)
-#               The membership function has to be monotonic in this interval.
-#               (eg. no minima or maxima)
-#               To find left start point prev is None.
-#               If no further splitting at right necessary return None."""
-#            return next
-
     def getValuesXY(self, flat = True):
         """Internal helper function to help convert arbitrary fuzzy sets in 
         fuzzy sets represented by a polygon."""
@@ -55,8 +44,7 @@ class Set(object):
     def getValuesX(self):
         """Internal helper function to help convert arbitrary fuzzy sets in 
         fuzzy sets represented by a polygon."""
-        from fuzzy.Exception import FuzzyException
-        raise FuzzyException("Set has no values defined")
+        raise NotImplementedError("Set has no values defined")
 
     def getCOG(self):
         """Returns center of gravity.
@@ -64,10 +52,16 @@ class Set(object):
            @return: x-value of center of gravity
            @rtype: float
            """
-        #raise FuzzyException("abstract class %s has no center of gravity." % self.__class__.__name__)
-        return 0. # XXX
+        raise NotImplementedError("abstract class %s has no center of gravity." % self.__class__.__name__)
 
+    def __repr__(self):
+        """Return representation of instance.
+                   
+           @return: representation of instance
+           @rtype: string
+           """
+        return "%s.%s()" % (self.__class__.__module__, self.__class__.__name__)
 
-
+# pylint: disable-msg=W0611
 # too make old code happy
 from fuzzy.set.operations import norm,merge #@UnusedImport

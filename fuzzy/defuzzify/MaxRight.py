@@ -16,7 +16,7 @@
 # along with this program; if not, see <http://www.gnu.org/licenses/>. 
 #
 
-__revision__ = "$Id: MaxRight.py,v 1.7 2009-10-27 20:06:27 rliebscher Exp $"
+__revision__ = "$Id: MaxRight.py,v 1.8 2010-02-17 19:45:00 rliebscher Exp $"
 
 from fuzzy.defuzzify.Base import Base, DefuzzificationException
 
@@ -58,3 +58,11 @@ class MaxRight(Base):
                 return self.failsafe
             else:
                 raise
+
+    def _repr_params(self, params):
+        """Helper for representation of instance.
+        
+        Add all own params to given list in params.    
+        """
+        super(MaxRight, self)._repr_params(params)
+        if self.failsafe: params.append("failsafe=%s" % self.failsafe) 

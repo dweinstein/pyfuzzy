@@ -16,7 +16,7 @@
 # along with this program; if not, see <http://www.gnu.org/licenses/>. 
 #
 
-__revision__ = "$Id: COG.py,v 1.7 2009-10-27 20:06:27 rliebscher Exp $"
+__revision__ = "$Id: COG.py,v 1.8 2010-02-17 19:45:00 rliebscher Exp $"
 
 from fuzzy.defuzzify.Base import Base
 
@@ -47,3 +47,12 @@ class COG(Base):
             else:
                 # forward exception
                 raise
+
+    def _repr_params(self, params):
+        """Helper for representation of instance.
+        
+        Add all own params to given list in params.    
+        """
+        super(COG, self)._repr_params(params)
+        if self.failsafe: params.append("failsafe=%s" % self.failsafe) 
+        if self.segment_size: params.append("segment_size=%s" % self.segment_size)

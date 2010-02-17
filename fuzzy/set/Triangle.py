@@ -16,7 +16,7 @@
 # along with this program; if not, see <http://www.gnu.org/licenses/>. 
 #
 
-__revision__ = "$Id: Triangle.py,v 1.17 2010-01-21 20:58:57 rliebscher Exp $"
+__revision__ = "$Id: Triangle.py,v 1.18 2010-02-17 19:45:00 rliebscher Exp $"
 
 
 from fuzzy.set.Polygon import Polygon
@@ -56,67 +56,62 @@ class Triangle(Polygon):
         self._beta = float(beta)
         self._update() # update polygon
 
-    # pylint: disable-msg=E0211
-    #ID:E0211 Triangle.y_max: Method has no argument
+    # pylint: disable-msg=E0211,W0212
     @prop
     def y_max(): #@NoSelf
         """y-value at top of the triangle
         @type: float"""
-        def fget(self):
+        def fget(self): # pylint: disable-msg=W0612,C0111
             return self._y_max
-        def fset(self, value):
+        def fset(self, value): # pylint: disable-msg=W0612,C0111
             self._y_max = float(value)
             self._update()
         return locals()
 
-    # pylint: disable-msg=E0211
-    #ID:E0211 Triangle.y_min: Method has no argument
+    # pylint: disable-msg=E0211,W0212
     @prop
     def y_min(): #@NoSelf
         """y-value outside the triangle
         @type: float"""
-        def fget(self):
+        def fget(self): # pylint: disable-msg=W0612,C0111
             return self._y_min
-        def fset(self, value):
+        def fset(self, value): # pylint: disable-msg=W0612,C0111
             self._y_min = float(value)
             self._update()
         return locals()
 
-    # pylint: disable-msg=E0211
-    #ID:E0211 Triangle.m: Method has no argument
+    # pylint: disable-msg=E0211,W0212
     @prop
     def m(): #@NoSelf
         """x-value of top of triangle
         @type: float"""
-        def fget(self):
+        def fget(self): # pylint: disable-msg=W0612,C0111
             return self._m
-        def fset(self, value):
+        def fset(self, value): # pylint: disable-msg=W0612,C0111
             self._m = float(value)
             self._update()
         return locals()
 
-    # pylint: disable-msg=E0211
-    #ID:E0211 Triangle.alpha: Method has no argument
+    # pylint: disable-msg=E0211,W0212
     @prop
     def alpha(): #@NoSelf
         """distance of left corner to m
         @type: float"""
-        def fget(self):
+        def fget(self): # pylint: disable-msg=W0612,C0111
             return self._alpha
-        def fset(self, value):
+        def fset(self, value): # pylint: disable-msg=W0612,C0111
             self._alpha = float(value)
             self._update()
         return locals()
 
-    # pylint: disable-msg=E0211
-    #ID:E0211 Triangle.beta: Method has no argument
+    # pylint: disable-msg=E0211,W0212
     @prop
     def beta(): #@NoSelf
         """distance of right corner to m
         @type: float"""
-        def fget(self):
+        def fget(self): # pylint: disable-msg=W0612,C0111
             return self._beta
-        def fset(self, value):
+        def fset(self, value): # pylint: disable-msg=W0612,C0111
             self._beta = float(value)
             self._update()
         return locals()
@@ -141,3 +136,18 @@ class Triangle(Polygon):
         """Don't let anyone destroy our triangle."""
         raise FuzzyException()
 
+    def __repr__(self):
+        """Return representation of instance.
+                   
+           @return: representation of instance
+           @rtype: string
+           """
+        return "%s.%s(m=%s, alpha=%s, beta=%s, y_max=%s, y_min=%s)" % (
+                self.__class__.__module__,
+                self.__class__.__name__,
+                self._m,
+                self._alpha,
+                self._beta,
+                self._y_max,
+                self._y_min,
+            )

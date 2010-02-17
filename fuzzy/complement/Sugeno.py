@@ -16,7 +16,7 @@
 # along with this program; if not, see <http://www.gnu.org/licenses/>. 
 #
 """Complement after Sugeno"""
-__revision__ = "$Id: Sugeno.py,v 1.5 2009-10-27 20:06:27 rliebscher Exp $"
+__revision__ = "$Id: Sugeno.py,v 1.6 2010-02-17 19:45:00 rliebscher Exp $"
 
 from fuzzy.complement.Parametric import Parametric
 from fuzzy.utils import inf_p
@@ -41,3 +41,12 @@ class Sugeno(Parametric):
         @rtype: float  
         """
         return (1.-float(value))/(1.+self.p*float(value))
+
+    def __repr__(self):
+        """Return representation of instance.
+                   
+           @return: representation of instance
+           @rtype: string
+           """
+        return "%s.%s(lambda_=%s)" % (self.__class__.__module__, self.__class__.__name__, self.p)
+   

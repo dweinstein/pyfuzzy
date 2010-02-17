@@ -16,7 +16,7 @@
 # along with this program; if not, see <http://www.gnu.org/licenses/>. 
 #
 
-__revision__ = "$Id: RM.py,v 1.4 2009-10-27 20:06:27 rliebscher Exp $"
+__revision__ = "$Id: RM.py,v 1.5 2010-02-17 19:45:00 rliebscher Exp $"
 
 from fuzzy.defuzzify.Base import Base, DefuzzificationException
 
@@ -60,3 +60,11 @@ class RM(Base):
                 return self.failsafe
             else:
                 raise
+
+    def _repr_params(self, params):
+        """Helper for representation of instance.
+        
+        Add all own params to given list in params.    
+        """
+        super(RM, self)._repr_params(params)
+        if self.failsafe: params.append("failsafe=%s" % self.failsafe) 

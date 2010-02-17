@@ -52,7 +52,7 @@ Examples can be found here U{http://pyfuzzy.sourceforge.net/demo/merge/}
   and act_value is the result of a rule calculation.
 """
 
-__revision__ = "$Id: operations.py,v 1.11 2010-01-21 21:07:01 rliebscher Exp $"
+__revision__ = "$Id: operations.py,v 1.12 2010-02-17 19:45:00 rliebscher Exp $"
 
 from fuzzy.Exception import FuzzyException
 
@@ -269,7 +269,7 @@ def _merge_generator(NORM, set1, set2):
         if (x != prev_x) and ((y1>y2 and prev_y1<prev_y2) or (y1<y2 and prev_y1>prev_y2)):
             # calculate intersection
             if use_find_root:
-                f = lambda x,set1=set1,set2=set2:set1(x)-set2(x)
+                f = lambda x, set1=set1, set2=set2: set1(x)-set2(x)
                 x_ = _find_root(f, prev_x, x, prev_y1-prev_y2, y1-y2)
             else:
                 x_ = _find_intersection(prev_x,x,prev_y1,y1,prev_y2,y2)
@@ -350,7 +350,7 @@ def _norm_generator(NORM, set, value):
             if (x != prev_x) and ((y>value and prev_y<value) or (y<value and prev_y>value)):
                 # calculate intersection
                 if use_find_root:
-                    f = lambda x,set=set:set(x)-value
+                    f = lambda x, set=set: set(x)-value
                     x_ = _find_root(f, prev_x, x, prev_y-value, y-value)
                 else:
                     x_ = _find_intersection(prev_x,x,prev_y,y,value,value)

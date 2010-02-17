@@ -17,11 +17,11 @@
 #
 """The Compound class takes values of several input operators  and 
 processes them through a given norm."""
-__revision__ = "$Id: Compound.py,v 1.14 2009-10-27 20:06:27 rliebscher Exp $"
+__revision__ = "$Id: Compound.py,v 1.15 2010-02-17 19:45:00 rliebscher Exp $"
 
 from fuzzy.operator.Operator import Operator
 
-class Compound(Operator):
+class Compound(Operator): # pylint: disable-msg=R0903
     """Take values of input operators  and process them
        through the given norm.
 
@@ -44,3 +44,16 @@ class Compound(Operator):
     def __call__(self):
         """Get current value of input and combine them with help of norm."""
         return self.norm(*[x() for x in self.inputs])
+
+    def __repr__(self):
+        """Return representation of instance.
+                   
+           @return: representation of instance
+           @rtype: string
+           """
+        return "%s.%s(norm=%s, inputs=%s)" % (
+                self.__class__.__module__,
+                self.__class__.__name__,
+                repr(self.norm),
+                repr(self.inputs),
+            )

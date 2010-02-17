@@ -16,7 +16,7 @@
 # along with this program; if not, see <http://www.gnu.org/licenses/>. 
 #
 
-__revision__ = "$Id: Base.py,v 1.10 2010-01-19 21:45:36 rliebscher Exp $"
+__revision__ = "$Id: Base.py,v 1.11 2010-02-17 19:45:00 rliebscher Exp $"
 
 
 from fuzzy.norm.Max import Max
@@ -63,7 +63,7 @@ class Base(object):
 
     def getValue(self, variable):
         """Defuzzyfication."""
-        raise DefuzzificationException("don't use the abstract base class")
+        raise NotImplementedError("don't use the abstract base class")
 
 # helper methods for sub classes
 
@@ -87,3 +87,21 @@ class Base(object):
         """get a value table of the polygon representation"""
         # get polygon representation
         return set.getValuesXY()
+    
+    def __repr__(self):
+        """Return representation of instance.
+                   
+           @return: representation of instance
+           @rtype: string
+           """
+        params = []
+        self._repr_params(params)
+        return "%s.%s(%s)" % (self.__class__.__module__, self.__class__.__name__, ", ".join(params))
+
+    def _repr_params(self, params):
+        """Helper for representation of instance.
+        
+        Add all own params to given list in params.    
+        """
+        if self.INF: params.append("INF=%s" % repr(self.INF)) 
+        if self.ACC: params.append("ACC=%s" % repr(self.ACC))

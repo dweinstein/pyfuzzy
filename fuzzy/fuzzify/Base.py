@@ -16,14 +16,22 @@
 # along with this program; if not, see <http://www.gnu.org/licenses/>. 
 #
 
-__revision__ = "$Id: Base.py,v 1.4 2009-10-27 20:06:27 rliebscher Exp $"
+__revision__ = "$Id: Base.py,v 1.5 2010-02-17 19:45:00 rliebscher Exp $"
 
 
-class Base(object):
+class Base(object): # pylint: disable-msg=R0903
     """base class for all fuzzification methods"""
 
     def __init__(self, *args, **keywords):
         super(Base, self).__init__(*args, **keywords)
 
     def setValue(self, variable, value):
-        pass
+        raise NotImplementedError()
+
+    def __repr__(self):
+        """Return representation of instance.
+                   
+           @return: representation of instance
+           @rtype: string
+           """
+        return "%s.%s()" % (self.__class__.__module__, self.__class__.__name__)

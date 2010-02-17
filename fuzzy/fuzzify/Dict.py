@@ -16,13 +16,13 @@
 # along with this program; if not, see <http://www.gnu.org/licenses/>. 
 #
 
-__revision__ = "$Id: Dict.py,v 1.5 2009-10-27 20:06:27 rliebscher Exp $"
+__revision__ = "$Id: Dict.py,v 1.6 2010-02-17 19:45:00 rliebscher Exp $"
 
 
 from fuzzy.fuzzify.Base import Base
 
 
-class Dict(Base):
+class Dict(Base): # pylint: disable-msg=R0903
     """Fuzzification method which gets adjective memberships
        in a dictionary instead of values to fuzzify.
        You should use in the adjectives instances of Set itself.

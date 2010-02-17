@@ -16,7 +16,7 @@
 # along with this program; if not, see <http://www.gnu.org/licenses/>. 
 #
 
-__revision__ = "$Id: Polygon.py,v 1.22 2010-01-21 20:58:57 rliebscher Exp $"
+__revision__ = "$Id: Polygon.py,v 1.23 2010-02-17 19:45:00 rliebscher Exp $"
 
 
 from fuzzy.set.Set import Set
@@ -45,14 +45,14 @@ class Polygon(Set):
     X = 0 #: index of x value in tuple
     Y = 1 #: index of y value in tuple
 
-    def __init__(self, points=[]):
+    def __init__(self, points=None):
         """Initialize with given sorted list of (x,y) values
         
         @param points: sorted list of 2-tuples of (x,y) values
         @type points: list of 2-tuples (float,float)
         """
         super(Polygon, self).__init__()
-        self.__points = [(float(x),float(y)) for (x,y) in points]
+        self.__points = [(float(x),float(y)) for (x,y) in (points or [])]
 
     def __call__(self, x):
         """Get membership of value x."""
@@ -149,11 +149,12 @@ class Polygon(Set):
         """Reset polygon to zero."""
         del self.__points[:]
 
+    # pylint: disable-msg=E0211,W0212
     @prop
     def points(): #@NoSelf
         """points of the polygon.
         @type: list of 2-tuple (x,y)"""
-        def fget(self):
+        def fget(self): # pylint: disable-msg=W0612,C0111
             import copy
             return copy.deepcopy(self.__points)
         return locals()
@@ -200,25 +201,43 @@ class Polygon(Set):
             raise FuzzyException("no COG calculable: end points of polygon not y=0.0")
         area = 0.
         COG = 0.
+        
         iterator = iter(self.__points)
         for x0, y0 in iterator:
             # only to initialize x0,y0
             # up to 2.6 one could do this with x0, y0 in iterator.next()
             # but 3.x doesn't support no longer the next() method
             # TODO: But it supports a built-in function next()!
+            x0_2 = x0*x0  # =x²
+            x0_3 = x0_2*x0  # =x³
+
+            # and now use the rest of the iterator
+            for x1, y1 in iterator:
+                if x1 != x0: # vertical slopes don't have an area to x.axis
+                    x1_2 = x1*x1
+                    x1_3 = x1_2*x1
+                    area += (y0+y1)/2.0*(x1-x0) # area of trapezoid
+                    # Integral( x*f(x) ) 
+                    COG += y0/2.0*(x1_2-x0_2)+(y1-y0)/(x1-x0)*(x1_3/3.0-x0_3/3.0-x1_2*x0/2.0+x0_3/2.0)
+                    x0, x0_2, x0_3 = x1, x1_2, x1_3
+                y0 = y1
+            
+            # not really necessary as the above for loop should have exhausted the iterator
             break
-        x0_2 = x0*x0  # =x²
-        x0_3 = x0_2*x0  # =x³
-        for x1, y1 in iterator:
-            if x1 != x0: # vertical slopes don't have an area to x.axis
-                x1_2 = x1*x1
-                x1_3 = x1_2*x1
-                area += (y0+y1)/2.0*(x1-x0) # area of trapez
-                # Integral( x*f(x) ) 
-                COG += y0/2.0*(x1_2-x0_2)+(y1-y0)/(x1-x0)*(x1_3/3.0-x0_3/3.0-x1_2*x0/2.0+x0_3/2.0)
-                x0, x0_2, x0_3 = x1, x1_2, x1_3
-            y0 = y1
+        
         if area == 0.0:
             raise FuzzyException("no COG calculable: polygon area is zero!")
         COG /= area
         return COG # XXX
+
+    def __repr__(self):
+        """Return representation of instance.
+                   
+           @return: representation of instance
+           @rtype: string
+           """
+        return "%s.%s(points=%s)" % (
+                self.__class__.__module__,
+                self.__class__.__name__,
+                repr(self.__points),
+            )

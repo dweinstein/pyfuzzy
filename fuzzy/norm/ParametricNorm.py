@@ -19,7 +19,7 @@
     Base class for any kind of parametric fuzzy norm.
 """
 
-__revision__ = "$Id: ParametricNorm.py,v 1.13 2010-01-21 20:58:57 rliebscher Exp $"
+__revision__ = "$Id: ParametricNorm.py,v 1.14 2010-02-17 19:45:00 rliebscher Exp $"
 
 from fuzzy.norm.Norm import Norm
 from fuzzy.utils import prop
@@ -48,9 +48,9 @@ class ParametricNorm(Norm):
     def p(): #@NoSelf
         """x
         @type: float"""
-        def fget(self):
+        def fget(self): # pylint: disable-msg=W0612,C0111
             return self._p
-        def fset(self, value):
+        def fset(self, value): # pylint: disable-msg=W0612,C0111
             self._checkParam(value)
             self._p = value
         return locals()
@@ -60,7 +60,7 @@ class ParametricNorm(Norm):
     @prop
     def p_range(): #@NoSelf
         """range(s) of valid values for p"""
-        def fget(self):
+        def fget(self): # pylint: disable-msg=W0612,C0111
             return self._range
         return locals()
 
@@ -72,3 +72,12 @@ class ParametricNorm(Norm):
         if not checkRange(value, self._range):
             from fuzzy.Exception import FuzzyException
             raise FuzzyException("Parameter value %s is not allowed" % str(value))
+
+    def __repr__(self):
+        """Return representation of instance.
+                   
+           @return: representation of instance
+           @rtype: string
+           """
+        return "%s.%s(param=%s)" % (self.__class__.__module__, self.__class__.__name__, self._p)
+   

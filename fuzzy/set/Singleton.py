@@ -16,7 +16,7 @@
 # along with this program; if not, see <http://www.gnu.org/licenses/>. 
 #
 
-__revision__ = "$Id: Singleton.py,v 1.15 2010-01-21 20:58:57 rliebscher Exp $"
+__revision__ = "$Id: Singleton.py,v 1.16 2010-02-17 19:45:00 rliebscher Exp $"
 
 
 from fuzzy.set.Polygon import Polygon
@@ -45,16 +45,14 @@ class Singleton(Polygon):
         self._x = float(x) # so it is defined and makes pychecker & Co. happy
         self.x = float(x) # update polygon (_x would be defined here in any case)
 
-    # pylint: disable-msg=E0202,E0211
-    #ID:E0211 Singleton.x: Method has no argument
-    #ID:E0202 Singleton.x: An attribute inherited from Singleton hide this method
+    # pylint: disable-msg=E0202,E0211,W0212
     @prop
     def x(): #@NoSelf
         """x
         @type: float"""
-        def fget(self):
+        def fget(self): # pylint: disable-msg=W0612,C0111
             return self._x
-        def fset(self, value):
+        def fset(self, value): # pylint: disable-msg=W0612,C0111
             self._x = float(value)
             self._update()
         return locals()
@@ -90,3 +88,10 @@ class Singleton(Polygon):
         """Don't let anyone destroy our singleton."""
         raise FuzzyException()
 
+    def __repr__(self):
+        """Return representation of instance.
+                   
+           @return: representation of instance
+           @rtype: string
+           """
+        return "%s.%s(x=%s)" % (self.__class__.__module__, self.__class__.__name__, self._x)

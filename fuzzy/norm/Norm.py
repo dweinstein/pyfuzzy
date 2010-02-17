@@ -19,7 +19,7 @@
     Abstract base class for any kind of fuzzy norm.
 """
 
-__revision__ = "$Id: Norm.py,v 1.15 2010-01-19 21:45:36 rliebscher Exp $"
+__revision__ = "$Id: Norm.py,v 1.16 2010-02-17 19:45:00 rliebscher Exp $"
 
 from fuzzy.Exception import FuzzyException
 class NormException(FuzzyException):
@@ -49,7 +49,7 @@ class Norm(object):
             @rtype: float
             @raise NormException: any problem in calculation (wrong number of arguments, numerical problems)
         """
-        raise NormException("abstract class %s can't be called" % self.__class__.__name__)
+        raise NotImplementedError("abstract class %s can't be called" % self.__class__.__name__)
 
     def getType(self):
         """
@@ -83,9 +83,16 @@ class Norm(object):
         """
         if len(args) < 2:
             raise NormException("%s is supported only for more the 2 arguments" % self.__class__.__name__ )
-        return map(float, args)
+        return [float(x) for x in args]
 
-
+    def __repr__(self):
+        """Return representation of instance.
+                   
+           @return: representation of instance
+           @rtype: string
+           """
+        return "%s.%s()" % (self.__class__.__module__, self.__class__.__name__)
+   
 def product(*args):
     """Calculate product of args.
 

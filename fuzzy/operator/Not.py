@@ -16,11 +16,11 @@
 # along with this program; if not, see <http://www.gnu.org/licenses/>. 
 #
 """Operator class which takes value of input operator and calculates complement of it."""
-__revision__ = "$Id: Not.py,v 1.15 2009-10-27 20:06:27 rliebscher Exp $"
+__revision__ = "$Id: Not.py,v 1.16 2010-02-17 19:45:00 rliebscher Exp $"
 
 from fuzzy.operator.Operator import Operator
 
-class Not(Operator):
+class Not(Operator): # pylint: disable-msg=R0903
     """Take value of input operator and calculate complement of it.
        
        @ivar input: input which result is to complement.
@@ -39,3 +39,11 @@ class Not(Operator):
     def __call__(self):
         """Get input value and return 1.0-value."""
         return 1.0 - self.input()
+
+    def __repr__(self):
+        """Return representation of instance.
+                   
+           @return: representation of instance
+           @rtype: string
+           """
+        return "%s.%s()" % (self.__class__.__module__, self.__class__.__name__, repr(self.input))

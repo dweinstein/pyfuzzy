@@ -16,13 +16,13 @@
 # along with this program; if not, see <http://www.gnu.org/licenses/>. 
 #
 
-__revision__ = "$Id: Plain.py,v 1.4 2009-10-27 20:06:27 rliebscher Exp $"
+__revision__ = "$Id: Plain.py,v 1.5 2010-02-17 19:45:00 rliebscher Exp $"
 
 
 from fuzzy.fuzzify.Base import Base
 
 
-class Plain(Base):
+class Plain(Base): # pylint: disable-msg=R0903
     """Just fuzzify the input value using the membership values of the given adjectives"""
 
     def __init__(self, *args, **keywords):

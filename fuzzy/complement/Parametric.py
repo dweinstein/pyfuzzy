@@ -16,7 +16,7 @@
 # along with this program; if not, see <http://www.gnu.org/licenses/>. 
 #
 """Abstract base class for any parametric fuzzy complement"""
-__revision__ = "$Id: Parametric.py,v 1.6 2010-01-21 20:58:57 rliebscher Exp $"
+__revision__ = "$Id: Parametric.py,v 1.7 2010-02-17 19:45:00 rliebscher Exp $"
 
 from fuzzy.complement.Base import Base
 from fuzzy.utils import prop
@@ -45,9 +45,9 @@ class Parametric(Base):
     def p(): #@NoSelf
         """x
         @type: float"""
-        def fget(self):
+        def fget(self): # pylint: disable-msg=W0612,C0111
             return self._p
-        def fset(self, value):
+        def fset(self, value): # pylint: disable-msg=W0612,C0111
             self._checkParam(value)
             self._p = value
         return locals()
@@ -57,7 +57,7 @@ class Parametric(Base):
     @prop
     def p_range(): #@NoSelf
         """range(s) of valid values for p"""
-        def fget(self):
+        def fget(self): # pylint: disable-msg=W0612,C0111
             return self._range
         return locals()
 
@@ -69,3 +69,12 @@ class Parametric(Base):
         if not checkRange(value, self._range):
             from fuzzy.Exception import FuzzyException
             raise FuzzyException("Parameter value %s is not allowed" % str(value))
+
+    def __repr__(self):
+        """Return representation of instance.
+                   
+           @return: representation of instance
+           @rtype: string
+           """
+        return "%s.%s(p=%s)" % (self.__class__.__module__, self.__class__.__name__, self._p)
+    

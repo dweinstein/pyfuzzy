@@ -16,7 +16,7 @@
 # along with this program; if not, see <http://www.gnu.org/licenses/>. 
 #
 """Base class for all complement methods"""
-__revision__ = "$Id: Base.py,v 1.5 2010-01-19 21:45:35 rliebscher Exp $"
+__revision__ = "$Id: Base.py,v 1.6 2010-02-17 19:45:00 rliebscher Exp $"
 
 import fuzzy.Exception
 
@@ -25,7 +25,7 @@ class ComplementException(fuzzy.Exception.FuzzyException):
     pass
 
 
-class Base(object):
+class Base(object): # pylint: disable-msg=R0903
     """Base class for all complement methods"""
 
     def __init__(self, *args, **keywords):
@@ -39,5 +39,12 @@ class Base(object):
         @return: the complemented value
         @rtype: float  
         """
-        raise ComplementException("don't use the abstract base class")
+        raise NotImplementedError("don't use the abstract base class")
 
+    def __repr__(self):
+        """Return representation of instance.
+                   
+           @return: representation of instance
+           @rtype: string
+           """
+        return "%s.%s()" % (self.__class__.__module__, self.__class__.__name__)
