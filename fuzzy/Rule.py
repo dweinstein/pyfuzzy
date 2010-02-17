@@ -16,7 +16,7 @@
 # along with this program; if not, see <http://www.gnu.org/licenses/>. 
 #
 """Represents a fuzzy rule."""
-__revision__ = "$Id: Rule.py,v 1.16 2010-01-19 21:45:35 rliebscher Exp $"
+__revision__ = "$Id: Rule.py,v 1.17 2010-02-17 19:57:13 rliebscher Exp $"
 
 from fuzzy.norm.Min import Min
 
@@ -83,3 +83,16 @@ class Rule(object):
     def getName(self, system):
         """Lookup the name given this rule in the given system"""
         return system.findRuleName(self)
+
+    def __repr__(self):
+        """Return representation of instance.
+                   
+           @return: representation of instance
+           @rtype: string
+           """
+        params = []
+        params.append("adjective=%s" % object.__repr__(self.adjective))
+        params.append("operator=%s" % repr(self.operator))
+        if self.certainty != 1.0: params.append("certainty=%s" % self.certainty)
+        if self.CER: params.append("CER=%s" % repr(self.CER))
+        return "%s.%s(%s)" % (self.__class__.__module__, self.__class__.__name__, ", ".join(params))

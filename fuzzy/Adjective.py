@@ -16,7 +16,7 @@
 # along with this program; if not, see <http://www.gnu.org/licenses/>. 
 #
 """Describes a ... of a variable."""
-__revision__ = "$Id: Adjective.py,v 1.15 2009-10-27 20:06:27 rliebscher Exp $"
+__revision__ = "$Id: Adjective.py,v 1.16 2010-02-17 19:57:13 rliebscher Exp $"
 
 
 from fuzzy.norm.Max import Max
@@ -37,8 +37,9 @@ class Adjective(object):
 
     # default if not set in instance
     _COM = Max()
+    _set = Set()
 
-    def __init__(self, set=Set(), COM=None):
+    def __init__(self, set=None, COM=None):
         """Initialize adjective.
         
         @param set: fuzzy set
@@ -46,7 +47,7 @@ class Adjective(object):
         @param COM: norm (if None the class default _COM is used.)
         @type COM: L{fuzzy.norm.Norm.Norm}
         """
-        self.set = set
+        self.set = set or Adjective._set
         self.membership = None
         self.COM = COM
 
@@ -83,3 +84,14 @@ class Adjective(object):
         """Find own name in given system.
         Returns a tuple (var_name,adj_name) of None."""
         return system.findAdjectiveName(self)
+
+    def __repr__(self):
+        """Return representation of instance.
+                   
+           @return: representation of instance
+           @rtype: string
+           """
+        params = []
+        if self.set is not Adjective._set: params.append("set=%s" % repr(self.set))
+        if self.COM: params.append("COM=%s" % repr(self.COM))
+        return "%s.%s(%s)" % (self.__class__.__module__, self.__class__.__name__, ", ".join(params))

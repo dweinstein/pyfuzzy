@@ -16,7 +16,7 @@
 # along with this program; if not, see <http://www.gnu.org/licenses/>. 
 #
 """General instance of an input variable.""" 
-__revision__ = "$Id: InputVariable.py,v 1.8 2009-10-27 20:06:27 rliebscher Exp $"
+__revision__ = "$Id: InputVariable.py,v 1.9 2010-02-17 19:57:13 rliebscher Exp $"
 
 from fuzzy.Variable import Variable
 
@@ -42,4 +42,12 @@ class InputVariable(Variable):
     def setValue(self, value):
         """Let adjectives calculate their membership values."""
         self.__value = self.fuzzify.setValue(self, value)
+
+    def _repr_params(self, params):
+        """Helper for representation of instance.
+        
+        Add all own params to given list in params.    
+        """
+        params.append(repr(self.fuzzify))
+        super(InputVariable, self)._repr_params(params)
 

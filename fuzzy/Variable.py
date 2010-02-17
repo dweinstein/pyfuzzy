@@ -16,7 +16,7 @@
 # along with this program; if not, see <http://www.gnu.org/licenses/>. 
 #
 """Base class for any kind of fuzzy variable."""
-__revision__ = "$Id: Variable.py,v 1.15 2009-10-27 20:06:27 rliebscher Exp $"
+__revision__ = "$Id: Variable.py,v 1.16 2010-02-17 19:57:13 rliebscher Exp $"
 
 
 class Variable(object):
@@ -33,7 +33,7 @@ class Variable(object):
        @type unit: string
        """
 
-    def __init__(self, description='', min=0., max=1., unit=''):
+    def __init__(self, description='', min=0., max=1., unit='', adjectives = None):
         """
             @param description: Description of the fuzzy variable
             @type description: string
@@ -44,7 +44,7 @@ class Variable(object):
             @param unit: Unit of the values
             @type unit: string
         """
-        self.adjectives = {}
+        self.adjectives = adjectives or {}
         self.__value     = None
         self.description = description
         self.min         = min
@@ -67,3 +67,24 @@ class Variable(object):
     def getName(self, system):
         """Lookup the name given this variable in the given system"""
         return system.findVariableName(self)
+    
+    def __repr__(self):
+        """Return representation of instance.
+                   
+           @return: representation of instance
+           @rtype: string
+           """
+        params = []
+        self._repr_params(params)
+        return "%s.%s(%s)" % (self.__class__.__module__, self.__class__.__name__, ", ".join(params))
+
+    def _repr_params(self, params):
+        """Helper for representation of instance.
+        
+        Add all own params to given list in params.    
+        """
+        if self.description: params.append("description=%s" % repr(self.description))
+        if self.min != 0.: params.append("min=%s" % self.min)
+        if self.max != 1.: params.append("max=%s" % self.max)
+        if self.unit: params.append("unit=%s" % repr(self.unit))
+        if self.adjectives: params.append("adjectives=%s" % repr(self.adjectives))

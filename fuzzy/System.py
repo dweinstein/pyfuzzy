@@ -18,7 +18,7 @@
 
 """Main coordinator class of a whole fuzzy system"""
 
-__revision__ = "$Id: System.py,v 1.18 2009-10-27 20:06:27 rliebscher Exp $"
+__revision__ = "$Id: System.py,v 1.19 2010-02-17 19:57:13 rliebscher Exp $"
 
 class System(object):
     """Holds all stuff together. (variables, rules, ...)
@@ -32,14 +32,14 @@ class System(object):
         @type description: string
     """ 
 
-    def __init__(self, description=""):
+    def __init__(self, description="", variables = None, rules = None):
         """Constructor.
 
         @param description: description
         @type description: string
         """
-        self.variables = {}
-        self.rules = {}
+        self.variables = variables or {}
+        self.rules = variables or {}
         self.description = description
 
     def reset(self):
@@ -118,3 +118,14 @@ class System(object):
                 return name
         return None
 
+    def __repr__(self):
+        """Return representation of instance.
+                   
+           @return: representation of instance
+           @rtype: string
+           """
+        params = []
+        if self.description: params.append("description=%s" % repr(self.description))
+        if self.variables: params.append("variables=%s" % repr(self.variables))
+        if self.rules: params.append("rules=%s" % repr(self.rules))
+        return "%s.%s(%s)" % (self.__class__.__module__, self.__class__.__name__, ", ".join(params))
