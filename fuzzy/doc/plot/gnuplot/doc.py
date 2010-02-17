@@ -17,7 +17,7 @@
 #
 """Plotting of variables, adjectives, ... using gnuplot"""
 
-__revision__ = "$Id: doc.py,v 1.13 2010-01-21 20:53:58 rliebscher Exp $"
+__revision__ = "$Id: doc.py,v 1.14 2010-02-17 19:51:47 rliebscher Exp $"
 
 import sys
 import Gnuplot
@@ -88,6 +88,7 @@ class Doc(object):
     def initGnuplot2D(self,filename="plot",xlabel=None,ylabel=None,title=None,xrange_=None,yrange=None,x_logscale=0,y_logscale=0):
         g = Gnuplot.Gnuplot(debug=0)
         self.setTerminal(g,filename)
+        # pylint: disable-msg=C0321
         if xlabel is not None: g.xlabel(xlabel)
         if ylabel is not None: g.ylabel(ylabel)
         if title is not None: g.title(title)
@@ -102,6 +103,7 @@ class Doc(object):
     def initGnuplot3D(self,filename="plot3D",xlabel=None,ylabel=None,zlabel=None,title=None,xrange_=None,yrange=None,zrange=None,x_logscale=0,y_logscale=0,z_logscale=0):
         g = Gnuplot.Gnuplot(debug=0)
         self.setTerminal(g,filename)
+        # pylint: disable-msg=C0321
         if xlabel is not None: g.xlabel(xlabel)
         if ylabel is not None: g.ylabel(ylabel)
         if zlabel is not None: g("set zlabel '%s'" % zlabel)
@@ -193,7 +195,7 @@ class Doc(object):
         g.plot(*plot_items)
         g.close()
 
-    def create2DPlot(self,system,x_name,y_name,input_dict={},output_dict={},x_logscale=0,y_logscale=0):
+    def create2DPlot(self,system,x_name,y_name,input_dict=None,output_dict=None,x_logscale=0,y_logscale=0):
         """Creates a 2D plot of an input variable and an output variable.
         Other (const) variables have to be set beforehand in the dictionary input_dict.
         
@@ -213,14 +215,12 @@ class Doc(object):
         @type y_logscale: bool
         """
 
+        input_dict = input_dict or {}
+        output_dict = output_dict or {}
+
         (x_min,x_max,x) = self.getValues(system.variables[x_name])
 
-        def f(x,
-                system=system,
-                x_name=x_name,
-                y_name=y_name,
-                input_dict=input_dict,
-                output_dict=output_dict):
+        def f(x):
             input_dict[x_name] = x
             output_dict[y_name] = 0.0
 
@@ -233,7 +233,7 @@ class Doc(object):
         g.plot(Gnuplot.funcutils.compute_Data(x, f))
         g.close()
 
-    def create3DPlot(self,system,x_name,y_name,z_name,input_dict={},output_dict={},x_logscale=0,y_logscale=0,z_logscale=0):
+    def create3DPlot(self,system,x_name,y_name,z_name,input_dict=None,output_dict=None,x_logscale=0,y_logscale=0,z_logscale=0):
         """Creates a 3D plot of 2 input variables and an output variable.
         Other (const) variables have to be set beforehand in the dictionary input_dict.
         
@@ -256,17 +256,13 @@ class Doc(object):
         @param z_logscale: use logarithmic scale for z values
         @type z_logscale: bool
         """
+        input_dict = input_dict or {}
+        output_dict = output_dict or {}
 
         (x_min,x_max,x) = self.getValues(system.variables[x_name])
         (y_min,y_max,y) = self.getValues(system.variables[y_name])
 
-        def f(x,y,
-                system=system,
-                x_name=x_name,
-                y_name=y_name,
-                z_name=z_name,
-                input_dict=input_dict,
-                output_dict=output_dict):
+        def f(x,y):
             input_dict[x_name] = x
             input_dict[y_name] = y
             output_dict[z_name] = 0.0
@@ -280,7 +276,7 @@ class Doc(object):
         g.close()
 
 
-    def create3DPlot_adjective(self,system,x_name,y_name,z_name,adjective,input_dict={},output_dict={},x_logscale=0,y_logscale=0,z_logscale=0):
+    def create3DPlot_adjective(self,system,x_name,y_name,z_name,adjective,input_dict=None,output_dict=None,x_logscale=0,y_logscale=0,z_logscale=0):
         """Creates a 3D plot of 2 input variables and an adjective of the output variable.
         Other (const) variables have to be set beforehand in the dictionary input_dict.
         
@@ -305,18 +301,13 @@ class Doc(object):
         @param z_logscale: use logarithmic scale for z values
         @type z_logscale: bool
         """
+        input_dict = input_dict or {}
+        output_dict = output_dict or {}
 
         (x_min,x_max,x) = self.getValues(system.variables[x_name])
         (y_min,y_max,y) = self.getValues(system.variables[y_name])
 
-        def f(x,y,
-                system=system,
-                x_name=x_name,
-                y_name=y_name,
-                z_name=z_name,
-                adjective=adjective,
-                input_dict=input_dict,
-                output_dict=output_dict):
+        def f(x,y):
             input_dict[x_name] = x
             input_dict[y_name] = y
             output_dict[z_name] = 0.0
