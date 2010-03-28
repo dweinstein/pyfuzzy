@@ -1,0 +1,2 @@
+# -*- coding: utf-8 -*-
+René Liebscher <R.Liebscher@gmx.de>

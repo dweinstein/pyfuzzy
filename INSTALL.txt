@@ -1,0 +1,23 @@
+# -*- coding: utf-8 -*-
+
+INSTALLATION
+------------
+
+Obviously, in order to use pyfuzzy you must first install it.
+This is quite easy:
+
+    python setup.py install
+
+Note that this installs to the "site" library directory of your local
+Python installation: /usr/local/lib/python2.x/site-packages by default
+on Unix, "C:\Program Files\Python" by default on Windows.  Since
+pyfuzzy is "package-ized", the installation process will create a
+subdirectory "fuzzy" under the site library directory.
+
+The installation is by default quite verbose.  You can silence it with
+the "-q" option:
+
+    python setup.py -q install
+
+but unfortunately the verbosity (of the underlying distutils installer)
+is (currently) all or nothing.
