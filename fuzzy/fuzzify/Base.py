@@ -16,7 +16,9 @@
 # along with this program; if not, see <http://www.gnu.org/licenses/>. 
 #
 
-__revision__ = "$Id: Base.py,v 1.5 2010-02-17 19:45:00 rliebscher Exp $"
+"""base class for all fuzzification methods"""
+
+__revision__ = "$Id: Base.py,v 1.6 2010-03-28 18:41:30 rliebscher Exp $"
 
 
 class Base(object): # pylint: disable-msg=R0903
@@ -26,6 +28,13 @@ class Base(object): # pylint: disable-msg=R0903
         super(Base, self).__init__(*args, **keywords)
 
     def setValue(self, variable, value):
+        """Set value to adjectives of variable.
+        
+           @param variable: variable which adjective to set
+           @type variable: L{fuzzy.Variable.Variable}
+           @param variable: value to set the adjectives
+           @type: any
+           """
         raise NotImplementedError()
 
     def __repr__(self):

@@ -16,12 +16,15 @@
 # along with this program; if not, see <http://www.gnu.org/licenses/>. 
 #
 
-__revision__ = "$Id: Dict.py,v 1.8 2009-10-27 20:06:27 rliebscher Exp $"
+"""Not a real defuzzification.
+Just stores the adjective memberships in a dictionary for output."""
+
+__revision__ = "$Id: Dict.py,v 1.9 2010-03-28 18:40:33 rliebscher Exp $"
 
 from fuzzy.defuzzify.Base import Base
 
 class Dict(Base):
-    """Not a real defuzzyfication.
+    """Not a real defuzzification.
        Just stores the adjective memberships
        in a dictionary for output.
        You should use in the adjectives instances of Set itself.

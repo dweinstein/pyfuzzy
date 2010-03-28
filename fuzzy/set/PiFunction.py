@@ -16,7 +16,9 @@
 # along with this program; if not, see <http://www.gnu.org/licenses/>. 
 #
 
-__revision__ = "$Id: PiFunction.py,v 1.18 2010-02-17 19:45:00 rliebscher Exp $"
+"""Realize a Pi-shaped fuzzy set"""
+
+__revision__ = "$Id: PiFunction.py,v 1.19 2010-03-28 18:44:46 rliebscher Exp $"
 
 
 from fuzzy.set.Function import Function
@@ -77,6 +79,7 @@ class PiFunction(Function):
         return self.a
 
     def getValuesX(self):
+        """Return sequence of x-values so we get a smooth function."""
         for x in self._sfunction.getValuesX():
             yield x
         # first value is equal the last of the previous sequence    
@@ -93,4 +96,5 @@ class PiFunction(Function):
            @return: representation of instance
            @rtype: string
            """
-        return "%s.%s(a=%s, delta=%s)" % (self.__class__.__module__, self.__class__.__name__, self.a, self.delta)        
+        return "%s.%s(a=%s, delta=%s)" % (self.__class__.__module__, self.__class__.__name__, self.a, self.delta)
+        

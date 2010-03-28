@@ -16,7 +16,9 @@
 # along with this program; if not, see <http://www.gnu.org/licenses/>. 
 #
 
-__revision__ = "$Id: Plain.py,v 1.5 2010-02-17 19:45:00 rliebscher Exp $"
+"""Fuzzification which sets adjectives values according their set memberships for given value."""
+
+__revision__ = "$Id: Plain.py,v 1.6 2010-03-28 18:41:30 rliebscher Exp $"
 
 
 from fuzzy.fuzzify.Base import Base
@@ -29,7 +31,13 @@ class Plain(Base): # pylint: disable-msg=R0903
         super(Plain, self).__init__(*args, **keywords)
 
     def setValue(self, variable, value):
-        """Let adjectives calculate their membership values."""
+        """Let adjectives calculate their membership values.
+        
+           @param variable: variable which adjective to set
+           @type variable: L{fuzzy.Variable.Variable}
+           @param variable: value to set the adjectives
+           @type: float
+           """
         for adjective in variable.adjectives.values():
             adjective.setMembershipForValue(value)
         return value

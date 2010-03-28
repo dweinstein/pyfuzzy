@@ -16,7 +16,9 @@
 # along with this program; if not, see <http://www.gnu.org/licenses/>. 
 #
 
-__revision__ = "$Id: Function.py,v 1.12 2010-01-19 21:49:00 rliebscher Exp $"
+"""Base class for any fuzzy set defined by a function (not a polygon)."""
+
+__revision__ = "$Id: Function.py,v 1.13 2010-03-28 18:44:46 rliebscher Exp $"
 
 
 from fuzzy.set.Set import Set

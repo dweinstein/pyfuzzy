@@ -16,7 +16,9 @@
 # along with this program; if not, see <http://www.gnu.org/licenses/>. 
 #
 
-__revision__ = "$Id: Trapez.py,v 1.17 2010-02-17 19:45:00 rliebscher Exp $"
+"""Realize a trapezoid-shaped fuzzy set."""
+
+__revision__ = "$Id: Trapez.py,v 1.18 2010-03-28 18:44:46 rliebscher Exp $"
 
 
 from fuzzy.set.Polygon import Polygon
@@ -25,7 +27,7 @@ from fuzzy.Exception import FuzzyException
 
 class Trapez(Polygon):
     r"""
-    Realize a trapez-shaped fuzzy set::
+    Realize a trapezoid-shaped fuzzy set::
                _____ _____  y_max
               /     \
              /|     |\
@@ -41,12 +43,12 @@ class Trapez(Polygon):
 
     def __init__(self, m1=-0.5, m2=0.5, alpha=0.5, beta=0.5, y_max=1.0, y_min=0.0):
         """
-        Initialize a trapez-shaped fuzzy set.
+        Initialize a trapezoid-shaped fuzzy set.
 
-        @param y_max:  y-value at top of the trapez (1.0)
-        @param y_min:  y-value outside the trapez (0.0)
-        @param m1:     x-value of left top of trapez (-0.5)
-        @param m2:     x-value of right top of trapez (0.5)
+        @param y_max:  y-value at top of the trapezoid (1.0)
+        @param y_min:  y-value outside the trapezoid (0.0)
+        @param m1:     x-value of left top of trapezoid (-0.5)
+        @param m2:     x-value of right top of trapezoid (0.5)
         @param alpha:  distance of left corner to m1 (0.5)
         @param beta:   distance of right corner to m2 (0.5)
         """
@@ -62,7 +64,7 @@ class Trapez(Polygon):
     # pylint: disable-msg=E0211,W0212
     @prop
     def y_max(): #@NoSelf
-        """y-value at top of the trapez
+        """y-value at top of the trapezoid
         @type: float"""
         def fget(self): # pylint: disable-msg=W0612,C0111
             return self._y_max
@@ -74,7 +76,7 @@ class Trapez(Polygon):
     # pylint: disable-msg=E0211,W0212
     @prop
     def y_min(): #@NoSelf
-        """y-value outside the trapez
+        """y-value outside the trapezoid
         @type: float"""
         def fget(self): # pylint: disable-msg=W0612,C0111
             return self._y_min
@@ -86,7 +88,7 @@ class Trapez(Polygon):
     # pylint: disable-msg=E0211,W0212
     @prop
     def m1(): #@NoSelf
-        """x-value of left top of trapez
+        """x-value of left top of trapezoid
         @type: float"""
         def fget(self): # pylint: disable-msg=W0612,C0111
             return self._m1
@@ -98,7 +100,7 @@ class Trapez(Polygon):
     # pylint: disable-msg=E0211,W0212
     @prop
     def m2(): #@NoSelf
-        """x-value of right top of trapez
+        """x-value of right top of trapezoid
         @type: float"""
         def fget(self): # pylint: disable-msg=W0612,C0111
             return self._m2
@@ -141,15 +143,15 @@ class Trapez(Polygon):
         p.add(self._m2+self._beta, self._y_min)
 
     def add(self, x, y, where=Polygon.END):
-        """Don't let anyone destroy our trapez."""
+        """Don't let anyone destroy our trapezoid."""
         raise FuzzyException()
 
     def remove(self, x, where=Polygon.END):
-        """Don't let anyone destroy our trapez."""
+        """Don't let anyone destroy our trapezoid."""
         raise FuzzyException()
 
     def clear(self):
-        """Don't let anyone destroy our trapez."""
+        """Don't let anyone destroy our trapezoid."""
         raise FuzzyException()
 
     def __repr__(self):

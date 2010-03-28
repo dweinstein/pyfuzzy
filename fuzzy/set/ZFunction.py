@@ -16,7 +16,9 @@
 # along with this program; if not, see <http://www.gnu.org/licenses/>. 
 #
 
-__revision__ = "$Id: ZFunction.py,v 1.16 2010-01-19 21:49:00 rliebscher Exp $"
+"""Realize a Z-shaped fuzzy set."""
+
+__revision__ = "$Id: ZFunction.py,v 1.17 2010-03-28 18:44:46 rliebscher Exp $"
 
 
 from fuzzy.set.SFunction import SFunction
@@ -62,4 +64,3 @@ class ZFunction(SFunction):
            @rtype: float
            """
         return 1.0 - SFunction.__call__(self, x)
-

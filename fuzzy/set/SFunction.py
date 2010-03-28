@@ -16,7 +16,9 @@
 # along with this program; if not, see <http://www.gnu.org/licenses/>. 
 #
 
-__revision__ = "$Id: SFunction.py,v 1.18 2010-02-17 19:45:00 rliebscher Exp $"
+"""Realize a S-shaped fuzzy set."""
+
+__revision__ = "$Id: SFunction.py,v 1.19 2010-03-28 18:44:46 rliebscher Exp $"
 
 
 from fuzzy.set.Function import Function
@@ -80,6 +82,7 @@ class SFunction(Function):
         raise FuzzyException("COG of SFunction uncalculable")
 
     def getValuesX(self):
+        """Return sequence of x-values so we get a smooth function."""
         a = self.a
         d = self.delta
         stepsize = 2. * d / Function._resolution

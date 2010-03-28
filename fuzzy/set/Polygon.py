@@ -16,7 +16,11 @@
 # along with this program; if not, see <http://www.gnu.org/licenses/>. 
 #
 
-__revision__ = "$Id: Polygon.py,v 1.23 2010-02-17 19:45:00 rliebscher Exp $"
+"""Represents a fuzzy set, which membership function
+is the shape of a polygon. For example: triangle,
+trapezoid, rectangle, or something similar."""
+
+__revision__ = "$Id: Polygon.py,v 1.24 2010-03-28 18:44:46 rliebscher Exp $"
 
 
 from fuzzy.set.Set import Set
@@ -161,6 +165,7 @@ class Polygon(Set):
 
 
     def getValuesX(self):
+        """Return sequence of x-values for set."""
         previous = None
         for x,_ in self.__points:
             if x != previous:
@@ -168,6 +173,9 @@ class Polygon(Set):
             previous = x
 
     def getValuesXY(self, flat = True):
+        """Return sequence of (x,y)-values for set.
+        In case of vertical slopes, y is a tuple of y-values for flat = False.
+        Otherwise several (x,y)-values will be generated having identical x-values."""
         current = None
         values = []
         for x,y in self.__points:

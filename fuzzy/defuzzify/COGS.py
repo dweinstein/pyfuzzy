@@ -16,13 +16,15 @@
 # along with this program; if not, see <http://www.gnu.org/licenses/>. 
 #
 
-__revision__ = "$Id: COGS.py,v 1.7 2010-02-17 19:45:00 rliebscher Exp $"
+"""Defuzzification for singletons."""
+
+__revision__ = "$Id: COGS.py,v 1.8 2010-03-28 18:40:33 rliebscher Exp $"
 
 from fuzzy.defuzzify.Base import Base, DefuzzificationException
 import fuzzy.set.Singleton
 
 class COGS(Base):
-    """defuzzification for singletons."""
+    """Defuzzification for singletons."""
 
     def __init__(self, INF=None, ACC=None, failsafe=None, *args, **keywords):
         """
@@ -33,7 +35,7 @@ class COGS(Base):
         self.failsafe = failsafe # which value if COG not calculable
 
     def getValue(self, variable):
-        """Defuzzyfication using center of gravity method."""
+        """Defuzzification using center of gravity method."""
         sum_1, sum_2 = 0.,0.
         for adjective in variable.adjectives.values():
             # get precomputed adjective set

@@ -15,6 +15,6 @@
 # You should have received a copy of the GNU Lesser General Public License
 # along with this program; if not, see <http://www.gnu.org/licenses/>. 
 #
-"""Defuzzyfication functions.
+"""Defuzzification functions.
 """
-__revision__ = "$Id: __init__.py,v 1.4 2009-10-27 20:06:27 rliebscher Exp $"
+__revision__ = "$Id: __init__.py,v 1.5 2010-03-28 18:40:33 rliebscher Exp $"

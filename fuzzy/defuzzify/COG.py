@@ -16,12 +16,14 @@
 # along with this program; if not, see <http://www.gnu.org/licenses/>. 
 #
 
-__revision__ = "$Id: COG.py,v 1.8 2010-02-17 19:45:00 rliebscher Exp $"
+"""Defuzzification which uses the center of gravity method."""
+
+__revision__ = "$Id: COG.py,v 1.9 2010-03-28 18:40:33 rliebscher Exp $"
 
 from fuzzy.defuzzify.Base import Base
 
 class COG(Base):
-    """defuzzification which uses
+    """Defuzzification which uses
        the center of gravity method."""
 
     def __init__(self, INF=None, ACC=None, failsafe=None, segment_size=None, *args, **keywords):
@@ -35,7 +37,7 @@ class COG(Base):
         self.segment_size = segment_size # maximum length of segment in polygon of accumulated result set
 
     def getValue(self, variable):
-        """Defuzzyfication using center of gravity method."""
+        """Defuzzification using center of gravity method."""
         temp = self.accumulate(variable, self.segment_size)
         try:
             return temp.getCOG()

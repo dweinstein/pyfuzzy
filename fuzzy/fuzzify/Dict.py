@@ -16,8 +16,9 @@
 # along with this program; if not, see <http://www.gnu.org/licenses/>. 
 #
 
-__revision__ = "$Id: Dict.py,v 1.6 2010-02-17 19:45:00 rliebscher Exp $"
+"""Fuzzification which sets adjectives values according the values in given dictionary."""
 
+__revision__ = "$Id: Dict.py,v 1.7 2010-03-28 18:41:30 rliebscher Exp $"
 
 from fuzzy.fuzzify.Base import Base
 
@@ -57,7 +58,14 @@ class Dict(Base): # pylint: disable-msg=R0903
         super(Dict, self).__init__(*args, **keywords)
 
     def setValue(self, variable, value):
-        """Do not let adjectives calculate their membership values."""
+        """Do not let adjectives calculate their membership values.
+           Instead use the provided values from dictionary.
+           
+           @param variable: variable which adjective to set
+           @type variable: L{fuzzy.Variable.Variable}
+           @param variable: values to set the adjectives
+           @type: dict
+           """
         for adjective_key in value:
             variable.adjectives[adjective_key].membership = value[adjective_key]
         return None

@@ -16,14 +16,16 @@
 # along with this program; if not, see <http://www.gnu.org/licenses/>. 
 #
 
-__revision__ = "$Id: Singleton.py,v 1.16 2010-02-17 19:45:00 rliebscher Exp $"
+"""This set represents a non-fuzzy number."""
+
+__revision__ = "$Id: Singleton.py,v 1.17 2010-03-28 18:44:46 rliebscher Exp $"
 
 
 from fuzzy.set.Polygon import Polygon
 from fuzzy.utils import prop
 from fuzzy.Exception import FuzzyException
 
-# use Polygon as base class so we dont need write all
+# use Polygon as base class so we don't need write all
 # methods again
 class Singleton(Polygon):
     """This set represents a non-fuzzy number.

@@ -20,7 +20,7 @@
 Base class for all fuzzy sets.
 """
 
-__revision__ = "$Id: Set.py,v 1.22 2010-02-17 19:45:00 rliebscher Exp $"
+__revision__ = "$Id: Set.py,v 1.23 2010-03-28 18:44:46 rliebscher Exp $"
 
 class Set(object):
     """Base class for all types of fuzzy sets."""

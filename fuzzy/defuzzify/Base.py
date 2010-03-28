@@ -16,7 +16,9 @@
 # along with this program; if not, see <http://www.gnu.org/licenses/>. 
 #
 
-__revision__ = "$Id: Base.py,v 1.11 2010-02-17 19:45:00 rliebscher Exp $"
+"""Abstract base class for defuzzification which results in a numeric value."""
+
+__revision__ = "$Id: Base.py,v 1.12 2010-03-28 18:40:33 rliebscher Exp $"
 
 
 from fuzzy.norm.Max import Max
@@ -62,7 +64,7 @@ class Base(object):
         self.accumulated_set = None
 
     def getValue(self, variable):
-        """Defuzzyfication."""
+        """Defuzzification."""
         raise NotImplementedError("don't use the abstract base class")
 
 # helper methods for sub classes

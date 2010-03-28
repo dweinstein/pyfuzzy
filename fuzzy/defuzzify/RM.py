@@ -16,12 +16,14 @@
 # along with this program; if not, see <http://www.gnu.org/licenses/>. 
 #
 
-__revision__ = "$Id: RM.py,v 1.5 2010-02-17 19:45:00 rliebscher Exp $"
+"""Defuzzification which uses the right most (local) maximum."""
+
+__revision__ = "$Id: RM.py,v 1.6 2010-03-28 18:40:33 rliebscher Exp $"
 
 from fuzzy.defuzzify.Base import Base, DefuzzificationException
 
 class RM(Base):
-    """Defuzzyfication which uses the right most (local) maximum."""
+    """Defuzzification which uses the right most (local) maximum."""
 
     def __init__(self, INF=None, ACC=None, failsafe=None, *args, **keywords):
         """Initialize the defuzzification method with INF,ACC 
@@ -30,7 +32,7 @@ class RM(Base):
         self.failsafe = failsafe # which value if value not calculable
 
     def getValue(self, variable):
-        """Defuzzyfication."""
+        """Defuzzification."""
         try:
             temp = self.accumulate(variable)
 
