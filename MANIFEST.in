@@ -1,9 +1,10 @@
+# -*- coding: utf-8 -*-
 #
 # MANIFEST.in
 #
 # Manifest template for creating the pyfuzzy source distribution.
 #
-# Copyright (C) 2009  Rene Liebscher
+# Copyright (C) 2009  René Liebscher
 #
 # This program is free software; you can redistribute it and/or modify it under
 # the terms of the GNU Lesser General Public License as published by the Free 
@@ -17,12 +18,14 @@
 # You should have received a copy of the GNU Lesser General Public License along with 
 # this program; if not, see <http://www.gnu.org/licenses/>. 
 #
-# $Id: MANIFEST.in,v 1.5 2009-10-18 19:48:28 rliebscher Exp $
+# $Id: MANIFEST.in,v 1.6 2010-03-28 18:50:22 rliebscher Exp $
 #
 
-include *.txt
+include *.txt TODO
 include MANIFEST.in
+include .pylintrc
 include demo/*.py
+include test/*.py
 include doc/*.py doc/*.sh doc/*.cfg
 global-exclude *.pyo
 global-exclude *.pyc

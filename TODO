@@ -1,4 +1,5 @@
-$Id: TODO,v 1.7 2009-08-05 19:54:31 rliebscher Exp $
+# -*- coding: utf-8 -*-
+$Id: TODO,v 1.8 2010-03-28 18:50:22 rliebscher Exp $
 
 Releases:
 - Release files for SourceForge when pyfuzzy will be considered as 'stable enough'
