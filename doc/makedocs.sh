@@ -16,7 +16,7 @@
 # You should have received a copy of the GNU Lesser General Public License along with 
 # this program; if not, see <http://www.gnu.org/licenses/>. 
 #
-# $Id: makedocs.sh,v 1.3 2009-10-07 20:52:24 rliebscher Exp $
+# $Id: makedocs.sh,v 1.4 2010-03-28 18:37:44 rliebscher Exp $
 
 function run_pydoc {
     # this create docs with links to sourceforge cvs browser
@@ -28,7 +28,7 @@ function run_pydoc {
 function create_pydoc {
     mkdir pydoc
     cd pydoc
-    export PYTHONPATH=../..
+    export PYTHONPATH=../..${PYTHONPATH:+:$PYTHONPATH}
 
     MODULES="./../.."
     for i in $MODULES ; do
@@ -38,11 +38,11 @@ function create_pydoc {
 }
 
 function create_epydoc {
-    export PYTHONPATH=..
+    export PYTHONPATH=..${PYTHONPATH:+:$PYTHONPATH}
     epydoc --config=epydoc.cfg --config=epydoc.html.cfg
 }
 function create_epydoc_pdf {
-    export PYTHONPATH=..
+    export PYTHONPATH=..${PYTHONPATH:+:$PYTHONPATH}
     epydoc --config=epydoc.cfg --config=epydoc.pdf.cfg
 }
 
