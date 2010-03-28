@@ -19,4 +19,4 @@
 Make this directory a python package
 """
 
-__revision__ = "$Id: __init__.py,v 1.1 2010-01-19 21:51:15 rliebscher Exp $"
+__revision__ = "$Id: __init__.py,v 1.2 2010-03-28 18:48:12 rliebscher Exp $"
