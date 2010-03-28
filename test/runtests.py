@@ -18,7 +18,7 @@
 #
 """run all unit tests.
 """
-__revision__ = "$Id: runtests.py,v 1.2 2010-01-21 20:52:37 rliebscher Exp $"
+__revision__ = "$Id: runtests.py,v 1.3 2010-03-28 18:47:28 rliebscher Exp $"
 
 import unittest
 
@@ -52,7 +52,7 @@ except:
                 break
         path = path[numberCommonElements:]
         start = start[numberCommonElements:]
-        return os.path.join(*([os.path.pardir for _ in range(len(start))] + path))
+        return os.path.join(*([os.path.pardir] * len(start) + path))
 
 def discover(top_level_dir="."):
     """\
