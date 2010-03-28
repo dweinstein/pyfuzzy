@@ -16,7 +16,7 @@
 # along with this program; if not, see <http://www.gnu.org/licenses/>. 
 #
 """Abstract base class for any parametric fuzzy complement"""
-__revision__ = "$Id: Parametric.py,v 1.7 2010-02-17 19:45:00 rliebscher Exp $"
+__revision__ = "$Id: Parametric.py,v 1.8 2010-03-28 18:39:02 rliebscher Exp $"
 
 from fuzzy.complement.Base import Base
 from fuzzy.utils import prop
@@ -62,7 +62,7 @@ class Parametric(Base):
         return locals()
 
     def _checkParam(self, value):
-        """check parameter if allowed for paramter p
+        """check parameter if allowed for parameter p
         @param value: the value to be checked 
         @type value: float"""
         from fuzzy.utils import checkRange

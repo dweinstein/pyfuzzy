@@ -16,7 +16,7 @@
 # along with this program; if not, see <http://www.gnu.org/licenses/>. 
 #
 """General instance of an output variable."""
-__revision__ = "$Id: OutputVariable.py,v 1.13 2010-02-17 19:57:13 rliebscher Exp $"
+__revision__ = "$Id: OutputVariable.py,v 1.14 2010-03-28 18:38:08 rliebscher Exp $"
 
 from fuzzy.Variable import Variable
 
@@ -40,7 +40,7 @@ class OutputVariable(Variable):
         self.defuzzify = defuzzify
 
     def getValue(self):
-        """defuzzyfication"""
+        """defuzzification"""
         return self.defuzzify.getValue(self)
 
     def _repr_params(self, params):

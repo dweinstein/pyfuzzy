@@ -21,10 +21,7 @@
     Used to build fuzzy rules.
 """
 
-__revision__ = "$Id: Operator.py,v 1.13 2010-02-17 19:45:00 rliebscher Exp $"
-
-
-import fuzzy.Exception
+__revision__ = "$Id: Operator.py,v 1.14 2010-03-28 18:42:22 rliebscher Exp $"
 
 class Operator(object): # pylint: disable-msg=R0903
     """Abstract base class for any kind of operator."""
@@ -41,4 +38,4 @@ class Operator(object): # pylint: disable-msg=R0903
         @rtype: float
         @raise fuzzy.FuzzyException.FuzzyException: any problem in calculation
         """
-        raise NotImplementedError("abtract class %s can't be called" % self.__class__.__name__)
+        raise NotImplementedError("abstract class %s can't be called" % self.__class__.__name__)

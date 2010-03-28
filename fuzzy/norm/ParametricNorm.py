@@ -19,7 +19,7 @@
     Base class for any kind of parametric fuzzy norm.
 """
 
-__revision__ = "$Id: ParametricNorm.py,v 1.14 2010-02-17 19:45:00 rliebscher Exp $"
+__revision__ = "$Id: ParametricNorm.py,v 1.15 2010-03-28 18:41:52 rliebscher Exp $"
 
 from fuzzy.norm.Norm import Norm
 from fuzzy.utils import prop
@@ -80,4 +80,3 @@ class ParametricNorm(Norm):
            @rtype: string
            """
         return "%s.%s(param=%s)" % (self.__class__.__module__, self.__class__.__name__, self._p)
-   
