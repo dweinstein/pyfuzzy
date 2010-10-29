@@ -18,7 +18,7 @@
 
 """Realize a trapezoid-shaped fuzzy set."""
 
-__revision__ = "$Id: Trapez.py,v 1.18 2010-03-28 18:44:46 rliebscher Exp $"
+__revision__ = "$Id: Trapez.py,v 1.19 2010-10-29 19:24:41 rliebscher Exp $"
 
 
 from fuzzy.set.Polygon import Polygon
@@ -61,74 +61,74 @@ class Trapez(Polygon):
         self._beta = float(beta)
         self._update() # update polygon
 
-    # pylint: disable-msg=E0211,W0212
+    # pylint: disable=E0211,W0212
     @prop
     def y_max(): #@NoSelf
         """y-value at top of the trapezoid
         @type: float"""
-        def fget(self): # pylint: disable-msg=W0612,C0111
+        def fget(self): # pylint: disable=W0612,C0111
             return self._y_max
-        def fset(self, value): # pylint: disable-msg=W0612,C0111
+        def fset(self, value): # pylint: disable=W0612,C0111
             self._y_max = float(value)
             self._update()
         return locals()
 
-    # pylint: disable-msg=E0211,W0212
+    # pylint: disable=E0211,W0212
     @prop
     def y_min(): #@NoSelf
         """y-value outside the trapezoid
         @type: float"""
-        def fget(self): # pylint: disable-msg=W0612,C0111
+        def fget(self): # pylint: disable=W0612,C0111
             return self._y_min
-        def fset(self, value): # pylint: disable-msg=W0612,C0111
+        def fset(self, value): # pylint: disable=W0612,C0111
             self._y_min = float(value)
             self._update()
         return locals()
 
-    # pylint: disable-msg=E0211,W0212
+    # pylint: disable=E0211,W0212
     @prop
     def m1(): #@NoSelf
         """x-value of left top of trapezoid
         @type: float"""
-        def fget(self): # pylint: disable-msg=W0612,C0111
+        def fget(self): # pylint: disable=W0612,C0111
             return self._m1
-        def fset(self, value): # pylint: disable-msg=W0612,C0111
+        def fset(self, value): # pylint: disable=W0612,C0111
             self._m1 = float(value)
             self._update()
         return locals()
 
-    # pylint: disable-msg=E0211,W0212
+    # pylint: disable=E0211,W0212
     @prop
     def m2(): #@NoSelf
         """x-value of right top of trapezoid
         @type: float"""
-        def fget(self): # pylint: disable-msg=W0612,C0111
+        def fget(self): # pylint: disable=W0612,C0111
             return self._m2
-        def fset(self, value): # pylint: disable-msg=W0612,C0111
+        def fset(self, value): # pylint: disable=W0612,C0111
             self._m2 = float(value)
             self._update()
         return locals()
 
-    # pylint: disable-msg=E0211,W0212
+    # pylint: disable=E0211,W0212
     @prop
     def alpha(): #@NoSelf
         """distance of left corner to m1
         @type: float"""
-        def fget(self): # pylint: disable-msg=W0612,C0111
+        def fget(self): # pylint: disable=W0612,C0111
             return self._alpha
-        def fset(self, value): # pylint: disable-msg=W0612,C0111
+        def fset(self, value): # pylint: disable=W0612,C0111
             self._alpha = float(value)
             self._update()
         return locals()
 
-    # pylint: disable-msg=E0211,W0212
+    # pylint: disable=E0211,W0212
     @prop
     def beta(): #@NoSelf
         """distance of right corner to m2
         @type: float"""
-        def fget(self): # pylint: disable-msg=W0612,C0111
+        def fget(self): # pylint: disable=W0612,C0111
             return self._beta
-        def fset(self, value): # pylint: disable-msg=W0612,C0111
+        def fset(self, value): # pylint: disable=W0612,C0111
             self._beta = float(value)
             self._update()
         return locals()

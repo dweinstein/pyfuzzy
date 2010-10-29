@@ -18,12 +18,12 @@
 
 """Fuzzification which sets adjectives values according the values in given dictionary."""
 
-__revision__ = "$Id: Dict.py,v 1.7 2010-03-28 18:41:30 rliebscher Exp $"
+__revision__ = "$Id: Dict.py,v 1.8 2010-10-29 19:24:41 rliebscher Exp $"
 
 from fuzzy.fuzzify.Base import Base
 
 
-class Dict(Base): # pylint: disable-msg=R0903
+class Dict(Base): # pylint: disable=R0903
     """Fuzzification method which gets adjective memberships
        in a dictionary instead of values to fuzzify.
        You should use in the adjectives instances of Set itself.

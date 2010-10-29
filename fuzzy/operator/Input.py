@@ -16,11 +16,11 @@
 # along with this program; if not, see <http://www.gnu.org/licenses/>. 
 #
 """Special operator class which gets it value from a fuzzy adjective."""
-__revision__ = "$Id: Input.py,v 1.15 2010-02-17 19:45:00 rliebscher Exp $"
+__revision__ = "$Id: Input.py,v 1.16 2010-10-29 19:24:41 rliebscher Exp $"
 
 from fuzzy.operator.Operator import Operator
 
-class Input(Operator): # pylint: disable-msg=R0903
+class Input(Operator): # pylint: disable=R0903
     """Special operator which gets it value from a fuzzy adjective.
        
        @ivar adjective: from which adjective get the membership value.

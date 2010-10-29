@@ -16,7 +16,7 @@
 # along with this program; if not, see <http://www.gnu.org/licenses/>. 
 #
 """Abstract base class for any parametric fuzzy complement"""
-__revision__ = "$Id: Parametric.py,v 1.8 2010-03-28 18:39:02 rliebscher Exp $"
+__revision__ = "$Id: Parametric.py,v 1.9 2010-10-29 19:24:41 rliebscher Exp $"
 
 from fuzzy.complement.Base import Base
 from fuzzy.utils import prop
@@ -38,26 +38,26 @@ class Parametric(Base):
         super(Parametric, self).__init__(*args, **keywords)
         self.p = p
 
-    # pylint: disable-msg=E0211,E0202
+    # pylint: disable=E0211,E0202
     #ID:E0211 Parametric.p: Method has no argument
     #ID:E0202 Parametric.p: An attribute inherited from Parametric hide this method
     @prop
     def p(): #@NoSelf
         """x
         @type: float"""
-        def fget(self): # pylint: disable-msg=W0612,C0111
+        def fget(self): # pylint: disable=W0612,C0111
             return self._p
-        def fset(self, value): # pylint: disable-msg=W0612,C0111
+        def fset(self, value): # pylint: disable=W0612,C0111
             self._checkParam(value)
             self._p = value
         return locals()
 
-    # pylint: disable-msg=E0211
+    # pylint: disable=E0211
     #ID:E0211 Parametric.p_range: Method has no argument
     @prop
     def p_range(): #@NoSelf
         """range(s) of valid values for p"""
-        def fget(self): # pylint: disable-msg=W0612,C0111
+        def fget(self): # pylint: disable=W0612,C0111
             return self._range
         return locals()
 

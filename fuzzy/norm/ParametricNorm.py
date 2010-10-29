@@ -19,7 +19,7 @@
     Base class for any kind of parametric fuzzy norm.
 """
 
-__revision__ = "$Id: ParametricNorm.py,v 1.15 2010-03-28 18:41:52 rliebscher Exp $"
+__revision__ = "$Id: ParametricNorm.py,v 1.16 2010-10-29 19:24:41 rliebscher Exp $"
 
 from fuzzy.norm.Norm import Norm
 from fuzzy.utils import prop
@@ -41,26 +41,26 @@ class ParametricNorm(Norm):
         super(ParametricNorm, self).__init__(type)
         self.p = param
 
-    # pylint: disable-msg=E0202,E0211
+    # pylint: disable=E0202,E0211
     #ID:E0202 ParametricNorm.p: An attribute inherited from ParametricNorm hide this method
     #ID:E0211 TParametricNorm.p: Method has no argument
     @prop
     def p(): #@NoSelf
         """x
         @type: float"""
-        def fget(self): # pylint: disable-msg=W0612,C0111
+        def fget(self): # pylint: disable=W0612,C0111
             return self._p
-        def fset(self, value): # pylint: disable-msg=W0612,C0111
+        def fset(self, value): # pylint: disable=W0612,C0111
             self._checkParam(value)
             self._p = value
         return locals()
 
-    # pylint: disable-msg=E0211
+    # pylint: disable=E0211
     #ID:E0211 TParametricNorm.p_range: Method has no argument
     @prop
     def p_range(): #@NoSelf
         """range(s) of valid values for p"""
-        def fget(self): # pylint: disable-msg=W0612,C0111
+        def fget(self): # pylint: disable=W0612,C0111
             return self._range
         return locals()
 

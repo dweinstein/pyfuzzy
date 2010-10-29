@@ -21,9 +21,9 @@
     Used to build fuzzy rules.
 """
 
-__revision__ = "$Id: Operator.py,v 1.14 2010-03-28 18:42:22 rliebscher Exp $"
+__revision__ = "$Id: Operator.py,v 1.15 2010-10-29 19:24:41 rliebscher Exp $"
 
-class Operator(object): # pylint: disable-msg=R0903
+class Operator(object): # pylint: disable=R0903
     """Abstract base class for any kind of operator."""
 
     def __init__(self):

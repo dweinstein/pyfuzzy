@@ -18,13 +18,13 @@
 
 """Fuzzification which sets adjectives values according their set memberships for given value."""
 
-__revision__ = "$Id: Plain.py,v 1.6 2010-03-28 18:41:30 rliebscher Exp $"
+__revision__ = "$Id: Plain.py,v 1.7 2010-10-29 19:24:41 rliebscher Exp $"
 
 
 from fuzzy.fuzzify.Base import Base
 
 
-class Plain(Base): # pylint: disable-msg=R0903
+class Plain(Base): # pylint: disable=R0903
     """Just fuzzify the input value using the membership values of the given adjectives"""
 
     def __init__(self, *args, **keywords):

@@ -20,7 +20,7 @@
 is the shape of a polygon. For example: triangle,
 trapezoid, rectangle, or something similar."""
 
-__revision__ = "$Id: Polygon.py,v 1.24 2010-03-28 18:44:46 rliebscher Exp $"
+__revision__ = "$Id: Polygon.py,v 1.25 2010-10-29 19:24:41 rliebscher Exp $"
 
 
 from fuzzy.set.Set import Set
@@ -153,12 +153,12 @@ class Polygon(Set):
         """Reset polygon to zero."""
         del self.__points[:]
 
-    # pylint: disable-msg=E0211,W0212
+    # pylint: disable=E0211,W0212
     @prop
     def points(): #@NoSelf
         """points of the polygon.
         @type: list of 2-tuple (x,y)"""
-        def fget(self): # pylint: disable-msg=W0612,C0111
+        def fget(self): # pylint: disable=W0612,C0111
             import copy
             return copy.deepcopy(self.__points)
         return locals()

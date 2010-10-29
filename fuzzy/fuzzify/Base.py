@@ -18,10 +18,10 @@
 
 """base class for all fuzzification methods"""
 
-__revision__ = "$Id: Base.py,v 1.6 2010-03-28 18:41:30 rliebscher Exp $"
+__revision__ = "$Id: Base.py,v 1.7 2010-10-29 19:24:41 rliebscher Exp $"
 
 
-class Base(object): # pylint: disable-msg=R0903
+class Base(object): # pylint: disable=R0903
     """base class for all fuzzification methods"""
 
     def __init__(self, *args, **keywords):

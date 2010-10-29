@@ -16,11 +16,11 @@
 # along with this program; if not, see <http://www.gnu.org/licenses/>. 
 #
 """Complement after Zadeh"""
-__revision__ = "$Id: Zadeh.py,v 1.5 2010-02-17 19:45:00 rliebscher Exp $"
+__revision__ = "$Id: Zadeh.py,v 1.6 2010-10-29 19:24:41 rliebscher Exp $"
 
 from fuzzy.complement.Base import Base
 
-class Zadeh(Base): # pylint: disable-msg=R0903
+class Zadeh(Base): # pylint: disable=R0903
     """Complement after Zadeh"""
 
     def __init__(self, *args, **keywords):

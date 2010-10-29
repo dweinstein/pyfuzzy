@@ -17,7 +17,7 @@
 #
 """Plotting of variables, adjectives, ... using gnuplot"""
 
-__revision__ = "$Id: doc.py,v 1.14 2010-02-17 19:51:47 rliebscher Exp $"
+__revision__ = "$Id: doc.py,v 1.15 2010-10-29 19:24:41 rliebscher Exp $"
 
 import sys
 import Gnuplot
@@ -88,7 +88,7 @@ class Doc(object):
     def initGnuplot2D(self,filename="plot",xlabel=None,ylabel=None,title=None,xrange_=None,yrange=None,x_logscale=0,y_logscale=0):
         g = Gnuplot.Gnuplot(debug=0)
         self.setTerminal(g,filename)
-        # pylint: disable-msg=C0321
+        # pylint: disable=C0321
         if xlabel is not None: g.xlabel(xlabel)
         if ylabel is not None: g.ylabel(ylabel)
         if title is not None: g.title(title)
@@ -103,7 +103,7 @@ class Doc(object):
     def initGnuplot3D(self,filename="plot3D",xlabel=None,ylabel=None,zlabel=None,title=None,xrange_=None,yrange=None,zrange=None,x_logscale=0,y_logscale=0,z_logscale=0):
         g = Gnuplot.Gnuplot(debug=0)
         self.setTerminal(g,filename)
-        # pylint: disable-msg=C0321
+        # pylint: disable=C0321
         if xlabel is not None: g.xlabel(xlabel)
         if ylabel is not None: g.ylabel(ylabel)
         if zlabel is not None: g("set zlabel '%s'" % zlabel)

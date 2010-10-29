@@ -18,7 +18,7 @@
 
 """This set represents a non-fuzzy number."""
 
-__revision__ = "$Id: Singleton.py,v 1.17 2010-03-28 18:44:46 rliebscher Exp $"
+__revision__ = "$Id: Singleton.py,v 1.18 2010-10-29 19:24:41 rliebscher Exp $"
 
 
 from fuzzy.set.Polygon import Polygon
@@ -47,14 +47,14 @@ class Singleton(Polygon):
         self._x = float(x) # so it is defined and makes pychecker & Co. happy
         self.x = float(x) # update polygon (_x would be defined here in any case)
 
-    # pylint: disable-msg=E0202,E0211,W0212
+    # pylint: disable=E0202,E0211,W0212
     @prop
     def x(): #@NoSelf
         """x
         @type: float"""
-        def fget(self): # pylint: disable-msg=W0612,C0111
+        def fget(self): # pylint: disable=W0612,C0111
             return self._x
-        def fset(self, value): # pylint: disable-msg=W0612,C0111
+        def fset(self, value): # pylint: disable=W0612,C0111
             self._x = float(value)
             self._update()
         return locals()
