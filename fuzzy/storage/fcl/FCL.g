@@ -16,7 +16,7 @@
  You should have received a copy of the GNU Lesser General Public License along with
  this program; if not, see <http://www.gnu.org/licenses/>. 
 
- $Id: FCL.g,v 1.7 2009-10-20 19:15:33 rliebscher Exp $
+ $Id: FCL.g,v 1.8 2012-11-17 20:29:24 rliebscher Exp $
 */
 grammar FCL;
 
@@ -26,7 +26,7 @@ options {
 @lexer::header{
 #docstring
 __doc__ = """Lexer for reading FCL by the pyfuzzy package."""
-__revision__ = "\$Id: FCL.g,v 1.7 2009-10-20 19:15:33 rliebscher Exp $"
+__revision__ = "\$ Id: FCL.g,v 1.7 2009/10/20 19:15:33 rliebscher Exp $"
 
 # pylint: disable-msg=W0107,W0301,W0401,W0614,W0621,C0103,C0111,C0301,C0302,C0322,R0904,R0912,R0915
 #ID:W0107 : Unnecessary pass statement
@@ -48,7 +48,7 @@ __revision__ = "\$Id: FCL.g,v 1.7 2009-10-20 19:15:33 rliebscher Exp $"
 @header {
 #docstring
 __doc__ = """Parser for reading FCL by the pyfuzzy package."""
-__revision__ = "\$Id: FCL.g,v 1.7 2009-10-20 19:15:33 rliebscher Exp $"
+__revision__ = "\$Id: FCL.g,v 1.8 2012-11-17 20:29:24 rliebscher Exp $"
 
 import fuzzy.System
 import fuzzy.InputVariable
@@ -78,6 +78,14 @@ def getNorm(name, p=None):
         return c()
     else:
         return c(p)
+
+def getSet(name, params=[]):
+    """Get an instance of a fuzzy set with given name.
+    Normally looks into the fuzzy.set package for a suitable class.
+    """
+    m = __import__("fuzzy.set."+name, fromlist=[name])
+    c = m.__dict__[name]
+    return c(*params)
 
 def getDefuzzificationMethod(name):
     """Get an instance of a defuzzification method with given name.
@@ -270,6 +278,8 @@ membership_function returns [set]
     singleton {$set = $singleton.set;}
   |
     points {$set = $points.set;}
+  |
+    pyfuzzy_set {$set = $pyfuzzy_set.set;}
   ;
 
 singleton returns [set]
@@ -293,6 +303,24 @@ p = []
      {p.append((float($x.text), float($y.text)));}
    )*
    {$set = fuzzy.set.Polygon.Polygon(p);}
+   ;
+
+pyfuzzy_set returns [set]
+@init {
+p = []
+}
+  :
+   Identifier
+   '('
+   (
+   p1=numeric_literal {p.append(float($p1.text));}
+    (
+      ','
+      pn=numeric_literal {p.append(float($pn.text));}
+    )*
+   )?
+   ')'
+   {$set = getSet($Identifier.text,p);}
    ;
 
 // parse the defuzzification method, any existent class in fuzzy.defuzzify is accepted.

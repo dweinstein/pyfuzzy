@@ -1,4 +1,4 @@
-# $ANTLR 3.1.2 FCL.g 2009-10-19 23:13:32
+# $ANTLR 3.1.2 /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g 2012-10-19 23:25:12
 
 import sys
 from antlr3 import *
@@ -6,7 +6,7 @@ from antlr3.compat import set, frozenset
                         
 #docstring
 __doc__ = """Lexer for reading FCL by the pyfuzzy package."""
-__revision__ = "$Id: FCLLexer.py,v 1.6 2009-10-20 19:15:33 rliebscher Exp $"
+__revision__ = "$ Id: FCL.g,v 1.7 2009/10/20 19:15:33 rliebscher Exp $"
 
 # pylint: disable-msg=W0107,W0301,W0401,W0614,W0621,C0103,C0111,C0301,C0302,C0322,R0904,R0912,R0915
 #ID:W0107 : Unnecessary pass statement
@@ -92,7 +92,7 @@ T__39=39
 
 class FCLLexer(Lexer):
 
-    grammarFileName = "FCL.g"
+    grammarFileName = "/work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g"
     antlr_version = version_str_to_tuple("3.1.2")
     antlr_version_str = "3.1.2"
 
@@ -124,8 +124,8 @@ class FCLLexer(Lexer):
             _type = T__14
             _channel = DEFAULT_CHANNEL
 
-            # FCL.g:30:7: ( 'FUNCTION_BLOCK' )
-            # FCL.g:30:9: 'FUNCTION_BLOCK'
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:30:7: ( 'FUNCTION_BLOCK' )
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:30:9: 'FUNCTION_BLOCK'
             pass 
             self.match("FUNCTION_BLOCK")
 
@@ -149,8 +149,8 @@ class FCLLexer(Lexer):
             _type = T__15
             _channel = DEFAULT_CHANNEL
 
-            # FCL.g:31:7: ( 'END_FUNCTION_BLOCK' )
-            # FCL.g:31:9: 'END_FUNCTION_BLOCK'
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:31:7: ( 'END_FUNCTION_BLOCK' )
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:31:9: 'END_FUNCTION_BLOCK'
             pass 
             self.match("END_FUNCTION_BLOCK")
 
@@ -174,8 +174,8 @@ class FCLLexer(Lexer):
             _type = T__16
             _channel = DEFAULT_CHANNEL
 
-            # FCL.g:32:7: ( 'STRUCT' )
-            # FCL.g:32:9: 'STRUCT'
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:32:7: ( 'STRUCT' )
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:32:9: 'STRUCT'
             pass 
             self.match("STRUCT")
 
@@ -199,8 +199,8 @@ class FCLLexer(Lexer):
             _type = T__17
             _channel = DEFAULT_CHANNEL
 
-            # FCL.g:33:7: ( 'END_STRUCT' )
-            # FCL.g:33:9: 'END_STRUCT'
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:33:7: ( 'END_STRUCT' )
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:33:9: 'END_STRUCT'
             pass 
             self.match("END_STRUCT")
 
@@ -224,8 +224,8 @@ class FCLLexer(Lexer):
             _type = T__18
             _channel = DEFAULT_CHANNEL
 
-            # FCL.g:34:7: ( ':' )
-            # FCL.g:34:9: ':'
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:34:7: ( ':' )
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:34:9: ':'
             pass 
             self.match(58)
 
@@ -249,8 +249,8 @@ class FCLLexer(Lexer):
             _type = T__19
             _channel = DEFAULT_CHANNEL
 
-            # FCL.g:35:7: ( 'REAL' )
-            # FCL.g:35:9: 'REAL'
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:35:7: ( 'REAL' )
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:35:9: 'REAL'
             pass 
             self.match("REAL")
 
@@ -274,8 +274,8 @@ class FCLLexer(Lexer):
             _type = T__20
             _channel = DEFAULT_CHANNEL
 
-            # FCL.g:36:7: ( ';' )
-            # FCL.g:36:9: ';'
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:36:7: ( ';' )
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:36:9: ';'
             pass 
             self.match(59)
 
@@ -299,8 +299,8 @@ class FCLLexer(Lexer):
             _type = T__21
             _channel = DEFAULT_CHANNEL
 
-            # FCL.g:37:7: ( 'VAR_INPUT' )
-            # FCL.g:37:9: 'VAR_INPUT'
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:37:7: ( 'VAR_INPUT' )
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:37:9: 'VAR_INPUT'
             pass 
             self.match("VAR_INPUT")
 
@@ -324,8 +324,8 @@ class FCLLexer(Lexer):
             _type = T__22
             _channel = DEFAULT_CHANNEL
 
-            # FCL.g:38:7: ( 'END_VAR' )
-            # FCL.g:38:9: 'END_VAR'
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:38:7: ( 'END_VAR' )
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:38:9: 'END_VAR'
             pass 
             self.match("END_VAR")
 
@@ -349,8 +349,8 @@ class FCLLexer(Lexer):
             _type = T__23
             _channel = DEFAULT_CHANNEL
 
-            # FCL.g:39:7: ( 'VAR_OUTPUT' )
-            # FCL.g:39:9: 'VAR_OUTPUT'
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:39:7: ( 'VAR_OUTPUT' )
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:39:9: 'VAR_OUTPUT'
             pass 
             self.match("VAR_OUTPUT")
 
@@ -374,8 +374,8 @@ class FCLLexer(Lexer):
             _type = T__24
             _channel = DEFAULT_CHANNEL
 
-            # FCL.g:40:7: ( 'FUZZIFY' )
-            # FCL.g:40:9: 'FUZZIFY'
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:40:7: ( 'FUZZIFY' )
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:40:9: 'FUZZIFY'
             pass 
             self.match("FUZZIFY")
 
@@ -399,8 +399,8 @@ class FCLLexer(Lexer):
             _type = T__25
             _channel = DEFAULT_CHANNEL
 
-            # FCL.g:41:7: ( 'END_FUZZIFY' )
-            # FCL.g:41:9: 'END_FUZZIFY'
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:41:7: ( 'END_FUZZIFY' )
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:41:9: 'END_FUZZIFY'
             pass 
             self.match("END_FUZZIFY")
 
@@ -424,8 +424,8 @@ class FCLLexer(Lexer):
             _type = T__26
             _channel = DEFAULT_CHANNEL
 
-            # FCL.g:42:7: ( 'DEFUZZIFY' )
-            # FCL.g:42:9: 'DEFUZZIFY'
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:42:7: ( 'DEFUZZIFY' )
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:42:9: 'DEFUZZIFY'
             pass 
             self.match("DEFUZZIFY")
 
@@ -449,8 +449,8 @@ class FCLLexer(Lexer):
             _type = T__27
             _channel = DEFAULT_CHANNEL
 
-            # FCL.g:43:7: ( 'END_DEFUZZIFY' )
-            # FCL.g:43:9: 'END_DEFUZZIFY'
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:43:7: ( 'END_DEFUZZIFY' )
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:43:9: 'END_DEFUZZIFY'
             pass 
             self.match("END_DEFUZZIFY")
 
@@ -474,8 +474,8 @@ class FCLLexer(Lexer):
             _type = T__28
             _channel = DEFAULT_CHANNEL
 
-            # FCL.g:44:7: ( 'RULEBLOCK' )
-            # FCL.g:44:9: 'RULEBLOCK'
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:44:7: ( 'RULEBLOCK' )
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:44:9: 'RULEBLOCK'
             pass 
             self.match("RULEBLOCK")
 
@@ -499,8 +499,8 @@ class FCLLexer(Lexer):
             _type = T__29
             _channel = DEFAULT_CHANNEL
 
-            # FCL.g:45:7: ( 'END_RULEBLOCK' )
-            # FCL.g:45:9: 'END_RULEBLOCK'
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:45:7: ( 'END_RULEBLOCK' )
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:45:9: 'END_RULEBLOCK'
             pass 
             self.match("END_RULEBLOCK")
 
@@ -524,8 +524,8 @@ class FCLLexer(Lexer):
             _type = T__30
             _channel = DEFAULT_CHANNEL
 
-            # FCL.g:46:7: ( 'OPTION' )
-            # FCL.g:46:9: 'OPTION'
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:46:7: ( 'OPTION' )
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:46:9: 'OPTION'
             pass 
             self.match("OPTION")
 
@@ -549,8 +549,8 @@ class FCLLexer(Lexer):
             _type = T__31
             _channel = DEFAULT_CHANNEL
 
-            # FCL.g:47:7: ( 'END_OPTION' )
-            # FCL.g:47:9: 'END_OPTION'
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:47:7: ( 'END_OPTION' )
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:47:9: 'END_OPTION'
             pass 
             self.match("END_OPTION")
 
@@ -574,8 +574,8 @@ class FCLLexer(Lexer):
             _type = T__32
             _channel = DEFAULT_CHANNEL
 
-            # FCL.g:48:7: ( 'TERM' )
-            # FCL.g:48:9: 'TERM'
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:48:7: ( 'TERM' )
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:48:9: 'TERM'
             pass 
             self.match("TERM")
 
@@ -599,8 +599,8 @@ class FCLLexer(Lexer):
             _type = T__33
             _channel = DEFAULT_CHANNEL
 
-            # FCL.g:49:7: ( ':=' )
-            # FCL.g:49:9: ':='
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:49:7: ( ':=' )
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:49:9: ':='
             pass 
             self.match(":=")
 
@@ -624,8 +624,8 @@ class FCLLexer(Lexer):
             _type = T__34
             _channel = DEFAULT_CHANNEL
 
-            # FCL.g:50:7: ( '(' )
-            # FCL.g:50:9: '('
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:50:7: ( '(' )
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:50:9: '('
             pass 
             self.match(40)
 
@@ -649,8 +649,8 @@ class FCLLexer(Lexer):
             _type = T__35
             _channel = DEFAULT_CHANNEL
 
-            # FCL.g:51:7: ( ',' )
-            # FCL.g:51:9: ','
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:51:7: ( ',' )
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:51:9: ','
             pass 
             self.match(44)
 
@@ -674,8 +674,8 @@ class FCLLexer(Lexer):
             _type = T__36
             _channel = DEFAULT_CHANNEL
 
-            # FCL.g:52:7: ( ')' )
-            # FCL.g:52:9: ')'
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:52:7: ( ')' )
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:52:9: ')'
             pass 
             self.match(41)
 
@@ -699,8 +699,8 @@ class FCLLexer(Lexer):
             _type = T__37
             _channel = DEFAULT_CHANNEL
 
-            # FCL.g:53:7: ( 'METHOD' )
-            # FCL.g:53:9: 'METHOD'
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:53:7: ( 'METHOD' )
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:53:9: 'METHOD'
             pass 
             self.match("METHOD")
 
@@ -724,8 +724,8 @@ class FCLLexer(Lexer):
             _type = T__38
             _channel = DEFAULT_CHANNEL
 
-            # FCL.g:54:7: ( 'DEFAULT' )
-            # FCL.g:54:9: 'DEFAULT'
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:54:7: ( 'DEFAULT' )
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:54:9: 'DEFAULT'
             pass 
             self.match("DEFAULT")
 
@@ -749,8 +749,8 @@ class FCLLexer(Lexer):
             _type = T__39
             _channel = DEFAULT_CHANNEL
 
-            # FCL.g:55:7: ( 'NC' )
-            # FCL.g:55:9: 'NC'
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:55:7: ( 'NC' )
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:55:9: 'NC'
             pass 
             self.match("NC")
 
@@ -774,8 +774,8 @@ class FCLLexer(Lexer):
             _type = T__40
             _channel = DEFAULT_CHANNEL
 
-            # FCL.g:56:7: ( 'RANGE' )
-            # FCL.g:56:9: 'RANGE'
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:56:7: ( 'RANGE' )
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:56:9: 'RANGE'
             pass 
             self.match("RANGE")
 
@@ -799,8 +799,8 @@ class FCLLexer(Lexer):
             _type = T__41
             _channel = DEFAULT_CHANNEL
 
-            # FCL.g:57:7: ( '..' )
-            # FCL.g:57:9: '..'
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:57:7: ( '..' )
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:57:9: '..'
             pass 
             self.match("..")
 
@@ -824,8 +824,8 @@ class FCLLexer(Lexer):
             _type = T__42
             _channel = DEFAULT_CHANNEL
 
-            # FCL.g:58:7: ( '[' )
-            # FCL.g:58:9: '['
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:58:7: ( '[' )
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:58:9: '['
             pass 
             self.match(91)
 
@@ -849,8 +849,8 @@ class FCLLexer(Lexer):
             _type = T__43
             _channel = DEFAULT_CHANNEL
 
-            # FCL.g:59:7: ( ']' )
-            # FCL.g:59:9: ']'
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:59:7: ( ']' )
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:59:9: ']'
             pass 
             self.match(93)
 
@@ -874,8 +874,8 @@ class FCLLexer(Lexer):
             _type = T__44
             _channel = DEFAULT_CHANNEL
 
-            # FCL.g:60:7: ( 'MIN' )
-            # FCL.g:60:9: 'MIN'
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:60:7: ( 'MIN' )
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:60:9: 'MIN'
             pass 
             self.match("MIN")
 
@@ -899,8 +899,8 @@ class FCLLexer(Lexer):
             _type = T__45
             _channel = DEFAULT_CHANNEL
 
-            # FCL.g:61:7: ( 'PROD' )
-            # FCL.g:61:9: 'PROD'
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:61:7: ( 'PROD' )
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:61:9: 'PROD'
             pass 
             self.match("PROD")
 
@@ -924,8 +924,8 @@ class FCLLexer(Lexer):
             _type = T__46
             _channel = DEFAULT_CHANNEL
 
-            # FCL.g:62:7: ( 'BDIF' )
-            # FCL.g:62:9: 'BDIF'
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:62:7: ( 'BDIF' )
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:62:9: 'BDIF'
             pass 
             self.match("BDIF")
 
@@ -949,8 +949,8 @@ class FCLLexer(Lexer):
             _type = T__47
             _channel = DEFAULT_CHANNEL
 
-            # FCL.g:63:7: ( 'MAX' )
-            # FCL.g:63:9: 'MAX'
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:63:7: ( 'MAX' )
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:63:9: 'MAX'
             pass 
             self.match("MAX")
 
@@ -974,8 +974,8 @@ class FCLLexer(Lexer):
             _type = T__48
             _channel = DEFAULT_CHANNEL
 
-            # FCL.g:64:7: ( 'ASUM' )
-            # FCL.g:64:9: 'ASUM'
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:64:7: ( 'ASUM' )
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:64:9: 'ASUM'
             pass 
             self.match("ASUM")
 
@@ -999,8 +999,8 @@ class FCLLexer(Lexer):
             _type = T__49
             _channel = DEFAULT_CHANNEL
 
-            # FCL.g:65:7: ( 'BSUM' )
-            # FCL.g:65:9: 'BSUM'
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:65:7: ( 'BSUM' )
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:65:9: 'BSUM'
             pass 
             self.match("BSUM")
 
@@ -1024,8 +1024,8 @@ class FCLLexer(Lexer):
             _type = T__50
             _channel = DEFAULT_CHANNEL
 
-            # FCL.g:66:7: ( 'ACT' )
-            # FCL.g:66:9: 'ACT'
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:66:7: ( 'ACT' )
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:66:9: 'ACT'
             pass 
             self.match("ACT")
 
@@ -1049,8 +1049,8 @@ class FCLLexer(Lexer):
             _type = T__51
             _channel = DEFAULT_CHANNEL
 
-            # FCL.g:67:7: ( 'ACCU' )
-            # FCL.g:67:9: 'ACCU'
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:67:7: ( 'ACCU' )
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:67:9: 'ACCU'
             pass 
             self.match("ACCU")
 
@@ -1074,8 +1074,8 @@ class FCLLexer(Lexer):
             _type = T__52
             _channel = DEFAULT_CHANNEL
 
-            # FCL.g:68:7: ( 'NSUM' )
-            # FCL.g:68:9: 'NSUM'
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:68:7: ( 'NSUM' )
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:68:9: 'NSUM'
             pass 
             self.match("NSUM")
 
@@ -1099,8 +1099,8 @@ class FCLLexer(Lexer):
             _type = T__53
             _channel = DEFAULT_CHANNEL
 
-            # FCL.g:69:7: ( 'NOT' )
-            # FCL.g:69:9: 'NOT'
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:69:7: ( 'NOT' )
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:69:9: 'NOT'
             pass 
             self.match("NOT")
 
@@ -1124,8 +1124,8 @@ class FCLLexer(Lexer):
             _type = T__54
             _channel = DEFAULT_CHANNEL
 
-            # FCL.g:70:7: ( 'IS' )
-            # FCL.g:70:9: 'IS'
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:70:7: ( 'IS' )
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:70:9: 'IS'
             pass 
             self.match("IS")
 
@@ -1149,8 +1149,8 @@ class FCLLexer(Lexer):
             _type = T__55
             _channel = DEFAULT_CHANNEL
 
-            # FCL.g:71:7: ( '.' )
-            # FCL.g:71:9: '.'
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:71:7: ( '.' )
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:71:9: '.'
             pass 
             self.match(46)
 
@@ -1174,8 +1174,8 @@ class FCLLexer(Lexer):
             _type = T__56
             _channel = DEFAULT_CHANNEL
 
-            # FCL.g:72:7: ( 'RULE' )
-            # FCL.g:72:9: 'RULE'
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:72:7: ( 'RULE' )
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:72:9: 'RULE'
             pass 
             self.match("RULE")
 
@@ -1199,8 +1199,8 @@ class FCLLexer(Lexer):
             _type = T__57
             _channel = DEFAULT_CHANNEL
 
-            # FCL.g:73:7: ( 'IF' )
-            # FCL.g:73:9: 'IF'
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:73:7: ( 'IF' )
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:73:9: 'IF'
             pass 
             self.match("IF")
 
@@ -1224,8 +1224,8 @@ class FCLLexer(Lexer):
             _type = T__58
             _channel = DEFAULT_CHANNEL
 
-            # FCL.g:74:7: ( 'THEN' )
-            # FCL.g:74:9: 'THEN'
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:74:7: ( 'THEN' )
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:74:9: 'THEN'
             pass 
             self.match("THEN")
 
@@ -1249,8 +1249,8 @@ class FCLLexer(Lexer):
             _type = T__59
             _channel = DEFAULT_CHANNEL
 
-            # FCL.g:75:7: ( 'WITH' )
-            # FCL.g:75:9: 'WITH'
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:75:7: ( 'WITH' )
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:75:9: 'WITH'
             pass 
             self.match("WITH")
 
@@ -1274,11 +1274,11 @@ class FCLLexer(Lexer):
             _type = OR_
             _channel = DEFAULT_CHANNEL
 
-            # FCL.g:345:6: ( 'OR' ( DIGIT )* )
-            # FCL.g:345:8: 'OR' ( DIGIT )*
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:373:6: ( 'OR' ( DIGIT )* )
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:373:8: 'OR' ( DIGIT )*
             pass 
             self.match("OR")
-            # FCL.g:345:13: ( DIGIT )*
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:373:13: ( DIGIT )*
             while True: #loop1
                 alt1 = 2
                 LA1_0 = self.input.LA(1)
@@ -1288,7 +1288,7 @@ class FCLLexer(Lexer):
 
 
                 if alt1 == 1:
-                    # FCL.g:345:13: DIGIT
+                    # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:373:13: DIGIT
                     pass 
                     self.mDIGIT()
 
@@ -1318,11 +1318,11 @@ class FCLLexer(Lexer):
             _type = AND_
             _channel = DEFAULT_CHANNEL
 
-            # FCL.g:346:6: ( 'AND' ( DIGIT )* )
-            # FCL.g:346:8: 'AND' ( DIGIT )*
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:374:6: ( 'AND' ( DIGIT )* )
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:374:8: 'AND' ( DIGIT )*
             pass 
             self.match("AND")
-            # FCL.g:346:14: ( DIGIT )*
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:374:14: ( DIGIT )*
             while True: #loop2
                 alt2 = 2
                 LA2_0 = self.input.LA(1)
@@ -1332,7 +1332,7 @@ class FCLLexer(Lexer):
 
 
                 if alt2 == 1:
-                    # FCL.g:346:14: DIGIT
+                    # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:374:14: DIGIT
                     pass 
                     self.mDIGIT()
 
@@ -1362,11 +1362,11 @@ class FCLLexer(Lexer):
             _type = Identifier
             _channel = DEFAULT_CHANNEL
 
-            # FCL.g:482:12: ( LETTER ( LETTER | DIGIT )* )
-            # FCL.g:482:14: LETTER ( LETTER | DIGIT )*
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:510:12: ( LETTER ( LETTER | DIGIT )* )
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:510:14: LETTER ( LETTER | DIGIT )*
             pass 
             self.mLETTER()
-            # FCL.g:482:21: ( LETTER | DIGIT )*
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:510:21: ( LETTER | DIGIT )*
             while True: #loop3
                 alt3 = 2
                 LA3_0 = self.input.LA(1)
@@ -1376,7 +1376,7 @@ class FCLLexer(Lexer):
 
 
                 if alt3 == 1:
-                    # FCL.g:
+                    # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:
                     pass 
                     if (48 <= self.input.LA(1) <= 57) or (65 <= self.input.LA(1) <= 90) or self.input.LA(1) == 95 or (97 <= self.input.LA(1) <= 122):
                         self.input.consume()
@@ -1409,10 +1409,10 @@ class FCLLexer(Lexer):
     def mInteger_literal_wo_sign(self, ):
 
         try:
-            # FCL.g:485:3: ( ( DIGIT )+ )
-            # FCL.g:485:5: ( DIGIT )+
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:513:3: ( ( DIGIT )+ )
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:513:5: ( DIGIT )+
             pass 
-            # FCL.g:485:5: ( DIGIT )+
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:513:5: ( DIGIT )+
             cnt4 = 0
             while True: #loop4
                 alt4 = 2
@@ -1423,7 +1423,7 @@ class FCLLexer(Lexer):
 
 
                 if alt4 == 1:
-                    # FCL.g:485:5: DIGIT
+                    # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:513:5: DIGIT
                     pass 
                     self.mDIGIT()
 
@@ -1457,17 +1457,17 @@ class FCLLexer(Lexer):
             _type = Integer_literal
             _channel = DEFAULT_CHANNEL
 
-            # FCL.g:487:3: ( ( '+' | '-' )? Integer_literal_wo_sign )
-            # FCL.g:488:5: ( '+' | '-' )? Integer_literal_wo_sign
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:515:3: ( ( '+' | '-' )? Integer_literal_wo_sign )
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:516:5: ( '+' | '-' )? Integer_literal_wo_sign
             pass 
-            # FCL.g:488:5: ( '+' | '-' )?
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:516:5: ( '+' | '-' )?
             alt5 = 2
             LA5_0 = self.input.LA(1)
 
             if (LA5_0 == 43 or LA5_0 == 45) :
                 alt5 = 1
             if alt5 == 1:
-                # FCL.g:
+                # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:
                 pass 
                 if self.input.LA(1) == 43 or self.input.LA(1) == 45:
                     self.input.consume()
@@ -1498,8 +1498,8 @@ class FCLLexer(Lexer):
     def mLETTER(self, ):
 
         try:
-            # FCL.g:490:18: ( 'A' .. 'Z' | 'a' .. 'z' | '_' )
-            # FCL.g:
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:518:18: ( 'A' .. 'Z' | 'a' .. 'z' | '_' )
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:
             pass 
             if (65 <= self.input.LA(1) <= 90) or self.input.LA(1) == 95 or (97 <= self.input.LA(1) <= 122):
                 self.input.consume()
@@ -1524,8 +1524,8 @@ class FCLLexer(Lexer):
     def mDIGIT(self, ):
 
         try:
-            # FCL.g:491:17: ( '0' .. '9' )
-            # FCL.g:491:19: '0' .. '9'
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:519:17: ( '0' .. '9' )
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:519:19: '0' .. '9'
             pass 
             self.matchRange(48, 57)
 
@@ -1547,20 +1547,20 @@ class FCLLexer(Lexer):
             _type = Real_literal
             _channel = DEFAULT_CHANNEL
 
-            # FCL.g:494:3: ( Integer_literal '.' Integer_literal_wo_sign ( ( 'e' | 'E' ) Integer_literal )? )
-            # FCL.g:494:6: Integer_literal '.' Integer_literal_wo_sign ( ( 'e' | 'E' ) Integer_literal )?
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:522:3: ( Integer_literal '.' Integer_literal_wo_sign ( ( 'e' | 'E' ) Integer_literal )? )
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:522:6: Integer_literal '.' Integer_literal_wo_sign ( ( 'e' | 'E' ) Integer_literal )?
             pass 
             self.mInteger_literal()
             self.match(46)
             self.mInteger_literal_wo_sign()
-            # FCL.g:494:50: ( ( 'e' | 'E' ) Integer_literal )?
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:522:50: ( ( 'e' | 'E' ) Integer_literal )?
             alt6 = 2
             LA6_0 = self.input.LA(1)
 
             if (LA6_0 == 69 or LA6_0 == 101) :
                 alt6 = 1
             if alt6 == 1:
-                # FCL.g:494:51: ( 'e' | 'E' ) Integer_literal
+                # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:522:51: ( 'e' | 'E' ) Integer_literal
                 pass 
                 if self.input.LA(1) == 69 or self.input.LA(1) == 101:
                     self.input.consume()
@@ -1594,8 +1594,8 @@ class FCLLexer(Lexer):
             _type = WS
             _channel = DEFAULT_CHANNEL
 
-            # FCL.g:496:5: ( ( ' ' | '\\r' | '\\t' | '\\u000C' | '\\n' ) )
-            # FCL.g:496:8: ( ' ' | '\\r' | '\\t' | '\\u000C' | '\\n' )
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:524:5: ( ( ' ' | '\\r' | '\\t' | '\\u000C' | '\\n' ) )
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:524:8: ( ' ' | '\\r' | '\\t' | '\\u000C' | '\\n' )
             pass 
             if (9 <= self.input.LA(1) <= 10) or (12 <= self.input.LA(1) <= 13) or self.input.LA(1) == 32:
                 self.input.consume()
@@ -1628,11 +1628,11 @@ class FCLLexer(Lexer):
             _type = COMMENT
             _channel = DEFAULT_CHANNEL
 
-            # FCL.g:500:5: ( '(*' ( options {greedy=false; } : . )* '*)' )
-            # FCL.g:500:9: '(*' ( options {greedy=false; } : . )* '*)'
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:528:5: ( '(*' ( options {greedy=false; } : . )* '*)' )
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:528:9: '(*' ( options {greedy=false; } : . )* '*)'
             pass 
             self.match("(*")
-            # FCL.g:500:14: ( options {greedy=false; } : . )*
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:528:14: ( options {greedy=false; } : . )*
             while True: #loop7
                 alt7 = 2
                 LA7_0 = self.input.LA(1)
@@ -1651,7 +1651,7 @@ class FCLLexer(Lexer):
 
 
                 if alt7 == 1:
-                    # FCL.g:500:42: .
+                    # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:528:42: .
                     pass 
                     self.matchAny()
 
@@ -1679,323 +1679,323 @@ class FCLLexer(Lexer):
 
 
     def mTokens(self):
-        # FCL.g:1:8: ( T__14 | T__15 | T__16 | T__17 | T__18 | T__19 | T__20 | T__21 | T__22 | T__23 | T__24 | T__25 | T__26 | T__27 | T__28 | T__29 | T__30 | T__31 | T__32 | T__33 | T__34 | T__35 | T__36 | T__37 | T__38 | T__39 | T__40 | T__41 | T__42 | T__43 | T__44 | T__45 | T__46 | T__47 | T__48 | T__49 | T__50 | T__51 | T__52 | T__53 | T__54 | T__55 | T__56 | T__57 | T__58 | T__59 | OR_ | AND_ | Identifier | Integer_literal | Real_literal | WS | COMMENT )
+        # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:1:8: ( T__14 | T__15 | T__16 | T__17 | T__18 | T__19 | T__20 | T__21 | T__22 | T__23 | T__24 | T__25 | T__26 | T__27 | T__28 | T__29 | T__30 | T__31 | T__32 | T__33 | T__34 | T__35 | T__36 | T__37 | T__38 | T__39 | T__40 | T__41 | T__42 | T__43 | T__44 | T__45 | T__46 | T__47 | T__48 | T__49 | T__50 | T__51 | T__52 | T__53 | T__54 | T__55 | T__56 | T__57 | T__58 | T__59 | OR_ | AND_ | Identifier | Integer_literal | Real_literal | WS | COMMENT )
         alt8 = 53
         alt8 = self.dfa8.predict(self.input)
         if alt8 == 1:
-            # FCL.g:1:10: T__14
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:1:10: T__14
             pass 
             self.mT__14()
 
 
         elif alt8 == 2:
-            # FCL.g:1:16: T__15
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:1:16: T__15
             pass 
             self.mT__15()
 
 
         elif alt8 == 3:
-            # FCL.g:1:22: T__16
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:1:22: T__16
             pass 
             self.mT__16()
 
 
         elif alt8 == 4:
-            # FCL.g:1:28: T__17
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:1:28: T__17
             pass 
             self.mT__17()
 
 
         elif alt8 == 5:
-            # FCL.g:1:34: T__18
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:1:34: T__18
             pass 
             self.mT__18()
 
 
         elif alt8 == 6:
-            # FCL.g:1:40: T__19
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:1:40: T__19
             pass 
             self.mT__19()
 
 
         elif alt8 == 7:
-            # FCL.g:1:46: T__20
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:1:46: T__20
             pass 
             self.mT__20()
 
 
         elif alt8 == 8:
-            # FCL.g:1:52: T__21
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:1:52: T__21
             pass 
             self.mT__21()
 
 
         elif alt8 == 9:
-            # FCL.g:1:58: T__22
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:1:58: T__22
             pass 
             self.mT__22()
 
 
         elif alt8 == 10:
-            # FCL.g:1:64: T__23
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:1:64: T__23
             pass 
             self.mT__23()
 
 
         elif alt8 == 11:
-            # FCL.g:1:70: T__24
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:1:70: T__24
             pass 
             self.mT__24()
 
 
         elif alt8 == 12:
-            # FCL.g:1:76: T__25
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:1:76: T__25
             pass 
             self.mT__25()
 
 
         elif alt8 == 13:
-            # FCL.g:1:82: T__26
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:1:82: T__26
             pass 
             self.mT__26()
 
 
         elif alt8 == 14:
-            # FCL.g:1:88: T__27
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:1:88: T__27
             pass 
             self.mT__27()
 
 
         elif alt8 == 15:
-            # FCL.g:1:94: T__28
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:1:94: T__28
             pass 
             self.mT__28()
 
 
         elif alt8 == 16:
-            # FCL.g:1:100: T__29
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:1:100: T__29
             pass 
             self.mT__29()
 
 
         elif alt8 == 17:
-            # FCL.g:1:106: T__30
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:1:106: T__30
             pass 
             self.mT__30()
 
 
         elif alt8 == 18:
-            # FCL.g:1:112: T__31
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:1:112: T__31
             pass 
             self.mT__31()
 
 
         elif alt8 == 19:
-            # FCL.g:1:118: T__32
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:1:118: T__32
             pass 
             self.mT__32()
 
 
         elif alt8 == 20:
-            # FCL.g:1:124: T__33
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:1:124: T__33
             pass 
             self.mT__33()
 
 
         elif alt8 == 21:
-            # FCL.g:1:130: T__34
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:1:130: T__34
             pass 
             self.mT__34()
 
 
         elif alt8 == 22:
-            # FCL.g:1:136: T__35
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:1:136: T__35
             pass 
             self.mT__35()
 
 
         elif alt8 == 23:
-            # FCL.g:1:142: T__36
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:1:142: T__36
             pass 
             self.mT__36()
 
 
         elif alt8 == 24:
-            # FCL.g:1:148: T__37
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:1:148: T__37
             pass 
             self.mT__37()
 
 
         elif alt8 == 25:
-            # FCL.g:1:154: T__38
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:1:154: T__38
             pass 
             self.mT__38()
 
 
         elif alt8 == 26:
-            # FCL.g:1:160: T__39
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:1:160: T__39
             pass 
             self.mT__39()
 
 
         elif alt8 == 27:
-            # FCL.g:1:166: T__40
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:1:166: T__40
             pass 
             self.mT__40()
 
 
         elif alt8 == 28:
-            # FCL.g:1:172: T__41
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:1:172: T__41
             pass 
             self.mT__41()
 
 
         elif alt8 == 29:
-            # FCL.g:1:178: T__42
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:1:178: T__42
             pass 
             self.mT__42()
 
 
         elif alt8 == 30:
-            # FCL.g:1:184: T__43
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:1:184: T__43
             pass 
             self.mT__43()
 
 
         elif alt8 == 31:
-            # FCL.g:1:190: T__44
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:1:190: T__44
             pass 
             self.mT__44()
 
 
         elif alt8 == 32:
-            # FCL.g:1:196: T__45
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:1:196: T__45
             pass 
             self.mT__45()
 
 
         elif alt8 == 33:
-            # FCL.g:1:202: T__46
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:1:202: T__46
             pass 
             self.mT__46()
 
 
         elif alt8 == 34:
-            # FCL.g:1:208: T__47
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:1:208: T__47
             pass 
             self.mT__47()
 
 
         elif alt8 == 35:
-            # FCL.g:1:214: T__48
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:1:214: T__48
             pass 
             self.mT__48()
 
 
         elif alt8 == 36:
-            # FCL.g:1:220: T__49
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:1:220: T__49
             pass 
             self.mT__49()
 
 
         elif alt8 == 37:
-            # FCL.g:1:226: T__50
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:1:226: T__50
             pass 
             self.mT__50()
 
 
         elif alt8 == 38:
-            # FCL.g:1:232: T__51
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:1:232: T__51
             pass 
             self.mT__51()
 
 
         elif alt8 == 39:
-            # FCL.g:1:238: T__52
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:1:238: T__52
             pass 
             self.mT__52()
 
 
         elif alt8 == 40:
-            # FCL.g:1:244: T__53
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:1:244: T__53
             pass 
             self.mT__53()
 
 
         elif alt8 == 41:
-            # FCL.g:1:250: T__54
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:1:250: T__54
             pass 
             self.mT__54()
 
 
         elif alt8 == 42:
-            # FCL.g:1:256: T__55
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:1:256: T__55
             pass 
             self.mT__55()
 
 
         elif alt8 == 43:
-            # FCL.g:1:262: T__56
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:1:262: T__56
             pass 
             self.mT__56()
 
 
         elif alt8 == 44:
-            # FCL.g:1:268: T__57
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:1:268: T__57
             pass 
             self.mT__57()
 
 
         elif alt8 == 45:
-            # FCL.g:1:274: T__58
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:1:274: T__58
             pass 
             self.mT__58()
 
 
         elif alt8 == 46:
-            # FCL.g:1:280: T__59
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:1:280: T__59
             pass 
             self.mT__59()
 
 
         elif alt8 == 47:
-            # FCL.g:1:286: OR_
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:1:286: OR_
             pass 
             self.mOR_()
 
 
         elif alt8 == 48:
-            # FCL.g:1:290: AND_
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:1:290: AND_
             pass 
             self.mAND_()
 
 
         elif alt8 == 49:
-            # FCL.g:1:295: Identifier
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:1:295: Identifier
             pass 
             self.mIdentifier()
 
 
         elif alt8 == 50:
-            # FCL.g:1:306: Integer_literal
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:1:306: Integer_literal
             pass 
             self.mInteger_literal()
 
 
         elif alt8 == 51:
-            # FCL.g:1:322: Real_literal
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:1:322: Real_literal
             pass 
             self.mReal_literal()
 
 
         elif alt8 == 52:
-            # FCL.g:1:335: WS
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:1:335: WS
             pass 
             self.mWS()
 
 
         elif alt8 == 53:
-            # FCL.g:1:338: COMMENT
+            # /work/projects/pyfuzzy/pyfuzzy/fuzzy/storage/fcl/FCL.g:1:338: COMMENT
             pass 
             self.mCOMMENT()
 
