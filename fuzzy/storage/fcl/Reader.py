@@ -17,11 +17,21 @@
 #
 """Load a fuzzy system from FCL file, stream or string."""
 
-__revision__ = "$Id: Reader.py,v 1.5 2010-02-17 19:34:18 rliebscher Exp $"
+__revision__ = "$Id: Reader.py,v 1.6 2013-01-09 20:10:19 rliebscher Exp $"
+
+# antlr3 uses sys.maxint which is removed in python3
+import sys
+try:
+    sys.maxint
+except:
+    sys.maxint = sys.maxsize
 
 import antlr3
 
-from fuzzy.storage.fcl.FCLLexer import FCLLexer
+try:
+    from fuzzy.storage.fcl.FCLLexer import FCLLexer
+except:
+    from fuzzy.storage.fcl.FCLLexer3 import FCLLexer
 from fuzzy.storage.fcl.FCLParser import FCLParser
 
 class Reader(object):

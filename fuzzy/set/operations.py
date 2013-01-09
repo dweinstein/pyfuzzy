@@ -11,9 +11,9 @@
 # ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
 # FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
 # details.
-# 
+#
 # You should have received a copy of the GNU Lesser General Public License
-# along with this program; if not, see <http://www.gnu.org/licenses/>. 
+# along with this program; if not, see <http://www.gnu.org/licenses/>.
 #
 """
 Helper functions for calculation with fuzzy sets.
@@ -52,20 +52,20 @@ Examples can be found here U{http://pyfuzzy.sourceforge.net/demo/merge/}
   and act_value is the result of a rule calculation.
 """
 
-__revision__ = "$Id: operations.py,v 1.12 2010-02-17 19:45:00 rliebscher Exp $"
+__revision__ = "$Id: operations.py,v 1.13 2013-01-09 20:10:19 rliebscher Exp $"
 
 from fuzzy.Exception import FuzzyException
 
 # helper functions
 def _find_root(f, x1, x2, f1=None, f2=None, epsilon=None):
     """Find root of function f between x1,x2 by using the regula falsi method
-       with the pegasus modification. 
-       See also U{http://de.wikipedia.org/wiki/Regula_Falsi}. (The english 
-       version lacks the description of pegasus modification.) 
+       with the pegasus modification.
+       See also U{http://de.wikipedia.org/wiki/Regula_Falsi}. (The english
+       version lacks the description of pegasus modification.)
        The algorithm stops if the error estimation is smaller than epsilon
-       or there is an ZeroDivisionError, which means both values f1 and f2 are 
+       or there is an ZeroDivisionError, which means both values f1 and f2 are
        identical (should be 0 then).
-           
+       
        @param f: function for which to find M{f(x)=0}
        @type f: M{f(x)}
        @param x1: left border of range
@@ -92,21 +92,23 @@ def _find_root(f, x1, x2, f1=None, f2=None, epsilon=None):
     epsx = epsz = epsilon
     z = (x1+x2)/2.
     try:
-        for i in xrange(1000):
+        i = 0
+        while i < 1000:
+            i += 1
             z = x1 - f1 * (x2 - x1) / (f2 - f1) # approximation for root
             fz = f(z)
-        
+
             #print x1,z,x2,f1,fz,f2
             # smaller than epsilon: return z as approximation
             if abs(x2 - x1) <= epsx or abs(fz) <= epsz:
                 return z
-        
-            # root in [f(xz), f(x2)]?: 
+
+            # root in [f(xz), f(x2)]?:
             if fz * f2 < 0.:
-                # check [z, x2], but exchange borders 
+                # check [z, x2], but exchange borders
                 x1,x2,f1,f2 = x2,z,f2,fz
             else:
-                # check [x1, z], and modify the value f1, 
+                # check [x1, z], and modify the value f1,
                 # so next steps x1 will move
                 x1,x2,f1,f2 = x1,z,f1*f2/(f2+fz),fz
         raise FuzzyException("Too much iterations: %d" % i)
@@ -116,7 +118,7 @@ def _find_root(f, x1, x2, f1=None, f2=None, epsilon=None):
 
 def _find_root_linear(x1,x2,f1,f2):
     """Find root x1,x2 by using interpolation.
-           
+       
        @param x1: left border of range
        @type x1: float
        @param x2: right border of range
@@ -163,7 +165,7 @@ def check(x,y1,y2):
         return [(x,y2_,y1_) for x,y1_,y2_ in check(x,y2,y1)]
     else:
         if len(y1) == len(y2):
-            # intersection 
+            # intersection
             # for all x,y1,y2
             return [(x,y1_,y2_) for y1_,y2_ in zip(y1,y2)]
         elif len(y1) < len(y2):
@@ -173,8 +175,8 @@ def check(x,y1,y2):
             return [(x,y1[0],y2[0]),(x,y1[1],y2[1]),(x,y1[1],y2[2])]
         else:
             return [(x,y2,y1) for x,y1,y2 in check(x,y2_,y1_)]
-        
-    
+
+
 def _merge_generator1(set1, set2):
     """Returns a new fuzzy set which is the merger of set1 and set2,
     where the membership of the result set is equal to C{NORM(set1(x),set2(x))}.
@@ -186,13 +188,13 @@ def _merge_generator1(set1, set2):
     @return: resulting fuzzy set
     @rtype: L{fuzzy.set.Polygon.Polygon}
        """
-      
+
     g1 = set1.getValuesXY()
     g2 = set2.getValuesXY()
 
-    def next(g,x,y):
+    def next_(g,x,y):
         try:
-            x,y = g.next()
+            x,y = next(g)
             return x,y,False
         except StopIteration:
             return x,y,True
@@ -201,11 +203,11 @@ def _merge_generator1(set1, set2):
     UPDATE_2 = 2
     UPDATE_BOTH = 3
 
-    x1,y1,end1 = next(g1,None,None) 
-    x2,y2,end2 = next(g2,None,None)
+    x1,y1,end1 = next_(g1,None,None)
+    x2,y2,end2 = next_(g2,None,None)
     while not (end1 and end2):
         if end1:
-            update = UPDATE_2 
+            update = UPDATE_2
         elif end2:
             update = UPDATE_1
         elif x1 < x2:
@@ -214,32 +216,32 @@ def _merge_generator1(set1, set2):
             update = UPDATE_2
         else:
             update = UPDATE_BOTH
-          
+
         if update == UPDATE_1:
             x = x1
-            y1_ = y1 
+            y1_ = y1
             y2_ = set2(x)
         elif update == UPDATE_2:
-            x = x2 
-            y1_ = set1(x) 
+            x = x2
+            y1_ = set1(x)
             y2_ = y2
         else:
             x = x1 # x1 == x2 !
-            y1_ = y1 
+            y1_ = y1
             y2_ = y2
 
         #check
         for _,_y1,_y2 in check(x,y1_,y2_):
             # add this point
             yield (x, _y1, _y2)
-    
+
         if update == UPDATE_1:
-            x1,y1,end1 = next(g1,x1,y1)
-        elif update == UPDATE_2: 
-            x2,y2,end2 = next(g2,x2,y2)
+            x1,y1,end1 = next_(g1,x1,y1)
+        elif update == UPDATE_2:
+            x2,y2,end2 = next_(g2,x2,y2)
         else:
-            x1,y1,end1 = next(g1,x1,y1)
-            x2,y2,end2 = next(g2,x2,y2)
+            x1,y1,end1 = next_(g1,x1,y1)
+            x2,y2,end2 = next_(g2,x2,y2)
 
 
 def _merge_generator(NORM, set1, set2):
@@ -256,12 +258,12 @@ def _merge_generator(NORM, set1, set2):
     @return: resulting fuzzy set
     @rtype: L{fuzzy.set.Polygon.Polygon}
        """
-    
+
     from fuzzy.set.Polygon import Polygon
     use_find_root = not (isinstance(set1, Polygon) and isinstance(set2, Polygon))
 
     g = _merge_generator1(set1,set2)
-    x,y1,y2 = g.next()
+    x,y1,y2 = next(g)
     yield (x, NORM(y1, y2))
     prev_x, prev_y1, prev_y2 = x, y1, y2
     for x,y1,y2 in g:
@@ -292,7 +294,7 @@ def merge(NORM, set1, set2, segment_size=None):
     See also the following examples:
       - U{http://pyfuzzy.sourceforge.net/demo/merge/AlgebraicProduct_d_d.png} - The algebraic product is M{x*y}, so using it on the same set, it calculates the square of it.
       - U{http://pyfuzzy.sourceforge.net/demo/merge/AlgebraicSum_d_d.png} - The algebraic sum is M{x+y-x*y}.
-       
+    
     @param NORM: fuzzy norm to calculate both sets values. For example Min(), Max(), ...
         Also possible as two params function, eg. C{lambda a,b: (a+b)/2.}.
     @type NORM: L{fuzzy.norm.Norm.Norm}
@@ -336,7 +338,7 @@ def _norm_generator(NORM, set, value):
     @param value: value
     @type value: float
     """
-    
+
     from fuzzy.set.Polygon import Polygon
     use_find_root = not isinstance(set, Polygon)
 

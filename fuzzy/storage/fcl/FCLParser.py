@@ -6,7 +6,7 @@ from antlr3.compat import set, frozenset
          
 #docstring
 __doc__ = """Parser for reading FCL by the pyfuzzy package."""
-__revision__ = "$Id: FCLParser.py,v 1.8 2012-11-17 20:29:24 rliebscher Exp $"
+__revision__ = "$Id: FCLParser.py,v 1.9 2013-01-09 20:10:19 rliebscher Exp $"
 
 import fuzzy.System
 import fuzzy.InputVariable
@@ -238,7 +238,8 @@ class FCLParser(Parser):
 
 
 
-            except RecognitionException, re:
+            except RecognitionException:
+                re = sys.exc_info()[1]
                 self.reportError(re)
                 self.recover(self.input, re)
         finally:
@@ -324,7 +325,8 @@ class FCLParser(Parser):
 
 
 
-            except RecognitionException, re:
+            except RecognitionException:
+                re = sys.exc_info()[1]
                 self.reportError(re)
                 self.recover(self.input, re)
         finally:
@@ -386,7 +388,8 @@ class FCLParser(Parser):
 
 
 
-            except RecognitionException, re:
+            except RecognitionException:
+                re = sys.exc_info()[1]
                 self.reportError(re)
                 self.recover(self.input, re)
         finally:
@@ -420,7 +423,8 @@ class FCLParser(Parser):
 
 
 
-            except RecognitionException, re:
+            except RecognitionException:
+                re = sys.exc_info()[1]
                 self.reportError(re)
                 self.recover(self.input, re)
         finally:
@@ -470,7 +474,8 @@ class FCLParser(Parser):
 
 
 
-            except RecognitionException, re:
+            except RecognitionException:
+                re = sys.exc_info()[1]
                 self.reportError(re)
                 self.recover(self.input, re)
         finally:
@@ -526,7 +531,8 @@ class FCLParser(Parser):
 
 
 
-            except RecognitionException, re:
+            except RecognitionException:
+                re = sys.exc_info()[1]
                 self.reportError(re)
                 self.recover(self.input, re)
         finally:
@@ -582,7 +588,8 @@ class FCLParser(Parser):
 
 
 
-            except RecognitionException, re:
+            except RecognitionException:
+                re = sys.exc_info()[1]
                 self.reportError(re)
                 self.recover(self.input, re)
         finally:
@@ -642,7 +649,8 @@ class FCLParser(Parser):
 
 
 
-            except RecognitionException, re:
+            except RecognitionException:
+                re = sys.exc_info()[1]
                 self.reportError(re)
                 self.recover(self.input, re)
         finally:
@@ -696,7 +704,8 @@ class FCLParser(Parser):
 
 
 
-            except RecognitionException, re:
+            except RecognitionException:
+                re = sys.exc_info()[1]
                 self.reportError(re)
                 self.recover(self.input, re)
         finally:
@@ -809,7 +818,8 @@ class FCLParser(Parser):
 
 
 
-            except RecognitionException, re:
+            except RecognitionException:
+                re = sys.exc_info()[1]
                 self.reportError(re)
                 self.recover(self.input, re)
         finally:
@@ -865,7 +875,8 @@ class FCLParser(Parser):
 
 
 
-            except RecognitionException, re:
+            except RecognitionException:
+                re = sys.exc_info()[1]
                 self.reportError(re)
                 self.recover(self.input, re)
         finally:
@@ -961,7 +972,8 @@ class FCLParser(Parser):
 
 
 
-            except RecognitionException, re:
+            except RecognitionException:
+                re = sys.exc_info()[1]
                 self.reportError(re)
                 self.recover(self.input, re)
         finally:
@@ -1055,7 +1067,8 @@ class FCLParser(Parser):
 
 
 
-            except RecognitionException, re:
+            except RecognitionException:
+                re = sys.exc_info()[1]
                 self.reportError(re)
                 self.recover(self.input, re)
         finally:
@@ -1082,7 +1095,8 @@ class FCLParser(Parser):
 
 
 
-            except RecognitionException, re:
+            except RecognitionException:
+                re = sys.exc_info()[1]
                 self.reportError(re)
                 self.recover(self.input, re)
         finally:
@@ -1128,7 +1142,8 @@ class FCLParser(Parser):
 
 
 
-            except RecognitionException, re:
+            except RecognitionException:
+                re = sys.exc_info()[1]
                 self.reportError(re)
                 self.recover(self.input, re)
         finally:
@@ -1216,7 +1231,8 @@ class FCLParser(Parser):
 
 
 
-            except RecognitionException, re:
+            except RecognitionException:
+                re = sys.exc_info()[1]
                 self.reportError(re)
                 self.recover(self.input, re)
         finally:
@@ -1274,7 +1290,8 @@ class FCLParser(Parser):
 
 
 
-            except RecognitionException, re:
+            except RecognitionException:
+                re = sys.exc_info()[1]
                 self.reportError(re)
                 self.recover(self.input, re)
         finally:
@@ -1372,7 +1389,8 @@ class FCLParser(Parser):
 
 
 
-            except RecognitionException, re:
+            except RecognitionException:
+                re = sys.exc_info()[1]
                 self.reportError(re)
                 self.recover(self.input, re)
         finally:
@@ -1459,7 +1477,8 @@ class FCLParser(Parser):
 
 
 
-            except RecognitionException, re:
+            except RecognitionException:
+                re = sys.exc_info()[1]
                 self.reportError(re)
                 self.recover(self.input, re)
         finally:
@@ -1493,7 +1512,8 @@ class FCLParser(Parser):
 
 
 
-            except RecognitionException, re:
+            except RecognitionException:
+                re = sys.exc_info()[1]
                 self.reportError(re)
                 self.recover(self.input, re)
         finally:
@@ -1559,7 +1579,8 @@ class FCLParser(Parser):
 
 
 
-            except RecognitionException, re:
+            except RecognitionException:
+                re = sys.exc_info()[1]
                 self.reportError(re)
                 self.recover(self.input, re)
         finally:
@@ -1598,7 +1619,8 @@ class FCLParser(Parser):
 
 
 
-            except RecognitionException, re:
+            except RecognitionException:
+                re = sys.exc_info()[1]
                 self.reportError(re)
                 self.recover(self.input, re)
         finally:
@@ -1657,7 +1679,8 @@ class FCLParser(Parser):
 
 
 
-            except RecognitionException, re:
+            except RecognitionException:
+                re = sys.exc_info()[1]
                 self.reportError(re)
                 self.recover(self.input, re)
         finally:
@@ -1760,7 +1783,8 @@ class FCLParser(Parser):
 
 
 
-            except RecognitionException, re:
+            except RecognitionException:
+                re = sys.exc_info()[1]
                 self.reportError(re)
                 self.recover(self.input, re)
         finally:
@@ -1863,7 +1887,8 @@ class FCLParser(Parser):
 
 
 
-            except RecognitionException, re:
+            except RecognitionException:
+                re = sys.exc_info()[1]
                 self.reportError(re)
                 self.recover(self.input, re)
         finally:
@@ -1950,7 +1975,8 @@ class FCLParser(Parser):
 
 
 
-            except RecognitionException, re:
+            except RecognitionException:
+                re = sys.exc_info()[1]
                 self.reportError(re)
                 self.recover(self.input, re)
         finally:
@@ -1987,7 +2013,8 @@ class FCLParser(Parser):
 
 
 
-            except RecognitionException, re:
+            except RecognitionException:
+                re = sys.exc_info()[1]
                 self.reportError(re)
                 self.recover(self.input, re)
         finally:
@@ -2024,7 +2051,8 @@ class FCLParser(Parser):
 
 
 
-            except RecognitionException, re:
+            except RecognitionException:
+                re = sys.exc_info()[1]
                 self.reportError(re)
                 self.recover(self.input, re)
         finally:
@@ -2124,7 +2152,8 @@ class FCLParser(Parser):
 
 
 
-            except RecognitionException, re:
+            except RecognitionException:
+                re = sys.exc_info()[1]
                 self.reportError(re)
                 self.recover(self.input, re)
         finally:
@@ -2202,7 +2231,8 @@ class FCLParser(Parser):
 
 
 
-            except RecognitionException, re:
+            except RecognitionException:
+                re = sys.exc_info()[1]
                 self.reportError(re)
                 self.recover(self.input, re)
         finally:
@@ -2378,7 +2408,8 @@ class FCLParser(Parser):
 
 
 
-            except RecognitionException, re:
+            except RecognitionException:
+                re = sys.exc_info()[1]
                 self.reportError(re)
                 self.recover(self.input, re)
         finally:
@@ -2461,7 +2492,8 @@ class FCLParser(Parser):
 
 
 
-            except RecognitionException, re:
+            except RecognitionException:
+                re = sys.exc_info()[1]
                 self.reportError(re)
                 self.recover(self.input, re)
         finally:
@@ -2538,7 +2570,8 @@ class FCLParser(Parser):
 
 
 
-            except RecognitionException, re:
+            except RecognitionException:
+                re = sys.exc_info()[1]
                 self.reportError(re)
                 self.recover(self.input, re)
         finally:
@@ -2594,7 +2627,8 @@ class FCLParser(Parser):
 
 
 
-            except RecognitionException, re:
+            except RecognitionException:
+                re = sys.exc_info()[1]
                 self.reportError(re)
                 self.recover(self.input, re)
         finally:
@@ -2671,7 +2705,8 @@ class FCLParser(Parser):
 
 
 
-            except RecognitionException, re:
+            except RecognitionException:
+                re = sys.exc_info()[1]
                 self.reportError(re)
                 self.recover(self.input, re)
         finally:
@@ -2712,7 +2747,8 @@ class FCLParser(Parser):
                 retval.stop = self.input.LT(-1)
 
 
-            except RecognitionException, re:
+            except RecognitionException:
+                re = sys.exc_info()[1]
                 self.reportError(re)
                 self.recover(self.input, re)
         finally:
@@ -2750,7 +2786,8 @@ class FCLParser(Parser):
                 retval.stop = self.input.LT(-1)
 
 
-            except RecognitionException, re:
+            except RecognitionException:
+                re = sys.exc_info()[1]
                 self.reportError(re)
                 self.recover(self.input, re)
         finally:
@@ -2788,7 +2825,8 @@ class FCLParser(Parser):
                 retval.stop = self.input.LT(-1)
 
 
-            except RecognitionException, re:
+            except RecognitionException:
+                re = sys.exc_info()[1]
                 self.reportError(re)
                 self.recover(self.input, re)
         finally:
@@ -2826,7 +2864,8 @@ class FCLParser(Parser):
                 retval.stop = self.input.LT(-1)
 
 
-            except RecognitionException, re:
+            except RecognitionException:
+                re = sys.exc_info()[1]
                 self.reportError(re)
                 self.recover(self.input, re)
         finally:
@@ -2864,7 +2903,8 @@ class FCLParser(Parser):
                 retval.stop = self.input.LT(-1)
 
 
-            except RecognitionException, re:
+            except RecognitionException:
+                re = sys.exc_info()[1]
                 self.reportError(re)
                 self.recover(self.input, re)
         finally:
@@ -2902,7 +2942,8 @@ class FCLParser(Parser):
                 retval.stop = self.input.LT(-1)
 
 
-            except RecognitionException, re:
+            except RecognitionException:
+                re = sys.exc_info()[1]
                 self.reportError(re)
                 self.recover(self.input, re)
         finally:
@@ -2948,7 +2989,8 @@ class FCLParser(Parser):
                 retval.stop = self.input.LT(-1)
 
 
-            except RecognitionException, re:
+            except RecognitionException:
+                re = sys.exc_info()[1]
                 self.reportError(re)
                 self.recover(self.input, re)
         finally:
