@@ -85,50 +85,6 @@ class Doc(object):
         self.directory = directory
         self.overscan = 0.1 #: the plotted range is M{[min-o,max+o]} with M{o=(max-min)*overscan}
 
-    """
-    def setTerminal(self,g,filename):
-        g("set terminal png small transparent truecolor nocrop")
-        g("set output '%s/%s.png'" % (self.directory,filename))
-
-    def initGnuplot2D(self,filename="plot",xlabel=None,ylabel=None,title=None,xrange_=None,yrange=None,x_logscale=0,y_logscale=0):
-        g = Gnuplot.Gnuplot(debug=0)
-        self.setTerminal(g,filename)
-        # pylint: disable=C0321
-        if xlabel is not None: g.xlabel(xlabel)
-        if ylabel is not None: g.ylabel(ylabel)
-        if title is not None: g.title(title)
-        if xrange_ is not None: g('set xrange [%f:%f]' % xrange_) 
-        else: g('set autoscale x')
-        if yrange is not None: g('set yrange  [%f:%f]' % yrange) 
-        else: g('set autoscale y')
-        if x_logscale: g('set logscale x'); g('set autoscale x')
-        if y_logscale: g('set logscale y'); g('set autoscale y')
-        return g
-
-    def initGnuplot3D(self,filename="plot3D",xlabel=None,ylabel=None,zlabel=None,title=None,xrange_=None,yrange=None,zrange=None,x_logscale=0,y_logscale=0,z_logscale=0):
-        g = Gnuplot.Gnuplot(debug=0)
-        self.setTerminal(g,filename)
-        # pylint: disable=C0321
-        if xlabel is not None: g.xlabel(xlabel)
-        if ylabel is not None: g.ylabel(ylabel)
-        if zlabel is not None: g("set zlabel '%s'" % zlabel)
-        if title is not None:  g.title(title)
-        if xrange_ is not None: g('set xrange [%f:%f]' % xrange_) 
-        else: g('set autoscale x')
-        if yrange is not None: g('set yrange  [%f:%f]' % yrange) 
-        else: g('set autoscale y')
-        if zrange is not None: g('set zrange  [%f:%f]' % zrange) 
-        else: g('set autoscale z')
-        if x_logscale: g('set logscale x');g('set autoscale x')
-        if y_logscale: g('set logscale y');g('set autoscale y')
-        if z_logscale: g('set logscale z');g('set autoscale z')
-        g('set style data lines')
-        g('set hidden')
-        g('set pm3d at s')
-        g('set pm3d ftriangles interpolate 50,50')
-        g('set contour surface')
-        return g
-"""
 
     def getValues(self,v):
         return self.getValuesSets(getSets(v))
@@ -325,6 +281,7 @@ class Doc(object):
 
         (x_min,x_max,x) = self.getValues(system.variables[x_name])
         (y_min,y_max,y) = self.getValues(system.variables[y_name])
+        (z_min,z_max,z) = self.getValues(system.variables[z_name])
 
         def f(x,y):
             input_dict[x_name] = x
@@ -338,7 +295,7 @@ class Doc(object):
         ax.set_title("%s=f(%s,%s)" % (z_name,x_name,y_name))
         ax.set_xlim(x_min, x_max)
         ax.set_ylim(y_min, y_max)
-        ax.set_zlim(0, 1)
+        ax.set_zlim(z_min, z_max)
         X = [x] * len(y)
         Y = zip(*([y] * len(x)))
         Z = [[f(x_,y_) for x_ in x] for y_ in y]
