@@ -51,6 +51,7 @@ PACKAGES = [
         'fuzzy.doc',
         'fuzzy.doc.plot',
         'fuzzy.doc.plot.gnuplot',
+        'fuzzy.doc.plot.matplotlib',
         'fuzzy.doc.structure',
         'fuzzy.doc.structure.dot',
         ]
